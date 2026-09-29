@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="UTF-8" />
+<title>M4 — ZAN brend filmi</title>
+<style>
+  @font-face { font-family: ZanTitle; src: url(/assets/fonts/Roboto-Bold.ttf); }
+  @font-face { font-family: ZanBody; src: url(/assets/fonts/DMSans-VariableFont_wght.ttf); font-weight: 100 1000; }
+</style>
+</head>
+<body>
+<script src="lib.js"></script>
+<script>
+/* ==========================================================================
+   M4 — "ZAN — rəngin yolu" · brend filmi (mission.html)
+   0.0  titr
+   3.4  01 Xammal — 3D piqment hissəcikləri
+   8.6  02 Qarışdırma — yuxarıdan çən, burulğan
+   13.8 03 Keyfiyyət nəzarəti — laboratoriya ekranı
+   19.0 04 Qablaşdırma — boya axını, konveyer
+   24.6 05 Sizin eviniz — valikli divar, rəng seçimi
+   30.0 sitat + loqo
+   ========================================================================== */
+const { W, H, E, p, lerp, clamp } = Z;
+const T = { c1: 3.4, c2: 8.6, c3: 13.8, c4: 19.0, c5: 24.6, quote: 30.0, dur: 36.0, wipe: 0.85 };
+const RAINBOW = [[0, "#1fae4b"], [0.16, "#15b5c8"], [0.32, "#2c63d8"], [0.46, "#7d3cc8"], [0.6, "#e2308c"], [0.74, "#f4602a"], [0.87, "#f9c51c"], [1, "#e8242c"]];
+const PIG = ["#e8242c", "#f4602a", "#f9c51c", "#1fae4b", "#15b5c8", "#2c63d8", "#7d3cc8", "#e2308c"];
+let liquid, logo;
+const S = {};
+
+//#region ortaq hissələr
+function darkBg(ctx, t, tint = "#6d0c1c", seed = 0) {
+  ctx.drawImage(liquid.render({ mode: 0, c: ["#050304", "#12070a", "#2c0911", tint], to: [t * 0.03 + seed, seed * 0.5, 40 + seed + t * 0.08], scale: 0.5, warp: 1.8, bump: 0.2, spec: 0.22, shine: 90, gloss: 0.04, oct: 4, gain: 0.45 }), 0, 0, W, H);
+}
+function caption(ctx, L, n, title, sub) {
+  const X = 150;
+  Z.lineUp(ctx, "0" + n, X - 4, 812, E.outExpo(p(L, 0.35, 1.2)), { font: Z.f(118, "title"), size: 118, stroke: "rgba(242,207,107,.95)", lineWidth: 1.6 });
+  Z.lineUp(ctx, title, X, 900, E.outExpo(p(L, 0.5, 1.3)), { font: Z.f(68, "title"), size: 68, color: "#fff", shadow: "rgba(0,0,0,.4)", shadowBlur: 24 });
+  Z.words(ctx, sub, X, 954, L, { font: Z.f(29, "body", 400), color: "rgba(255,255,255,.86)", t0: 0.8, stagger: 0.035, dur: 0.6, rise: 14, blur: 6, shadow: "rgba(0,0,0,.4)", shadowBlur: 16 });
+}
+//#endregion
+
+//#region 00 — titr
+const TITLE_PATH = Z.path([[830, 745], [885, 734], [935, 758], [985, 742], [1015, 734], [1050, 740], [1098, 726]]);
+function sceneTitle(ctx, t) {
+  const L = t;
+  darkBg(ctx, t);
+  Z.glow(ctx, 960, 560, 900, "#c9142c", 0.28 * E.outCubic(p(L, 0, 1.2)));
+  Z.vignette(ctx, 0.6);
+  Z.eyebrow(ctx, "BREND FİLMİ", 960, 430, p(L, 0.2, 1.1), { center: true, size: 20 });
+  Z.lineUp(ctx, "Rəngin", 960, 572, E.outExpo(p(L, 0.45, 1.4)), { font: Z.f(112, "title"), size: 112, align: "center", color: "#fff" });
+  Z.lineUp(ctx, "yolu", 960, 690, E.outExpo(p(L, 0.62, 1.55)), { font: Z.f(112, "title"), size: 112, align: "center", color: "#ff4d67" });
+  Z.brushGrad(ctx, TITLE_PATH, { to: E.outCubic(p(L, 1.2, 2.0)), width: 18, bristles: 26, seed: 4, dry: 0.25, wobble: 1.5, gloss: 0 }, RAINBOW, [830, 0, 1098, 0]);
+}
+//#endregion
+
+//#region 01 — xammal: piqment hissəcikləri
+const PARTS = (() => {
+  const r = Z.rng(42), a = [];
+  for (let i = 0; i < 560; i++)
+    a.push({ a: r() * Math.PI * 2, rad: 120 + Math.pow(r(), 0.7) * 1250, y: (r() - 0.5) * 1500, s: 2 + r() * 5.5, c: i % 9 === 8 ? "#fff4e0" : PIG[i % 8], sp: 0.18 + r() * 0.25, ph: r() * 6 });
+  return a;
+})();
+function sceneRaw(ctx, t) {
+  const L = t - T.c1;
+  ctx.fillStyle = "#06070b"; ctx.fillRect(0, 0, W, H);
+  Z.glow(ctx, 1060, 520, 900, "#2a1030", 0.6, "source-over");
+  const conv = E.inOutCubic(p(L, 2.2, 6));
+  const CX = 1060, CY = 520, F = 950, FOCUS = 1300;
+  const pts = [];
+  PARTS.forEach((q) => {
+    const ang = q.a + L * q.sp + conv * 2.2;
+    const rad = q.rad * lerp(1, 0.28, conv);
+    const x = Math.cos(ang) * rad, z = Math.sin(ang) * rad + 1500 - L * 70;
+    const y = q.y * lerp(1, 0.35, conv) + Math.sin(L * 0.8 + q.ph) * 24 - L * 12;
+    if (z < 80) return;
+    pts.push({ sx: CX + (x * F) / z, sy: CY + (y * F) / z, r: (q.s * F) / z * 1.6, z, c: q.c });
+  });
+  pts.sort((a, b) => b.z - a.z);
+  pts.forEach((q) => {
+    const blur = Math.min(1, Math.abs(q.z - FOCUS) / 900);
+    const R = q.r * (1 + blur * 4), core = q.r / R;
+    if (q.sx < -R || q.sx > W + R || q.sy < -R || q.sy > H + R) return;
+    const g = ctx.createRadialGradient(q.sx, q.sy, 0, q.sx, q.sy, R);
+    const a = lerp(0.95, 0.3, blur) * E.outCubic(p(L, 0, 0.8));
+    g.addColorStop(0, Z.rgba(Z.shade(q.c, 1.25), a)); g.addColorStop(core * 0.9, Z.rgba(q.c, a)); g.addColorStop(Math.min(1, core * 0.9 + 0.1 + blur * 0.5), Z.rgba(q.c, a * 0.25)); g.addColorStop(1, Z.rgba(q.c, 0));
+    ctx.fillStyle = g; ctx.fillRect(q.sx - R, q.sy - R, R * 2, R * 2);
+  });
+  // mərkəzdə toplanan işıq
+  Z.glow(ctx, CX, CY, 420, "#ffb36b", 0.35 * conv);
+  Z.vignette(ctx, 0.55);
+  caption(ctx, L, 1, "Xammal", "Seçilmiş xammal və davamlı piqmentlər.");
+}
+//#endregion
+
+//#region 02 — qarışdırma: çən
+const VAT = { x: 1180, y: 520, r: 395 };
+function sceneMix(ctx, t) {
+  const L = t - T.c2;
+  ctx.fillStyle = "#0b0c10"; ctx.fillRect(0, 0, W, H);
+  // metal döşəmə — incə zolaqlar
+  ctx.save();
+  ctx.globalAlpha = 0.018;
+  for (let i = -20; i < 80; i++) { ctx.fillStyle = i % 2 ? "#fff" : "#000"; ctx.fillRect(i * 24, 0, 12, H); }
+  ctx.restore();
+  Z.glow(ctx, 960, -100, 1100, "#9aa6c0", 0.12);
+  Z.glow(ctx, VAT.x, VAT.y, 900, "#c9142c", 0.22);
+  ctx.save();
+  const zoom = lerp(1.12, 1, E.outCubic(p(L, 0, 2.5)));
+  ctx.translate(VAT.x, VAT.y); ctx.scale(zoom, zoom); ctx.rotate(lerp(-0.08, 0, E.outCubic(p(L, 0, 2.5)))); ctx.translate(-VAT.x, -VAT.y);
+  // kölgə
+  ctx.save(); ctx.shadowColor = "rgba(0,0,0,.7)"; ctx.shadowBlur = 80; ctx.shadowOffsetY = 30;
+  ctx.fillStyle = "#222"; ctx.beginPath(); ctx.arc(VAT.x, VAT.y, VAT.r + 16, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  // maye
+  const mix = E.inOutCubic(p(L, 2.0, 4.9));
+  const lq = liquid.render({
+    mode: 1, pal: ["#c9142c", "#f2cf6b", "#1f9d5a", "#1e4fb8", "#e8602a", "#6a2fb0", "#15a6c0", "#d12d7e"], bands: 2.6, edge: 0.09, scale: 1.0, warp: 1.8, bump: 0.3, spec: 0.75, shine: 110, gloss: 0.12, oct: 4, gain: 0.45,
+    swirl: 1.2 + L * 2.4, swirlK: 7, swirlC: [(VAT.x - 960) / 1080, (540 - VAT.y) / 1080], solid: "#c9142c", solidAmt: 0.88 * mix, to: [0.2, 0.1, L * 0.18],
+  });
+  ctx.save(); ctx.beginPath(); ctx.arc(VAT.x, VAT.y, VAT.r, 0, Math.PI * 2); ctx.clip();
+  ctx.drawImage(lq, 0, 0, W, H);
+  // qarışdırıcı pərlər — mayenin altında, bulanıq
+  ctx.save();
+  ctx.translate(VAT.x, VAT.y); ctx.rotate(L * 5.5);
+  ctx.filter = "blur(10px)"; ctx.fillStyle = "rgba(20,0,4,.35)";
+  for (let k = 0; k < 3; k++) { ctx.rotate((Math.PI * 2) / 3); ctx.beginPath(); ctx.ellipse(VAT.r * 0.33, 0, VAT.r * 0.3, 34, 0.25, 0, Math.PI * 2); ctx.fill(); }
+  ctx.restore();
+  const ig = ctx.createRadialGradient(VAT.x, VAT.y, VAT.r * 0.72, VAT.x, VAT.y, VAT.r);
+  ig.addColorStop(0, "rgba(0,0,0,0)"); ig.addColorStop(1, "rgba(0,0,0,.6)");
+  ctx.fillStyle = ig; ctx.fillRect(VAT.x - VAT.r, VAT.y - VAT.r, VAT.r * 2, VAT.r * 2);
+  ctx.restore();
+  // metal kənar
+  const rg = ctx.createLinearGradient(VAT.x - VAT.r, VAT.y - VAT.r, VAT.x + VAT.r, VAT.y + VAT.r);
+  rg.addColorStop(0, "#f5f5f5"); rg.addColorStop(0.3, "#8b8d92"); rg.addColorStop(0.55, "#e6e7ea"); rg.addColorStop(0.8, "#55575c"); rg.addColorStop(1, "#c9cace");
+  ctx.strokeStyle = rg; ctx.lineWidth = 30; ctx.beginPath(); ctx.arc(VAT.x, VAT.y, VAT.r + 14, 0, Math.PI * 2); ctx.stroke();
+  ctx.strokeStyle = "rgba(0,0,0,.45)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(VAT.x, VAT.y, VAT.r, 0, Math.PI * 2); ctx.stroke();
+  // val
+  const sg = ctx.createRadialGradient(VAT.x - 8, VAT.y - 8, 2, VAT.x, VAT.y, 30);
+  sg.addColorStop(0, "#ffffff"); sg.addColorStop(0.5, "#9a9ca2"); sg.addColorStop(1, "#3b3d42");
+  ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(VAT.x, VAT.y, 28, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+  Z.vignette(ctx, 0.6);
+  caption(ctx, L, 2, "Qarışdırma", "Dəqiq resept, bərabər və sabit qarışım.");
+}
+//#endregion
+
+//#region 03 — keyfiyyət nəzarəti
+const TESTS = ["Rəng tonu", "Örtücülük", "Parlaqlıq", "Davamlılıq"];
+function check(ctx, x, y, q) {
+  if (q <= 0) return;
+  ctx.save();
+  ctx.translate(x, y); ctx.scale(E.outBack(q), E.outBack(q));
+  ctx.fillStyle = "#f2cf6b"; ctx.beginPath(); ctx.arc(0, 0, 17, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#1a1206"; ctx.lineWidth = 3.2; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  ctx.beginPath(); ctx.moveTo(-7, 0); ctx.lineTo(-2, 5.5); ctx.lineTo(8, -6); ctx.stroke();
+  ctx.restore();
+}
+function sceneQC(ctx, t) {
+  const L = t - T.c3;
+  ctx.fillStyle = "#080c14"; ctx.fillRect(0, 0, W, H);
+  // HUD şəbəkəsi
+  ctx.save(); ctx.strokeStyle = "rgba(140,170,220,.06)"; ctx.lineWidth = 1;
+  for (let x = 0; x <= W; x += 60) { ctx.beginPath(); ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); ctx.stroke(); }
+  for (let y = 0; y <= H; y += 60) { ctx.beginPath(); ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); ctx.stroke(); }
+  ctx.restore();
+  Z.glow(ctx, 780, 470, 700, "#c9142c", 0.25);
+  // nümunə kartı
+  const cx = 560, cy = 170, cw = 440, ch = 560;
+  const cq = E.outExpo(p(L, 0.15, 1.1));
+  ctx.save();
+  ctx.translate(0, (1 - cq) * 60); ctx.globalAlpha = clamp(cq * 1.5);
+  ctx.shadowColor = "rgba(0,0,0,.6)"; ctx.shadowBlur = 60; ctx.shadowOffsetY = 26;
+  ctx.fillStyle = "#f4f1ec"; ctx.beginPath(); ctx.roundRect(cx, cy, cw, ch, 18); ctx.fill();
+  ctx.shadowColor = "transparent";
+  ctx.save(); ctx.beginPath(); ctx.roundRect(cx + 22, cy + 22, cw - 44, ch - 130, 10); ctx.clip();
+  ctx.drawImage(liquid.render({ mode: 0, c: ["#6a0714", "#b10f27", "#e0283d", "#ff9a9a"], to: [L * 0.03, 0.4, 3 + L * 0.1], scale: 0.9, warp: 1.6, bump: 0.25, spec: 0.6, shine: 100, gloss: 0.1, oct: 4, gain: 0.45 }), cx - 200, cy - 100, cw + 400, ch + 200);
+  ctx.restore();
+  Z.text(ctx, "ZAN · Qırmızı", cx + 24, cy + ch - 62, { font: Z.f(26, "title"), color: "#1a1a1a" });
+  Z.text(ctx, "Parlaq · Sintetik", cx + 24, cy + ch - 30, { font: Z.f(19, "body", 500), color: "#6b6b6b" });
+  // skaner xətti
+  const sq = p(L, 0.9, 2.6);
+  if (sq > 0 && sq < 1) {
+    const sy = cy + 22 + (ch - 130) * E.inOutSine(sq);
+    const g = ctx.createLinearGradient(0, sy - 60, 0, sy + 4);
+    g.addColorStop(0, "rgba(242,207,107,0)"); g.addColorStop(1, "rgba(242,207,107,.45)");
+    ctx.fillStyle = g; ctx.fillRect(cx + 10, sy - 60, cw - 20, 64);
+    ctx.fillStyle = "#ffe7a3"; ctx.fillRect(cx - 14, sy, cw + 28, 2);
+  }
+  ctx.restore();
+  // künc mötərizələri
+  const bq = E.outExpo(p(L, 0.5, 1.4)), pad = lerp(60, 26, bq);
+  ctx.save(); ctx.strokeStyle = `rgba(242,207,107,${0.9 * bq})`; ctx.lineWidth = 2;
+  [[cx - pad, cy - pad, 1, 1], [cx + cw + pad, cy - pad, -1, 1], [cx - pad, cy + ch + pad, 1, -1], [cx + cw + pad, cy + ch + pad, -1, -1]].forEach(([x, y, sx, sy]) => {
+    ctx.beginPath(); ctx.moveTo(x, y + 34 * sy); ctx.lineTo(x, y); ctx.lineTo(x + 34 * sx, y); ctx.stroke();
+  });
+  ctx.restore();
+  // test paneli
+  const PX = 1130, PW = 600;
+  Z.eyebrow(ctx, "LABORATORİYA", PX, 236, p(L, 0.6, 1.4), { size: 19 });
+  TESTS.forEach((name, k) => {
+    const y = 330 + k * 108, t0 = 1.0 + k * 0.35;
+    const rq = E.outCubic(p(L, t0, t0 + 0.5));
+    Z.text(ctx, name, PX + (1 - rq) * 20, y, { font: Z.f(30, "body", 500), color: "#fff", alpha: rq });
+    ctx.fillStyle = `rgba(255,255,255,${0.14 * rq})`; ctx.fillRect(PX, y + 24, PW - 60, 4);
+    const fq = E.inOutCubic(p(L, t0 + 0.2, t0 + 1.2));
+    const g = ctx.createLinearGradient(PX, 0, PX + PW - 60, 0);
+    g.addColorStop(0, "#f2cf6b"); g.addColorStop(1, "#ff4d67");
+    ctx.fillStyle = g; ctx.fillRect(PX, y + 24, (PW - 60) * fq, 4);
+    // dalğa izi
+    if (rq > 0) {
+      ctx.save(); ctx.globalAlpha = 0.35 * rq; ctx.strokeStyle = "#8fb6ff"; ctx.lineWidth = 1.5; ctx.beginPath();
+      for (let i = 0; i <= 60; i++) { const x = PX + 330 + i * 3.4, yy = y - 12 + Math.sin(i * 0.5 + L * 6 + k) * 7 * (1 - fq * 0.8); i ? ctx.lineTo(x, yy) : ctx.moveTo(x, yy); }
+      ctx.stroke(); ctx.restore();
+    }
+    check(ctx, PX + PW - 20, y + 26, p(L, t0 + 1.15, t0 + 1.55));
+  });
+  const ok = E.outBack(p(L, 3.4, 3.95));
+  if (ok > 0) {
+    ctx.save(); ctx.translate(PX, 770); ctx.globalAlpha = clamp(ok);
+    ctx.scale(lerp(0.8, 1, ok), lerp(0.8, 1, ok));
+    ctx.strokeStyle = "#f2cf6b"; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(0, -34, 300, 60, 30); ctx.stroke();
+    ctx.fillStyle = "rgba(242,207,107,.12)"; ctx.fill();
+    check(ctx, 32, -4, 1);
+    Z.text(ctx, "YOXLANILDI", 62, 5, { font: Z.f(22, "body", 700), ls: 4, color: "#f2cf6b" });
+    ctx.restore();
+  }
+  Z.vignette(ctx, 0.5);
+  caption(ctx, L, 3, "Keyfiyyət nəzarəti", "Hər partiyada eyni sabit keyfiyyət.");
+}
+//#endregion
+
+//#region 04 — qablaşdırma: axın və konveyer
+const LINE = ["lux", "sin", "lak", "dolgu", "silan", "lux", "sin", "lak", "dolgu"];
+function scenePack(ctx, t) {
+  const L = t - T.c4;
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#120b0e"); g.addColorStop(1, "#050304");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  Z.glow(ctx, 960, 420, 900, "#c9142c", 0.3);
+  Z.glow(ctx, 960, 120, 500, "#f2cf6b", 0.12);
+  const FL = 640, CH = 405;
+  // konveyerin sürüşməsi (hamar sürətlənmə)
+  const u = L - 2.3, acc = 0.9, v = 560;
+  const s = u <= 0 ? 0 : u < acc ? (v * u * u) / (2 * acc) : v * (u - acc / 2);
+  // lent
+  ctx.fillStyle = "#17161b"; ctx.fillRect(0, FL + 2, W, 30);
+  ctx.fillStyle = "rgba(255,255,255,.08)"; ctx.fillRect(0, FL + 2, W, 1.5);
+  ctx.save(); ctx.fillStyle = "rgba(255,255,255,.06)";
+  for (let x = -((s * 1) % 80); x < W; x += 80) ctx.fillRect(x, FL + 8, 40, 18);
+  ctx.restore();
+  for (let x = -((s * 1) % 160) + 40; x < W + 80; x += 160) {
+    const rg = ctx.createRadialGradient(x - 4, FL + 44, 1, x, FL + 46, 15);
+    rg.addColorStop(0, "#77787e"); rg.addColorStop(1, "#1d1d22");
+    ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(x, FL + 46, 13, 0, Math.PI * 2); ctx.fill();
+  }
+  // axın — qutuların arxasında
+  const top = FL - CH;
+  const headY = lerp(-40, top + 20, E.inQuad(p(L, 0.15, 0.55)));
+  const tailY = lerp(-40, top + 20, E.inQuad(p(L, 1.75, 2.15)));
+  if (headY > tailY + 2) {
+    ctx.save();
+    const x0 = 960 - s;
+    const wob = (y) => Math.sin(y * 0.02 + L * 9) * 3;
+    const wid = (y) => 20 + Math.sin(y * 0.013 - L * 7) * 3;
+    const sg = ctx.createLinearGradient(x0 - 26, 0, x0 + 26, 0);
+    sg.addColorStop(0, "#6d0616"); sg.addColorStop(0.35, "#e3263c"); sg.addColorStop(0.5, "#ff8f98"); sg.addColorStop(0.62, "#d11a31"); sg.addColorStop(1, "#5d0512");
+    ctx.fillStyle = sg; ctx.beginPath();
+    for (let y = tailY; y <= headY; y += 8) ctx.lineTo(x0 + wob(y) - wid(y), y);
+    for (let y = headY; y >= tailY; y -= 8) ctx.lineTo(x0 + wob(y) + wid(y), y);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+    Z.glow(ctx, x0, top + 20, 90, "#ff4d67", 0.5 * p(headY, top - 40, top + 20));
+  }
+  // qutular
+  LINE.forEach((k, i) => {
+    const x = 960 + i * 440 - s;
+    if (x < -300 || x > W + 300) return;
+    const intro = i === 0 ? E.outCubic(p(L, 0, 0.5)) : 1;
+    Z.product(ctx, S[k], { x, y: FL, h: k === "silan" ? CH * 0.92 : CH, alpha: intro, refl: 0, shadow: 0.55, sheen: i === 0 ? p(L, 2.0, 2.9) : -1 });
+  });
+  // sıçrayan damcılar
+  if (L > 0.5 && L < 2.2) {
+    const r = Z.rng(Math.floor(L * 12));
+    for (let k = 0; k < 3; k++) Z.drop(ctx, 960 - s + (r() - 0.5) * 70, top + 4 - r() * 26, 3 + r() * 4, "#e3263c", 0.8);
+  }
+  Z.vignette(ctx, 0.55);
+  caption(ctx, L, 4, "Qablaşdırma", "Hər qutuda eyni etibar.");
+}
+//#endregion
+
+//#region 05 — sizin eviniz: divar, valik, rəng seçimi
+const WALL = ["#c96f53", "#8ea68b", "#3f5f86", "#d8b98f"];
+const LANES = [0, 1, 2, 3].map((k) => Z.path([[240 + k * 480, -120], [240 + k * 480 + 20, 330], [240 + k * 480 - 20, 700], [240 + k * 480, 1160]]));
+function lineArt(ctx, L) {
+  const q = (a, b) => E.inOutCubic(p(L, a, b));
+  ctx.save();
+  ctx.strokeStyle = "rgba(24,20,22,.82)"; ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  const stroke = (fn, k) => {
+    if (k <= 0) return;
+    ctx.save(); ctx.beginPath(); fn(); ctx.setLineDash([3000 * k, 3000]); ctx.stroke(); ctx.restore();
+  };
+  stroke(() => { ctx.rect(200, 190, 360, 430); }, q(0.1, 1.0));
+  stroke(() => { ctx.moveTo(380, 190); ctx.lineTo(380, 620); ctx.moveTo(200, 405); ctx.lineTo(560, 405); }, q(0.5, 1.2));
+  stroke(() => { ctx.moveTo(176, 632); ctx.lineTo(584, 632); }, q(0.7, 1.2));
+  stroke(() => { ctx.rect(880, 230, 300, 210); ctx.rect(904, 254, 252, 162); }, q(0.3, 1.2));
+  stroke(() => { ctx.moveTo(904, 390); ctx.lineTo(980, 320); ctx.lineTo(1040, 370); ctx.lineTo(1080, 335); ctx.lineTo(1156, 395); }, q(0.8, 1.4));
+  stroke(() => { ctx.roundRect(760, 560, 740, 130, 26); }, q(0.4, 1.3));
+  stroke(() => { ctx.roundRect(700, 640, 860, 150, 28); }, q(0.5, 1.4));
+  stroke(() => { ctx.moveTo(1130, 560); ctx.lineTo(1130, 690); ctx.moveTo(760, 790); ctx.lineTo(760, 830); ctx.moveTo(1500, 790); ctx.lineTo(1500, 830); }, q(0.9, 1.5));
+  stroke(() => { ctx.moveTo(1690, 830); ctx.lineTo(1690, 330); ctx.moveTo(1610, 330); ctx.lineTo(1770, 330); ctx.lineTo(1740, 230); ctx.lineTo(1640, 230); ctx.lineTo(1610, 330); ctx.moveTo(1650, 830); ctx.lineTo(1730, 830); }, q(0.6, 1.5));
+  stroke(() => { ctx.moveTo(590, 740); ctx.lineTo(670, 740); ctx.lineTo(658, 830); ctx.lineTo(602, 830); ctx.closePath(); }, q(0.7, 1.3));
+  stroke(() => { ctx.moveTo(630, 740); ctx.quadraticCurveTo(580, 660, 560, 640); ctx.moveTo(630, 740); ctx.quadraticCurveTo(640, 650, 620, 600); ctx.moveTo(630, 740); ctx.quadraticCurveTo(690, 670, 700, 650); }, q(1.0, 1.6));
+  ctx.restore();
+}
+function sceneHome(ctx, t) {
+  const L = t - T.c5, FLY = 830;
+  ctx.fillStyle = "#e9e5df"; ctx.fillRect(0, 0, W, FLY);
+  // divar rəngi: dörd valik zolağı, sonra rəng seçimi ilə dəyişir
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, FLY); ctx.clip();
+  LANES.forEach((pa, k) => {
+    const pk = E.inOutCubic(p(L, 0.2 + k * 0.32, 1.0 + k * 0.32));
+    if (pk > 0) Z.bristles(ctx, pa, { to: pk, width: 560, bristles: 120, seed: 70 + k, dry: 0.03, lw: 2.6, shade: 0.07, wobble: 3, color: WALL[0], headJ: 0.004 });
+  });
+  [[3.2, 1], [4.2, 2]].forEach(([t0, ci]) => {
+    const q = E.inOutCubic(p(L, t0, t0 + 0.75));
+    if (q <= 0) return;
+    ctx.save(); ctx.beginPath(); ctx.arc(1590 + ci * 70 - 70, 985, 2300 * q, 0, Math.PI * 2); ctx.clip();
+    ctx.fillStyle = WALL[ci]; ctx.fillRect(0, 0, W, FLY);
+    ctx.restore();
+  });
+  ctx.restore();
+  // döşəmə
+  const fg = ctx.createLinearGradient(0, FLY, 0, H);
+  fg.addColorStop(0, "#b98a5e"); fg.addColorStop(1, "#8a6040");
+  ctx.fillStyle = fg; ctx.fillRect(0, FLY, W, H - FLY);
+  ctx.fillStyle = "rgba(0,0,0,.12)";
+  for (let i = 0; i < 6; i++) ctx.fillRect(0, FLY + 16 + i * 42, W, 1.5);
+  ctx.fillStyle = "rgba(0,0,0,.25)"; ctx.fillRect(0, FLY, W, 6);
+  lineArt(ctx, L);
+  // pəncərədən düşən işıq
+  ctx.save(); ctx.globalCompositeOperation = "soft-light";
+  const lg = ctx.createLinearGradient(200, 190, 900, 900);
+  lg.addColorStop(0, "rgba(255,240,210,.55)"); lg.addColorStop(1, "rgba(255,240,210,0)");
+  ctx.fillStyle = lg; ctx.fillRect(0, 0, W, H);
+  ctx.restore();
+  // valik
+  LANES.forEach((pa, k) => {
+    const pk = E.inOutCubic(p(L, 0.2 + k * 0.32, 1.0 + k * 0.32));
+    if (pk <= 0 || pk >= 1) return;
+    const pt = pa.s[Math.round(pk * pa.n)];
+    const y = Math.min(pt.y, FLY - 40);
+    ctx.save();
+    ctx.translate(pt.x, y);
+    ctx.strokeStyle = "#2b2b30"; ctx.lineWidth = 7; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.moveTo(250, 0); ctx.lineTo(282, 0); ctx.lineTo(282, 70); ctx.lineTo(210, 140); ctx.lineTo(210, 330); ctx.stroke();
+    const rg = ctx.createLinearGradient(0, -30, 0, 30);
+    rg.addColorStop(0, Z.rgba(Z.shade(WALL[0], 1.3))); rg.addColorStop(0.5, WALL[0]); rg.addColorStop(1, Z.rgba(Z.shade(WALL[0], 0.6)));
+    ctx.fillStyle = rg; ctx.shadowColor = "rgba(0,0,0,.35)"; ctx.shadowBlur = 20; ctx.shadowOffsetY = 8;
+    ctx.beginPath(); ctx.roundRect(-262, -30, 524, 60, 30); ctx.fill();
+    ctx.restore();
+  });
+  // rəng nümunələri (vizualizator)
+  const sw = E.outBack(p(L, 2.5, 3.0));
+  if (sw > 0) {
+    ctx.save(); ctx.globalAlpha = clamp(sw);
+    ctx.fillStyle = "rgba(10,8,10,.55)"; ctx.beginPath(); ctx.roundRect(1470, 945, 330, 80, 40); ctx.fill();
+    const act = L > 4.2 ? 2 : L > 3.2 ? 1 : 0;
+    WALL.forEach((c, i) => {
+      const x = 1520 + i * 70, y = 985;
+      ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x, y, 22 * clamp(sw), 0, Math.PI * 2); ctx.fill();
+      if (i === act) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, 29, 0, Math.PI * 2); ctx.stroke(); }
+    });
+    ctx.restore();
+  }
+  ctx.save();
+  const cg = ctx.createLinearGradient(0, 700, 0, H);
+  cg.addColorStop(0, "rgba(0,0,0,0)"); cg.addColorStop(1, "rgba(0,0,0,.55)");
+  ctx.fillStyle = cg; ctx.fillRect(0, 700, 1100, 380);
+  ctx.restore();
+  caption(ctx, L, 5, "Sizin eviniz", "Rəng seçimindən divara qədər yanınızdayıq.");
+}
+//#endregion
+
+//#region sitat + son kadr
+const END_PATH = Z.path([[120, 610], [520, 470], [760, 700], [1000, 580], [1240, 470], [1500, 560], [1800, 430]]);
+function sceneQuote(ctx, t) {
+  const L = t - T.quote;
+  darkBg(ctx, t, "#6d0c1c", 3);
+  Z.glow(ctx, 960, 520, 950, "#c9142c", 0.3);
+  Z.vignette(ctx, 0.7);
+  const out = E.inCubic(p(L, 2.75, 3.2));
+  if (out < 1) {
+    ctx.save(); ctx.globalAlpha = 1 - out; ctx.translate(0, -50 * out);
+    Z.chars(ctx, "Rəng sadəcə boya deyil —", 960, 505, L, { font: Z.f(84, "title"), align: "center", t0: 0.35, stagger: 0.022, dur: 0.6, rise: 36, blur: 12 });
+    Z.words(ctx, "evin əhvalıdır.", 960, 615, L, { font: Z.f(84, "title"), align: "center", t0: 0.95, stagger: 0.12, dur: 0.8, color: "#ff4d67", rise: 30, blur: 12 });
+    ctx.restore();
+  }
+  const E0 = 3.2;
+  Z.brushGrad(ctx, END_PATH, { to: E.outCubic(p(L, E0, E0 + 0.85)), width: 215, bristles: 76, seed: 21, dry: 0.2, wobble: 4, gloss: 0.45, shadow: 0.45 }, RAINBOW, [180, 0, 1740, 0]);
+  const lp = p(L, E0 + 0.35, E0 + 1.2), lh = 370 * lerp(0.55, 1, E.outBack(lp));
+  Z.product(ctx, logo, { x: 960, y: 470 + lh / 2, h: lh, rot: lerp(0.06, 0, E.outBack(lp)), alpha: E.outCubic(p(L, E0 + 0.35, E0 + 0.6)), shadow: 0, refl: 0, sheen: p(L, E0 + 1.2, E0 + 2.0), drop: ["rgba(0,0,0,.6)", 60, 24] });
+  Z.eyebrow(ctx, "RƏNGİN YOLU", 960, 810, p(L, E0 + 1.1, E0 + 2.0), { center: true, size: 20, color: "rgba(255,255,255,.7)" });
+  const fo = p(t, T.dur - 0.75, T.dur);
+  if (fo > 0) { ctx.fillStyle = `rgba(0,0,0,${E.inOutSine(fo)})`; ctx.fillRect(0, 0, W, H); }
+}
+//#endregion
+
+//#region montaj
+const SEG = [
+  { s: 0, draw: sceneTitle },
+  { s: T.c1, draw: sceneRaw, wipe: { seed: 31, dir: 1, tilt: -60, color: "#f2cf6b" } },
+  { s: T.c2, draw: sceneMix, wipe: { seed: 33, dir: -1, tilt: 50, color: "#7d3cc8" } },
+  { s: T.c3, draw: sceneQC, wipe: { seed: 35, dir: 1, tilt: -60, color: "#e3263c" } },
+  { s: T.c4, draw: scenePack, wipe: { seed: 37, dir: -1, tilt: 55, color: "#2c63d8" } },
+  { s: T.c5, draw: sceneHome, wipe: { seed: 39, dir: 1, tilt: -50, color: "#c96f53" } },
+  { s: T.quote, draw: sceneQuote, wipe: { seed: 41, dir: -1, tilt: 45, color: "#8ea68b" } },
+];
+function overlay(ctx, t) {
+  const a = E.outCubic(p(t, T.c1 + 0.4, T.c1 + 1)) * (1 - E.inCubic(p(t, T.quote - 0.1, T.quote + 0.4)));
+  if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha = a;
+  const h = 64, w = (logo.w / logo.h) * h;
+  ctx.shadowColor = "rgba(0,0,0,.4)"; ctx.shadowBlur = 16; ctx.shadowOffsetY = 4;
+  ctx.drawImage(logo.c, 150, 58, w, h);
+  ctx.shadowColor = "transparent";
+  const segW = 46, gap = 8, x0 = 1770 - (5 * segW + 4 * gap);
+  const CH = [T.c1, T.c2, T.c3, T.c4, T.c5, T.quote];
+  for (let k = 0; k < 5; k++) {
+    const f = clamp((t - CH[k]) / (CH[k + 1] - CH[k])), x = x0 + k * (segW + gap);
+    ctx.fillStyle = "rgba(255,255,255,.28)"; ctx.fillRect(x, 88, segW, 3);
+    ctx.fillStyle = "#f2cf6b"; ctx.fillRect(x, 88, segW * f, 3);
+  }
+  ctx.restore();
+}
+function draw(ctx, t) {
+  let i = 0;
+  while (i < SEG.length - 1 && SEG[i + 1].s <= t) i++;
+  const seg = SEG[i];
+  if (seg.wipe && t < seg.s + T.wipe) {
+    SEG[i - 1].draw(ctx, t);
+    Z.wipe(ctx, (c) => seg.draw(c, t), (t - seg.s) / T.wipe, seg.wipe);
+  } else seg.draw(ctx, t);
+  overlay(ctx, t);
+}
+//#endregion
+
+Z.run({
+  duration: T.dur,
+  fps: 30,
+  grain: 0.06,
+  async init() {
+    liquid = new Z.Liquid(1280, 720);
+    logo = await Z.sprite("/assets/images/Loqo silver pdf-1.png", 800);
+    const src = { lux: "lux parlaq.png", silan: "silan.png", sin: "sin parlaq boya.png", lak: "sintetik parlaq lak.png", dolgu: "zan dolgu vernik.png" };
+    await Promise.all(Object.entries(src).map(async ([k, f]) => (S[k] = await Z.sprite("/assets/images/" + f, 900))));
+  },
+  draw,
+});
+</script>
+</body>
+</html>

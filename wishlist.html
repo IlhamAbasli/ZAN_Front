@@ -1,0 +1,1516 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sevimlilər — ZAN Boya</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="./assets/icons/ZAN_icon.ico" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./assets/sass/site/site.css" />
+    <link rel="stylesheet" href="./assets/sass/soon/soon.css" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("zan-theme");
+          if (saved === "dark" || saved === "light") {
+            document.documentElement.setAttribute("data-theme", saved);
+          }
+        } catch (e) {
+          /* localStorage bağlıdırsa sistem seçimi ilə davam edirik */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- #region preloader — site.js → #region preloader -->
+    <div id="preloader" class="preloader" role="status" aria-live="polite">
+      <div class="preloader-inner">
+        <div class="preloader-mark" aria-hidden="true">
+          <span class="preloader-ring"></span>
+          <img
+            src="./assets/images/Loqo silver pdf-1.png"
+            alt=""
+            width="636"
+            height="502"
+          />
+        </div>
+        <div class="preloader-bar" aria-hidden="true"><span></span></div>
+        <span class="visually-hidden">Səhifə yüklənir…</span>
+      </div>
+    </div>
+    <!-- #endregion -->
+
+    <!-- klaviatura ilə gəzənlər üçün: header-i keçib birbaşa məzmuna -->
+    <a class="skip-link" href="#main">Əsas məzmuna keç</a>
+
+    <!-- #region header -->
+    <header class="site-header">
+      <!-- #region header-top — çatdırılma qeydi, mövzu, dil -->
+      <div id="header-top" class="d-none d-sm-block">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="left-side">
+                <span class="icon-badge">
+                  <img
+                    src="./assets/icons/truck.svg"
+                    alt=""
+                    width="22"
+                    height="19"
+                  />
+                </span>
+                <p>Ölkənin dörd bir yanına sürətli çatdırılma</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="right-side">
+                <ul>
+                  <li>
+                    <button
+                      type="button"
+                      class="theme-toggle"
+                      aria-label="Tünd rejim"
+                    >
+                      <span class="theme-toggle-icon" aria-hidden="true">
+                        <svg
+                          class="theme-icon-sun"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="4.2"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          />
+                          <path
+                            d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                        <svg
+                          class="theme-icon-moon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M20.5 13.4A8.6 8.6 0 0 1 10.6 3.5a8.6 8.6 0 1 0 9.9 9.9z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="theme-toggle-label">Tünd rejim</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="content"
+                      data-disclosure
+                      aria-expanded="false"
+                      aria-controls="language-menu"
+                    >
+                      AZ
+                      <img
+                        src="./assets/icons/AZ.png"
+                        alt=""
+                        width="20"
+                        height="20"
+                      />
+                      <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" id="language-menu">
+                      <ul>
+                        <li>
+                          <a href="#" lang="en" hreflang="en">
+                            EN
+                            <img
+                              src="./assets/icons/EN.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="ru" hreflang="ru">
+                            RU
+                            <img
+                              src="./assets/icons/RU.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="tr" hreflang="tr">
+                            TR
+                            <img
+                              src="./assets/icons/TR.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="zh" hreflang="zh">
+                            CN
+                            <img
+                              src="./assets/icons/CN.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-mid — loqo, axtarış, kabinet, səbət -->
+      <div id="header-mid">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-6 col-lg-2">
+              <div class="logo">
+                <a href="home.html">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/Loqo silver pdf-1.png"
+                    alt="ZAN Boya"
+                    width="636"
+                    height="502"
+                  />
+                </a>
+                <div class="border-line" aria-hidden="true"></div>
+                <a href="home.html" tabindex="-1" aria-hidden="true">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/zan main icon.jpeg"
+                    alt=""
+                    width="523"
+                    height="523"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="d-none d-lg-block col-lg-6">
+              <form
+                class="search-area"
+                role="search"
+                action="shop.html"
+                method="get"
+              >
+                <div class="content">
+                  <label class="visually-hidden" for="product-search"
+                    >Məhsul axtarışı</label
+                  >
+                  <input
+                    id="product-search"
+                    type="search"
+                    name="q"
+                    autocomplete="off"
+                    placeholder="Məhsul axtarışı..."
+                  />
+                  <div class="line" aria-hidden="true"></div>
+                  <!--
+                    Kateqoriya formanın öz sahəsidir: seçiləndə axtarış yalnız həmin
+                    kateqoriyada aparılır → shop.html?q=...&category=slug (site.js →
+                    header-search). value = kateqoriyanın slug-ı (shop.html filtrləri ilə eyni).
+                    TODO (backend): kateqoriyalar bazadan çəkilir; cari kateqoriyaya checked yazılır.
+                  -->
+                  <div class="selection">
+                    <button
+                      type="button"
+                      class="selector"
+                      data-disclosure
+                      aria-expanded="false"
+                      aria-controls="search-category-menu"
+                    >
+                      <span data-search-category-label>Kateqoriyalar</span>
+                      <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" id="search-category-menu">
+                      <ul>
+                        <li>Kateqoriya seçin</li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="" checked />
+                            <span>Bütün kateqoriyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="su-esasli-boyalar" />
+                            <span>Su əsaslı boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="sintetik-boyalar" />
+                            <span>Sintetik boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="sellulozik-boyalar" />
+                            <span>Sellülozik boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="divar-kagizlari" />
+                            <span>Divar kağızları</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="yapisdiricilar" />
+                            <span>Yapışdırıcılar</span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button type="submit" class="search-icon">
+                    <img
+                      src="./assets/icons/search-icon.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                    />
+                    <span class="visually-hidden">Axtar</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="d-none d-lg-block col-lg-2">
+              <div class="account">
+                <a href="login.html" data-account-link>
+                  <div class="login-icon">
+                    <img
+                      src="./assets/icons/login-icon.svg"
+                      alt=""
+                      width="17"
+                      height="21"
+                    />
+                  </div>
+                  <div class="content d-lg-none d-xl-block">
+                    <p>Şəxsi kabinet</p>
+                  </div>
+                  <span class="visually-hidden d-xl-none">Şəxsi kabinet</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-2">
+              <div class="actions">
+                <a href="wishlist.html" class="wishlist d-none d-lg-flex">
+                  <img
+                    src="./assets/icons/wishlist-icon.svg"
+                    alt=""
+                    width="22"
+                    height="20"
+                  />
+                  <span class="wishlist-count">0</span>
+                  <span class="visually-hidden">məhsul sevimlilərdə</span>
+                </a>
+                <button
+                  type="button"
+                  class="cart"
+                  aria-controls="mini-cart"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    src="./assets/icons/cart-icon.svg"
+                    alt=""
+                    width="21"
+                    height="22"
+                  />
+                  <span class="cart-count">0</span>
+                  <span class="visually-hidden">məhsul səbətdə</span>
+                </button>
+                <button
+                  type="button"
+                  class="bars d-lg-none"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon (2).svg"
+                    alt=""
+                    width="30"
+                    height="16"
+                  />
+                  <span class="visually-hidden">Menyunu aç</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-sticky — 200px scroll-dan sonra görünür (site.js → scroll-state) -->
+      <div id="header-sticky">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-6 col-sm-3 col-xl-2">
+              <div class="logo">
+                <a href="home.html">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/Loqo silver pdf-1.png"
+                    alt="ZAN Boya"
+                    width="636"
+                    height="502"
+                  />
+                </a>
+                <div class="border-line" aria-hidden="true"></div>
+                <a href="home.html" tabindex="-1" aria-hidden="true">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/zan main icon.jpeg"
+                    alt=""
+                    width="523"
+                    height="523"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="d-none d-sm-block col-sm-7 col-xl-8">
+              <nav class="main-nav" aria-label="Sabit başlıq naviqasiyası">
+                <ul>
+                  <li>
+                    <a href="home.html">Əsas səhifə</a>
+                  </li>
+                  <li><a href="about.html">Haqqımızda</a></li>
+                  <li><a href="shop.html">Məhsullar</a></li>
+                  <li>
+                    <a href="contact.html">Bizimlə əlaqə</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-6 col-sm-2 col-xl-2">
+              <div class="actions">
+                <a href="wishlist.html" class="wishlist d-none d-lg-flex">
+                  <img
+                    src="./assets/icons/wishlist-icon.svg"
+                    alt=""
+                    width="22"
+                    height="20"
+                  />
+                  <span class="wishlist-count">0</span>
+                  <span class="visually-hidden">məhsul sevimlilərdə</span>
+                </a>
+                <button
+                  type="button"
+                  class="cart"
+                  aria-controls="mini-cart"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    src="./assets/icons/cart-icon.svg"
+                    alt=""
+                    width="21"
+                    height="22"
+                  />
+                  <span class="cart-count">0</span>
+                  <span class="visually-hidden">məhsul səbətdə</span>
+                </button>
+                <button
+                  type="button"
+                  class="bars d-lg-none"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon (2).svg"
+                    alt=""
+                    width="30"
+                    height="16"
+                  />
+                  <span class="visually-hidden">Menyunu aç</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-bottom — kataloq, naviqasiya, qaynar xətt (yalnız lg+) -->
+      <div id="header-bottom" class="d-none d-lg-block">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="all-categories">
+                <button
+                  type="button"
+                  class="all-categories-toggle"
+                  data-disclosure
+                  aria-expanded="false"
+                  aria-controls="catalog-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon.svg"
+                    alt=""
+                    width="18"
+                    height="14"
+                  />
+                  <span>Kataloq</span>
+                  <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                </button>
+
+                <div class="categories" id="catalog-menu">
+                  <ul>
+                    <li>
+                      <a href="shop.html?category=su-esasli-boyalar"
+                        ><img
+                          src="./assets/images/silan.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Su əsaslı boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                    <li>
+                      <a href="shop.html?category=sellulozik-boyalar"
+                        ><img
+                          src="./assets/images/lux parlaq.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Sellülozik boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                    <li>
+                      <a href="shop.html?category=sintetik-boyalar"
+                        ><img
+                          src="./assets/images/sin parlaq boya.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Sintetik boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <nav class="main-nav" aria-label="Əsas naviqasiya">
+                <ul>
+                  <li>
+                    <a href="home.html">Əsas səhifə</a>
+                  </li>
+                  <li><a href="about.html">Haqqımızda</a></li>
+                  <li><a href="shop.html">Məhsullar</a></li>
+                  <li>
+                    <a href="contact.html">Bizimlə əlaqə</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-lg-3">
+              <div class="contact">
+                <!-- ikon inline SVG-dir: rəngi hero slaydı ilə dəyişir (--hdr-accent) -->
+                <span class="icon-badge" aria-hidden="true">
+                  <svg
+                    width="21"
+                    height="20"
+                    viewBox="0 0 21 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M1.97 3.25C2.27 2.75 3.92.95 5.1 1c.35.03.66.24.92.49.58.57 2.24 2.71 2.34 3.16.23 1.11-1.09 1.75-.69 2.86 1.03 2.52 2.8 4.3 5.32 5.32 1.12.41 1.75-.91 2.86-.68.45.09 2.6 1.76 3.16 2.34.25.25.46.56.49.92.04 1.24-1.88 2.91-2.25 3.13-.88.63-2.03.62-3.43-.03C9.91 16.87 3.66 10.74 2 6.68c-.63-1.39-.68-2.55-.03-3.43Z"
+                    />
+                    <path d="M12.94 1.24a7.3 7.3 0 0 1 6.67 6.66" />
+                    <path d="M12.94 4.59a3.9 3.9 0 0 1 3.31 3.32" />
+                  </svg>
+                </span>
+                <div class="number">
+                  <p>Qaynar xətt:</p>
+                  <a href="tel:+994512065054">+(994) 51 206 50 54</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region mobile-menu — lg-dən kiçik ekranlar (site.js → mobile-menu) -->
+      <div
+        id="mobile-menu"
+        class="mobile-menu d-lg-none"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobil menyu"
+      >
+        <div class="row">
+          <div class="col-6">
+            <div class="logo">
+              <img
+                src="./assets/images/Loqo silver pdf-1.png"
+                alt="ZAN Boya"
+                width="636"
+                height="502"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="menu-close">
+              <button type="button" class="menu-close-btn">
+                <img
+                  src="./assets/icons/xmark.svg"
+                  alt=""
+                  width="12"
+                  height="12"
+                />
+                <span class="visually-hidden">Menyunu bağla</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <form
+              class="mobile-search"
+              role="search"
+              action="shop.html"
+              method="get"
+            >
+              <label class="visually-hidden" for="mobile-product-search"
+                >Məhsul axtarışı</label
+              >
+              <input
+                id="mobile-product-search"
+                type="search"
+                name="q"
+                autocomplete="off"
+                placeholder="Məhsul axtarışı..."
+              />
+              <button type="submit">
+                <img
+                  src="./assets/icons/search-icon.svg"
+                  alt=""
+                  width="18"
+                  height="18"
+                />
+                <span class="visually-hidden">Axtar</span>
+              </button>
+            </form>
+          </div>
+          <div class="col-12">
+            <div class="all-categories">
+              <button
+                type="button"
+                class="all-categories-toggle"
+                data-disclosure
+                aria-expanded="false"
+                aria-controls="mobile-catalog-menu"
+              >
+                <span
+                  ><i class="fa-solid fa-bars" aria-hidden="true"></i
+                  >Kataloq</span
+                >
+                <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="categories" id="mobile-catalog-menu">
+              <ul>
+                <li>
+                  <a href="shop.html?category=su-esasli-boyalar"
+                    ><img
+                      src="./assets/images/silan.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Su əsaslı boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <a href="shop.html?category=sellulozik-boyalar"
+                    ><img
+                      src="./assets/images/lux parlaq.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Sellülozik boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <a href="shop.html?category=sintetik-boyalar"
+                    ><img
+                      src="./assets/images/sin parlaq boya.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Sintetik boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <nav class="main-nav" aria-label="Mobil naviqasiya">
+              <ul>
+                <li>
+                  <a href="home.html">Əsas səhifə</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="about.html">Haqqımızda</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="shop.html">Məhsullar</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="contact.html">Bizimlə əlaqə</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-12">
+            <div class="mobile-quick-links">
+              <a href="login.html" data-account-link>
+                <img
+                  src="./assets/icons/login-icon.svg"
+                  alt=""
+                  width="17"
+                  height="21"
+                />
+                <span>Şəxsi kabinet</span>
+              </a>
+              <a href="wishlist.html">
+                <img
+                  src="./assets/icons/wishlist-icon.svg"
+                  alt=""
+                  width="22"
+                  height="20"
+                />
+                <span>Sevimlilər</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mobile-languages">
+              <span class="mobile-section-title" id="mobile-lang-title"
+                >Dil</span
+              >
+              <div
+                class="mobile-lang-options"
+                role="group"
+                aria-labelledby="mobile-lang-title"
+              >
+                <a href="#" class="is-active" lang="az" hreflang="az">
+                  <img
+                    src="./assets/icons/AZ.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />AZ
+                </a>
+                <a href="#" lang="en" hreflang="en">
+                  <img
+                    src="./assets/icons/EN.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />EN
+                </a>
+                <a href="#" lang="ru" hreflang="ru">
+                  <img
+                    src="./assets/icons/RU.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />RU
+                </a>
+                <a href="#" lang="tr" hreflang="tr">
+                  <img
+                    src="./assets/icons/TR.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />TR
+                </a>
+                <a href="#" lang="zh" hreflang="zh">
+                  <img
+                    src="./assets/icons/CN.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />CN
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mobile-theme">
+              <button
+                type="button"
+                class="theme-toggle"
+                aria-label="Tünd rejim"
+              >
+                <span class="theme-toggle-icon" aria-hidden="true">
+                  <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="4.2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M20.5 13.4A8.6 8.6 0 0 1 10.6 3.5a8.6 8.6 0 1 0 9.9 9.9z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="theme-toggle-label">Tünd rejim</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact-us">
+              <a href="contact.html">Əlaqə</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- menyu açıq olanda arxa fon; klik menyunu bağlayır -->
+      <div class="menu-backdrop d-lg-none"></div>
+      <!-- #endregion -->
+    </header>
+    <!-- #endregion -->
+
+    <!-- #region mini-cart — sağdan açılan səbət paneli, stil: components/_mini-cart.scss, JS: shop.js → mini-cart -->
+    <aside
+      class="offcanvas offcanvas-end mini-cart is-empty"
+      tabindex="-1"
+      id="mini-cart"
+      aria-labelledby="mini-cart-title"
+    >
+      <div class="mc-head">
+        <h2 class="mc-title" id="mini-cart-title">
+          Səbət <span class="mc-count">0</span>
+        </h2>
+        <button
+          type="button"
+          class="mc-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Səbəti bağla"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mc-body">
+        <!-- məhsul sətirləri JS ilə çəkilir (shop.js → renderMiniCart) -->
+        <ul class="mc-list"></ul>
+
+        <div class="mc-empty">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <ellipse
+              cx="60"
+              cy="104"
+              rx="38"
+              ry="6"
+              fill="currentColor"
+              opacity=".08"
+            />
+            <path
+              d="M30 42h60l-6 58H36z"
+              fill="var(--c-surface-soft)"
+              stroke="var(--c-line)"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="60"
+              cy="42"
+              rx="30"
+              ry="8"
+              fill="var(--c-surface)"
+              stroke="var(--c-line)"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="60"
+              cy="42"
+              rx="24"
+              ry="5"
+              fill="#c9142c"
+              opacity=".85"
+            />
+            <path
+              d="M72 44c2 8 1 16-2 18-3 1-4-8-3-17"
+              fill="#c9142c"
+              opacity=".85"
+            />
+            <path
+              d="M32 40c4-22 52-22 56 0"
+              stroke="var(--c-muted-soft)"
+              stroke-width="3"
+              fill="none"
+            />
+          </svg>
+          <h3>Səbətiniz boşdur</h3>
+          <p>Bəyəndiyiniz boyaları səbətə atın — hamısı burada toplanacaq.</p>
+          <a class="mc-btn" href="shop.html">Məhsullara bax</a>
+        </div>
+      </div>
+
+      <div class="mc-foot">
+        <div class="mc-total">
+          <span>Cəmi</span>
+          <b class="mc-total-value">0,00 ₼</b>
+        </div>
+        <p class="mc-note">Çatdırılma sifarişi rəsmiləşdirərkən hesablanır.</p>
+        <div class="mc-actions">
+          <a class="mc-btn is-ghost" href="cart.html">Səbətə keç</a>
+          <a class="mc-btn" href="checkout.html">Sifariş et</a>
+        </div>
+      </div>
+    </aside>
+    <!-- #endregion -->
+
+    <!-- #region main — "Sayt hazırlanır" şablonu (MVC: Views/Shared/ComingSoon.cshtml) -->
+    <!--
+      ŞABLON: bu səhifə hələ hazır deyil — link işləsin deyə "Sayt hazırlanır" göstərilir.
+      Yeni hazır olmayan səhifə üçün faylı kopyalayın və yalnız bunları dəyişin:
+      <title>, breadcrumb (.sn-crumbs), başlıq (.sn-title), mətn (.sn-text), əsas düymə.
+      Səhifə hazır olanda #region soon real məzmunla əvəz olunur, soon.css və
+      soon-page.js qoşulmaları silinir.
+      TODO (backend): hazır olmayan action-lar ortaq ComingSoon view-unu qaytara bilər
+      (model: Title, Text, PrimaryUrl, PrimaryLabel) — HTML bu faylla eynidir.
+    -->
+    <main id="main">
+      <!-- #region soon — mətn, keçidlər, tikinti səhnəsi; stil: pages/soon/_soon.scss, JS: soon-page.js -->
+      <section id="soon" aria-labelledby="soon-title">
+        <span class="sn-grid-bg" aria-hidden="true"></span>
+
+        <!-- xəbərdarlıq lentləri — dekor -->
+        <div class="sn-tape sn-tape-1" aria-hidden="true">
+          <span>SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i></span><span>SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i> SAYT HAZIRLANIR <i>●</i></span>
+        </div>
+        <div class="sn-tape sn-tape-2" aria-hidden="true">
+          <span>BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i></span><span>BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i> BOYA HƏLƏ QURUMAYIB <i>●</i></span>
+        </div>
+
+        <div class="container-main">
+          <nav class="sn-crumbs" aria-label="Səhifə yolu">
+            <ol>
+              <li><a href="home.html">Əsas səhifə</a></li>
+              <li aria-current="page">Sevimlilər</li>
+            </ol>
+          </nav>
+
+          <div class="sn-layout">
+            <div class="sn-copy">
+              <span class="sn-chip"><i aria-hidden="true"></i>Tikinti gedir</span>
+              <h1 class="sn-title" id="soon-title">Sevimlilər <em>hazırlanır</em></h1>
+              <p class="sn-text">
+                Sevimlilər səhifəsi üzərində işləyirik. Bəyəndiyiniz məhsullar artıq yadda saxlanılır — səhifə açılan kimi hamısını burada görəcəksiniz.
+              </p>
+
+              <div class="sn-progress">
+                <p class="sn-progress-label">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="4" width="14" height="7" rx="2" />
+                    <path d="M17 7.5h2.5V13H10v3" />
+                    <rect x="8.5" y="16" width="3" height="5" rx="1" />
+                  </svg>
+                  Boya hələ qurumayıb — tezliklə hazır olacaq
+                </p>
+                <div class="sn-progress-bar" role="progressbar" aria-label="Səhifə hazırlanır"></div>
+              </div>
+
+              <div class="sn-actions">
+                <a class="sn-btn" href="shop.html">Məhsullara bax<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" /></svg></a>
+                <a class="sn-btn is-ghost" href="home.html" data-back><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7" /></svg>Geri qayıt</a>
+              </div>
+
+              <div class="sn-links">
+                <p>Bu arada baxa bilərsiniz</p>
+                <ul>
+                  <li><a href="visualizer.html" style="--c: #f2cf6b">Rəng vizualizatoru</a></li>
+                  <li><a href="about.html" style="--c: #86c7f0">Haqqımızda</a></li>
+                  <li><a href="contact.html" style="--c: #8fe3b0">Bizimlə əlaqə</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="sn-art">
+              <svg
+                class="sn-scene"
+                viewBox="0 0 560 430"
+                role="img"
+                aria-label="Tikinti səhnəsi: iskələ, yarımçıq rənglənmiş divar və işləyən valik"
+              >
+                <defs>
+                  <linearGradient id="sn-paint" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#d11a33" />
+                    <stop offset="1" stop-color="#a71930" />
+                  </linearGradient>
+                  <pattern
+                    id="sn-hazard"
+                    width="16"
+                    height="16"
+                    patternUnits="userSpaceOnUse"
+                    patternTransform="rotate(45)"
+                  >
+                    <rect width="8" height="16" fill="#f2c230" />
+                    <rect x="8" width="8" height="16" fill="#16181c" />
+                  </pattern>
+                  <clipPath id="sn-wall-clip">
+                    <rect x="110" y="80" width="260" height="320" rx="4" />
+                  </clipPath>
+                </defs>
+
+                <ellipse class="sn-shadow" cx="290" cy="404" rx="262" ry="14" />
+
+                <!-- divar: solda rənglənmiş, sağda astar -->
+                <rect class="sn-wall" x="110" y="80" width="260" height="320" rx="4" />
+                <g clip-path="url(#sn-wall-clip)">
+                  <path class="sn-wall-line" d="M110 150H370M110 220H370M110 290H370M110 360H370" />
+                  <rect x="110" y="80" width="140" height="250" fill="url(#sn-paint)" />
+                  <!-- valikin arxasınca çəkilən zolaq -->
+                  <rect class="sn-stroke" x="250" y="80" width="36" height="250" fill="url(#sn-paint)" />
+                  <path class="sn-drip" d="M127 330v20a5 5 0 0 0 10 0v-20z" fill="#a71930" />
+                  <path class="sn-drip" d="M172 330v32a5 5 0 0 0 10 0v-32z" fill="#a71930" />
+                  <path class="sn-drip" d="M214 330v14a5 5 0 0 0 10 0v-14z" fill="#a71930" />
+                </g>
+
+                <!-- boya valiki -->
+                <g class="sn-roller">
+                  <line x1="309" y1="98" x2="352" y2="182" stroke="#8a929c" stroke-width="5" stroke-linecap="round" />
+                  <line x1="344" y1="166" x2="358" y2="194" stroke="#16181c" stroke-width="11" stroke-linecap="round" />
+                  <path d="M288 81h21v17" fill="none" stroke="#8a929c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                  <rect x="244" y="70" width="46" height="22" rx="11" fill="#c9142c" />
+                  <rect x="250" y="74" width="34" height="5" rx="2.5" fill="#fff" opacity=".3" />
+                </g>
+
+                <!-- iskələ -->
+                <g>
+                  <path class="sn-steel" d="M404 132V400M504 132V400" />
+                  <path class="sn-steel-thin" d="M404 150H504M404 250H504M404 350H504M404 250 504 150M404 350 504 250" />
+                  <circle class="sn-clamp" cx="404" cy="150" r="5" />
+                  <circle class="sn-clamp" cx="504" cy="150" r="5" />
+                  <circle class="sn-clamp" cx="404" cy="250" r="5" />
+                  <circle class="sn-clamp" cx="504" cy="250" r="5" />
+                  <circle class="sn-clamp" cx="404" cy="350" r="5" />
+                  <circle class="sn-clamp" cx="504" cy="350" r="5" />
+                  <!-- taxta döşəmələr -->
+                  <rect x="392" y="140" width="124" height="10" rx="2" fill="#c8955a" />
+                  <rect x="392" y="240" width="124" height="10" rx="2" fill="#c8955a" />
+                  <path d="M392 145h124M392 245h124" stroke="#a8743f" stroke-width="1.5" />
+                </g>
+
+                <!-- kaska — yuxarı döşəmədə -->
+                <g>
+                  <path d="M432 136a26 24 0 0 1 52 0z" fill="#f2c230" />
+                  <path d="M458 112v24M446 116l3 20M470 116l-3 20" stroke="#d9a41a" stroke-width="2.5" stroke-linecap="round" />
+                  <rect x="424" y="133" width="68" height="8" rx="4" fill="#e0ad1c" />
+                </g>
+
+                <!-- ZAN boya vedrəsi — aşağı döşəmədə -->
+                <g>
+                  <path d="M436 198a26 20 0 0 1 52 0" fill="none" stroke="#8a929c" stroke-width="3" />
+                  <path d="M428 200h68l-5 40h-58z" fill="#f4f5f7" stroke="#d5d9df" stroke-width="2" />
+                  <ellipse cx="462" cy="200" rx="34" ry="6" fill="#c9142c" />
+                  <rect x="431" y="212" width="62" height="16" fill="#c9142c" />
+                  <text x="462" y="224.5" text-anchor="middle" font-family="RobotoBold, sans-serif" font-size="11" letter-spacing="2" fill="#fff">ZAN</text>
+                  <path d="M481 200c3 10 2 20-1 24-3 1-4-9-3-20z" fill="#c9142c" />
+                </g>
+
+                <!-- baryer -->
+                <g>
+                  <path d="M44 300V400M186 300V400" stroke="#5b6472" stroke-width="6" stroke-linecap="round" />
+                  <path d="M32 400h24M174 400h24" stroke="#5b6472" stroke-width="5" stroke-linecap="round" />
+                  <rect x="22" y="314" width="186" height="34" rx="4" fill="url(#sn-hazard)" stroke="#16181c" stroke-width="2" />
+                  <rect x="22" y="360" width="186" height="20" rx="3" fill="url(#sn-hazard)" stroke="#16181c" stroke-width="2" />
+                  <rect x="37" y="292" width="14" height="10" rx="2" fill="#5b6472" />
+                  <circle class="sn-lamp" cx="44" cy="284" r="10" fill="#f59e0b" />
+                  <circle cx="41" cy="281" r="3" fill="#fff" opacity=".6" />
+                </g>
+
+                <!-- konuslar -->
+                <g>
+                  <path d="M241 394 251 348h8l10 46z" fill="#f76707" />
+                  <path d="M248.8 358h12.4l1.3 6h-15z" fill="#fff" />
+                  <path d="M245.8 372h18.4l1.8 8h-22z" fill="#fff" />
+                  <rect x="232" y="393" width="46" height="9" rx="2.5" fill="#e8590c" />
+                </g>
+                <g>
+                  <path d="M516 394 526 348h8l10 46z" fill="#f76707" />
+                  <path d="M523.8 358h12.4l1.3 6h-15z" fill="#fff" />
+                  <path d="M520.8 372h18.4l1.8 8h-22z" fill="#fff" />
+                  <rect x="507" y="393" width="46" height="9" rx="2.5" fill="#e8590c" />
+                </g>
+
+                <!-- yerə düşmüş boya damcıları -->
+                <circle cx="232" cy="410" r="4" fill="#c9142c" opacity=".7" />
+                <circle cx="246" cy="414" r="2.5" fill="#c9142c" opacity=".6" />
+                <line class="sn-ground" x1="8" y1="402" x2="552" y2="402" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+    </main>
+    <!-- #endregion -->
+
+    <!-- #region footer — stil: layout/_footer.scss, JS: site.js → footer-year -->
+    <footer class="site-footer" aria-labelledby="footer-cta-title">
+      <!--
+        boya dalğası: footer yuxarıdakı bölmənin üstünə çıxır, dalğanın üstü şəffafdır —
+        bölmənin öz fonu görünür; xətt boyunca fırça zolağı (layout/_footer.scss → #region boya dalğası)
+      -->
+      <div class="footer-wave" aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient id="footer-wave-paint" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#5d0818" />
+              <stop offset=".5" stop-color="#c9142c" />
+              <stop offset="1" stop-color="#f2cf6b" />
+            </linearGradient>
+            <!-- yaş boya parıltısı -->
+            <linearGradient id="footer-wave-gloss" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#fff" stop-opacity="0" />
+              <stop offset=".5" stop-color="#fff" stop-opacity=".6" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <!-- parıltı yalnız zolağın üzərində görünsün -->
+            <clipPath id="footer-wave-clip">
+              <path
+                class="fw-top"
+                d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z"
+              />
+            </clipPath>
+            <!-- açılma: ucu yumşaq olan ağ zolaq soldan sağa sürüşür (JS: .is-inview) -->
+            <linearGradient
+              id="footer-wave-reveal-edge"
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="0"
+            >
+              <stop offset=".9" stop-color="#fff" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <mask
+              id="footer-wave-reveal"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="1440"
+              height="120"
+            >
+              <rect
+                class="fw-reveal"
+                width="1600"
+                height="120"
+                fill="url(#footer-wave-reveal-edge)"
+              />
+            </mask>
+          </defs>
+
+          <!--
+            Dalğanın üstü şəffafdır — yuxarıdakı bölmənin öz fonu görünür.
+            Qatlar (hamısı əyridən aşağı dolur): rəngli zolaq → qızılı xətt →
+            rəngli zolaq → parıltı → kölgə → footer fonu
+          -->
+          <g mask="url(#footer-wave-reveal)">
+            <path
+              class="fw-paint fw-top"
+              d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z"
+            />
+            <path
+              class="fw-gold fw-top"
+              d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z"
+            />
+            <path
+              class="fw-paint fw-gold-edge"
+              d="M0 118H1440V66C1260 98 1110 34 900 58S540 102 330 72 90 46 0 78Z"
+            />
+            <g clip-path="url(#footer-wave-clip)">
+              <rect
+                class="fw-gloss"
+                x="-320"
+                y="0"
+                width="320"
+                height="120"
+                fill="url(#footer-wave-gloss)"
+              />
+            </g>
+          </g>
+          <path
+            class="fw-shade"
+            d="M0 120H1440V78C1260 112 1110 44 900 70S540 116 330 84 90 58 0 92Z"
+          />
+          <path
+            class="fw-dark"
+            d="M0 120H1440V84C1260 118 1110 50 900 76S540 122 330 90 90 64 0 98Z"
+          />
+        </svg>
+      </div>
+
+      <!-- dekorativ fon: işıq ləkələri və böyük kontur "ZAN" yazısı -->
+      <div class="footer-bg" aria-hidden="true">
+        <span class="footer-blob footer-blob-1"></span>
+        <span class="footer-blob footer-blob-2"></span>
+        <span class="footer-wordmark">ZAN</span>
+      </div>
+
+      <div class="container-main">
+        <!-- #region footer-cta — məsləhət çağırışı və rəng yelpiyi -->
+        <div class="footer-cta">
+          <div class="footer-cta-copy">
+            <span class="footer-chip"
+              ><i aria-hidden="true"></i>24/7 dəstək</span
+            >
+            <h2 class="footer-cta-title" id="footer-cta-title">
+              Rəng seçimində <em>kömək</em> lazımdır?
+            </h2>
+            <p class="footer-cta-text">
+              Operatorlarımız evinizə uyğun boyanı seçməyə kömək edəcək — bir
+              zəng kifayətdir.
+            </p>
+            <div class="footer-cta-actions">
+              <a class="footer-call" href="tel:+994512065054">
+                <img
+                  src="./assets/icons/phone-icon-red.svg"
+                  alt=""
+                  width="18"
+                  height="18"
+                />
+                <span>+(994) 51 206 50 54</span>
+              </a>
+              <a class="footer-link-arrow" href="contact.html">Bizimlə əlaqə</a>
+            </div>
+          </div>
+
+          <!-- boya nümunəsi kartları; rənglər kateqoriya slayderindən gəlir -->
+          <div class="footer-fan" aria-hidden="true">
+            <span class="footer-swatch" style="--sw: #f0a3b1; --i: -2"
+              ><em>Çəhrayı</em><small>#F0A3B1</small></span
+            >
+            <span class="footer-swatch" style="--sw: #f2cf6b; --i: 2"
+              ><em>Qızılı</em><small>#F2CF6B</small></span
+            >
+            <span class="footer-swatch" style="--sw: #86c7f0; --i: -1"
+              ><em>Səma</em><small>#86C7F0</small></span
+            >
+            <span class="footer-swatch" style="--sw: #8fe3b0; --i: 1"
+              ><em>Nanə</em><small>#8FE3B0</small></span
+            >
+            <span class="footer-swatch" style="--sw: #c9142c; --i: 0"
+              ><em>ZAN qırmızı</em><small>#C9142C</small></span
+            >
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region footer-grid — brend, naviqasiya, kateqoriyalar, əlaqə -->
+        <div class="footer-grid row row-gap-4">
+          <div class="col-12 col-lg-4">
+            <div class="footer-brand">
+              <a class="footer-logo" href="home.html">
+                <img
+                  src="./assets/images/Loqo silver pdf-1.png"
+                  alt="ZAN Boya"
+                  width="636"
+                  height="502"
+                />
+              </a>
+              <p>
+                Qısa zamanda ustaların sevimlisinə çevrilən ZAN boyaları ilə siz
+                də evinizi gözəlləşdirin.
+              </p>
+              <!-- TODO: sosial şəbəkələrin real ünvanları yazılmalıdır -->
+              <ul class="footer-socials">
+                <li>
+                  <a href="#" aria-label="Instagram"
+                    ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="Facebook"
+                    ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="WhatsApp"
+                    ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="TikTok"
+                    ><i class="fa-brands fa-tiktok" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <nav class="footer-col" aria-labelledby="footer-nav-title">
+              <h2 class="footer-title" id="footer-nav-title">Naviqasiya</h2>
+              <ul class="footer-links">
+                <li><a href="home.html">Əsas səhifə</a></li>
+                <li><a href="about.html">Haqqımızda</a></li>
+                <li><a href="shop.html">Məhsullar</a></li>
+                <li>
+                  <a href="contact.html">Bizimlə əlaqə</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="footer-col">
+              <h2 class="footer-title">Kateqoriyalar</h2>
+              <!-- damcının rəngi kateqoriya kartının --cat-accent rəngi ilə eynidir -->
+              <ul class="footer-links footer-categories">
+                <li>
+                  <a href="shop.html?category=sintetik-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #f2cf6b"></span
+                    >Sintetik boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=sellulozik-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #8fe3b0"></span
+                    >Sellülozik boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=su-esasli-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #86c7f0"></span
+                    >Su əsaslı boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=divar-kagizlari"
+                    ><span class="footer-paint-drop" style="--c: #e8d29a"></span
+                    >Premium divar kağızları</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=yapisdiricilar"
+                    ><span class="footer-paint-drop" style="--c: #f0a3b1"></span
+                    >Yapışdırıcılar</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <div class="footer-col">
+              <h2 class="footer-title">Əlaqə</h2>
+              <ul class="footer-contact">
+                <li>
+                  <span class="footer-contact-label">Qaynar xətt</span>
+                  <a class="footer-phone" href="tel:+994512065054"
+                    >+(994) 51 206 50 54</a
+                  >
+                </li>
+                <li class="footer-delivery">
+                  <span class="footer-contact-icon">
+                    <img
+                      src="./assets/icons/truck.svg"
+                      alt=""
+                      width="18"
+                      height="16"
+                    />
+                  </span>
+                  Ölkənin dörd bir yanına sürətli çatdırılma
+                </li>
+                <!-- TODO: e-poçt və ünvan məlum olanda buraya əlavə edilməlidir -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region footer-bottom — müəllif hüququ -->
+        <div class="footer-bottom">
+          <p>
+            © <span data-current-year>2026</span> ZAN Boya. Bütün hüquqlar
+            qorunur.
+          </p>
+          <!-- kiçik palitra: markanın rəngləri -->
+          <span class="footer-dots" aria-hidden="true">
+            <i style="--c: #c9142c"></i><i style="--c: #f2cf6b"></i
+            ><i style="--c: #8fe3b0"></i><i style="--c: #86c7f0"></i
+            ><i style="--c: #f0a3b1"></i>
+          </span>
+        </div>
+        <!-- #endregion -->
+      </div>
+    </footer>
+    <!-- #endregion -->
+
+    <!-- #region back-to-top — site.js → scroll-state -->
+    <button type="button" id="button" aria-label="Səhifənin başına qayıt">
+      <!-- kənardakı halqa səhifənin nə qədərinin oxunduğunu göstərir -->
+      <svg class="scroll-progress" viewBox="0 0 52 52" aria-hidden="true">
+        <circle class="scroll-progress-track" cx="26" cy="26" r="24" />
+        <circle class="scroll-progress-bar" cx="26" cy="26" r="24" />
+      </svg>
+      <svg
+        class="scroll-arrow"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 19V5M5 12l7-7 7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+    <!-- #endregion -->
+
+    <!-- #region vendor JS -->
+    <script
+      src="https://kit.fontawesome.com/83dcd321a4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <!-- #endregion -->
+
+    <!-- #region öz skriptlərimiz — sıra vacibdir: site.js → auth.js → shop.js → səhifə skripti -->
+    <script src="./assets/js/site.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script src="./assets/js/shop.js"></script>
+    <script src="./assets/js/soon-page.js"></script>
+    <!-- #endregion -->
+  </body>
+</html>

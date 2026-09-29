@@ -1,0 +1,189 @@
+// ==========================================================================
+// KABİNET — ƏLAQƏ MƏLUMATLARI VƏ ŞİFRƏ (#acc-contact, #acc-password)
+// --------------------------------------------------------------------------
+// HTML: account.html → #region acc-contact, #region acc-password
+// JS:   account-page.js → user-fields (demo), password (forma)
+// Sahələrin stili: components/_form-field.scss (.zf-*)
+// ==========================================================================
+
+/* #region əlaqə məlumatları */
+
+#account .acc-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+
+#account .acc-info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface-soft);
+
+  dt {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--c-muted);
+  }
+
+  dd {
+    margin: 3px 0 0;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--c-ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--c-brand);
+      }
+    }
+  }
+
+  > div {
+    min-width: 0;
+  }
+}
+
+#account .acc-info-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+
+  svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+#account .acc-info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 18px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--c-muted);
+
+  svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    fill: none;
+    stroke: var(--c-muted-soft);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  a {
+    font-weight: 600;
+    color: var(--c-brand);
+  }
+}
+
+@media only screen and (max-width: 1399px) {
+  #account .acc-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* ad-soyad bütün sətri tutur */
+  #account .acc-info-item:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #account .acc-info {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* #endregion */
+
+/* #region şifrə */
+
+#account .acc-password-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* sağda qısa məsləhətlər */
+#account .acc-tips {
+  padding: 20px 20px 22px;
+  border-radius: 18px;
+  background: var(--grad-section-gold);
+  border: 1px solid var(--c-line-warm);
+
+  h3 {
+    margin: 0;
+    font-family: RobotoBold;
+    font-size: 15px;
+    color: var(--c-ink);
+  }
+
+  ul {
+    display: grid;
+    gap: 10px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--c-muted);
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 8px;
+      height: 8px;
+      margin-top: 6px;
+      border-radius: 50%;
+      background: var(--c-gold);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-gold) 25%, transparent);
+    }
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  #account .acc-password-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #account .acc-tips {
+    order: -1;
+  }
+}
+
+/* #endregion */

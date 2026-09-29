@@ -1,0 +1,1214 @@
+// ==========================================================================
+// HEADER
+// --------------------------------------------------------------------------
+// HTML: home.html → #region header (header-top, header-mid, header-sticky, header-bottom)
+// JS:   assets/js/site.js → header-disclosures, search-placeholder, scroll-state, logo-3d
+//       assets/js/home.js → hero-slider (<html data-hero-theme> — vurğu rəngi)
+// ==========================================================================
+
+/* #region vurğu rəngi — hero slaydı ilə sinxron */
+
+/*
+  Header və mobil menyudakı düymə/ikon rəngləri marka tokenlərinə yox,
+  aşağıdakı --hdr-* dəyişənlərinə bağlıdır. Əsas səhifədə hero slaydı
+  dəyişəndə JS <html>-ə data-hero-theme yazır və header rəngi fonla eyni
+  vaxtda (1s) keçir. Hero olmayan səhifələrdə atribut yoxdur — marka qırmızısı.
+
+    --hdr-accent        yazı, ikon, xətt rəngi (tünd mövzuda açılır) — hesablanır,
+                        mövzu dəyəri --hdr-accent-to-dadır
+    --hdr-accent-from   keçidin başladığı rəng (home.js yazır)
+    --hdr-mix           keçidin gedişatı, 0% → 100% (home.js animasiya edir)
+    --hdr-a1/a2/a3      dolğun düymələrin qradiyenti (Kataloq, axtarış, sayğac)
+    --hdr-grad          həmin qradiyent
+    --hdr-shadow        dolğun düymələrin rəngli kölgəsi
+
+  Mövzu rəngləri: pages/home/_hero.scss → #region slayd mövzuları ilə uyğun.
+*/
+@property --hdr-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #c9142c;
+}
+@property --hdr-a1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #c9142c;
+}
+@property --hdr-a2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a71930;
+}
+@property --hdr-a3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #7d0f21;
+}
+@property --hdr-mix {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
+/*
+  --hdr-accent birbaşa transition olunmur: brauzer <color>-u sRGB-də
+  interpolyasiya edir və qırmızı → yaşıl keçidin ortası qaralırdı (nav-da
+  aktiv link). Rəng oklch-də qarışdırılır — parlaqlıq və doyğunluq sabit
+  qalır; home.js yalnız --hdr-mix faizini 0% → 100% animasiya edir.
+*/
+:root {
+  --hdr-accent-to: var(--c-brand);
+  --hdr-accent-from: var(--hdr-accent-to);
+  --hdr-accent: color-mix(
+    in oklch,
+    var(--hdr-accent-from),
+    var(--hdr-accent-to) var(--hdr-mix)
+  );
+  --hdr-a1: #c9142c;
+  --hdr-a2: #a71930;
+  --hdr-a3: #7d0f21;
+  --hdr-grad: linear-gradient(
+    135deg,
+    var(--hdr-a1) 0%,
+    var(--hdr-a2) 55%,
+    var(--hdr-a3) 100%
+  );
+  --hdr-shadow: 0 10px 24px color-mix(in srgb, var(--hdr-a1) 28%, transparent);
+
+  transition:
+    --hdr-a1 1s var(--ease),
+    --hdr-a2 1s var(--ease),
+    --hdr-a3 1s var(--ease);
+}
+
+/* 02 — DivoFix & EkoFix: firuzəyi-yaşıl */
+:root[data-hero-theme="teal"] {
+  --hdr-accent-to: #0f7a66;
+  --hdr-a1: #14896f;
+  --hdr-a2: #0e6a5a;
+  --hdr-a3: #08463d;
+}
+
+/* 03 — divar kağızları: göy */
+:root[data-hero-theme="navy"] {
+  --hdr-accent-to: #1b5bb0;
+  --hdr-a1: #2566c4;
+  --hdr-a2: #184c95;
+  --hdr-a3: #0f3266;
+}
+
+// tünd fonda yazı/ikon rəngi oxunaqlı olsun deyə açılır (düymə qradiyenti eyni qalır)
+@mixin hdr-dark-accents {
+  &[data-hero-theme="teal"] {
+    --hdr-accent-to: #3fd1a8;
+  }
+  &[data-hero-theme="navy"] {
+    --hdr-accent-to: #7eaef5;
+  }
+}
+
+:root[data-theme="dark"] {
+  @include hdr-dark-accents;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include hdr-dark-accents;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    transition: none;
+  }
+}
+
+/* #endregion */
+
+/* #region skip-link */
+
+/* klaviatura ilə gəzənlər bütün header-i keçmədən məzmuna düşə bilsin */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 1100;
+  padding: 12px 22px;
+  border-radius: 0 0 var(--r-card) 0;
+  background-image: var(--grad-brand);
+  color: var(--c-on-brand);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:focus {
+    left: 0;
+  }
+}
+
+/* #endregion */
+
+/* #region ümumi — .site-header */
+
+.site-header {
+  position: relative;
+  background-color: var(--c-surface);
+
+  /* menyu açan elementlər <button>-dur: brauzerin düymə stilini sıfırlayırıq */
+  button {
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: var(--cursor-pointer);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--hdr-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* açıq panelin oxu çevrilir */
+  [data-disclosure] .fa-angle-down {
+    transition: transform 0.25s var(--ease);
+  }
+
+  [data-disclosure][aria-expanded="true"] .fa-angle-down {
+    transform: rotate(180deg);
+  }
+
+  /* açılan panellərin ortaq görünüşü */
+  .menu {
+    position: absolute;
+    z-index: 40;
+    opacity: 0;
+    /* visibility: bağlı menyunun linkləri tab sırasına düşməsin */
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s var(--ease),
+      transform 0.25s var(--ease),
+      visibility 0.25s;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 8px;
+      border-radius: var(--r-card);
+      background-color: var(--c-surface);
+      border: 1px solid var(--c-line);
+      box-shadow: var(--shadow-menu);
+    }
+
+    li {
+      padding: 0;
+      border: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: var(--c-ink);
+      text-decoration: none;
+      white-space: nowrap;
+      transition:
+        background-color 0.2s var(--ease),
+        color 0.2s var(--ease);
+
+      &:hover {
+        background-color: var(--c-surface-soft);
+        color: var(--hdr-accent);
+      }
+    }
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  }
+
+  /* dairəvi ikon fonu ayrıca sarğıdadır: `border-radius` + `padding`
+     birbaşa <img> üzərində olduqda Chrome kvadrat olmayan şəkli səhv kəsir */
+  .icon-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+}
+
+/* #endregion */
+
+/* #region 3D loqo */
+
+/* 3D loqo effekti */
+.logo a {
+  display: inline-block;
+  perspective: 700px;
+
+  img {
+    display: block;
+    transform: perspective(700px) rotateX(var(--logo-rotate-x, 0deg))
+      rotateY(var(--logo-rotate-y, 0deg))
+      translate3d(var(--logo-x, 0px), var(--logo-y, 0px), 0)
+      translateZ(var(--logo-z, 0px)) scale(var(--logo-scale, 1));
+    transform-style: preserve-3d;
+    transition:
+      transform 0.2s ease,
+      filter 0.2s ease;
+    will-change: transform;
+  }
+
+  &:hover img {
+    --logo-z: 18px;
+    --logo-scale: 1.04;
+    filter: drop-shadow(8px 12px 8px rgb(0 0 0 / 0.25));
+  }
+}
+
+/* #endregion */
+
+/* #region üst zolaq — #header-top */
+
+#header-top {
+  position: relative;
+  height: var(--h-header-top);
+  background-image: linear-gradient(
+    90deg,
+    #0d1520 0%,
+    #17222e 55%,
+    #0d1520 100%
+  );
+
+  /* zolağın altında incə qızılı-qırmızı işıq xətti */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(242, 207, 107, 0.45),
+      color-mix(in srgb, var(--hdr-a1) 50%, transparent),
+      transparent
+    );
+  }
+
+  .left-side {
+    display: flex;
+    height: var(--h-header-top);
+    align-items: center;
+    gap: 10px;
+
+    .icon-badge {
+      width: 30px;
+      height: 30px;
+      background-color: rgba(242, 207, 107, 0.14);
+
+      img {
+        width: 18px;
+        height: auto;
+      }
+    }
+
+    p {
+      font-size: 12.5px;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0;
+    }
+  }
+
+  .right-side {
+    width: 100%;
+    height: var(--h-header-top);
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 100%;
+
+      > li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: 12.5px;
+
+        /* bölücü xətt yalnız elementlərin arasında */
+        & + li::before {
+          content: "";
+          width: 1px;
+          height: 14px;
+          margin-right: 6px;
+          background-color: rgba(255, 255, 255, 0.16);
+        }
+
+        > a,
+        > .content {
+          cursor: var(--cursor-pointer);
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          padding: 6px 12px;
+          border-radius: var(--r-pill);
+          color: rgba(255, 255, 255, 0.88);
+          text-decoration: none;
+          transition:
+            background-color 0.25s var(--ease),
+            color 0.25s var(--ease);
+
+          img {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          i {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+          }
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--c-on-brand);
+          }
+        }
+
+        .menu {
+          top: calc(100% + 6px);
+          right: 0;
+
+          a img {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region orta zolaq — #header-mid */
+
+#header-mid {
+  .logo {
+    height: var(--h-header-mid);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    img {
+      width: auto;
+      height: var(--h-logo);
+      object-fit: contain;
+    }
+
+    /* düz boz sütun əvəzinə incə keçidli ayırıcı */
+    .border-line {
+      width: 1px;
+      height: 34px;
+      background-image: linear-gradient(
+        180deg,
+        transparent,
+        var(--c-divider),
+        transparent
+      );
+    }
+  }
+
+  .search-area {
+    width: 100%;
+    height: var(--h-header-mid);
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    margin: 0;
+    font-family: Inter;
+
+    .content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 560px;
+      height: 52px;
+      padding: 5px 5px 5px 8px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--c-line);
+      background-color: var(--c-surface-soft);
+      transition:
+        border-color 0.25s var(--ease),
+        background-color 0.25s var(--ease),
+        box-shadow 0.25s var(--ease);
+
+      /* fokus halqası bütün axtarış sahəsini əhatə edir */
+      &:focus-within {
+        background-color: var(--c-surface);
+        border-color: color-mix(in srgb, var(--hdr-a1) 45%, transparent);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--hdr-a1) 10%, transparent);
+      }
+
+      input {
+        flex: 1;
+        min-width: 0;
+        font-size: 14px;
+        color: var(--c-ink);
+        border: none;
+        background: none;
+        padding: 0 14px 0 16px;
+        height: 100%;
+        outline: none;
+        appearance: none;
+
+        &::placeholder {
+          color: var(--c-muted-soft);
+        }
+
+        &::-webkit-search-cancel-button {
+          appearance: none;
+        }
+      }
+
+      .selection {
+        position: relative;
+        flex-shrink: 0;
+        cursor: var(--cursor-pointer);
+
+        .selector {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          height: 40px;
+          padding: 0 16px;
+          border-radius: var(--r-pill);
+          font-size: 13.5px;
+          font-weight: 500;
+          white-space: nowrap;
+          color: var(--c-muted);
+          transition:
+            background-color 0.25s var(--ease),
+            color 0.25s var(--ease);
+
+          i {
+            font-size: 11px;
+          }
+
+          /* uzun kateqoriya adı axtarış sahəsini sıxışdırmasın */
+          [data-search-category-label] {
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &:hover {
+            background-color: var(--c-hover-fill);
+            color: var(--c-ink);
+          }
+
+          /* kateqoriya seçilib — axtarış onunla məhdudlaşır (site.js → header-search) */
+          &.is-filtered {
+            font-weight: 600;
+            color: var(--hdr-accent);
+            background-color: color-mix(in srgb, var(--hdr-a1) 9%, transparent);
+          }
+        }
+
+        .menu {
+          top: calc(100% + 10px);
+          right: 0;
+          min-width: 230px;
+
+          /* "Kateqoriya seçin" — panelin başlıq sətri */
+          li:first-child {
+            padding: 6px 14px 8px;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--c-muted-soft);
+          }
+
+          /* kateqoriya variantı — radio gizlidir, seçim sağda işarə ilə görünür */
+          .search-cat {
+            position: relative;
+            display: block;
+            margin: 0;
+            cursor: var(--cursor-pointer);
+
+            input {
+              position: absolute;
+              opacity: 0;
+              pointer-events: none;
+            }
+
+            span {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 14px;
+              padding: 9px 14px;
+              border-radius: 10px;
+              font-size: 14px;
+              color: var(--c-ink);
+              white-space: nowrap;
+              transition:
+                background-color 0.2s var(--ease),
+                color 0.2s var(--ease);
+
+              &::after {
+                content: "";
+                flex: none;
+                width: 16px;
+                height: 16px;
+                background-color: currentColor;
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+                  center / contain no-repeat;
+                opacity: 0;
+                transform: scale(0.6);
+                transition:
+                  opacity 0.2s var(--ease),
+                  transform 0.2s var(--ease);
+              }
+            }
+
+            &:hover span {
+              background-color: var(--c-surface-soft);
+              color: var(--hdr-accent);
+            }
+
+            input:checked + span {
+              font-weight: 600;
+              color: var(--hdr-accent);
+              background-color: color-mix(in srgb, var(--hdr-a1) 8%, transparent);
+
+              &::after {
+                opacity: 1;
+                transform: none;
+              }
+            }
+
+            input:focus-visible + span {
+              outline: 2px solid var(--hdr-accent);
+              outline-offset: -2px;
+            }
+          }
+        }
+      }
+
+      .search-icon {
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background-image: var(--hdr-grad);
+        box-shadow: var(--hdr-shadow);
+        color: var(--c-on-brand);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: var(--cursor-pointer);
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s var(--ease);
+
+        img {
+          filter: brightness(0) invert(1);
+        }
+
+        &:hover {
+          transform: translateY(-1px) scale(1.04);
+          box-shadow: 0 14px 28px
+            color-mix(in srgb, var(--hdr-a1) 36%, transparent);
+        }
+      }
+
+      .line {
+        width: 1px;
+        height: 22px;
+        flex-shrink: 0;
+        background-color: var(--c-divider-soft);
+      }
+    }
+  }
+
+  .account {
+    width: 100%;
+    height: var(--h-header-mid);
+
+    a {
+      height: 100%;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      font-family: Inter;
+
+      .login-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid color-mix(in srgb, var(--hdr-a1) 25%, transparent);
+        background-color: color-mix(in srgb, var(--hdr-a1) 6%, transparent);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        transition:
+          background-color 0.25s var(--ease),
+          border-color 0.25s var(--ease),
+          transform 0.25s var(--ease);
+      }
+
+      .content p {
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        font-size: 14px;
+        white-space: nowrap;
+        color: var(--c-ink);
+        transition: color 0.25s var(--ease);
+      }
+
+      &:hover {
+        .login-icon {
+          background-color: color-mix(in srgb, var(--hdr-a1) 12%, transparent);
+          border-color: color-mix(in srgb, var(--hdr-a1) 45%, transparent);
+          transform: translateY(-2px);
+        }
+
+        .content p {
+          color: var(--hdr-accent);
+        }
+      }
+    }
+  }
+
+  .actions {
+    width: 100%;
+    height: var(--h-header-mid);
+  }
+}
+
+/* #endregion */
+
+/* #region səbət / sevimlilər */
+
+#header-mid .actions,
+#header-sticky .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+
+  /* QEYD: bu elementlər Bootstrap-da `d-lg-flex` ilə göstərilməlidir.
+     `d-lg-block` `display: block !important` verib mərkəzləməni pozur. */
+  .wishlist,
+  .cart,
+  .bars {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    color: var(--c-ink);
+    transition:
+      background-color 0.25s var(--ease),
+      transform 0.25s var(--ease);
+
+    /* ikonların öz ölçüləri fərqlidir (20x19, 22x20, 21x22) —
+       vahid qutuya salıb optik olaraq bərabərləşdiririk */
+    > img {
+      width: 21px;
+      height: 21px;
+      object-fit: contain;
+    }
+
+    &:hover {
+      background-color: var(--c-hover-fill);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* nişan 21px ikonun sağ-üst küncündə mərkəzlənir */
+  .wishlist-count,
+  .cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    z-index: 1;
+    color: var(--c-on-brand);
+    background-image: var(--hdr-grad);
+    border: 2px solid var(--c-surface);
+    border-radius: var(--r-pill);
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--hdr-a1) 35%, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+/* #endregion */
+
+/* #region naviqasiya */
+
+/*
+  Linkin rəngi birbaşa `color`-a transition verilmir: --hdr-accent özü 1s
+  animasiya olunur, `color: 0.25s` hər kadrda yenidən başlayıb onun arxasınca
+  qaçırdı — nav hero fonundan gecikirdi. İndi yalnız hover payı (--nav-hl)
+  animasiya olunur, rəng isə hər kadrda --hdr-accent-dən hesablanır.
+*/
+@property --nav-hl {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+#header-bottom .main-nav,
+#header-sticky .main-nav {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  ul {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    padding: 0;
+    margin: 0;
+
+    li {
+      a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        white-space: nowrap;
+        color: color-mix(
+          in srgb,
+          var(--hdr-accent) var(--nav-hl),
+          var(--c-ink)
+        );
+        transition: --nav-hl 0.25s var(--ease);
+
+        /* mərkəzdən açılan alt xətt */
+        &::after {
+          content: "";
+          position: absolute;
+          left: 16px;
+          right: 16px;
+          bottom: 3px;
+          height: 2px;
+          border-radius: 2px;
+          background-image: linear-gradient(
+            90deg,
+            var(--hdr-accent),
+            var(--c-gold)
+          );
+          transform: scaleX(0);
+          transform-origin: center;
+          transition: transform 0.3s var(--ease);
+        }
+
+        &:hover,
+        &[aria-current="page"] {
+          --nav-hl: 100%;
+        }
+
+        &:hover::after,
+        &[aria-current="page"]::after {
+          transform: scaleX(1);
+        }
+
+        i {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region kataloq paneli */
+
+.all-categories {
+  position: relative;
+
+  .all-categories-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--c-on-brand);
+    background-image: var(--hdr-grad);
+    transition:
+      box-shadow 0.3s var(--ease),
+      filter 0.3s var(--ease);
+
+    &:hover {
+      filter: saturate(1.15) brightness(1.06);
+      box-shadow: var(--hdr-shadow);
+    }
+  }
+}
+
+.categories {
+  ul {
+    padding: 8px;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: background-color 0.25s var(--ease);
+
+      & + li {
+        margin-top: 2px;
+      }
+
+      img {
+        width: 46px;
+        height: 46px;
+        padding: 4px;
+        box-sizing: border-box;
+        object-fit: contain;
+        border-radius: 10px;
+        background-color: var(--c-surface-soft);
+        transition: transform 0.3s var(--ease);
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        text-decoration: none;
+        color: var(--c-ink);
+        font-size: 14.5px;
+        font-weight: 500;
+        transition: color 0.25s var(--ease);
+      }
+
+      i {
+        font-size: 11px;
+        color: var(--c-muted-soft);
+        transition:
+          color 0.25s var(--ease),
+          transform 0.25s var(--ease);
+      }
+
+      &:hover {
+        background-color: var(--c-surface-soft);
+
+        a {
+          color: var(--hdr-accent);
+        }
+
+        img {
+          transform: scale(1.06);
+        }
+
+        i {
+          color: var(--hdr-accent);
+          transform: translateX(3px);
+        }
+      }
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region alt zolaq — #header-bottom */
+
+#header-bottom {
+  position: relative;
+  /*
+    Kataloq düyməsinin kölgəsi header-dən aşağı düşür; z-index olmadan növbəti
+    bölmə (məs. #shop-hero) öz fonu ilə kölgənin üstünə çəkilir və kölgə düz
+    xətlə kəsilmiş görünür. Açılan menyular (z-index 40) bundan yuxarıda qalır.
+  */
+  z-index: 2;
+  border-top: 1px solid var(--c-line);
+  height: var(--h-header-bottom);
+
+  .all-categories {
+    height: var(--h-header-bottom);
+    display: flex;
+    align-items: center;
+  }
+
+  .all-categories-toggle {
+    width: auto;
+    height: 44px;
+    padding: 0 22px;
+    gap: 12px;
+    border-radius: var(--r-pill);
+    box-shadow: var(--hdr-shadow);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+
+    i {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+  }
+
+  /* panel yalnız aria-expanded="true" olanda görünür */
+  .categories {
+    position: absolute;
+    left: 0;
+    top: calc(100% - 4px);
+    width: 340px;
+    border-radius: var(--r-card);
+    background-color: var(--c-surface);
+    border: 1px solid var(--c-line);
+    box-shadow: var(--shadow-menu);
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s var(--ease),
+      transform 0.25s var(--ease),
+      visibility 0.25s;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  .main-nav {
+    height: var(--h-header-bottom);
+    justify-content: center;
+
+    ul li a {
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  .contact {
+    height: var(--h-header-bottom);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    .icon-badge {
+      width: 38px;
+      height: 38px;
+      background-color: color-mix(in srgb, var(--hdr-a1) 8%, transparent);
+      color: var(--hdr-accent);
+
+      svg {
+        width: 21px;
+        height: 20px;
+      }
+
+      img {
+        width: 20px;
+        height: auto;
+      }
+    }
+
+    .number {
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--c-muted-soft);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--c-ink);
+      font-size: 15px;
+      font-weight: 700;
+      transition: color 0.25s var(--ease);
+
+      &:hover {
+        color: var(--hdr-accent);
+      }
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region sabit başlıq — #header-sticky */
+
+#header-sticky {
+  height: var(--h-header-sticky);
+  font-family: Roboto;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  /* yarı-şəffaf bulanıq fon: altındakı məzmun hiss olunur */
+  background-color: var(--c-sticky-bg);
+  -webkit-backdrop-filter: saturate(1.5) blur(14px);
+  backdrop-filter: saturate(1.5) blur(14px);
+  border-bottom: 1px solid var(--c-line);
+  box-shadow: var(--shadow-sticky);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition:
+    transform 0.4s var(--ease),
+    opacity 0.3s var(--ease),
+    visibility 0.4s;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    img {
+      width: auto;
+      height: 46px;
+      object-fit: contain;
+    }
+
+    .border-line {
+      width: 1px;
+      height: 30px;
+      background-image: linear-gradient(
+        180deg,
+        transparent,
+        var(--c-divider),
+        transparent
+      );
+    }
+  }
+
+  .main-nav {
+    height: var(--h-header-sticky);
+    justify-content: center;
+
+    ul li a {
+      font-size: 15px;
+      font-weight: 600;
+
+      i {
+        font-size: 14px;
+        padding-top: 3px;
+      }
+    }
+  }
+
+  .actions {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+/* lg-dən aşağıda axtarış, naviqasiya və hesab gizlənir —
+   başlıq da ona uyğun alçalır */
+@media only screen and (max-width: 991.98px) {
+  :root {
+    --h-header-mid: 74px;
+    --h-header-sticky: 70px;
+    --h-logo: 40px;
+  }
+
+  #header-sticky {
+    .logo,
+    .actions {
+      height: var(--h-header-sticky);
+    }
+
+    .logo img {
+      height: var(--h-logo);
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  #header-bottom {
+    .all-categories-toggle {
+      font-size: 12px;
+      span {
+        margin-right: 51px;
+      }
+    }
+    .categories {
+      ul {
+        li {
+          a {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* #endregion */

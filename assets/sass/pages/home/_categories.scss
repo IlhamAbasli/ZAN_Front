@@ -1,0 +1,429 @@
+// ==========================================================================
+// KATEQORİYA SLAYDERİ (#product-categories)
+// --------------------------------------------------------------------------
+// HTML: home.html → #region product-categories
+// JS:   assets/js/home.js → #region category-slider
+// ==========================================================================
+
+/* #region bölmə və fon */
+
+#product-categories {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 72px 0 66px;
+  background: var(--grad-section-gold);
+}
+
+#product-categories .cat-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#product-categories .cat-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: var(--blob-alpha);
+}
+
+#product-categories .cat-blob-1 {
+  top: -140px;
+  left: -90px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+#product-categories .cat-blob-2 {
+  right: -110px;
+  bottom: -180px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+/* #endregion */
+
+/* #region başlıq və naviqasiya */
+
+#product-categories .cat-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 26px;
+  margin-bottom: 38px;
+}
+
+#product-categories .cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: RobotoBold;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-brand-deep);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-tint-line);
+}
+
+#product-categories .cat-chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-brand-deep);
+  animation: catPulse 2.4s ease-out infinite;
+}
+
+#product-categories .cat-title {
+  margin: 18px 0 0;
+  font-family: RobotoBold;
+  font-size: 40px;
+  line-height: 1.16;
+  color: var(--c-ink);
+}
+
+#product-categories .cat-title em {
+  position: relative;
+  font-style: normal;
+  color: var(--c-brand-deep);
+}
+
+#product-categories .cat-title em::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 8px;
+  z-index: -1;
+  border-radius: 999px;
+  background: rgba(242, 207, 107, 0.55);
+}
+
+#product-categories .cat-text {
+  max-width: 46ch;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+#product-categories .cat-nav {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  padding-bottom: 6px;
+}
+
+#product-categories .cat-nav-btn {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  cursor: var(--cursor-pointer);
+  color: var(--c-brand-deep);
+  background: var(--c-surface);
+  border: 1px solid var(--c-brand-line);
+  box-shadow: var(--shadow-soft);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    opacity 0.35s ease;
+}
+
+#product-categories .cat-nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+#product-categories .cat-nav-btn:hover {
+  color: #ffffff;
+  background: var(--c-brand-deep);
+  border-color: var(--c-brand-deep);
+  transform: translateY(-3px);
+}
+
+#product-categories .cat-nav-btn.swiper-button-disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* #endregion */
+
+/* #region slayder */
+
+#product-categories .cat-swiper {
+  /* kartın hover zamanı qalxması və kölgəsi kəsilməsin deyə daxili boşluq */
+  padding: 14px 4px 26px;
+}
+
+#product-categories .cat-swiper .swiper-slide {
+  height: auto;
+  display: block;
+  font-size: inherit;
+  background: transparent;
+}
+
+/* #endregion */
+
+/* #region kart */
+
+#product-categories .cat-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 28px 24px 24px;
+  overflow: hidden;
+  border-radius: 22px;
+  text-decoration: none;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line-warm);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+#product-categories .cat-card-glow {
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  margin-left: -130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--cat-accent) 0%, transparent 70%);
+  opacity: 0.3;
+  transform: scale(0.85);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+#product-categories .cat-index,
+#product-categories .cat-thumb,
+#product-categories .cat-body,
+#product-categories .cat-cta {
+  position: relative;
+  z-index: 1;
+}
+
+#product-categories .cat-index {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: RobotoBold;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--c-ink-ghost);
+  transition: color 0.45s ease;
+}
+
+#product-categories .cat-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  height: 132px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--c-surface) 0%,
+    var(--cat-accent) 135%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7),
+    0 12px 26px rgba(16, 21, 28, 0.08);
+}
+
+#product-categories .cat-thumb img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#product-categories .cat-name {
+  margin: 0;
+  font-family: RobotoBold;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+
+#product-categories .cat-desc {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c-muted-soft);
+}
+
+#product-categories .cat-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 22px;
+  font-family: RobotoBold;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-brand-deep);
+}
+
+#product-categories .cat-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.35s ease;
+}
+
+#product-categories .cat-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--cat-accent);
+  box-shadow: var(--shadow-card-hover);
+}
+
+#product-categories .cat-card:hover .cat-card-glow {
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+#product-categories .cat-card:hover .cat-thumb img {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+#product-categories .cat-card:hover .cat-index {
+  color: var(--c-brand-ghost);
+}
+
+#product-categories .cat-card:hover .cat-cta svg {
+  transform: translateX(5px);
+}
+
+#product-categories .cat-card:focus-visible,
+#product-categories .cat-nav-btn:focus-visible {
+  outline: 2px solid var(--c-brand-deep);
+  outline-offset: 4px;
+}
+
+/* #endregion */
+
+/* #region tərəqqi zolağı */
+
+#product-categories .cat-progress {
+  position: relative;
+  height: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--c-track);
+}
+
+#product-categories .cat-progress .swiper-pagination-progressbar-fill {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--c-brand-deep), var(--c-gold));
+}
+
+/* #endregion */
+
+/* #region keyframes */
+
+@keyframes catPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(167, 25, 48, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(167, 25, 48, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(167, 25, 48, 0);
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 991px) {
+  #product-categories {
+    padding: 56px 0 52px;
+  }
+  #product-categories .cat-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 26px;
+  }
+  #product-categories .cat-title {
+    font-size: 32px;
+  }
+  #product-categories .cat-nav {
+    padding-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #product-categories {
+    padding: 44px 0 44px;
+  }
+  #product-categories .cat-title {
+    font-size: 26px;
+  }
+  #product-categories .cat-text {
+    font-size: 15px;
+  }
+  #product-categories .cat-card {
+    padding: 24px 20px 20px;
+  }
+  #product-categories .cat-thumb {
+    width: 112px;
+    height: 112px;
+    margin-bottom: 20px;
+  }
+  #product-categories .cat-index {
+    font-size: 28px;
+  }
+  #product-categories .cat-nav-btn {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/*
+  "Animasiyaları azalt": sonsuz nəbz söndürülür, hover-də kart və elementlər
+  yerindən oynamır. Rəng, haşiyə, kölgə və parıltı keçidləri isə qalır ki,
+  kart yenə də toxunuşa cavab versin.
+*/
+@media (prefers-reduced-motion: reduce) {
+  #product-categories .cat-chip i {
+    animation: none;
+  }
+  #product-categories .cat-card:hover,
+  #product-categories .cat-card-glow,
+  #product-categories .cat-card:hover .cat-card-glow,
+  #product-categories .cat-card:hover .cat-thumb img,
+  #product-categories .cat-card:hover .cat-cta svg,
+  #product-categories .cat-nav-btn:hover {
+    transform: none;
+  }
+}
+
+/* #endregion */

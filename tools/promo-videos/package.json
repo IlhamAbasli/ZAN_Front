@@ -1,0 +1,14 @@
+{
+  "name": "zan-promo-videos",
+  "private": true,
+  "description": "ZAN Haqqımızda səhifələri üçün promo videolarının mənbəyi (Canvas/WebGL səhnələri + render)",
+  "scripts": {
+    "brand": "python sound.py a1 out/a1.wav && node render.js a1 --samples 6 --audio out/a1.wav --out out/zan-brand.mp4",
+    "mission": "node render.js m1 --samples 6 --out out/zan-mission.mp4",
+    "film": "python sound.py m4 out/m4.wav && node render.js m4 --samples 6 --audio out/m4.wav --out out/zan-film.mp4"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "puppeteer-core": "^25.12.0"
+  }
+}

@@ -1,0 +1,17 @@
+// ==========================================================================
+// VISUALIZER.SCSS — yalnız "Rəng vizualizatoru" səhifəsinin (visualizer.html) stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/visualizer/visualizer.css (Live Sass Compiler)
+// Qoşulur:  visualizer.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Visualizer/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/visualizer/
+//
+// Tokenlər, header, footer və mini səbət site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/visualizer/hero";
+@use "../pages/visualizer/studio";
+@use "../pages/visualizer/panel";
+@use "../pages/visualizer/tips";
+/* #endregion */

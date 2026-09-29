@@ -1,0 +1,901 @@
+// ==========================================================================
+// VİZUALİZATOR — İŞ SAHƏSİ (#vz-studio → .vz-work)
+// --------------------------------------------------------------------------
+// HTML: visualizer.html → #region vz-studio
+// JS:   visualizer-page.js
+//
+// Rejimlər #vz-studio[data-mode]-dan gəlir: "scene" (hazır məkan) və
+// "photo" (öz şəkli). Şəkil rejimində alət [data-tool] ilə bilinir —
+// kursor ona görə dəyişir.
+// ==========================================================================
+
+/* #region düzülüş — studiya başlıq zolağının üstünə çıxır */
+
+#vz-studio {
+  position: relative;
+  z-index: 1;
+  margin-top: -56px;
+  padding-bottom: 72px;
+}
+
+#vz-studio .vz-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media only screen and (max-width: 1199px) {
+  #vz-studio .vz-layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 18px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #vz-studio .vz-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+#vz-studio .vz-work {
+  min-width: 0;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+}
+
+@media only screen and (max-width: 575px) {
+  #vz-studio {
+    margin-top: -48px;
+  }
+  #vz-studio .vz-work {
+    padding: 14px;
+    border-radius: 18px;
+  }
+}
+
+/* bütün xətti ikonlar */
+#vz-studio svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* #endregion */
+
+/* #region yuxarı zolaq — ad və əməliyyatlar */
+
+#vz-studio .vz-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin-bottom: 16px;
+}
+
+#vz-studio .vz-bar-title {
+  min-width: 0;
+
+  h3 {
+    margin: 0;
+    font-family: RobotoBold;
+    font-size: 22px;
+    color: var(--c-ink);
+  }
+
+  p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: var(--c-muted);
+  }
+}
+
+#vz-studio .vz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+#vz-studio .vz-sep {
+  width: 1px;
+  height: 26px;
+  margin: 0 4px;
+  background: var(--c-line);
+}
+
+#vz-studio .vz-icon-btn,
+#vz-studio .vz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--c-line);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  cursor: var(--cursor-pointer);
+  transition:
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--c-brand-line);
+    background: var(--c-brand-tint);
+    color: var(--c-brand);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: var(--cursor-default);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+}
+
+#vz-studio .vz-icon-btn {
+  width: 40px;
+}
+
+#vz-studio .vz-btn {
+  padding: 0 14px;
+}
+
+#vz-studio .vz-btn[aria-pressed="true"] {
+  border-color: var(--c-brand);
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+}
+
+#vz-studio .vz-btn-primary {
+  border-color: transparent;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+
+  &:hover:not(:disabled) {
+    border-color: transparent;
+    color: var(--c-on-brand);
+    background: var(--grad-brand);
+    filter: brightness(1.08);
+  }
+}
+
+/* dar ekranda düymələrin yalnız ikonu qalır */
+@media only screen and (max-width: 575px) {
+  #vz-studio .vz-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #vz-studio .vz-actions {
+    justify-content: space-between;
+  }
+  #vz-studio .vz-btn {
+    width: 40px;
+    padding: 0;
+
+    span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  }
+  #vz-studio .vz-sep {
+    display: none;
+  }
+}
+
+/* #endregion */
+
+/* #region səhnə — kətan */
+
+#vz-studio .vz-stage {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  /* şəkil nisbəti fərqli olanda kənarlarda sakit fon qalsın */
+  background:
+    repeating-linear-gradient(45deg, transparent 0 10px, var(--c-hover-fill) 10px 20px),
+    var(--c-surface-soft);
+}
+
+#vz-studio .vz-frame {
+  position: relative;
+  width: min(100%, calc(72vh * var(--ar, 1.5)));
+  aspect-ratio: var(--ar, 1.5);
+  margin-inline: auto;
+  touch-action: none;
+  user-select: none;
+}
+
+#vz-studio .vz-frame canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#vz-studio .vz-canvas {
+  cursor: var(--cursor-default);
+
+  &.is-over-surface {
+    cursor: var(--cursor-pointer);
+  }
+}
+
+#vz-studio[data-mode="photo"][data-tool="wand"] .vz-canvas {
+  cursor: crosshair;
+}
+
+/* fırça və pozanda sistem kursoru gizlənir — ölçünü dairə göstərir */
+#vz-studio[data-mode="photo"][data-tool="brush"] .vz-canvas,
+#vz-studio[data-mode="photo"][data-tool="eraser"] .vz-canvas {
+  cursor: none;
+}
+
+/* üzərinə gələndə səthin adı */
+#vz-studio .vz-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(13, 21, 32, 0.82);
+  pointer-events: none;
+}
+
+#vz-studio .vz-brush {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow:
+    0 0 0 1px rgba(13, 21, 32, 0.55),
+    inset 0 0 0 1px rgba(13, 21, 32, 0.35);
+  pointer-events: none;
+}
+
+#vz-studio[data-tool="eraser"] .vz-brush {
+  border-style: dashed;
+}
+
+#vz-studio.is-compare .vz-canvas {
+  cursor: ew-resize;
+}
+
+/* başlanğıc ipucu — ilk toxunuşdan sonra itir */
+#vz-studio .vz-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 9px 16px 9px 12px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: vz-hint-float 2.4s ease-in-out infinite;
+  transition: opacity 0.35s var(--ease);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.is-gone {
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #vz-studio .vz-hint {
+    bottom: 10px;
+    padding: 6px 12px 6px 9px;
+    font-size: 12px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+@keyframes vz-hint-float {
+  50% {
+    transform: translate(-50%, -5px);
+  }
+}
+
+#vz-studio .vz-drop {
+  position: absolute;
+  inset: 10px;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 2px dashed var(--c-brand);
+  background: rgba(201, 20, 44, 0.12);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+
+  span {
+    padding: 10px 18px;
+    border-radius: var(--r-pill);
+    font-weight: 700;
+    color: var(--c-on-brand);
+    background: var(--grad-brand);
+  }
+}
+
+#vz-studio .vz-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--c-surface) 55%, transparent);
+}
+
+#vz-studio .vz-spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 4px solid var(--c-brand-tint-line);
+  border-top-color: var(--c-brand);
+  animation: vz-spin 0.8s linear infinite;
+}
+
+@keyframes vz-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #vz-studio .vz-hint {
+    animation: none;
+  }
+}
+
+/* #endregion */
+
+/* #region müqayisə sürgüsü */
+
+#vz-studio .vz-compare {
+  --pos: 50%;
+
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  /* klaviatura fokusu tutacağın ətrafında görünür */
+  input:focus-visible + .vz-compare-line i,
+  &:focus-within .vz-compare-line i {
+    outline: 3px solid var(--c-gold);
+    outline-offset: 2px;
+  }
+}
+
+#vz-studio .vz-compare-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 3px;
+  margin-left: -1.5px;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(13, 21, 32, 0.4);
+  pointer-events: none;
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
+    border-radius: 50%;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d1520' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 7-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E")
+        center / 22px no-repeat,
+      #fff;
+    box-shadow: 0 6px 18px rgba(13, 21, 32, 0.3);
+  }
+}
+
+#vz-studio .vz-compare-tag {
+  position: absolute;
+  top: 14px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(13, 21, 32, 0.7);
+  pointer-events: none;
+
+  &.is-before {
+    left: 14px;
+  }
+
+  &.is-after {
+    right: 14px;
+    background: var(--c-brand);
+  }
+}
+
+/* #endregion */
+
+/* #region şəkil rejiminin alətləri */
+
+#vz-studio .vz-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px 22px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+}
+
+#vz-studio .vz-toolset {
+  display: inline-flex;
+  gap: 4px;
+  margin: 0;
+  padding: 4px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--c-surface);
+  box-shadow: inset 0 0 0 1px var(--c-line);
+}
+
+#vz-studio .vz-tool {
+  position: relative;
+  cursor: var(--cursor-pointer);
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-muted);
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  input:checked + span {
+    color: var(--c-on-brand);
+    background: var(--c-solid);
+  }
+
+  input:focus-visible + span {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 1px;
+  }
+
+  &:hover input:not(:checked) + span {
+    color: var(--c-ink);
+    background: var(--c-hover-fill);
+  }
+}
+
+#vz-studio .vz-range {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 170px;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  output {
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  input {
+    width: 100%;
+    accent-color: var(--c-brand);
+    cursor: var(--cursor-pointer);
+  }
+}
+
+#vz-studio .vz-tools-note {
+  flex: 1 1 220px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+
+/* #region bloklar — səthlər və məkanlar */
+
+#vz-studio .vz-block {
+  margin-top: 22px;
+}
+
+#vz-studio .vz-block-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 12px;
+
+  h3 {
+    margin: 0;
+    font-family: RobotoBold;
+    font-size: 16px;
+    color: var(--c-ink);
+  }
+
+  small {
+    font-size: 13px;
+    color: var(--c-muted);
+  }
+}
+
+#vz-studio .vz-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  padding: 6px 12px;
+  border: 1px dashed var(--c-brand-line);
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-brand);
+  background: transparent;
+  cursor: var(--cursor-pointer);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--c-brand-tint);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}
+
+#vz-studio .vz-surfaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#vz-studio .vz-surface-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 4px;
+  border-radius: 14px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  transition:
+    border-color 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+
+  &:has(.vz-surface[aria-pressed="true"]) {
+    border-color: var(--c-brand);
+    box-shadow: 0 0 0 3px var(--c-brand-tint);
+  }
+}
+
+#vz-studio .vz-surface {
+  --sw: transparent;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 6px 6px;
+  border: 0;
+  border-radius: 12px;
+  text-align: left;
+  color: var(--c-ink);
+  background: transparent;
+  cursor: var(--cursor-pointer);
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+
+  b {
+    display: block;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  small {
+    display: block;
+    font-size: 12px;
+    color: var(--c-muted);
+  }
+}
+
+#vz-studio .vz-surface-sw {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--sw);
+  box-shadow: inset 0 0 0 1px rgba(13, 21, 32, 0.12);
+}
+
+/* rəngsiz səth — boya çəkilməmiş divar kimi zolaqlı */
+#vz-studio .vz-surface.is-empty .vz-surface-sw {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--c-surface-soft) 0 5px,
+    var(--c-line) 5px 7px
+  );
+}
+
+#vz-studio .vz-surface-mini {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--c-muted);
+  background: transparent;
+  cursor: var(--cursor-pointer);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: var(--c-ink);
+    background: var(--c-hover-fill);
+  }
+
+  &.is-danger:hover {
+    color: var(--c-brand);
+    background: var(--c-brand-tint);
+  }
+}
+
+#vz-studio .vz-scenes-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: 12px;
+}
+
+@media only screen and (max-width: 575px) {
+  #vz-studio .vz-scenes-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+#vz-studio .vz-scenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#vz-studio .vz-scene {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  background: transparent;
+  cursor: var(--cursor-pointer);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px var(--c-line);
+    transition:
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease);
+  }
+
+  span {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c-muted);
+  }
+
+  &:hover img {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px var(--c-line),
+      var(--shadow-soft);
+  }
+
+  &[aria-pressed="true"] {
+    img {
+      box-shadow:
+        0 0 0 2px var(--c-surface),
+        0 0 0 4px var(--c-brand);
+    }
+    span {
+      color: var(--c-brand);
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    img {
+      box-shadow:
+        0 0 0 2px var(--c-surface),
+        0 0 0 4px var(--c-ink);
+    }
+  }
+}
+
+#vz-studio .vz-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 112px;
+  padding: 14px 10px;
+  border-radius: 14px;
+  border: 2px dashed var(--c-brand-line);
+  text-align: center;
+  background: var(--c-brand-tint);
+  cursor: var(--cursor-pointer);
+  transition:
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+
+  b {
+    font-size: 14px;
+    color: var(--c-brand);
+  }
+
+  small {
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--c-muted);
+  }
+
+  &:hover {
+    border-color: var(--c-brand);
+    transform: translateY(-2px);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+}
+
+#vz-studio .vz-upload-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+#vz-studio .vz-privacy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--c-muted);
+
+  svg {
+    flex: none;
+    width: 15px;
+    height: 15px;
+    color: var(--c-success);
+  }
+}
+
+/* #endregion */

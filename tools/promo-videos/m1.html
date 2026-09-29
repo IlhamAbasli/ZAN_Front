@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="UTF-8" />
+<title>M1 — ZAN missiya əhval kadrı</title>
+<style>
+  @font-face { font-family: ZanTitle; src: url(/assets/fonts/Roboto-Bold.ttf); }
+  @font-face { font-family: ZanBody; src: url(/assets/fonts/DMSans-VariableFont_wght.ttf); font-weight: 100 1000; }
+</style>
+</head>
+<body>
+<script src="lib.js"></script>
+<script>
+/* ==========================================================================
+   M1 — "Hər qutu boyanın arxasında bir söz dayanır" · 12 s qüsursuz dövr
+   Hər söz: ekranı dolduran maye boyadan hərflərə yığılır → dayanır →
+   kamera hərfin içinə uçur (ekran yenə boya ilə dolur) → növbəti söz.
+   Maye boya dairəvi zaman oxunda hərəkət edir, ona görə 12 s-də başa qayıdır.
+   ========================================================================== */
+const { W, H, E, p, lerp, clamp } = Z;
+const DUR = 12, PER = 4;
+const WORDS = ["Keyfiyyətli", "Etibarlı", "Əlçatan"];
+const PAL = ["#e8242c", "#f4602a", "#f9c51c", "#1fae4b", "#15b5c8", "#2c63d8", "#7d3cc8", "#e2308c"];
+let liquid;
+const info = [];
+
+// sözün içində iri, dolu bir nöqtə tapırıq — kamera ora "uçacaq"
+function anchorFor(word, size) {
+  const b = Z.buf(W, H), font = Z.f(size, "title");
+  b.x.font = font; b.x.textAlign = "center"; b.x.fillStyle = "#fff";
+  b.x.fillText(word, W / 2, 600);
+  const d = b.x.getImageData(0, 0, W, H).data, on = (x, y) => d[(y * W + x) * 4 + 3] > 200;
+  let best = null, bestR = 0;
+  for (let y = 360; y < 640; y += 4)
+    for (let x = 300; x < W - 300; x += 4) {
+      if (!on(x, y)) continue;
+      let r = 2;
+      const d7 = (k) => (k * 0.7) | 0;
+      while (r < 80 && on(x + r, y) && on(x - r, y) && on(x, y + r) && on(x, y - r) &&
+        on(x + d7(r), y + d7(r)) && on(x - d7(r), y - d7(r)) && on(x + d7(r), y - d7(r)) && on(x - d7(r), y + d7(r))) r += 2;
+      const score = r >= 26 ? 100 - Math.hypot(x - W / 2, (y - 500) * 2) * 0.1 + r * 0.2 : 0;
+      if (score > bestR) { bestR = score; best = { x, y }; }
+    }
+  return best;
+}
+
+function paint(t) {
+  const a = (t / DUR) * Math.PI * 2;
+  return liquid.render({
+    mode: 1, pal: PAL, bands: 1.35, edge: 0.07, scale: 0.62, warp: 2.4, bump: 0.26, spec: 0.7, shine: 120, gloss: 0.12, oct: 4, gain: 0.47,
+    to: [Math.cos(a) * 0.42, Math.sin(a) * 0.42, 0.3 * Math.sin(a)],
+  });
+}
+
+function draw(ctx, t) {
+  t = ((t % DUR) + DUR) % DUR;
+  const k = Math.floor(t / PER), L = t - k * PER, wd = info[k];
+  // söz miqyası: ekranı dolduran → 1 → yenidən ekranı dolduran
+  const inq = E.outQuart(p(L, 0.1, 1.4)), outq = E.inQuart(p(L, 2.95, 3.85));
+  const big = 160;
+  const scale = Math.exp(Math.log(big) * (1 - inq + outq)) * lerp(1.03, 0.97, E.inOutSine(p(L, 0.5, 3.1)));
+  // fon
+  ctx.fillStyle = "#08060a"; ctx.fillRect(0, 0, W, H);
+  Z.glow(ctx, 960, 560, 1100, "#3a0a14", 0.6, "source-over");
+  const liq = paint(t);
+  // mətn maskası
+  const m = Z.named("m1mask"); Z.clear(m);
+  m.x.save();
+  m.x.translate(wd.ax, wd.ay); m.x.scale(scale, scale); m.x.translate(-wd.ax, -wd.ay);
+  m.x.font = Z.f(wd.size, "title"); m.x.textAlign = "center"; m.x.fillStyle = "#fff";
+  m.x.fillText(wd.w, W / 2, 600);
+  m.x.restore();
+  const s = Z.named("m1paint"); Z.clear(s);
+  s.x.drawImage(liq, 0, 0, W, H);
+  s.x.globalCompositeOperation = "destination-in";
+  s.x.drawImage(m.c, 0, 0);
+  // hərflərin ətrafında yumşaq boya işığı
+  ctx.save();
+  ctx.shadowColor = "rgba(255,90,90,.28)"; ctx.shadowBlur = 60;
+  ctx.drawImage(s.c, 0, 0);
+  ctx.restore();
+  // hərflərin kənarında incə parıltı
+  ctx.save();
+  ctx.globalAlpha = 0.5 * (1 - p(scale, 1.3, 3));
+  ctx.translate(wd.ax, wd.ay); ctx.scale(scale, scale); ctx.translate(-wd.ax, -wd.ay);
+  ctx.font = Z.f(wd.size, "title"); ctx.textAlign = "center";
+  ctx.strokeStyle = "rgba(255,255,255,.35)"; ctx.lineWidth = 1.5 / scale;
+  ctx.strokeText(wd.w, W / 2, 600);
+  ctx.restore();
+  // yazılar — yalnız söz yerində dayananda
+  const ui = E.outCubic(p(L, 0.75, 1.5)) * (1 - E.inCubic(p(L, 2.75, 3.25)));
+  if (ui > 0) {
+    Z.eyebrow(ctx, "HƏR QUTU BOYANIN ARXASINDA", 960, 330, ui, { center: true, size: 21, alpha: ui, color: "rgba(255,255,255,.72)" });
+    ctx.save(); ctx.globalAlpha = ui;
+    Z.text(ctx, "0" + (k + 1), 928, 790, { font: Z.f(24, "title"), color: "#fff", align: "right" });
+    ctx.fillStyle = "rgba(255,255,255,.25)"; ctx.fillRect(942, 782, 36, 1.5);
+    Z.text(ctx, "03", 992, 790, { font: Z.f(24, "title"), color: "rgba(255,255,255,.45)" });
+    ctx.restore();
+  }
+  Z.vignette(ctx, 0.45);
+}
+
+Z.run({
+  duration: DUR,
+  loop: true,
+  fps: 30,
+  grain: 0.06,
+  async init() {
+    liquid = new Z.Liquid(1280, 720);
+    WORDS.forEach((w) => {
+      const size = Math.min(300, Math.floor(300 * 1480 / Z.measure(Z.named("m").x, w, Z.f(300, "title"))));
+      const a = anchorFor(w, size);
+      info.push({ w, size, ax: a.x, ay: a.y });
+    });
+  },
+  draw,
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!--
+    ZAN kursoru (klikləna bilən elementlər): eyni valik, silindrin ucunda
+    qızılı boya damlası — "buranı klikləmək olar" siqnalını bu damla daşıyır.
+
+    Valik öz oxunda (silindr yuxarıda, sap aşağıda) çəkilib, sonra -12°
+    əyilir və silindrin sol ucu (4, 8) nöqtəsinə düşür — CSS-dəki hotspot
+    da elə oradadır. Ətrafdakı ağ çevrə site.js → cursor-ring-dir.
+
+    Hər forma əvvəlcə qalın ağ konturla, sonra rəngli doldurma ilə çəkilir ki,
+    kursor həm açıq, həm də tünd fonun üstündə seçilsin.
+  -->
+  <defs>
+    <linearGradient id="zan-roll-a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3243d"/>
+      <stop offset="0.55" stop-color="#c9142c"/>
+      <stop offset="1" stop-color="#7d0f21"/>
+    </linearGradient>
+    <linearGradient id="zan-grip-a" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#10151c"/>
+      <stop offset="0.5" stop-color="#2c3947"/>
+      <stop offset="1" stop-color="#10151c"/>
+    </linearGradient>
+
+    <g id="zan-roller-shape-a">
+      <rect x="0" y="0" width="17" height="8" rx="2.6"/>
+      <path d="M17 4 H20.4 V11.4 H9.5 V14.6" fill="none"/>
+      <rect x="7" y="14.4" width="5" height="10" rx="2.5"/>
+    </g>
+  </defs>
+
+  <g transform="translate(3.4 7.4) rotate(-12)">
+    <use href="#zan-roller-shape-a" fill="#ffffff" stroke="#ffffff" stroke-width="2.8"
+         stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- çərçivə (məftil) -->
+    <path d="M17 4 H20.4 V11.4 H9.5 V14.6" fill="none" stroke="#7b8794" stroke-width="1.5"
+          stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- silindr: qırmızı, üstündə parıltı -->
+    <rect x="0" y="0" width="17" height="8" rx="2.6" fill="url(#zan-roll-a)"/>
+    <rect x="2.2" y="1.5" width="12.6" height="1.6" rx="0.8" fill="#ffffff" opacity="0.45"/>
+    <!-- sap -->
+    <rect x="7" y="14.4" width="5" height="10" rx="2.5" fill="url(#zan-grip-a)"/>
+  </g>
+
+  <!-- valikdən düşən boya damlası (hotspot nöqtəsində) -->
+  <circle cx="4" cy="8" r="3.1" fill="#ffffff"/>
+  <circle cx="4" cy="8" r="1.9" fill="#f2cf6b"/>
+</svg>

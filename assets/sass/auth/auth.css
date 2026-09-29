@@ -1,0 +1,420 @@
+@charset "UTF-8";
+/* #region bölmələr */
+/* #region bölmə və fon */
+#auth {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 34px 0 110px;
+  background: var(--grad-section-gold);
+}
+
+#auth .au-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#auth .au-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#auth .au-blob-1 {
+  top: -160px;
+  right: 6%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#auth .au-blob-2 {
+  bottom: -200px;
+  left: -60px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+#auth .au-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+#auth .au-crumbs ol li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--c-muted-soft);
+}
+#auth .au-crumbs ol a {
+  color: var(--c-muted);
+  text-decoration: none;
+}
+#auth .au-crumbs ol a:hover {
+  color: var(--c-brand);
+}
+#auth .au-crumbs ol [aria-current=page] {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+/* #endregion */
+/* #region çərçivə */
+#auth .au-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  max-width: 1080px;
+  margin: 0 auto;
+  border-radius: 28px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card-hover);
+  overflow: hidden;
+  animation: au-rise 0.6s var(--ease) both;
+}
+
+@keyframes au-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #auth .au-shell {
+    animation: none;
+  }
+}
+/* #endregion */
+/* #region marka paneli — mövzudan asılı olmayaraq tünd */
+#auth .au-aside {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 40px 36px;
+  color: #fff;
+  background: radial-gradient(circle at 100% 0%, rgba(242, 207, 107, 0.24), transparent 50%), radial-gradient(circle at 0% 100%, rgba(201, 20, 44, 0.45), transparent 55%), linear-gradient(160deg, #1a2331 0%, #0d1520 100%);
+  overflow: hidden;
+}
+
+/* boya axını — yuxarıdan aşağı */
+#auth .au-drip {
+  position: absolute;
+  top: 0;
+  right: 42px;
+  z-index: -1;
+  width: 120px;
+  height: 190px;
+  opacity: 0.9;
+}
+#auth .au-drip path {
+  fill: url(#au-drip-paint);
+}
+
+#auth .au-logo img {
+  width: auto;
+  height: 46px;
+}
+
+#auth .au-chip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 34px;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  background: rgba(242, 207, 107, 0.12);
+  border: 1px solid rgba(242, 207, 107, 0.25);
+}
+#auth .au-chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+#auth .au-aside-title {
+  margin: 16px 0 0;
+  font-family: RobotoBold;
+  font-size: 30px;
+  line-height: 1.2;
+  color: #fff;
+}
+#auth .au-aside-title em {
+  font-style: normal;
+  color: var(--c-gold);
+}
+
+#auth .au-aside-text {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#auth .au-perks {
+  display: grid;
+  gap: 16px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+#auth .au-perks li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+#auth .au-perks b {
+  display: block;
+  font-size: 15px;
+  color: #fff;
+}
+#auth .au-perks b + span {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+#auth .au-perk-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  color: var(--c-gold);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+#auth .au-perk-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* aşağıda rəng nümunələri */
+#auth .au-swatches {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 36px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+#auth .au-swatches span {
+  display: flex;
+}
+#auth .au-swatches b {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sw);
+  border: 2px solid #111a26;
+}
+#auth .au-swatches b + b {
+  margin-left: -8px;
+}
+
+/* #endregion */
+/* #region forma tərəfi */
+#auth .au-main {
+  padding: 48px 52px 44px;
+}
+
+#auth .au-title {
+  margin: 0;
+  font-family: RobotoBold;
+  font-size: 32px;
+  line-height: 1.15;
+  color: var(--c-ink);
+}
+
+#auth .au-text {
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* səbət / sevimlilərdən yönləndirilibsə (auth-page.js → return-notice) */
+#auth .au-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--c-ink);
+  background: color-mix(in srgb, var(--c-gold) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-gold) 45%, transparent);
+}
+#auth .au-notice[hidden] {
+  display: none;
+}
+#auth .au-notice svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #b8862a;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#auth .zf {
+  margin-top: 28px;
+}
+
+#auth .au-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+#auth .au-options > a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-brand);
+  text-decoration: none;
+}
+#auth .au-options > a:hover {
+  text-decoration: underline;
+}
+
+#auth .au-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0 0;
+  font-size: 13px;
+  color: var(--c-muted-soft);
+}
+#auth .au-divider::before, #auth .au-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--c-line);
+}
+
+#auth .au-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  height: 50px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-ink);
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+#auth .au-switch b {
+  color: var(--c-brand);
+}
+#auth .au-switch svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--c-brand);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s var(--ease);
+}
+#auth .au-switch:hover {
+  color: var(--c-ink);
+  border-color: var(--c-brand-line);
+}
+#auth .au-switch:hover svg {
+  transform: translateX(4px);
+}
+
+#auth .au-secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 0;
+  font-size: 12.5px;
+  color: var(--c-muted-soft);
+}
+#auth .au-secure svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* #endregion */
+/* #region responsiv */
+@media only screen and (max-width: 991px) {
+  #auth .au-shell {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 620px;
+  }
+  /* forma birinci, panel ondan sonra və qısa */
+  #auth .au-aside {
+    order: 2;
+    padding: 32px 32px 28px;
+  }
+  #auth .au-chip {
+    margin-top: 0;
+  }
+  #auth .au-logo,
+  #auth .au-drip {
+    display: none;
+  }
+  #auth .au-aside-title {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #auth {
+    padding: 24px 0 96px;
+  }
+  #auth .au-shell {
+    border-radius: 22px;
+  }
+  #auth .au-main {
+    padding: 30px 20px 28px;
+  }
+  #auth .au-aside {
+    padding: 28px 20px 24px;
+  }
+  #auth .au-title {
+    font-size: 26px;
+  }
+}
+/* #endregion */
+/* #endregion *//*# sourceMappingURL=auth.css.map */

@@ -1,0 +1,222 @@
+// ==========================================================================
+// HAQQIMIZDA — BAŞLIQ VƏ BÖLMƏ KEÇİDİ (#about-hero)
+// --------------------------------------------------------------------------
+// HTML: about.html, mission.html → #region about-hero
+// .ab-tabs iki səhifə arasında keçiddir: "Ümumi məlumat" ↔ "Missiya ..."
+// Başlıq zolağının altında geniş media yeri (video / şəkil) dayanır.
+// ==========================================================================
+
+/* #region bölmə */
+
+#about-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 44px 0 0;
+  background: var(--grad-section-gold);
+
+  /* alt hissə media ilə növbəti bölmə arasında keçid yaradır */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    z-index: -1;
+    height: 38%;
+    background: var(--c-bg);
+  }
+}
+
+#about-hero .ah-glow {
+  position: absolute;
+  top: -240px;
+  right: -120px;
+  z-index: -1;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 65%);
+  opacity: calc(var(--blob-alpha) * 0.7);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+#about-hero .ah-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--c-muted-soft);
+  }
+
+  a {
+    color: var(--c-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  [aria-current="page"] {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+}
+
+#about-hero .ah-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 48px;
+  align-items: end;
+  margin-top: 40px;
+}
+
+#about-hero .ah-title {
+  margin: 20px 0 0;
+  font-family: RobotoBold;
+  font-size: clamp(38px, 4.6vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+
+  em {
+    font-style: normal;
+    color: var(--c-brand);
+  }
+}
+
+#about-hero .ah-text {
+  margin: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--c-gold);
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+
+/* #region bölmə keçidi (tab) */
+
+#about-hero .ab-tabs {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 40px;
+  padding: 5px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 22px;
+    border-radius: var(--r-pill);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--c-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      color 0.25s var(--ease),
+      background-color 0.25s var(--ease);
+
+    b {
+      font-size: 11.5px;
+      letter-spacing: 0.08em;
+      color: var(--c-muted-soft);
+      transition: color 0.25s var(--ease);
+    }
+
+    &:hover {
+      color: var(--c-ink);
+    }
+
+    &[aria-current="page"] {
+      color: var(--c-on-brand);
+      background: var(--grad-brand);
+      box-shadow: var(--shadow-brand);
+
+      b {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region geniş media */
+
+#about-hero .ah-media {
+  margin-top: 48px;
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 991px) {
+  #about-hero .ah-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #about-hero {
+    padding-top: 28px;
+  }
+
+  #about-hero .ah-top {
+    margin-top: 28px;
+  }
+
+  #about-hero .ah-text {
+    padding-left: 16px;
+    font-size: 15.5px;
+  }
+
+  /* dar ekranda iki tab bərabər bölünür, mətn sətrə sığmasa keçir */
+  #about-hero .ab-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-top: 28px;
+    border-radius: 18px;
+
+    a {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      white-space: normal;
+    }
+  }
+
+  #about-hero .ah-media {
+    margin-top: 32px;
+    border-radius: 18px;
+  }
+}
+
+/* #endregion */

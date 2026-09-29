@@ -1,0 +1,27 @@
+// ==========================================================================
+// TÜND REJİMDƏ MONOXROM İKONLAR
+// --------------------------------------------------------------------------
+// Tünd fonda itən tək rəngli SVG ikonları --icon-filter tokeni ilə işıqlandırır.
+// ==========================================================================
+
+/* #region ikon filtri */
+
+/*
+  Tünd rejimdə monoxrom ikonlar (hamısı tünd rəngli SVG-dir) fonla qaynayıb
+  itir. Onları adına görə seçib işıqlı tona çeviririk — rəngli ikonlara
+  (bayraqlar, məhsul şəkilləri, loqo) toxunulmur.
+
+  Mövzudan asılı dəyərlər ayrıca tokenlərdə saxlanılır ki, uzun seçici
+  siyahısı hər mövzu üçün təkrarlanmasın.
+*/
+img[src$="search-icon.svg"],
+img[src$="cart-icon.svg"],
+img[src$="wishlist-icon.svg"],
+img[src$="login-icon.svg"],
+img[src$="xmark.svg"],
+img[src$="bars-icon.svg"],
+img[src$="bars-icon (2).svg"] {
+  filter: var(--icon-filter, none);
+}
+
+/* #endregion */

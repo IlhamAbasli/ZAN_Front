@@ -1,0 +1,382 @@
+// ==========================================================================
+// RƏNG VİZUALİZATORU — KEÇİD BANNERİ (#vz-promo)
+// --------------------------------------------------------------------------
+// HTML: home.html → #region visualizer-promo
+// Səhifə: visualizer.html
+//
+// Sağdakı otağın divarı 4 trend rəng arasında dəyişir. Rəng çipləri və
+// etiket eyni dövrə bağlıdır: hər biri --i ilə öz növbəsini gözləyir.
+// Dövr müddəti ($cycle) və rənglər HTML-dəki sıra ilə eyni olmalıdır.
+// ==========================================================================
+
+$cycle: 12s;
+$step: 3s; // $cycle / 4
+
+/* #region bölmə və kart */
+
+#vz-promo {
+  padding: 30px 0 50px;
+}
+
+#vz-promo .vp-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 40px;
+  padding: 44px 48px;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid var(--c-line);
+  background: var(--grad-section-gold);
+  box-shadow: var(--shadow-card);
+
+  /* küncdə yumşaq marka işığı */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: -120px;
+    z-index: -1;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+    opacity: var(--blob-alpha);
+    filter: blur(40px);
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #vz-promo .vp-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 32px 28px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #vz-promo .vp-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#vz-promo .vp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-tint-line);
+
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-brand);
+    animation: vp-pulse 1.8s ease-in-out infinite;
+  }
+}
+
+#vz-promo .vp-title {
+  margin: 16px 0 0;
+  font-family: RobotoBold;
+  font-size: 40px;
+  line-height: 1.12;
+  color: var(--c-ink);
+
+  em {
+    position: relative;
+    z-index: 0;
+    font-style: normal;
+    color: var(--c-brand);
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -6px;
+      bottom: 4px;
+      height: 11px;
+      z-index: -1;
+      border-radius: 3px 10px 4px 12px;
+      background: var(--c-brand-ghost);
+      transform: rotate(-1.5deg);
+    }
+  }
+}
+
+#vz-promo .vp-text {
+  max-width: 50ch;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--c-muted);
+}
+
+@media only screen and (max-width: 575px) {
+  #vz-promo .vp-title {
+    font-size: 30px;
+  }
+  #vz-promo .vp-text {
+    font-size: 15px;
+  }
+}
+
+/* #endregion */
+
+/* #region rəng çipləri */
+
+#vz-promo .vp-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px 5px 5px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--c-line);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--c-ink);
+    background: var(--c-surface);
+    animation: vp-chip $cycle var(--ease) infinite;
+    animation-delay: calc(var(--i) * #{$step});
+    transition: border-color 0.2s var(--ease);
+
+    &:hover {
+      border-color: var(--sw);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+      outline-offset: 2px;
+    }
+  }
+
+  span {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--sw);
+    box-shadow: inset 0 0 0 1px rgba(13, 21, 32, 0.12);
+  }
+}
+
+/* #endregion */
+
+/* #region çağırış */
+
+#vz-promo .vp-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 28px;
+
+  small {
+    font-size: 13px;
+    color: var(--c-muted);
+  }
+}
+
+#vz-promo .vp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transition:
+    transform 0.2s var(--ease),
+    filter 0.2s var(--ease);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s var(--ease);
+  }
+
+  &:hover {
+    color: var(--c-on-brand);
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+}
+
+/* #endregion */
+
+/* #region rəngi dəyişən otaq */
+
+#vz-promo .vp-art {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 1px var(--c-line),
+    0 24px 48px rgba(13, 21, 32, 0.16);
+  cursor: var(--cursor-pointer);
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.6s var(--ease);
+  }
+
+  &:hover svg {
+    transform: scale(1.03);
+  }
+}
+
+#vz-promo .vp-wall {
+  fill: #4f7f73;
+  animation: vp-wall $cycle ease-in-out infinite;
+}
+
+#vz-promo .vp-label {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: grid;
+
+  span {
+    grid-area: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px 7px 8px;
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: #0d1520;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 8px 20px rgba(13, 21, 32, 0.18);
+    opacity: 0;
+    animation: vp-label $cycle var(--ease) infinite;
+    animation-delay: calc(var(--i) * #{$step});
+
+    &::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--sw);
+    }
+  }
+}
+
+@keyframes vp-wall {
+  0%,
+  20% {
+    fill: #4f7f73;
+  }
+  25%,
+  45% {
+    fill: #c0673e;
+  }
+  50%,
+  70% {
+    fill: #5e8fa8;
+  }
+  75%,
+  95% {
+    fill: #d4be94;
+  }
+  100% {
+    fill: #4f7f73;
+  }
+}
+
+/* çip öz rəngi divarda olduğu müddətdə (dövrün 1/4-i) seçilmiş görünür */
+@keyframes vp-chip {
+  0%,
+  22% {
+    border-color: var(--sw);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--sw) 28%, transparent);
+    transform: translateY(-2px);
+  }
+  25%,
+  100% {
+    border-color: var(--c-line);
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+@keyframes vp-label {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  3%,
+  21% {
+    opacity: 1;
+    transform: none;
+  }
+  25%,
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes vp-pulse {
+  50% {
+    box-shadow: 0 0 0 5px var(--c-brand-tint-line);
+  }
+}
+
+/* hərəkət azaldılıbsa: divar Göygöl rəngində qalır, ilk etiket görünür */
+@media (prefers-reduced-motion: reduce) {
+  #vz-promo .vp-wall,
+  #vz-promo .vp-swatches a,
+  #vz-promo .vp-label span,
+  #vz-promo .vp-eyebrow i {
+    animation: none;
+  }
+  #vz-promo .vp-label span:first-child {
+    opacity: 1;
+  }
+}
+
+/* #endregion */

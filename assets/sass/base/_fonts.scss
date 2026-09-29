@@ -1,0 +1,35 @@
+// ==========================================================================
+// ŞRİFTLƏR
+// --------------------------------------------------------------------------
+// Şrift faylları: assets/fonts/
+// Yollar yığılmış CSS-ə görədir (assets/sass/<ad>/<ad>.css → ../../fonts/).
+// ==========================================================================
+
+/* #region @font-face elanları */
+
+@font-face {
+  font-family: Roboto;
+  src: url(../../fonts/Roboto-Regular.ttf);
+}
+
+/*
+  DM Sans dəyişən şriftdir: çəki diapazonu elan olunduğuna görə 500/600
+  kimi çəkilər süni qalınlaşdırma ilə deyil, şriftin öz cizgiləri ilə çıxır.
+*/
+@font-face {
+  font-family: DMSans;
+  src: url(../../fonts/DMSans-VariableFont_wght.ttf);
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url(../../fonts/Inter_18pt-Regular.ttf);
+}
+
+@font-face {
+  font-family: RobotoBold;
+  src: url(../../fonts/Roboto-Bold.ttf);
+}
+
+/* #endregion */

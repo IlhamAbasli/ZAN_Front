@@ -1,0 +1,17 @@
+// ==========================================================================
+// CONTACT.SCSS — yalnız "Bizimlə əlaqə" səhifəsinin (contact.html) stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/contact/contact.css (Live Sass Compiler)
+// Qoşulur:  contact.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Contact/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/contact/
+//
+// Tokenlər, header, footer və mini səbət site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/contact/hero";
+@use "../pages/contact/channels";
+@use "../pages/contact/form";
+@use "../pages/contact/map";
+/* #endregion */

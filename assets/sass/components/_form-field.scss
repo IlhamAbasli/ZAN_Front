@@ -1,0 +1,631 @@
+// ==========================================================================
+// FORMA SAHƏLƏRİ (.zf-*) — giriş, qeydiyyat, kabinet formaları
+// --------------------------------------------------------------------------
+// HTML: login.html, register.html, account.html
+// JS:   assets/js/forms.js (yoxlama, şifrəni göstər, güc, telefon maskası)
+//
+// Görünüş əlaqə formasının (pages/contact/_form.scss) sahələri ilə eynidir;
+// o forma #contact-area ilə məhdudlaşıb, bu komponent isə hər yerdə işləyir.
+// Xəta vəziyyəti: sahəyə aria-invalid="true" yazılır, mətn .zf-error-a düşür.
+// ==========================================================================
+
+/* #region düzülüş */
+
+.zf {
+  display: grid;
+  gap: 18px;
+}
+
+.zf-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media only screen and (max-width: 575px) {
+  .zf-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.zf-field {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.zf-label,
+.zf-field > legend {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+/* etiket + sağda link (məs. "Şifrəni unutmusunuz?") */
+.zf-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+
+  .zf-label {
+    margin: 0;
+  }
+
+  a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c-brand);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.zf-req {
+  color: var(--c-brand);
+}
+
+.zf-optional {
+  font-weight: 400;
+  color: var(--c-muted-soft);
+}
+
+.zf-hint {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--c-muted-soft);
+}
+
+/* #endregion */
+
+/* #region mətn sahələri */
+
+.zf-input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid var(--c-line);
+  font: inherit;
+  font-size: 15px;
+  color: var(--c-ink);
+  background: var(--c-surface-soft);
+  transition:
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+
+  &::placeholder {
+    color: var(--c-muted-soft);
+  }
+
+  &:hover {
+    border-color: var(--c-divider-soft);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--c-brand-line);
+    background: var(--c-surface);
+    box-shadow: 0 0 0 4px var(--c-brand-tint);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--c-brand);
+    box-shadow: 0 0 0 4px var(--c-brand-tint);
+  }
+
+  /* brauzerin avtomatik doldurma fonu mövzuya uyğun qalsın */
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var(--c-ink);
+    box-shadow: 0 0 0 40px var(--c-surface-soft) inset;
+    caret-color: var(--c-ink);
+  }
+}
+
+textarea.zf-input {
+  height: auto;
+  min-height: 110px;
+  padding-block: 14px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+/* açılan siyahı — öz oxumuzla */
+select.zf-input {
+  padding-right: 44px;
+  appearance: none;
+  cursor: var(--cursor-pointer);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a929c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px;
+
+  &:invalid {
+    color: var(--c-muted-soft);
+  }
+
+  option {
+    color: var(--c-ink);
+    background: var(--c-surface);
+  }
+}
+
+/* sahənin solunda ikon */
+.zf-control {
+  position: relative;
+
+  > svg {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: var(--c-muted-soft);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: stroke 0.25s var(--ease);
+  }
+
+  > svg ~ .zf-input {
+    padding-left: 46px;
+  }
+
+  &:focus-within > svg {
+    stroke: var(--c-brand);
+  }
+}
+
+/* telefon: önündə sabit +994 */
+.zf-phone {
+  position: relative;
+
+  .zf-prefix {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c-ink);
+    transform: translateY(-50%);
+    pointer-events: none;
+
+    img {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    &::after {
+      content: "";
+      width: 1px;
+      height: 20px;
+      margin-left: 4px;
+      background: var(--c-line);
+    }
+  }
+
+  .zf-input {
+    padding-left: 106px;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* şifrə: sağda göstər / gizlət düyməsi */
+.zf-password {
+  position: relative;
+
+  .zf-input {
+    padding-right: 52px;
+  }
+
+  [data-password-toggle] {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    color: var(--c-muted-soft);
+    background: transparent;
+    transform: translateY(-50%);
+    transition:
+      color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:hover {
+      color: var(--c-ink);
+      background: var(--c-hover-fill);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+      outline-offset: 0;
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region şifrə gücü */
+
+.zf-strength {
+  --lvl-color: var(--c-line);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+
+  &[data-level="1"] {
+    --lvl-color: var(--c-brand);
+  }
+  &[data-level="2"] {
+    --lvl-color: var(--c-warning);
+  }
+  &[data-level="3"] {
+    --lvl-color: #6bb84a;
+  }
+  &[data-level="4"] {
+    --lvl-color: var(--c-success);
+  }
+}
+
+.zf-strength-bars {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+
+  i {
+    height: 5px;
+    border-radius: 3px;
+    background: var(--c-track);
+    transition: background-color 0.3s var(--ease);
+  }
+}
+
+.zf-strength[data-level="1"] i:nth-child(-n + 1),
+.zf-strength[data-level="2"] i:nth-child(-n + 2),
+.zf-strength[data-level="3"] i:nth-child(-n + 3),
+.zf-strength[data-level="4"] i {
+  background: var(--lvl-color);
+}
+
+.zf-strength-label {
+  min-width: 48px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-align: right;
+  color: var(--lvl-color);
+}
+
+/* #endregion */
+
+/* #region xəta və bildiriş */
+
+.zf-error {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--c-brand);
+
+  &:empty {
+    display: none;
+  }
+}
+
+/* formanın başında ümumi xəta (server cavabı) */
+.zf-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-tint-line);
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.zf-count {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  text-align: right;
+  color: var(--c-muted-soft);
+  font-variant-numeric: tabular-nums;
+
+  &.is-near {
+    color: var(--c-warning);
+  }
+}
+
+/* spam tələsi — ekrandan kənarda */
+.zf-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* #endregion */
+
+/* #region checkbox */
+
+.zf-check {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--c-muted);
+  cursor: var(--cursor-pointer);
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  a {
+    font-weight: 600;
+    color: var(--c-brand);
+  }
+
+  .zf-box {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+    border-radius: 7px;
+    border: 1.5px solid var(--c-divider);
+    background: var(--c-surface);
+    transition:
+      background-color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 24;
+      stroke-dashoffset: 24;
+      transition: stroke-dashoffset 0.3s var(--ease);
+    }
+  }
+
+  input:checked + .zf-box {
+    border-color: transparent;
+    background: var(--c-brand);
+
+    svg {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  input:focus-visible + .zf-box {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+
+  input[aria-invalid="true"] + .zf-box {
+    border-color: var(--c-brand);
+    box-shadow: 0 0 0 4px var(--c-brand-tint);
+  }
+}
+
+/* #endregion */
+
+/* #region seçim düymələri (checkbox / radio "çip") */
+
+.zf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zf-chip {
+  position: relative;
+  cursor: var(--cursor-pointer);
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: var(--r-pill);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    transition:
+      color 0.25s var(--ease),
+      background-color 0.25s var(--ease),
+      border-color 0.25s var(--ease);
+  }
+
+  &:hover span {
+    border-color: var(--c-brand-line);
+  }
+
+  input:checked + span {
+    color: var(--c-on-brand);
+    border-color: transparent;
+    background: var(--grad-brand);
+  }
+
+  input:focus-visible + span {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+
+  input[aria-invalid="true"] + span {
+    border-color: var(--c-brand);
+  }
+}
+
+/* #endregion */
+
+/* #region göndər düyməsi */
+
+.zf-submit {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 30px;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  > svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s var(--ease);
+  }
+
+  &:hover {
+    filter: saturate(1.15) brightness(1.06);
+    transform: translateY(-2px);
+
+    > svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+
+  /* .zf grid-dir — düymə özbaşına bütün eni tutmasın */
+  .zf > & {
+    justify-self: start;
+  }
+
+  &.is-block {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  /* göndərilir (forms.js → setLoading) */
+  &.is-loading {
+    pointer-events: none;
+
+    > span:not(.zf-spinner),
+    > svg {
+      opacity: 0;
+    }
+
+    .zf-spinner {
+      opacity: 1;
+    }
+  }
+}
+
+.zf-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  opacity: 0;
+  animation: zf-spin 0.8s linear infinite;
+}
+
+@keyframes zf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .zf-submit {
+    width: 100%;
+  }
+}
+
+/* #endregion */

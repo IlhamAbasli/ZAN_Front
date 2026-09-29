@@ -1,0 +1,141 @@
+// ==========================================================================
+// ƏLAQƏ — XƏRİTƏ (#contact-map)
+// --------------------------------------------------------------------------
+// HTML: contact.html → #region contact-map
+// Səhifənin son bölməsidir: aşağı boşluq footer-in boya dalğası üçündür
+// (layout/_footer.scss → .site-footer margin-top).
+// ==========================================================================
+
+/* #region bölmə */
+
+#contact-map {
+  padding: 0 0 calc(110px + 70px);
+}
+
+#contact-map .cm-frame {
+  position: relative;
+  height: 460px;
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface-soft);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+#contact-map .cm-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* tünd mövzuda xəritə də tündləşir (Google embed-in öz tünd rejimi yoxdur) */
+:root[data-theme="dark"] #contact-map .cm-map {
+  filter: invert(0.9) hue-rotate(180deg) saturate(0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #contact-map .cm-map {
+    filter: invert(0.9) hue-rotate(180deg) saturate(0.7);
+  }
+}
+
+/* #endregion */
+
+/* #region ünvan kartı */
+
+/* sağ yuxarıda — sol yuxarı küncdə Google-un öz məkan kartı olur */
+#contact-map .cm-card {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: min(340px, calc(100% - 48px));
+  padding: 24px 24px 26px;
+  border-radius: 20px;
+  border: 1px solid var(--c-line);
+  background: var(--c-sticky-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-menu);
+
+  address {
+    margin: 8px 0 0;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 1.55;
+    color: var(--c-muted);
+  }
+}
+
+#contact-map .cm-title {
+  margin: 0;
+  font-family: RobotoBold;
+  font-size: 21px;
+  color: var(--c-ink);
+}
+
+#contact-map .cm-route {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 11px 20px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  text-decoration: none;
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    filter: saturate(1.15) brightness(1.06);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv — dar ekranda kart xəritənin altına düşür */
+
+@media only screen and (max-width: 767px) {
+  #contact-map .cm-frame {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  #contact-map .cm-map {
+    height: 300px;
+  }
+
+  #contact-map .cm-card {
+    position: static;
+    width: auto;
+    border: 0;
+    border-top: 1px solid var(--c-line);
+    border-radius: 0;
+    background: var(--c-surface);
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+}
+
+/* #endregion */

@@ -1,0 +1,431 @@
+// ==========================================================================
+// BİLDİRİŞLƏR (.zan-toasts / .zan-toast) — toastr əvəzinə
+// --------------------------------------------------------------------------
+// JS:  assets/js/site.js → #region notify  (ZAN.notify(type, message, options))
+//
+// Hər bildiriş boya ləkəsi motivindədir: ikon damcılayan boya ləkəsinin
+// içindədir, küncdə zəif sıçrantılar var, altdakı zolaq isə vaxtı göstərir
+// (üzərinə gələndə dayanır). Rəng status tokenindən gəlir (base/_tokens.scss).
+//
+// Quruluş:
+//   .zan-toasts                    — sağ yuxarıda yığın (mobildə tam en)
+//     .zan-toast.zan-toast-<type>  — hündürlüyü yığılaraq silinən sarğı
+//       .zan-toast-card            — kart (sürüşdürüb bağlamaq olur)
+// ==========================================================================
+
+/* #region yığın */
+
+.zan-toasts {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 2100;
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  max-width: calc(100vw - 24px);
+  pointer-events: none;
+}
+
+/* #endregion */
+
+/* #region status rəngləri */
+
+.zan-toast {
+  --zt-c: var(--c-info);
+  --zt-on: #fff;
+}
+
+.zan-toast-success {
+  --zt-c: var(--c-success);
+}
+
+.zan-toast-error {
+  --zt-c: var(--c-brand);
+}
+
+.zan-toast-warning {
+  --zt-c: var(--c-warning);
+  --zt-on: #3d2a00;
+}
+
+/* #endregion */
+
+/* #region kart */
+
+/* sarğı: silinəndə JS hündürlüyü 0-a endirir, altdakılar hamarca yuxarı qalxır */
+.zan-toast {
+  margin-bottom: 12px;
+  pointer-events: auto;
+  transition:
+    height 0.3s var(--ease),
+    margin 0.3s var(--ease);
+
+  &.is-collapsing {
+    overflow: hidden;
+  }
+}
+
+.zan-toast-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 44px 18px 16px;
+  overflow: hidden;
+  border-radius: var(--r-card);
+  border: 1px solid var(--c-line);
+  background:
+    linear-gradient(100deg, color-mix(in srgb, var(--zt-c) 11%, transparent) 0%, transparent 42%),
+    var(--c-surface);
+  box-shadow:
+    var(--shadow-menu),
+    0 2px 6px rgba(13, 21, 32, 0.06);
+  touch-action: pan-y;
+  user-select: none;
+  animation: ztIn 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+
+  .zan-toast.is-leaving & {
+    animation: ztOut 0.28s var(--ease) forwards;
+  }
+
+  /* sürüşdürüb bağlama: JS --zt-dx verir */
+  .zan-toast.is-dragging & {
+    animation: none;
+    transform: translateX(var(--zt-dx, 0));
+    opacity: calc(1 - var(--zt-fade, 0));
+  }
+
+  .zan-toast.is-swiped & {
+    animation: none;
+    transform: translateX(var(--zt-dx, 0));
+    opacity: 0;
+    transition:
+      transform 0.25s var(--ease),
+      opacity 0.25s var(--ease);
+  }
+}
+
+/* sağ yuxarı küncdə zəif boya sıçrantıları */
+.zan-toast-splash {
+  position: absolute;
+  top: -26px;
+  right: 18px;
+  width: 110px;
+  height: 80px;
+  pointer-events: none;
+  opacity: 0.16;
+  background:
+    radial-gradient(circle at 40% 55%, var(--zt-c) 0 17px, transparent 18px),
+    radial-gradient(circle at 78% 30%, var(--zt-c) 0 6px, transparent 7px),
+    radial-gradient(circle at 12% 30%, var(--zt-c) 0 4px, transparent 5px),
+    radial-gradient(circle at 88% 78%, var(--zt-c) 0 3px, transparent 4px),
+    radial-gradient(circle at 18% 85%, var(--zt-c) 0 2.5px, transparent 3.5px);
+  animation: ztSplash 0.6s var(--ease) 0.12s both;
+}
+
+/* ikon: damcılayan boya ləkəsi */
+.zan-toast-icon {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--zt-on);
+  border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.5), transparent 42%),
+    var(--zt-c);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--zt-c) 38%, transparent);
+  animation: ztBlob 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ləkədən asılan damcı */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 84%;
+    left: 60%;
+    width: 8px;
+    height: 13px;
+    border-radius: 50% 50% 50% 50% / 35% 35% 65% 65%;
+    background: var(--zt-c);
+    transform-origin: top center;
+    animation: ztDrip 0.5s var(--ease) 0.45s both;
+  }
+}
+
+.zan-toast-body {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.zan-toast-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: RobotoBold;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+
+/* eyni bildiriş təkrarlananda: ×2, ×3 ... */
+.zan-toast-count {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--zt-on);
+  background: var(--zt-c);
+
+  &:empty {
+    display: none;
+  }
+
+  &.is-bumped {
+    animation: ztBump 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+.zan-toast-text {
+  display: -webkit-box;
+  margin: 4px 0 0;
+  overflow: hidden;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--c-muted);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: anywhere;
+}
+
+.zan-toast-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  font-family: RobotoBold;
+  font-size: 13px;
+  color: var(--zt-c);
+  background: none;
+  cursor: pointer;
+
+  &::after {
+    content: "→";
+    transition: transform 0.25s var(--ease);
+  }
+
+  &:hover::after {
+    transform: translateX(3px);
+  }
+}
+
+/* məhsul şəkli (səbət / sevimlilər) */
+.zan-toast-thumb {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+}
+
+.zan-toast-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--c-muted-soft);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+
+  &:hover {
+    color: var(--c-ink);
+    background: var(--c-hover-fill);
+  }
+}
+
+.zan-toast-close:focus-visible,
+.zan-toast-action:focus-visible {
+  outline: 2px solid var(--zt-c);
+  outline-offset: 2px;
+}
+
+/*
+  Vaxt zolağı — boya "quruyur". Animasiya bitəndə JS bildirişi bağlayır,
+  ona görə kursor üzərində olanda və ya fokusda zolaq dayanır.
+*/
+.zan-toast-timer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--zt-c) 55%, transparent), var(--zt-c));
+  transform-origin: left center;
+  animation: ztTimer var(--zt-duration, 4500ms) linear forwards;
+
+  .zan-toast:hover &,
+  .zan-toast:focus-within &,
+  .zan-toast.is-dragging & {
+    animation-play-state: paused;
+  }
+}
+
+/* #endregion */
+
+/* #region animasiyalar */
+
+@keyframes ztIn {
+  from {
+    opacity: 0;
+    transform: translateX(48px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ztOut {
+  to {
+    opacity: 0;
+    transform: translateX(56px) scale(0.96);
+  }
+}
+
+@keyframes ztBlob {
+  0% {
+    transform: scale(0) rotate(-40deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes ztDrip {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes ztSplash {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes ztBump {
+  50% {
+    transform: scale(1.35);
+  }
+}
+
+@keyframes ztTimer {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv və azaldılmış hərəkət */
+
+/* mobildə yuxarıda, tam endə; yuxarıdan düşür */
+@media only screen and (max-width: 575px) {
+  .zan-toasts {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+  }
+  .zan-toast-card {
+    animation-name: ztInTop;
+  }
+  @keyframes ztInTop {
+    from {
+      opacity: 0;
+      transform: translateY(-24px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/*
+  "Animasiyaları azalt": bildiriş yalnız solğunlaşaraq görünür/itir.
+  Vaxt zolağı qalır — o həm də bağlanma taymeridir.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .zan-toast-card {
+    animation-name: ztFade;
+  }
+  .zan-toast.is-leaving .zan-toast-card {
+    animation-name: ztFadeOut;
+  }
+  .zan-toast-icon,
+  .zan-toast-icon::after,
+  .zan-toast-splash,
+  .zan-toast-count.is-bumped {
+    animation: none;
+  }
+  .zan-toast {
+    transition: none;
+  }
+  @keyframes ztFade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes ztFadeOut {
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/* #endregion */

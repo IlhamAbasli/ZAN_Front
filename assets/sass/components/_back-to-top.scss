@@ -1,0 +1,123 @@
+// ==========================================================================
+// YUXARI QALXMA DÜYMƏSİ (#button)
+// --------------------------------------------------------------------------
+// HTML: home.html → #region back-to-top
+// JS:   assets/js/site.js → #region scroll-state
+// ==========================================================================
+
+/* #region düymə və tərəqqi halqası */
+
+#button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: var(--c-solid);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  box-shadow: 0 8px 16px #03041c4d;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: 0.3s 0s ease-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+
+  &:hover {
+    cursor: var(--cursor-pointer);
+    background-color: var(--c-solid-hover);
+    transform: translateY(-4px);
+  }
+
+  &:active {
+    background-color: var(--c-solid-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+
+  /* ox inline SVG-dir: rəngini düymənin color dəyərindən alır */
+  .scroll-arrow {
+    position: relative;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* tərəqqi halqası düymənin kənarından bir qədər kənarda dayanır */
+  .scroll-progress {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    pointer-events: none;
+    /* halqa saat 12-dən başlasın */
+    transform: rotate(-90deg);
+  }
+
+  .scroll-progress circle {
+    fill: none;
+    stroke-width: 2.5;
+  }
+
+  .scroll-progress-track {
+    stroke: rgba(255, 255, 255, 0.16);
+  }
+
+  .scroll-progress-bar {
+    stroke: var(--c-gold);
+    stroke-linecap: round;
+    /*
+      dasharray/dashoffset JS tərəfindən dairənin həqiqi uzunluğu ilə
+      doldurulur; buradakı dəyər yalnız skript işə düşənə qədər halqanın
+      boş görünməsi üçündür
+    */
+    stroke-dasharray: 151;
+    stroke-dashoffset: 151;
+    transition: stroke-dashoffset 0.12s linear;
+  }
+}
+
+/* #endregion */
+
+/* #region əlçatanlıq və responsiv */
+
+@media (prefers-reduced-motion: reduce) {
+  #button .scroll-progress-bar {
+    transition: none;
+  }
+}
+
+/* dar ekranda düymə məzmunu az örtsün */
+@media only screen and (max-width: 575.98px) {
+  #button {
+    right: 16px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  #button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* #endregion */
+
+/* #region görünən vəziyyət */
+
+#button.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* #endregion */

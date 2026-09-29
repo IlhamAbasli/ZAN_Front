@@ -1,0 +1,435 @@
+// ==========================================================================
+// MƏHSUL KARTI (.product-card)
+// --------------------------------------------------------------------------
+// HTML: shop.html → #region catalog (kartın şablonu orada şərhlə izah olunub)
+// JS:   assets/js/shop.js      → səbət / sevimlilər düymələri
+//       assets/js/shop-page.js → filtr, sıralama, sürətli baxış
+//
+// Kart hər səhifədə işlənə bilsin deyə site.css-dədir. Kateqoriya rəngi
+// data-category-dən gəlir (home → "Məhsul xətləri" ilə eyni palitra).
+// Siyahı görünüşü: valideyn .catalog-grid.is-list (pages/shop/_catalog.scss).
+// ==========================================================================
+
+/* #region kateqoriya rəngləri */
+
+// sürətli baxış modalı (#quick-view) və məhsul səhifəsi (.pd-tint) da
+// məhsulun rəngini alır
+.product-card,
+.quick-view,
+.pd-tint {
+  --pc-tint: #c9142c;
+}
+
+.product-card[data-category="sellulozik-boyalar"],
+.quick-view[data-category="sellulozik-boyalar"],
+.pd-tint[data-category="sellulozik-boyalar"] {
+  --pc-tint: #b8692a;
+}
+
+.product-card[data-category="su-esasli-boyalar"],
+.quick-view[data-category="su-esasli-boyalar"],
+.pd-tint[data-category="su-esasli-boyalar"] {
+  --pc-tint: #1f9d8a;
+}
+
+.product-card[data-category="divar-kagizlari"],
+.quick-view[data-category="divar-kagizlari"],
+.pd-tint[data-category="divar-kagizlari"] {
+  --pc-tint: #0f4188;
+}
+
+.product-card[data-category="yapisdiricilar"],
+.quick-view[data-category="yapisdiricilar"],
+.pd-tint[data-category="yapisdiricilar"] {
+  --pc-tint: #1f7ad6;
+}
+
+/* #endregion */
+
+/* #region kart */
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--pc-tint) 30%, var(--c-line));
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+/* şəkil sahəsi: kateqoriya rəngində yumşaq fon */
+.pc-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 62%, color-mix(in srgb, var(--pc-tint) 16%, transparent) 0%, transparent 62%),
+    linear-gradient(160deg, var(--c-surface-soft), color-mix(in srgb, var(--pc-tint) 7%, var(--c-surface-soft)));
+}
+
+.pc-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 0.86;
+  padding: 18px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 18px rgba(13, 21, 32, 0.18));
+    transition: transform 0.5s var(--ease);
+  }
+}
+
+.product-card:hover .pc-image img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+/* nişanlar: endirim, yeni, stokda yoxdur */
+.pc-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pc-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: RobotoBold;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: #fff;
+  background: var(--c-ink);
+
+  &.is-sale {
+    background: var(--grad-brand);
+  }
+
+  &.is-new {
+    color: #3d2a00;
+    background: var(--c-gold);
+  }
+
+  &.is-out {
+    color: var(--c-muted);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+  }
+}
+
+/* dairəvi ikon düymələri (sevimlilər) */
+.pc-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--c-line);
+  border-radius: 50%;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition:
+    color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    transform: scale(1.08);
+    color: var(--c-brand);
+  }
+}
+
+.pc-wish {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+
+  /* sevimlilərdədir (JS: aria-pressed="true") */
+  &[aria-pressed="true"] {
+    color: #fff;
+    border-color: transparent;
+    background: var(--grad-brand);
+
+    svg {
+      fill: currentColor;
+    }
+  }
+}
+
+/* "Sürətli baxış" — hover-də aşağıdan çıxır; toxunmalı ekranda həmişə görünür */
+.pc-quick {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--c-ink);
+  background: color-mix(in srgb, var(--c-surface) 88%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease),
+    color 0.25s var(--ease);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: var(--c-brand);
+  }
+}
+
+.product-card:hover .pc-quick,
+.pc-quick:focus-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (hover: none) {
+  .pc-quick {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.pc-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px 6px 4px;
+}
+
+/*
+  Kateqoriya həmişə bir sətirdir — iki sətrə düşəndə həmin kartda ad, həcm və
+  qiymət qonşu kartlardan aşağı sürüşürdü. Sığmayanda sonda "…" qoyulur.
+  Nöqtə baseline-dadır: 8px hündürlüyü böyük hərflərin hündürlüyünə bərabərdir,
+  ona görə yazının tam ortasında durur.
+*/
+.pc-category {
+  display: block;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--c-muted);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--pc-tint);
+  }
+}
+
+.pc-name {
+  display: -webkit-box;
+  margin: 8px 0 0;
+  overflow: hidden;
+  font-family: RobotoBold;
+  font-size: 17px;
+  line-height: 1.3;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  /* ad üçün həmişə 2 sətir yer — qısa adlı kartlarda həcm etiketi yuxarı qalxmasın */
+  min-height: 2.6em;
+
+  a {
+    color: var(--c-ink);
+    text-decoration: none;
+    transition: color 0.25s var(--ease);
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+}
+
+/* qısa təsvir — yalnız siyahı görünüşündə və sürətli baxışda */
+.pc-desc {
+  display: none;
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+.pc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.pc-chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-muted);
+  background: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+}
+
+.pc-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.pc-price {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+
+  b {
+    font-family: RobotoBold;
+    font-size: 21px;
+    color: var(--c-ink);
+  }
+
+  s {
+    margin-bottom: 3px;
+    font-size: 13px;
+    color: var(--c-muted-soft);
+  }
+}
+
+/* səbətə at: kateqoriya rəngində dolğun düymə */
+.pc-cart {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--pc-tint);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--pc-tint) 30%, transparent);
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  /* mətn yalnız siyahı görünüşündə */
+  span {
+    display: none;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+  }
+
+  &:disabled {
+    color: var(--c-muted-soft);
+    background: var(--c-surface-soft);
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+  }
+
+  /* əlavə olunanda qısa "təsdiq" animasiyası (JS: .is-added) */
+  &.is-added {
+    animation: pcPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+.pc-icon-btn:focus-visible,
+.pc-cart:focus-visible,
+.pc-quick:focus-visible,
+.pc-name a:focus-visible {
+  outline: 2px solid var(--pc-tint);
+  outline-offset: 2px;
+}
+
+/* stokda olmayan məhsul: şəkil solğun */
+.product-card[data-stock="out"] .pc-image img {
+  filter: grayscale(0.7) drop-shadow(0 16px 18px rgba(13, 21, 32, 0.12));
+  opacity: 0.65;
+}
+
+@keyframes pcPop {
+  40% {
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card:hover,
+  .product-card:hover .pc-image img,
+  .pc-icon-btn:hover,
+  .pc-cart:hover {
+    transform: none;
+  }
+  .pc-cart.is-added {
+    animation: none;
+  }
+}
+
+/* #endregion */

@@ -1,0 +1,15 @@
+// ==========================================================================
+// AUTH.SCSS — giriş (login.html) və qeydiyyat (register.html) səhifələri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/auth/auth.css (Live Sass Compiler)
+// Qoşulur:  login.html və register.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Account/Login.cshtml, Register.cshtml →
+//           @section Styles)
+// Modullar: assets/sass/pages/auth/
+//
+// Tokenlər, header, footer, forma sahələri (.zf-*) site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr */
+@use "../pages/auth/auth";
+/* #endregion */

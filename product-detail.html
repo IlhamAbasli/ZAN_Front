@@ -1,0 +1,3138 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZANSİLAN silikonlu fasad boyası — ZAN Boya</title>
+    <!--
+      TODO (backend): title, description, og:* və JSON-LD məhsula görə serverdə yazılır;
+      og:url və og:image tam (https://...) ünvan olmalıdır — sosial şəbəkələr paylaşılan
+      linkin önizləməsini bunlardan qurur.
+    -->
+    <meta
+      name="description"
+      content="ZANSİLAN — silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası. 3,5 kq, 10 kq və 25 kq qablaşdırma. Bütün Azərbaycan üzrə çatdırılma."
+    />
+    <meta property="og:type" content="product" />
+    <meta property="og:site_name" content="ZAN Boya" />
+    <meta property="og:title" content="ZANSİLAN silikonlu fasad boyası" />
+    <meta
+      property="og:description"
+      content="Silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası — yağışa və çirklənməyə davamlı."
+    />
+    <meta property="og:image" content="./assets/images/silan.png" />
+    <meta property="og:url" content="product-detail.html?id=1" />
+    <link rel="icon" href="./assets/icons/ZAN_icon.ico" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="./assets/sass/site/site.css" />
+    <link rel="stylesheet" href="./assets/sass/product/product.css" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("zan-theme");
+          if (saved === "dark" || saved === "light") {
+            document.documentElement.setAttribute("data-theme", saved);
+          }
+        } catch (e) {
+          /* localStorage bağlıdırsa sistem seçimi ilə davam edirik */
+        }
+      })();
+    </script>
+
+    <!-- axtarış sistemləri üçün məhsul məlumatı (schema.org/Product) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "ZANSİLAN silikonlu fasad boyası",
+        "image": "./assets/images/silan.png",
+        "description": "Silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası — yağışa və çirklənməyə davamlı.",
+        "sku": "ZS-025",
+        "brand": { "@type": "Brand", "name": "ZAN" },
+        "category": "Su əsaslı boyalar",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "AZN",
+          "lowPrice": "15.90",
+          "highPrice": "89.90",
+          "offerCount": 3,
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- #region preloader — site.js → #region preloader -->
+    <div id="preloader" class="preloader" role="status" aria-live="polite">
+      <div class="preloader-inner">
+        <div class="preloader-mark" aria-hidden="true">
+          <span class="preloader-ring"></span>
+          <img
+            src="./assets/images/Loqo silver pdf-1.png"
+            alt=""
+            width="636"
+            height="502"
+          />
+        </div>
+        <div class="preloader-bar" aria-hidden="true"><span></span></div>
+        <span class="visually-hidden">Səhifə yüklənir…</span>
+      </div>
+    </div>
+    <!-- #endregion -->
+
+    <!-- klaviatura ilə gəzənlər üçün: header-i keçib birbaşa məzmuna -->
+    <a class="skip-link" href="#main">Əsas məzmuna keç</a>
+
+    <!-- #region header -->
+    <header class="site-header">
+      <!-- #region header-top — çatdırılma qeydi, mövzu, dil -->
+      <div id="header-top" class="d-none d-sm-block">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="left-side">
+                <span class="icon-badge">
+                  <img
+                    src="./assets/icons/truck.svg"
+                    alt=""
+                    width="22"
+                    height="19"
+                  />
+                </span>
+                <p>Ölkənin dörd bir yanına sürətli çatdırılma</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="right-side">
+                <ul>
+                  <li>
+                    <button
+                      type="button"
+                      class="theme-toggle"
+                      aria-label="Tünd rejim"
+                    >
+                      <span class="theme-toggle-icon" aria-hidden="true">
+                        <svg
+                          class="theme-icon-sun"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="4.2"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          />
+                          <path
+                            d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                        <svg
+                          class="theme-icon-moon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M20.5 13.4A8.6 8.6 0 0 1 10.6 3.5a8.6 8.6 0 1 0 9.9 9.9z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="theme-toggle-label">Tünd rejim</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="content"
+                      data-disclosure
+                      aria-expanded="false"
+                      aria-controls="language-menu"
+                    >
+                      AZ
+                      <img
+                        src="./assets/icons/AZ.png"
+                        alt=""
+                        width="20"
+                        height="20"
+                      />
+                      <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" id="language-menu">
+                      <ul>
+                        <li>
+                          <a href="#" lang="en" hreflang="en">
+                            EN
+                            <img
+                              src="./assets/icons/EN.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="ru" hreflang="ru">
+                            RU
+                            <img
+                              src="./assets/icons/RU.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="tr" hreflang="tr">
+                            TR
+                            <img
+                              src="./assets/icons/TR.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="zh" hreflang="zh">
+                            CN
+                            <img
+                              src="./assets/icons/CN.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-mid — loqo, axtarış, kabinet, səbət -->
+      <div id="header-mid">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-6 col-lg-2">
+              <div class="logo">
+                <a href="home.html">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/Loqo silver pdf-1.png"
+                    alt="ZAN Boya"
+                    width="636"
+                    height="502"
+                  />
+                </a>
+                <div class="border-line" aria-hidden="true"></div>
+                <a href="home.html" tabindex="-1" aria-hidden="true">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/zan main icon.jpeg"
+                    alt=""
+                    width="523"
+                    height="523"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="d-none d-lg-block col-lg-6">
+              <form
+                class="search-area"
+                role="search"
+                action="shop.html"
+                method="get"
+              >
+                <div class="content">
+                  <label class="visually-hidden" for="product-search"
+                    >Məhsul axtarışı</label
+                  >
+                  <input
+                    id="product-search"
+                    type="search"
+                    name="q"
+                    autocomplete="off"
+                    placeholder="Məhsul axtarışı..."
+                  />
+                  <div class="line" aria-hidden="true"></div>
+                  <!--
+                    Kateqoriya formanın öz sahəsidir: seçiləndə axtarış yalnız həmin
+                    kateqoriyada aparılır → shop.html?q=...&category=slug (site.js →
+                    header-search). value = kateqoriyanın slug-ı (shop.html filtrləri ilə eyni).
+                    TODO (backend): kateqoriyalar bazadan çəkilir; cari kateqoriyaya checked yazılır.
+                  -->
+                  <div class="selection">
+                    <button
+                      type="button"
+                      class="selector"
+                      data-disclosure
+                      aria-expanded="false"
+                      aria-controls="search-category-menu"
+                    >
+                      <span data-search-category-label>Kateqoriyalar</span>
+                      <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" id="search-category-menu">
+                      <ul>
+                        <li>Kateqoriya seçin</li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="" checked />
+                            <span>Bütün kateqoriyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="su-esasli-boyalar" />
+                            <span>Su əsaslı boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="sintetik-boyalar" />
+                            <span>Sintetik boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="sellulozik-boyalar" />
+                            <span>Sellülozik boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="divar-kagizlari" />
+                            <span>Divar kağızları</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input type="radio" name="category" value="yapisdiricilar" />
+                            <span>Yapışdırıcılar</span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button type="submit" class="search-icon">
+                    <img
+                      src="./assets/icons/search-icon.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                    />
+                    <span class="visually-hidden">Axtar</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="d-none d-lg-block col-lg-2">
+              <div class="account">
+                <a href="login.html" data-account-link>
+                  <div class="login-icon">
+                    <img
+                      src="./assets/icons/login-icon.svg"
+                      alt=""
+                      width="17"
+                      height="21"
+                    />
+                  </div>
+                  <div class="content d-lg-none d-xl-block">
+                    <p>Şəxsi kabinet</p>
+                  </div>
+                  <span class="visually-hidden d-xl-none">Şəxsi kabinet</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-2">
+              <div class="actions">
+                <a href="wishlist.html" class="wishlist d-none d-lg-flex">
+                  <img
+                    src="./assets/icons/wishlist-icon.svg"
+                    alt=""
+                    width="22"
+                    height="20"
+                  />
+                  <span class="wishlist-count">0</span>
+                  <span class="visually-hidden">məhsul sevimlilərdə</span>
+                </a>
+                <button
+                  type="button"
+                  class="cart"
+                  aria-controls="mini-cart"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    src="./assets/icons/cart-icon.svg"
+                    alt=""
+                    width="21"
+                    height="22"
+                  />
+                  <span class="cart-count">0</span>
+                  <span class="visually-hidden">məhsul səbətdə</span>
+                </button>
+                <button
+                  type="button"
+                  class="bars d-lg-none"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon (2).svg"
+                    alt=""
+                    width="30"
+                    height="16"
+                  />
+                  <span class="visually-hidden">Menyunu aç</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-sticky — 200px scroll-dan sonra görünür (site.js → scroll-state) -->
+      <div id="header-sticky">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-6 col-sm-3 col-xl-2">
+              <div class="logo">
+                <a href="home.html">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/Loqo silver pdf-1.png"
+                    alt="ZAN Boya"
+                    width="636"
+                    height="502"
+                  />
+                </a>
+                <div class="border-line" aria-hidden="true"></div>
+                <a href="home.html" tabindex="-1" aria-hidden="true">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/zan main icon.jpeg"
+                    alt=""
+                    width="523"
+                    height="523"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="d-none d-sm-block col-sm-7 col-xl-8">
+              <nav class="main-nav" aria-label="Sabit başlıq naviqasiyası">
+                <ul>
+                  <li>
+                    <a href="home.html">Əsas səhifə</a>
+                  </li>
+                  <li><a href="about.html">Haqqımızda</a></li>
+                  <li><a href="shop.html" aria-current="page">Məhsullar</a></li>
+                  <li><a href="contact.html">Bizimlə əlaqə</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-6 col-sm-2 col-xl-2">
+              <div class="actions">
+                <a href="wishlist.html" class="wishlist d-none d-lg-flex">
+                  <img
+                    src="./assets/icons/wishlist-icon.svg"
+                    alt=""
+                    width="22"
+                    height="20"
+                  />
+                  <span class="wishlist-count">0</span>
+                  <span class="visually-hidden">məhsul sevimlilərdə</span>
+                </a>
+                <button
+                  type="button"
+                  class="cart"
+                  aria-controls="mini-cart"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    src="./assets/icons/cart-icon.svg"
+                    alt=""
+                    width="21"
+                    height="22"
+                  />
+                  <span class="cart-count">0</span>
+                  <span class="visually-hidden">məhsul səbətdə</span>
+                </button>
+                <button
+                  type="button"
+                  class="bars d-lg-none"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon (2).svg"
+                    alt=""
+                    width="30"
+                    height="16"
+                  />
+                  <span class="visually-hidden">Menyunu aç</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-bottom — kataloq, naviqasiya, qaynar xətt (yalnız lg+) -->
+      <div id="header-bottom" class="d-none d-lg-block">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="all-categories">
+                <button
+                  type="button"
+                  class="all-categories-toggle"
+                  data-disclosure
+                  aria-expanded="false"
+                  aria-controls="catalog-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon.svg"
+                    alt=""
+                    width="18"
+                    height="14"
+                  />
+                  <span>Kataloq</span>
+                  <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                </button>
+
+                <div class="categories" id="catalog-menu">
+                  <ul>
+                    <li>
+                      <a href="shop.html?category=su-esasli-boyalar"
+                        ><img
+                          src="./assets/images/silan.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Su əsaslı boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                    <li>
+                      <a href="shop.html?category=sellulozik-boyalar"
+                        ><img
+                          src="./assets/images/lux parlaq.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Sellülozik boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                    <li>
+                      <a href="shop.html?category=sintetik-boyalar"
+                        ><img
+                          src="./assets/images/sin parlaq boya.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Sintetik boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <nav class="main-nav" aria-label="Əsas naviqasiya">
+                <ul>
+                  <li>
+                    <a href="home.html">Əsas səhifə</a>
+                  </li>
+                  <li><a href="about.html">Haqqımızda</a></li>
+                  <li><a href="shop.html" aria-current="page">Məhsullar</a></li>
+                  <li><a href="contact.html">Bizimlə əlaqə</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-lg-3">
+              <div class="contact">
+                <!-- ikon inline SVG-dir: rəngi hero slaydı ilə dəyişir (--hdr-accent) -->
+                <span class="icon-badge" aria-hidden="true">
+                  <svg
+                    width="21"
+                    height="20"
+                    viewBox="0 0 21 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M1.97 3.25C2.27 2.75 3.92.95 5.1 1c.35.03.66.24.92.49.58.57 2.24 2.71 2.34 3.16.23 1.11-1.09 1.75-.69 2.86 1.03 2.52 2.8 4.3 5.32 5.32 1.12.41 1.75-.91 2.86-.68.45.09 2.6 1.76 3.16 2.34.25.25.46.56.49.92.04 1.24-1.88 2.91-2.25 3.13-.88.63-2.03.62-3.43-.03C9.91 16.87 3.66 10.74 2 6.68c-.63-1.39-.68-2.55-.03-3.43Z"
+                    />
+                    <path d="M12.94 1.24a7.3 7.3 0 0 1 6.67 6.66" />
+                    <path d="M12.94 4.59a3.9 3.9 0 0 1 3.31 3.32" />
+                  </svg>
+                </span>
+                <div class="number">
+                  <p>Qaynar xətt:</p>
+                  <a href="tel:+994512065054">+(994) 51 206 50 54</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region mobile-menu — lg-dən kiçik ekranlar (site.js → mobile-menu) -->
+      <div
+        id="mobile-menu"
+        class="mobile-menu d-lg-none"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobil menyu"
+      >
+        <div class="row">
+          <div class="col-6">
+            <div class="logo">
+              <img
+                src="./assets/images/Loqo silver pdf-1.png"
+                alt="ZAN Boya"
+                width="636"
+                height="502"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="menu-close">
+              <button type="button" class="menu-close-btn">
+                <img
+                  src="./assets/icons/xmark.svg"
+                  alt=""
+                  width="12"
+                  height="12"
+                />
+                <span class="visually-hidden">Menyunu bağla</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <form
+              class="mobile-search"
+              role="search"
+              action="shop.html"
+              method="get"
+            >
+              <label class="visually-hidden" for="mobile-product-search"
+                >Məhsul axtarışı</label
+              >
+              <input
+                id="mobile-product-search"
+                type="search"
+                name="q"
+                autocomplete="off"
+                placeholder="Məhsul axtarışı..."
+              />
+              <button type="submit">
+                <img
+                  src="./assets/icons/search-icon.svg"
+                  alt=""
+                  width="18"
+                  height="18"
+                />
+                <span class="visually-hidden">Axtar</span>
+              </button>
+            </form>
+          </div>
+          <div class="col-12">
+            <div class="all-categories">
+              <button
+                type="button"
+                class="all-categories-toggle"
+                data-disclosure
+                aria-expanded="false"
+                aria-controls="mobile-catalog-menu"
+              >
+                <span
+                  ><i class="fa-solid fa-bars" aria-hidden="true"></i
+                  >Kataloq</span
+                >
+                <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="categories" id="mobile-catalog-menu">
+              <ul>
+                <li>
+                  <a href="shop.html?category=su-esasli-boyalar"
+                    ><img
+                      src="./assets/images/silan.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Su əsaslı boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <a href="shop.html?category=sellulozik-boyalar"
+                    ><img
+                      src="./assets/images/lux parlaq.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Sellülozik boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <a href="shop.html?category=sintetik-boyalar"
+                    ><img
+                      src="./assets/images/sin parlaq boya.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Sintetik boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <nav class="main-nav" aria-label="Mobil naviqasiya">
+              <ul>
+                <li>
+                  <a href="home.html">Əsas səhifə</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="about.html">Haqqımızda</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="shop.html" aria-current="page">Məhsullar</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="contact.html">Bizimlə əlaqə</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-12">
+            <div class="mobile-quick-links">
+              <a href="login.html" data-account-link>
+                <img
+                  src="./assets/icons/login-icon.svg"
+                  alt=""
+                  width="17"
+                  height="21"
+                />
+                <span>Şəxsi kabinet</span>
+              </a>
+              <a href="wishlist.html">
+                <img
+                  src="./assets/icons/wishlist-icon.svg"
+                  alt=""
+                  width="22"
+                  height="20"
+                />
+                <span>Sevimlilər</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mobile-languages">
+              <span class="mobile-section-title" id="mobile-lang-title"
+                >Dil</span
+              >
+              <div
+                class="mobile-lang-options"
+                role="group"
+                aria-labelledby="mobile-lang-title"
+              >
+                <a href="#" class="is-active" lang="az" hreflang="az">
+                  <img
+                    src="./assets/icons/AZ.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />AZ
+                </a>
+                <a href="#" lang="en" hreflang="en">
+                  <img
+                    src="./assets/icons/EN.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />EN
+                </a>
+                <a href="#" lang="ru" hreflang="ru">
+                  <img
+                    src="./assets/icons/RU.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />RU
+                </a>
+                <a href="#" lang="tr" hreflang="tr">
+                  <img
+                    src="./assets/icons/TR.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />TR
+                </a>
+                <a href="#" lang="zh" hreflang="zh">
+                  <img
+                    src="./assets/icons/CN.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />CN
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mobile-theme">
+              <button
+                type="button"
+                class="theme-toggle"
+                aria-label="Tünd rejim"
+              >
+                <span class="theme-toggle-icon" aria-hidden="true">
+                  <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="4.2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M20.5 13.4A8.6 8.6 0 0 1 10.6 3.5a8.6 8.6 0 1 0 9.9 9.9z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="theme-toggle-label">Tünd rejim</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact-us">
+              <a href="contact.html">Əlaqə</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- menyu açıq olanda arxa fon; klik menyunu bağlayır -->
+      <div class="menu-backdrop d-lg-none"></div>
+      <!-- #endregion -->
+    </header>
+    <!-- #endregion -->
+
+    <!-- #region mini-cart — sağdan açılan səbət paneli, stil: components/_mini-cart.scss, JS: shop.js → mini-cart -->
+    <aside
+      class="offcanvas offcanvas-end mini-cart is-empty"
+      tabindex="-1"
+      id="mini-cart"
+      aria-labelledby="mini-cart-title"
+    >
+      <div class="mc-head">
+        <h2 class="mc-title" id="mini-cart-title">
+          Səbət <span class="mc-count">0</span>
+        </h2>
+        <button
+          type="button"
+          class="mc-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Səbəti bağla"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mc-body">
+        <!-- məhsul sətirləri JS ilə çəkilir (shop.js → renderMiniCart) -->
+        <ul class="mc-list"></ul>
+
+        <div class="mc-empty">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <ellipse
+              cx="60"
+              cy="104"
+              rx="38"
+              ry="6"
+              fill="currentColor"
+              opacity=".08"
+            />
+            <path
+              d="M30 42h60l-6 58H36z"
+              fill="var(--c-surface-soft)"
+              stroke="var(--c-line)"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="60"
+              cy="42"
+              rx="30"
+              ry="8"
+              fill="var(--c-surface)"
+              stroke="var(--c-line)"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="60"
+              cy="42"
+              rx="24"
+              ry="5"
+              fill="#c9142c"
+              opacity=".85"
+            />
+            <path
+              d="M72 44c2 8 1 16-2 18-3 1-4-8-3-17"
+              fill="#c9142c"
+              opacity=".85"
+            />
+            <path
+              d="M32 40c4-22 52-22 56 0"
+              stroke="var(--c-muted-soft)"
+              stroke-width="3"
+              fill="none"
+            />
+          </svg>
+          <h3>Səbətiniz boşdur</h3>
+          <p>Bəyəndiyiniz boyaları səbətə atın — hamısı burada toplanacaq.</p>
+          <a class="mc-btn" href="shop.html">Məhsullara bax</a>
+        </div>
+      </div>
+
+      <div class="mc-foot">
+        <div class="mc-total">
+          <span>Cəmi</span>
+          <b class="mc-total-value">0,00 ₼</b>
+        </div>
+        <p class="mc-note">Çatdırılma sifarişi rəsmiləşdirərkən hesablanır.</p>
+        <div class="mc-actions">
+          <a class="mc-btn is-ghost" href="cart.html">Səbətə keç</a>
+          <a class="mc-btn" href="checkout.html">Sifariş et</a>
+        </div>
+      </div>
+    </aside>
+    <!-- #endregion -->
+
+    <!-- #region main — səhifəyə məxsus məzmun (MVC: Views/Shop/Details.cshtml) -->
+    <!--
+      TODO (backend): səhifə bir məhsul üçün serverdə render olunur
+      (product-detail.html?id=1 → /Shop/Details/1). Aşağıdakı dəyərlər
+      ZANSİLAN (id=1) nümunəsidir. product-page.js bütün məlumatı HTML-dən
+      oxuyur — JSON və ya əlavə sorğu lazım deyil.
+      data-category <main>-də məhsulun rəngini verir (--pc-tint, components/_product-card.scss).
+    -->
+    <main id="main" class="pd-tint" data-category="su-esasli-boyalar">
+      <!-- #region pd-main — breadcrumb, qalereya, alış paneli; stil: pages/product/_main.scss, JS: product-page.js -->
+      <!--
+        data-id       məhsulun nömrəsi (sevimlilər bununla tanıyır)
+        data-unit     qiymət və kalkulyator üçün əsas vahid: kq | rulon
+        data-coverage bir vahidin bir qatda örtdüyü sahə, m² (kalkulyator)
+        data-coats    tövsiyə olunan qat sayı; data-coats-fixed — qat seçimi göstərilmir
+      -->
+      <section
+        id="pd-main"
+        data-id="1"
+        data-unit="kq"
+        data-coverage="6"
+        data-coats="2"
+        aria-labelledby="pd-title"
+      >
+        <div class="pd-main-bg" aria-hidden="true">
+          <span class="pd-blob pd-blob-1"></span>
+          <span class="pd-blob pd-blob-2"></span>
+        </div>
+
+        <div class="container-main">
+          <nav class="pd-crumbs" aria-label="Səhifə yolu">
+            <ol>
+              <li><a href="home.html">Əsas səhifə</a></li>
+              <li><a href="shop.html">Məhsullar</a></li>
+              <li>
+                <a href="shop.html?category=su-esasli-boyalar" data-pd="category-link"
+                  ><span data-pd="category">Su əsaslı boyalar</span></a
+                >
+              </li>
+              <li aria-current="page" data-pd="name">
+                ZANSİLAN silikonlu fasad boyası
+              </li>
+            </ol>
+          </nav>
+
+          <div class="pd-grid">
+            <!-- #region pd-gallery — şəkil, böyütmə, əlavə şəkillər -->
+            <div class="pd-gallery">
+              <div class="pd-stage" data-zoom>
+                <div class="pc-badges pd-badges" data-pd="badges">
+                  <span class="pc-badge is-new">Yeni</span>
+                </div>
+                <img
+                  class="pd-stage-img"
+                  src="./assets/images/silan.png"
+                  alt="ZANSİLAN silikonlu fasad boyası"
+                  width="600"
+                  height="600"
+                  data-pd="image"
+                />
+                <span class="pd-stage-size" aria-hidden="true" data-pd="variant-label"
+                  >25 kq</span
+                >
+                <span class="pd-zoom-hint" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.5-3.5M11 8v6M8 11h6" />
+                  </svg>
+                  Böyütmək üçün üzərinə gətirin
+                </span>
+              </div>
+              <!--
+                Əlavə şəkillər: bir neçə şəkil olanda hər biri üçün
+                <button type="button" data-src="..." aria-pressed="true|false" aria-label="N-ci şəkil"><img src="..." alt="" /></button>.
+                Tək şəkil olanda blok boş qalır və gizlənir.
+              -->
+              <div class="pd-thumbs" data-pd="thumbs"></div>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region pd-info — ad, qiymət, çəki seçimi, səbət, paylaşma -->
+            <div class="pd-info">
+              <a
+                class="pc-category pd-category"
+                href="shop.html?category=su-esasli-boyalar"
+                data-pd="category-link"
+                ><span data-pd="category">Su əsaslı boyalar</span></a
+              >
+              <h1 class="pd-title" id="pd-title" data-pd="name">
+                ZANSİLAN silikonlu fasad boyası
+              </h1>
+
+              <div class="pd-sub">
+                <span class="pd-code">Artikul: <b data-pd="code">ZS-025</b></span>
+                <span class="pd-stock" data-pd="stock">Stokda var</span>
+              </div>
+
+              <p class="pd-lead" data-pd="lead">
+                Silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası —
+                yağışa və çirklənməyə davamlı.
+              </p>
+
+              <!-- qiymət seçilmiş çəkiyə görə dəyişir (product-page.js → variants) -->
+              <div class="pd-price" aria-live="polite">
+                <b data-pd="price">89,90 ₼</b>
+                <s data-pd="old-price"></s>
+                <span class="pd-save" data-pd="save"></span>
+                <small class="pd-unit-price" data-pd="unit-price">3,60 ₼ / kq</small>
+              </div>
+
+              <!--
+                ÇƏKİLƏR: hər çəki bir radio-dur.
+                  value          URL-də görünən qısa ad (?v=10-kq) — paylaşılan link seçimi saxlayır
+                  data-sku       səbətdəki unikal nömrə (hər çəki səbətdə ayrı sətirdir).
+                                 Kataloqdakı kartın data-id-si kartda göstərilən çəkinin sku-su ilə eyni olmalıdır
+                  data-code      artikul
+                  data-price     qiymət (nöqtə ilə); data-old-price — yalnız endirimdə
+                  data-amount    data-unit ilə miqdar (250 q → 0.25 kq) — vahid qiyməti və kalkulyator üçün
+                  data-stock     in | out
+                Vahid qiyməti (₼/kq) və "Ən sərfəli" nişanı JS ilə hesablanır.
+              -->
+              <fieldset class="pd-variants">
+                <legend class="pd-label">
+                  <span data-pd="variant-title">Çəki</span>:
+                  <b data-pd="variant-label">25 kq</b>
+                </legend>
+                <div class="pd-variant-list" data-pd="variants">
+                  <label class="pd-variant">
+                    <input
+                      type="radio"
+                      name="variant"
+                      value="3-5-kq"
+                      data-sku="1-3-5-kq"
+                      data-code="ZS-003"
+                      data-price="15.90"
+                      data-amount="3.5"
+                      data-stock="in"
+                    />
+                    <span class="pd-variant-size">3,5 kq</span>
+                    <span class="pd-variant-price">15,90 ₼</span>
+                    <small class="pd-variant-unit"></small>
+                  </label>
+                  <label class="pd-variant">
+                    <input
+                      type="radio"
+                      name="variant"
+                      value="10-kq"
+                      data-sku="1-10-kq"
+                      data-code="ZS-010"
+                      data-price="39.90"
+                      data-amount="10"
+                      data-stock="in"
+                    />
+                    <span class="pd-variant-size">10 kq</span>
+                    <span class="pd-variant-price">39,90 ₼</span>
+                    <small class="pd-variant-unit"></small>
+                  </label>
+                  <label class="pd-variant">
+                    <input
+                      type="radio"
+                      name="variant"
+                      value="25-kq"
+                      data-sku="1"
+                      data-code="ZS-025"
+                      data-price="89.90"
+                      data-amount="25"
+                      data-stock="in"
+                      checked
+                    />
+                    <span class="pd-variant-size">25 kq</span>
+                    <span class="pd-variant-price">89,90 ₼</span>
+                    <small class="pd-variant-unit"></small>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="pd-buy" data-pd-buy>
+                <div class="qty qty-lg pd-qty" role="group" aria-label="Say">
+                  <button type="button" data-qty="dec" aria-label="Azalt" disabled>
+                    −
+                  </button>
+                  <input
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    max="99"
+                    value="1"
+                    aria-label="Say"
+                  />
+                  <button type="button" data-qty="inc" aria-label="Artır">+</button>
+                </div>
+                <button type="button" class="pd-add" data-pd-add>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                    <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                  </svg>
+                  <span>Səbətə at</span>
+                </button>
+                <button
+                  type="button"
+                  class="pc-icon-btn pc-wish pd-wish"
+                  data-pd-wish
+                  aria-pressed="false"
+                  aria-label="Sevimlilərə əlavə et"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <p class="pd-total" data-pd="total" hidden></p>
+
+              <div class="pd-tools">
+                <a class="pd-tool" href="#pd-calc">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="5" y="3" width="14" height="18" rx="2.5" />
+                    <path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01" />
+                  </svg>
+                  Nə qədər lazımdır?
+                </a>
+
+                <!-- paylaşma menyusu: product-page.js → share -->
+                <div class="pd-share">
+                  <button
+                    type="button"
+                    class="pd-tool"
+                    aria-expanded="false"
+                    aria-controls="pd-share-menu"
+                    data-share-toggle
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="18" cy="5.5" r="2.5" />
+                      <circle cx="6" cy="12" r="2.5" />
+                      <circle cx="18" cy="18.5" r="2.5" />
+                      <path d="m8.2 13.2 7.6 4.1M15.8 6.7l-7.6 4.1" />
+                    </svg>
+                    Paylaş
+                  </button>
+                  <div class="pd-share-menu" id="pd-share-menu" hidden>
+                    <p class="pd-share-title">Məhsulu paylaşın</p>
+                    <div class="pd-share-grid">
+                      <a data-share="whatsapp" href="#" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp
+                      </a>
+                      <a data-share="telegram" href="#" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-telegram" aria-hidden="true"></i>Telegram
+                      </a>
+                      <a data-share="facebook" href="#" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>Facebook
+                      </a>
+                      <a data-share="x" href="#" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>X
+                      </a>
+                    </div>
+                    <div class="pd-share-link">
+                      <input
+                        type="text"
+                        readonly
+                        aria-label="Məhsulun linki"
+                        data-share-url
+                      />
+                      <button type="button" data-share="copy">Kopyala</button>
+                    </div>
+                    <!-- telefonda sistemin paylaşma pəncərəsi (navigator.share varsa görünür) -->
+                    <button type="button" class="pd-share-native" data-share="native" hidden>
+                      Digər tətbiqlərlə paylaş
+                    </button>
+                  </div>
+                </div>
+
+                <a class="pd-tool" href="visualizer.html" data-pd="visualizer">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6h1.9A4.7 4.7 0 0 0 21 11c0-4.4-4-8-9-8Z" />
+                    <circle cx="7.5" cy="11" r="1.2" />
+                    <circle cx="10.5" cy="7" r="1.2" />
+                    <circle cx="15" cy="7.5" r="1.2" />
+                  </svg>
+                  Rəngi sınayın
+                </a>
+              </div>
+
+              <!-- TODO (marketinq): üstünlüklər nümunə mətndir — təsdiqlənməlidir -->
+              <ul class="pd-perks">
+                <li>
+                  <span class="pd-perk-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 7h11v9H3zM14 10h4l3 3.2V16h-7" />
+                      <circle cx="7" cy="17.5" r="1.8" />
+                      <circle cx="17" cy="17.5" r="1.8" />
+                    </svg>
+                  </span>
+                  <span><b>Bütün ölkə üzrə çatdırılma</b>Bakıda 1–2, regionlara 2–5 iş günü</span>
+                </li>
+                <li>
+                  <span class="pd-perk-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M12 3 19 6v5c0 4.4-2.9 8.3-7 10-4.1-1.7-7-5.6-7-10V6z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </span>
+                  <span><b>Orijinal ZAN məhsulu</b>Birbaşa istehsalçıdan, zavod zəmanəti ilə</span>
+                </li>
+                <li>
+                  <span class="pd-perk-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 14v-2a8 8 0 0 1 16 0v2" />
+                      <rect x="3" y="13.5" width="4" height="6" rx="1.6" />
+                      <rect x="17" y="13.5" width="4" height="6" rx="1.6" />
+                      <path d="M19 19.5a3 3 0 0 1-3 2.5h-2.5" />
+                    </svg>
+                  </span>
+                  <span
+                    ><b>Pulsuz məsləhət</b
+                    ><a href="tel:+994512065054">+(994) 51 206 50 54</a> — rəng və
+                    miqdar seçimində kömək</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- #endregion -->
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region pd-facts — əsas göstəricilər; stil: pages/product/_details.scss -->
+      <!-- TODO (texnoloq): texniki dəyərlər nümunədir — təsdiqlənməlidir -->
+      <section id="pd-facts" aria-label="Əsas göstəricilər">
+        <div class="container-main">
+          <ul class="pd-facts" data-pd="facts">
+            <li>
+              <span class="pd-fact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="14" height="6" rx="2" />
+                  <path d="M17 7h3v5h-8v3" />
+                  <rect x="10.5" y="15" width="3" height="6" rx="1" />
+                </svg>
+              </span>
+              <small>Sərfiyyat</small>
+              <b>≈ 6 m² / kq</b>
+            </li>
+            <li>
+              <span class="pd-fact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="m12 3 9 5-9 5-9-5z" />
+                  <path d="m3 13 9 5 9-5" />
+                </svg>
+              </span>
+              <small>Qat sayı</small>
+              <b>2 qat</b>
+            </li>
+            <li>
+              <span class="pd-fact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </span>
+              <small>Qatlar arası</small>
+              <b>4–6 saat</b>
+            </li>
+            <li>
+              <span class="pd-fact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 21h18M5 21V8l7-5 7 5v13" />
+                  <path d="M9 21v-6h6v6" />
+                </svg>
+              </span>
+              <small>İstifadə</small>
+              <b>Xarici işlər</b>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region pd-details — təsvir, texniki göstəricilər, istifadə qaydası, çatdırılma (tablar); stil: pages/product/_details.scss, JS: product-page.js → tabs -->
+      <section id="pd-details" aria-label="Məhsul haqqında ətraflı">
+        <div class="container-main">
+          <div class="pd-tabs" role="tablist" aria-label="Məhsul haqqında">
+            <button
+              type="button"
+              role="tab"
+              id="pd-tab-about"
+              aria-controls="pd-panel-about"
+              aria-selected="true"
+            >
+              Təsvir
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="pd-tab-specs"
+              aria-controls="pd-panel-specs"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              Texniki göstəricilər
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="pd-tab-usage"
+              aria-controls="pd-panel-usage"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              İstifadə qaydası
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="pd-tab-delivery"
+              aria-controls="pd-panel-delivery"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              Çatdırılma və qaytarma
+            </button>
+          </div>
+
+          <!-- Təsvir -->
+          <div
+            class="pd-panel pd-about"
+            id="pd-panel-about"
+            role="tabpanel"
+            aria-labelledby="pd-tab-about"
+            tabindex="0"
+          >
+            <div class="pd-about-text" data-pd="about">
+              <p>
+                ZANSİLAN silikon qatranı əsasında hazırlanmış fasad boyasıdır.
+                Səthdə nəfəs alan qoruyucu təbəqə yaradır: yağış suyu divara
+                hopmur, divarın içindəki nəm isə rahatlıqla çölə çıxır. Bu,
+                suvağın çatlamasının, kif və göbələyin qarşısını alır.
+              </p>
+              <p>
+                Mat, məxmər görünüşlü səth yaradır, çirki özünə çəkmir və
+                yağışla özü-özünü təmizləyir. Kataloq üzrə istənilən çalara
+                rənglənə bilər.
+              </p>
+            </div>
+            <div class="pd-about-side">
+              <h2 class="pd-h3">Üstünlükləri</h2>
+              <ul class="pd-checks" data-pd="features">
+                <li>Suyu itələyir, buxarı keçirir</li>
+                <li>UV şüalarına və solmağa davamlıdır</li>
+                <li>Kif və göbələyə qarşı qoruyur</li>
+                <li>İysizdir, su ilə durulaşdırılır</li>
+              </ul>
+              <h2 class="pd-h3">Harada istifadə olunur</h2>
+              <ul class="pd-areas" data-pd="areas">
+                <li>Fasadlar</li>
+                <li>Beton</li>
+                <li>Sement suvaq</li>
+                <li>Kərpic</li>
+                <li>Qazbeton</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Texniki göstəricilər -->
+          <div
+            class="pd-panel"
+            id="pd-panel-specs"
+            role="tabpanel"
+            aria-labelledby="pd-tab-specs"
+            tabindex="0"
+            hidden
+          >
+            <dl class="pd-specs" data-pd="specs">
+              <div><dt>Əsas</dt><dd>Silikon qatranı, akril dispersiya</dd></div>
+              <div><dt>Səth görünüşü</dt><dd>Mat</dd></div>
+              <div><dt>Rəng</dt><dd>Ağ, kataloq üzrə rənglənir</dd></div>
+              <div><dt>Sərfiyyat</dt><dd>150–180 q/m² (bir qat) — ≈ 6 m²/kq</dd></div>
+              <div><dt>Qat sayı</dt><dd>2 qat</dd></div>
+              <div><dt>Quruma</dt><dd>Toxunuşa 1 saat, qatlar arası 4–6 saat, tam 24 saat</dd></div>
+              <div><dt>Tətbiq temperaturu</dt><dd>+5 °C … +35 °C</dd></div>
+              <div><dt>Durulaşdırma</dt><dd>Su ilə, 5–10%</dd></div>
+              <div><dt>Saxlama</dt><dd>+5 °C … +30 °C, şaxtadan qoruyun</dd></div>
+              <div><dt>Yararlılıq müddəti</dt><dd>24 ay</dd></div>
+              <div><dt>Qablaşdırma</dt><dd>3,5 kq · 10 kq · 25 kq</dd></div>
+            </dl>
+          </div>
+
+          <!-- İstifadə qaydası -->
+          <div
+            class="pd-panel pd-usage"
+            id="pd-panel-usage"
+            role="tabpanel"
+            aria-labelledby="pd-tab-usage"
+            tabindex="0"
+            hidden
+          >
+            <ol class="pd-steps" data-pd="steps">
+              <li>
+                <b>Səthi hazırlayın</b>
+                Tozdan, yağdan və qopan köhnə boyadan təmizləyin, çatları
+                doldurun. Yeni suvaq ən azı 28 gün qurumalıdır.
+              </li>
+              <li>
+                <b>Astar çəkin</b>
+                Məsaməli səthlərə dərin nüfuz edən su əsaslı astar çəkin və 4
+                saat gözləyin.
+              </li>
+              <li>
+                <b>Qarışdırın</b>
+                Boyanı yaxşıca qarışdırın, lazım olsa 5–10% su əlavə edin.
+              </li>
+              <li>
+                <b>Çəkin</b>
+                Valik, fırça və ya pulverizatorla 2 qat çəkin; qatlar arası 4–6
+                saat gözləyin.
+              </li>
+            </ol>
+            <p class="pd-note" data-pd="note">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 11v5M12 7.5h.01" />
+              </svg>
+              <span
+                >Yağışlı havada, birbaşa günəş altında və +5 °C-dən aşağı
+                temperaturda işləməyin. Alətləri işdən sonra su ilə yuyun.</span
+              >
+            </p>
+          </div>
+
+          <!-- Çatdırılma və qaytarma — TODO (marketinq): şərtlər nümunədir, təsdiqlənməlidir -->
+          <div
+            class="pd-panel pd-delivery"
+            id="pd-panel-delivery"
+            role="tabpanel"
+            aria-labelledby="pd-tab-delivery"
+            tabindex="0"
+            hidden
+          >
+            <div class="pd-delivery-item">
+              <h2 class="pd-h3">Çatdırılma</h2>
+              <p>
+                Bakı daxilində 1–2 iş günü, regionlara 2–5 iş günü. Çatdırılma
+                qiyməti sifariş rəsmiləşdirilərkən ünvana görə hesablanır.
+              </p>
+            </div>
+            <div class="pd-delivery-item">
+              <h2 class="pd-h3">Ödəniş</h2>
+              <p>
+                Nağd və ya bank kartı ilə — çatdırılma zamanı və ya onlayn.
+                Hüquqi şəxslər üçün köçürmə ilə ödəniş mümkündür.
+              </p>
+            </div>
+            <div class="pd-delivery-item">
+              <h2 class="pd-h3">Qaytarma</h2>
+              <p>
+                Açılmamış qablaşdırmanı 14 gün ərzində qaytara bilərsiniz.
+                Rənglənmiş (tonlanmış) məhsullar qaytarılmır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region pd-calc — boya kalkulyatoru; stil: pages/product/_calc.scss, JS: product-page.js → calculator -->
+      <!--
+        Hesablama: lazım olan miqdar = sahə × qat sayı ÷ data-coverage (+10% ehtiyat).
+        Sonra çəkilərdən ən ucuz kombinasiya seçilir (stokda olmayanlar nəzərə alınmır).
+      -->
+      <section id="pd-calc" aria-labelledby="pd-calc-title">
+        <div class="container-main">
+          <div class="pd-calc">
+            <div class="pd-calc-intro">
+              <span class="pd-chip">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="5" y="3" width="14" height="18" rx="2.5" />
+                  <path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01" />
+                </svg>
+                Kalkulyator
+              </span>
+              <h2 class="pd-calc-title" id="pd-calc-title">
+                Nə qədər <em data-pd="calc-noun">boya</em> lazımdır?
+              </h2>
+              <p class="pd-calc-text">
+                Sahəni daxil edin — lazım olan miqdarı və ən sərfəli qablaşdırma
+                kombinasiyasını hesablayaq.
+              </p>
+            </div>
+
+            <form class="pd-calc-form" novalidate>
+              <div class="pd-calc-mode" role="radiogroup" aria-label="Sahəni necə daxil edirsiniz?">
+                <label
+                  ><input type="radio" name="calc-mode" value="area" checked /><span
+                    >Sahəni bilirəm</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="calc-mode" value="walls" /><span
+                    >Divar ölçüləri</span
+                  ></label
+                >
+              </div>
+
+              <div class="pd-calc-fields" data-calc-mode="area">
+                <label class="pd-calc-field">
+                  <span>Sahə</span>
+                  <span class="pd-calc-input"
+                    ><input
+                      type="number"
+                      name="area"
+                      inputmode="decimal"
+                      min="1"
+                      max="10000"
+                      step="0.5"
+                      value="40" /><i>m²</i></span
+                  >
+                </label>
+              </div>
+
+              <div class="pd-calc-fields" data-calc-mode="walls" hidden>
+                <label class="pd-calc-field">
+                  <span>Divarların ümumi uzunluğu</span>
+                  <span class="pd-calc-input"
+                    ><input
+                      type="number"
+                      name="length"
+                      inputmode="decimal"
+                      min="0"
+                      max="1000"
+                      step="0.1"
+                      value="16" /><i>m</i></span
+                  >
+                </label>
+                <label class="pd-calc-field">
+                  <span>Hündürlük</span>
+                  <span class="pd-calc-input"
+                    ><input
+                      type="number"
+                      name="height"
+                      inputmode="decimal"
+                      min="0"
+                      max="100"
+                      step="0.1"
+                      value="2.8" /><i>m</i></span
+                  >
+                </label>
+                <label class="pd-calc-field">
+                  <span>Pəncərə və qapılar</span>
+                  <span class="pd-calc-input"
+                    ><input
+                      type="number"
+                      name="openings"
+                      inputmode="decimal"
+                      min="0"
+                      max="1000"
+                      step="0.1"
+                      value="4" /><i>m²</i></span
+                  >
+                </label>
+              </div>
+
+              <div class="pd-calc-coats" data-calc-coats>
+                <span class="pd-calc-label" id="pd-calc-coats-label">Qat sayı</span>
+                <div class="pd-calc-seg" role="radiogroup" aria-labelledby="pd-calc-coats-label">
+                  <label><input type="radio" name="coats" value="1" /><span>1</span></label>
+                  <label><input type="radio" name="coats" value="2" checked /><span>2</span></label>
+                  <label><input type="radio" name="coats" value="3" /><span>3</span></label>
+                </div>
+              </div>
+            </form>
+
+            <div class="pd-calc-result" aria-live="polite">
+              <p class="pd-calc-need">
+                <small>Sizə lazımdır</small>
+                <b data-calc="need">≈ 15 kq</b>
+                <span data-calc="area">40 m², 2 qat, 10% ehtiyat ilə</span>
+              </p>
+              <div class="pd-calc-pack">
+                <small>Tövsiyə olunan qablaşdırma</small>
+                <ul data-calc="packs"></ul>
+              </div>
+              <div class="pd-calc-foot">
+                <p class="pd-calc-sum">
+                  <small>Cəmi</small>
+                  <b data-calc="sum">—</b>
+                </p>
+                <button type="button" class="pd-calc-add" data-calc="add">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                    <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                  </svg>
+                  Hamısını səbətə at
+                </button>
+              </div>
+              <p class="pd-calc-disclaimer">
+                Hesablama təxminidir: səthin məsaməliliyi və tətbiq üsulu sərfiyyatı
+                dəyişə bilər.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region pd-related — tövsiyə olunan məhsullar (Swiper); stil: pages/product/_related.scss, JS: product-page.js → related -->
+      <!--
+        TODO (backend): əvvəlcə eyni kateqoriyadan, sonra tamamlayıcı məhsullar
+        (astar, yapışdırıcı ...). Cari məhsul siyahıya daxil edilmir.
+        Kartlar shop.html → #region catalog şablonu ilədir (sürətli baxış düyməsi olmadan);
+        səbət və sevimlilər düymələri shop.js ilə işləyir.
+      -->
+      <section id="pd-related" aria-labelledby="pd-related-title">
+        <div class="container-main">
+          <div class="pd-section-head">
+            <div>
+              <h2 class="pd-section-title" id="pd-related-title">
+                Tövsiyə olunan <em>məhsullar</em>
+              </h2>
+              <p class="pd-section-text">
+                Bu məhsulla birlikdə ən çox seçilənlər.
+              </p>
+            </div>
+            <div class="pd-section-nav">
+              <a class="pd-all" href="shop.html">Hamısına bax</a>
+              <button type="button" class="pd-nav-btn pd-related-prev" aria-label="Əvvəlki məhsullar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+              </button>
+              <button type="button" class="pd-nav-btn pd-related-next" aria-label="Növbəti məhsullar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="swiper pd-related-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="1"
+                  data-category="su-esasli-boyalar"
+                  data-price="89.90"
+                  data-stock="in"
+                  data-new="true"
+                  data-volume="25 kq"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-new">Yeni</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=1"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/silan.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Su əsaslı boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=1"
+                        >ZANSİLAN silikonlu fasad boyası</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası —
+                      yağışa və çirklənməyə davamlı.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">25 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>89,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="2"
+                  data-category="sintetik-boyalar"
+                  data-price="34.50"
+                  data-old-price="39.90"
+                  data-stock="in"
+                  data-volume="3.5 kq"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-sale">−14%</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=2"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/lux parlaq.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sintetik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=2">LUX parlaq boya</a>
+                    </h3>
+                    <p class="pc-desc">
+                      Metal və taxta səthlər üçün yüksək parlaqlıqlı, uzunömürlü
+                      sintetik boya.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">3.5 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><s>39,90 ₼</s><b>34,50 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="3"
+                  data-category="sintetik-boyalar"
+                  data-price="27.90"
+                  data-stock="in"
+                  data-volume="2.5 kq"
+                >
+                  <div class="pc-media">
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=3"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/sin parlaq boya.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sintetik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=3"
+                        >Sintetik parlaq boya</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Daxili və xarici işlər üçün asan çəkilən, parlaq və
+                      davamlı sintetik emal.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">2.5 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>27,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="4"
+                  data-category="sintetik-boyalar"
+                  data-price="14.90"
+                  data-stock="in"
+                  data-volume="0.75 kq"
+                >
+                  <div class="pc-media">
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=4"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/sintetik parlaq lak.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sintetik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=4"
+                        >Sintetik parlaq parket lakı</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Parket və taxta döşəmələr üçün aşınmaya davamlı, şəffaf
+                      parlaq lak.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">0.75 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>14,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="5"
+                  data-category="sellulozik-boyalar"
+                  data-price="24.90"
+                  data-stock="out"
+                  data-volume="2.5 kq"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-out">Stokda yoxdur</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=5"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/zan dolgu vernik.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sellülozik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=5"
+                        >Sellülozik dolğu vernik</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Taxtanın məsamələrini dolduran, tez quruyan və asan
+                      zımparalanan astar vernik.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">2.5 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>24,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="6"
+                  data-category="sintetik-boyalar"
+                  data-price="26.50"
+                  data-stock="in"
+                  data-new="true"
+                  data-volume="2.5 kq"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-new">Yeni</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=6"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-1.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sintetik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=6">Sintetik mat boya</a>
+                    </h3>
+                    <p class="pc-desc">
+                      Göz yormayan mat səth yaradan, yüksək örtücülüklü sintetik
+                      boya.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">2.5 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>26,50 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="7"
+                  data-category="sellulozik-boyalar"
+                  data-price="29.90"
+                  data-old-price="34.90"
+                  data-stock="in"
+                  data-volume="2.5 kq"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-sale">−14%</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=7"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-2.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sellülozik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=7"
+                        >Sellülozik parlaq boya</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Mebel və taxta işləri üçün tez quruyan, hamar və parlaq
+                      sellülozik boya.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">2.5 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><s>34,90 ₼</s><b>29,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="8"
+                  data-category="sellulozik-boyalar"
+                  data-price="31.50"
+                  data-stock="in"
+                  data-volume="2.5 kq"
+                >
+                  <div class="pc-media">
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=8"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-img-2.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Sellülozik boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=8">DivoFix parlaq boya</a>
+                    </h3>
+                    <p class="pc-desc">
+                      Divarlara parlaqlıq qaytaran, sürətli quruyan və UV
+                      şüalarına davamlı boya.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">2.5 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>31,50 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="9"
+                  data-category="su-esasli-boyalar"
+                  data-price="64.90"
+                  data-stock="in"
+                  data-volume="20 kq"
+                >
+                  <div class="pc-media">
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=9"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-img-1.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Su əsaslı boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=9"
+                        >ZANPLASTİK akril boya</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Daxili divarlar üçün su əsaslı, iysiz və silinə bilən
+                      akril boya.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">20 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>64,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="10"
+                  data-category="su-esasli-boyalar"
+                  data-price="54.90"
+                  data-old-price="59.90"
+                  data-stock="in"
+                  data-volume="25 kq"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-sale">−8%</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=10"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-5.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Su əsaslı boyalar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=10"
+                        >ZANTAVAN tavan boyası</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Tavanlar üçün ağ, yüksək örtücülüklü və sıçramayan su
+                      əsaslı boya.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">25 kq</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><s>59,90 ₼</s><b>54,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="11"
+                  data-category="divar-kagizlari"
+                  data-price="45.00"
+                  data-stock="in"
+                  data-new="true"
+                  data-volume="1 rulon"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-new">Yeni</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=11"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-4.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Divar kağızları</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=11"
+                        >Premium divar kağızı</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Zəngin naxışlı, yuyula bilən premium divar kağızı
+                      kolleksiyası.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">1 rulon</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><b>45,00 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article
+                  class="product-card"
+                  data-id="12"
+                  data-category="yapisdiricilar"
+                  data-price="7.90"
+                  data-old-price="9.50"
+                  data-stock="in"
+                  data-volume="250 q"
+                >
+                  <div class="pc-media">
+                    <div class="pc-badges">
+                      <span class="pc-badge is-sale">−17%</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="pc-icon-btn pc-wish"
+                      data-action="toggle-wishlist"
+                      aria-pressed="false"
+                      aria-label="Sevimlilərə əlavə et"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      class="pc-image"
+                      href="product-detail.html?id=12"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="./assets/images/slider-3.png"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div class="pc-body">
+                    <span class="pc-category">Yapışdırıcılar</span>
+                    <h3 class="pc-name">
+                      <a href="product-detail.html?id=12"
+                        >Universal divar kağızı yapışdırıcısı</a
+                      >
+                    </h3>
+                    <p class="pc-desc">
+                      Kağız, vinil və flizelin divar kağızları üçün asan həll
+                      olunan yapışdırıcı.
+                    </p>
+                    <div class="pc-meta">
+                      <span class="pc-chip">250 q</span>
+                    </div>
+                    <div class="pc-foot">
+                      <p class="pc-price"><s>9,50 ₼</s><b>7,90 ₼</b></p>
+                      <button
+                        type="button"
+                        class="pc-cart"
+                        data-action="add-to-cart"
+                        aria-label="Səbətə at"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                          <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+                        </svg>
+                        <span>Səbətə at</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region pd-recent — son baxılan məhsullar (localStorage "zan-recent"); stil: pages/product/_related.scss, JS: product-page.js → recent -->
+      <section id="pd-recent" aria-labelledby="pd-recent-title" hidden>
+        <div class="container-main">
+          <div class="pd-section-head">
+            <h2 class="pd-section-title" id="pd-recent-title">
+              Son baxdığınız <em>məhsullar</em>
+            </h2>
+            <button type="button" class="pd-recent-clear" data-recent-clear>
+              Siyahını təmizlə
+            </button>
+          </div>
+          <ul class="pd-recent-list" data-recent-list></ul>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region pd-bar — alış düyməsi ekrandan çıxanda aşağıda görünən panel; stil: pages/product/_bar.scss -->
+      <div class="pd-bar" data-pd-bar aria-hidden="true">
+        <div class="container-main">
+          <div class="pd-bar-inner">
+            <img class="pd-bar-img" src="./assets/images/silan.png" alt="" data-pd="image" />
+            <div class="pd-bar-info">
+              <p class="pd-bar-name" data-pd="name">ZANSİLAN silikonlu fasad boyası</p>
+              <span class="pd-bar-meta"
+                ><span data-pd="variant-label">25 kq</span> ·
+                <b data-pd="price">89,90 ₼</b></span
+              >
+            </div>
+            <button type="button" class="pd-add pd-bar-add" data-pd-add tabindex="-1">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5.5 8.5h13l-1.2 11h-10.6z" />
+                <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+              </svg>
+              <span>Səbətə at</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+    </main>
+    <!-- #endregion -->
+
+    <!-- #region footer — stil: layout/_footer.scss, JS: site.js → footer-year -->
+    <footer class="site-footer" aria-labelledby="footer-cta-title">
+      <!--
+        boya dalğası: footer yuxarıdakı bölmənin üstünə çıxır, dalğanın üstü şəffafdır —
+        bölmənin öz fonu görünür; xətt boyunca fırça zolağı (layout/_footer.scss → #region boya dalğası)
+      -->
+      <div class="footer-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+          <defs>
+            <linearGradient id="footer-wave-paint" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#5d0818" />
+              <stop offset=".5" stop-color="#c9142c" />
+              <stop offset="1" stop-color="#f2cf6b" />
+            </linearGradient>
+            <!-- yaş boya parıltısı -->
+            <linearGradient id="footer-wave-gloss" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#fff" stop-opacity="0" />
+              <stop offset=".5" stop-color="#fff" stop-opacity=".6" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <!-- parıltı yalnız zolağın üzərində görünsün -->
+            <clipPath id="footer-wave-clip">
+              <path class="fw-top" d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z" />
+            </clipPath>
+            <!-- açılma: ucu yumşaq olan ağ zolaq soldan sağa sürüşür (JS: .is-inview) -->
+            <linearGradient id="footer-wave-reveal-edge" x1="0" y1="0" x2="1" y2="0">
+              <stop offset=".9" stop-color="#fff" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <mask id="footer-wave-reveal" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="120">
+              <rect class="fw-reveal" width="1600" height="120" fill="url(#footer-wave-reveal-edge)" />
+            </mask>
+          </defs>
+
+          <!--
+            Dalğanın üstü şəffafdır — yuxarıdakı bölmənin öz fonu görünür.
+            Qatlar (hamısı əyridən aşağı dolur): rəngli zolaq → qızılı xətt →
+            rəngli zolaq → parıltı → kölgə → footer fonu
+          -->
+          <g mask="url(#footer-wave-reveal)">
+            <path class="fw-paint fw-top" d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z" />
+            <path class="fw-gold fw-top" d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z" />
+            <path class="fw-paint fw-gold-edge" d="M0 118H1440V66C1260 98 1110 34 900 58S540 102 330 72 90 46 0 78Z" />
+            <g clip-path="url(#footer-wave-clip)">
+              <rect class="fw-gloss" x="-320" y="0" width="320" height="120" fill="url(#footer-wave-gloss)" />
+            </g>
+          </g>
+          <path class="fw-shade" d="M0 120H1440V78C1260 112 1110 44 900 70S540 116 330 84 90 58 0 92Z" />
+          <path class="fw-dark" d="M0 120H1440V84C1260 118 1110 50 900 76S540 122 330 90 90 64 0 98Z" />
+        </svg>
+      </div>
+
+      <!-- dekorativ fon: işıq ləkələri və böyük kontur "ZAN" yazısı -->
+      <div class="footer-bg" aria-hidden="true">
+        <span class="footer-blob footer-blob-1"></span>
+        <span class="footer-blob footer-blob-2"></span>
+        <span class="footer-wordmark">ZAN</span>
+      </div>
+
+      <div class="container-main">
+        <!-- #region footer-cta — məsləhət çağırışı və rəng yelpiyi -->
+        <div class="footer-cta">
+          <div class="footer-cta-copy">
+            <span class="footer-chip"
+              ><i aria-hidden="true"></i>24/7 dəstək</span
+            >
+            <h2 class="footer-cta-title" id="footer-cta-title">
+              Rəng seçimində <em>kömək</em> lazımdır?
+            </h2>
+            <p class="footer-cta-text">
+              Operatorlarımız evinizə uyğun boyanı seçməyə kömək edəcək — bir
+              zəng kifayətdir.
+            </p>
+            <div class="footer-cta-actions">
+              <a class="footer-call" href="tel:+994512065054">
+                <img
+                  src="./assets/icons/phone-icon-red.svg"
+                  alt=""
+                  width="18"
+                  height="18"
+                />
+                <span>+(994) 51 206 50 54</span>
+              </a>
+              <a class="footer-link-arrow" href="contact.html">Bizimlə əlaqə</a>
+            </div>
+          </div>
+
+          <!-- boya nümunəsi kartları; rənglər kateqoriya slayderindən gəlir -->
+          <div class="footer-fan" aria-hidden="true">
+            <span class="footer-swatch" style="--sw: #f0a3b1; --i: -2"
+              ><em>Çəhrayı</em><small>#F0A3B1</small></span
+            >
+            <span class="footer-swatch" style="--sw: #f2cf6b; --i: 2"
+              ><em>Qızılı</em><small>#F2CF6B</small></span
+            >
+            <span class="footer-swatch" style="--sw: #86c7f0; --i: -1"
+              ><em>Səma</em><small>#86C7F0</small></span
+            >
+            <span class="footer-swatch" style="--sw: #8fe3b0; --i: 1"
+              ><em>Nanə</em><small>#8FE3B0</small></span
+            >
+            <span class="footer-swatch" style="--sw: #c9142c; --i: 0"
+              ><em>ZAN qırmızı</em><small>#C9142C</small></span
+            >
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region footer-grid — brend, naviqasiya, kateqoriyalar, əlaqə -->
+        <div class="footer-grid row row-gap-4">
+          <div class="col-12 col-lg-4">
+            <div class="footer-brand">
+              <a class="footer-logo" href="home.html">
+                <img
+                  src="./assets/images/Loqo silver pdf-1.png"
+                  alt="ZAN Boya"
+                  width="636"
+                  height="502"
+                />
+              </a>
+              <p>
+                Qısa zamanda ustaların sevimlisinə çevrilən ZAN boyaları ilə siz
+                də evinizi gözəlləşdirin.
+              </p>
+              <!-- TODO: sosial şəbəkələrin real ünvanları yazılmalıdır -->
+              <ul class="footer-socials">
+                <li>
+                  <a href="#" aria-label="Instagram"
+                    ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="Facebook"
+                    ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="WhatsApp"
+                    ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="TikTok"
+                    ><i class="fa-brands fa-tiktok" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <nav class="footer-col" aria-labelledby="footer-nav-title">
+              <h2 class="footer-title" id="footer-nav-title">Naviqasiya</h2>
+              <ul class="footer-links">
+                <li><a href="home.html">Əsas səhifə</a></li>
+                <li><a href="about.html">Haqqımızda</a></li>
+                <li><a href="shop.html" aria-current="page">Məhsullar</a></li>
+                <li><a href="contact.html">Bizimlə əlaqə</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="footer-col">
+              <h2 class="footer-title">Kateqoriyalar</h2>
+              <!-- damcının rəngi kateqoriya kartının --cat-accent rəngi ilə eynidir -->
+              <ul class="footer-links footer-categories">
+                <li>
+                  <a href="shop.html?category=sintetik-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #f2cf6b"></span
+                    >Sintetik boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=sellulozik-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #8fe3b0"></span
+                    >Sellülozik boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=su-esasli-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #86c7f0"></span
+                    >Su əsaslı boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=divar-kagizlari"
+                    ><span class="footer-paint-drop" style="--c: #e8d29a"></span
+                    >Premium divar kağızları</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=yapisdiricilar"
+                    ><span class="footer-paint-drop" style="--c: #f0a3b1"></span
+                    >Yapışdırıcılar</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <div class="footer-col">
+              <h2 class="footer-title">Əlaqə</h2>
+              <ul class="footer-contact">
+                <li>
+                  <span class="footer-contact-label">Qaynar xətt</span>
+                  <a class="footer-phone" href="tel:+994512065054"
+                    >+(994) 51 206 50 54</a
+                  >
+                </li>
+                <li class="footer-delivery">
+                  <span class="footer-contact-icon">
+                    <img
+                      src="./assets/icons/truck.svg"
+                      alt=""
+                      width="18"
+                      height="16"
+                    />
+                  </span>
+                  Ölkənin dörd bir yanına sürətli çatdırılma
+                </li>
+                <!-- TODO: e-poçt və ünvan məlum olanda buraya əlavə edilməlidir -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region footer-bottom — müəllif hüququ -->
+        <div class="footer-bottom">
+          <p>
+            © <span data-current-year>2026</span> ZAN Boya. Bütün hüquqlar
+            qorunur.
+          </p>
+          <!-- kiçik palitra: markanın rəngləri -->
+          <span class="footer-dots" aria-hidden="true">
+            <i style="--c: #c9142c"></i><i style="--c: #f2cf6b"></i
+            ><i style="--c: #8fe3b0"></i><i style="--c: #86c7f0"></i
+            ><i style="--c: #f0a3b1"></i>
+          </span>
+        </div>
+        <!-- #endregion -->
+      </div>
+    </footer>
+    <!-- #endregion -->
+
+    <!-- #region back-to-top — site.js → scroll-state -->
+    <button type="button" id="button" aria-label="Səhifənin başına qayıt">
+      <!-- kənardakı halqa səhifənin nə qədərinin oxunduğunu göstərir -->
+      <svg class="scroll-progress" viewBox="0 0 52 52" aria-hidden="true">
+        <circle class="scroll-progress-track" cx="26" cy="26" r="24" />
+        <circle class="scroll-progress-bar" cx="26" cy="26" r="24" />
+      </svg>
+      <svg
+        class="scroll-arrow"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 19V5M5 12l7-7 7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+    <!-- #endregion -->
+
+    <!-- #region vendor JS -->
+    <script
+      src="https://kit.fontawesome.com/83dcd321a4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.js"></script>
+    <!-- #endregion -->
+
+    <!-- #region öz skriptlərimiz — sıra vacibdir: site.js → auth.js → shop.js → səhifə skripti -->
+    <script src="./assets/js/site.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script src="./assets/js/shop.js"></script>
+    <script src="./assets/js/product-demo.js"></script>
+    <script src="./assets/js/product-page.js"></script>
+    <!-- #endregion -->
+  </body>
+</html>

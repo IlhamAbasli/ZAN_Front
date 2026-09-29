@@ -1,0 +1,231 @@
+// ==========================================================================
+// "DAXİL OLUN" PƏNCƏRƏSİ (.auth-gate) və header-də giriş işarəsi
+// --------------------------------------------------------------------------
+// JS: assets/js/auth.js → #region gate-dialog (pəncərəni özü yaradır)
+//
+// Qonaq səbət və ya sevimlilər düyməsinə basanda açılır. Native <dialog>
+// istifadə olunur: fokus tələsi, Esc və arxa fon brauzerdən gəlir.
+// ==========================================================================
+
+/* #region pəncərə */
+
+.auth-gate {
+  width: min(440px, calc(100% - 32px));
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--c-ink);
+  overflow: visible;
+
+  &::backdrop {
+    background: rgba(8, 12, 18, 0.55);
+    backdrop-filter: blur(3px);
+  }
+
+  &[open] {
+    animation: ag-in 0.35s var(--ease) both;
+  }
+
+  &[open]::backdrop {
+    animation: ag-fade 0.3s var(--ease) both;
+  }
+}
+
+/* pəncərə açıq olanda arxadakı səhifə sürüşməsin
+   (<dialog> "top layer"-də açılır — header və mini səbətdən həmişə yuxarıdır) */
+body.has-auth-gate {
+  overflow: hidden;
+}
+
+.ag-card {
+  position: relative;
+  padding: 36px 32px 28px;
+  border-radius: 24px;
+  text-align: center;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  /* yuxarıda boya zolağı */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: linear-gradient(90deg, #5d0818, #c9142c 50%, #f2cf6b);
+  }
+}
+
+.ag-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--c-muted);
+  background: var(--c-surface-soft);
+  transition:
+    color 0.2s var(--ease),
+    transform 0.25s var(--ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+
+  &:hover {
+    color: var(--c-ink);
+    transform: rotate(90deg);
+  }
+}
+
+.ag-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--c-brand) 5%, transparent);
+
+  svg {
+    width: 32px;
+    height: 32px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.ag-title {
+  margin: 20px 0 0;
+  font-family: RobotoBold;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--c-ink);
+}
+
+.ag-text {
+  margin: 10px auto 0;
+  max-width: 34ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+.ag-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.ag-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  &:hover {
+    color: var(--c-on-brand);
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+
+  &.is-ghost {
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    box-shadow: none;
+
+    &:hover {
+      color: var(--c-ink);
+      border-color: var(--c-brand-line);
+    }
+  }
+}
+
+.ag-note {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  color: var(--c-muted-soft);
+}
+
+@keyframes ag-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+}
+
+@keyframes ag-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-gate[open],
+  .auth-gate[open]::backdrop {
+    animation: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .ag-card {
+    padding: 32px 20px 22px;
+  }
+}
+
+/* #endregion */
+
+/* #region header: daxil olmuş istifadəçi */
+
+// auth.js [data-account-link]-ə .is-signed-in yazır — ikonun küncündə yaşıl nöqtə
+.account a.is-signed-in .login-icon {
+  position: relative;
+}
+
+.account a.is-signed-in .login-icon::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--c-success);
+  border: 2px solid var(--c-bg);
+}
+
+/* #endregion */

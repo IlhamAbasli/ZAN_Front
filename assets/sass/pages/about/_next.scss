@@ -1,0 +1,150 @@
+// ==========================================================================
+// HAQQIMIZDA — NÖVBƏTİ ADDIM (#about-next)
+// --------------------------------------------------------------------------
+// HTML: about.html (→ missiya), mission.html (→ ümumi məlumat)
+// Tünd, sakit zolaq — mövzudan asılı olmayaraq tünd qalır.
+// ==========================================================================
+
+#about-next {
+  padding: 24px 0 120px;
+}
+
+#about-next .nx-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: center;
+  padding: 56px 60px;
+  border-radius: 28px;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(242, 207, 107, 0.2), transparent 45%),
+    linear-gradient(150deg, #1b2431 0%, #0d1520 75%);
+
+  /* sağda iri, kontur "ZAN" yazısı */
+  &::after {
+    content: "ZAN";
+    position: absolute;
+    right: -20px;
+    bottom: -60px;
+    z-index: -1;
+    font-family: RobotoBold;
+    font-size: 220px;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(242, 207, 107, 0.14);
+    pointer-events: none;
+  }
+
+  .ab-eyebrow {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .ab-title {
+    color: #fff;
+
+    em {
+      color: var(--c-gold);
+    }
+  }
+}
+
+#about-next .nx-text {
+  max-width: 54ch;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+#about-next .nx-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#about-next .nx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 54px;
+  padding: 0 28px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #1a1204;
+  background: linear-gradient(135deg, #f6d886 0%, #f2cf6b 45%, #d9a93a 100%);
+  transition:
+    transform 0.3s var(--ease),
+    filter 0.3s var(--ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s var(--ease);
+  }
+
+  &:hover {
+    color: #1a1204;
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-gold);
+    outline-offset: 3px;
+  }
+
+  &.is-ghost {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    &:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #about-next .nx-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 44px 36px;
+  }
+
+  #about-next .nx-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #about-next {
+    padding-bottom: 96px;
+  }
+
+  #about-next .nx-card {
+    padding: 34px 22px;
+    border-radius: 22px;
+  }
+
+  #about-next .nx-btn {
+    width: 100%;
+  }
+}

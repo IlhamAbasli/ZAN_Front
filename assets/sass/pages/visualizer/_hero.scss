@@ -1,0 +1,243 @@
+// ==========================================================================
+// VİZUALİZATOR — BAŞLIQ ZOLAĞI (#vz-hero)
+// --------------------------------------------------------------------------
+// HTML: visualizer.html → #region vz-hero
+// Sağdakı dekor açılmış rəng kataloqudur (yelpik); hər zolağın rəngi və
+// bucağı HTML-də --sw və --r ilə verilir.
+// ==========================================================================
+
+/* #region bölmə və fon */
+
+#vz-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 96px;
+  background: var(--grad-section-gold);
+}
+
+#vz-hero .vh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#vz-hero .vh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#vz-hero .vh-blob-1 {
+  top: -180px;
+  right: 10%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#vz-hero .vh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* #endregion */
+
+/* #region rəng yelpiyi — dekor */
+
+#vz-hero .vh-fan {
+  position: absolute;
+  right: max(4%, (100% - 1320px) / 2 + 40px);
+  bottom: -40px;
+  width: 220px;
+  height: 300px;
+
+  span {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 64px;
+    height: 250px;
+    margin-left: -32px;
+    border-radius: 10px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 40%),
+      var(--sw);
+    box-shadow:
+      0 14px 26px rgba(13, 21, 32, 0.16),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    transform-origin: 50% 92%;
+    transform: rotate(var(--r));
+    animation: vh-fan-open 0.9s var(--ease) both;
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: 0.08s * $i;
+      }
+    }
+  }
+
+  /* kod — zolağın yuxarısında ağ etiket */
+  i {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    right: 8px;
+    padding: 4px 0;
+    border-radius: 6px;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #0d1520;
+    background: rgba(255, 255, 255, 0.92);
+  }
+}
+
+@keyframes vh-fan-open {
+  from {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #vz-hero .vh-fan {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #vz-hero .vh-fan span {
+    animation: none;
+  }
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#vz-hero .vh-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--c-muted-soft);
+  }
+
+  a {
+    color: var(--c-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  [aria-current="page"] {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+}
+
+#vz-hero .vh-title {
+  max-width: 16ch;
+  margin: 14px 0 0;
+  font-family: RobotoBold;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--c-ink);
+
+  /* vurğulanan söz — altında fırça zolağı */
+  em {
+    position: relative;
+    z-index: 0;
+    font-style: normal;
+    color: var(--c-brand);
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -6px;
+      bottom: 4px;
+      height: 12px;
+      z-index: -1;
+      border-radius: 3px 10px 4px 12px;
+      background: var(--c-brand-ghost);
+      transform: rotate(-1.5deg);
+    }
+  }
+}
+
+#vz-hero .vh-text {
+  max-width: 58ch;
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--c-muted);
+}
+
+#vz-hero .vh-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 6px;
+    border-radius: var(--r-pill);
+    font-size: 14px;
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    box-shadow: var(--shadow-soft);
+  }
+
+  b {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 13px;
+    color: var(--c-on-brand);
+    background: var(--grad-brand);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #vz-hero {
+    padding: 28px 0 80px;
+  }
+  #vz-hero .vh-title {
+    font-size: 32px;
+  }
+  #vz-hero .vh-text {
+    font-size: 15px;
+  }
+  #vz-hero .vh-steps li {
+    font-size: 13px;
+  }
+}
+
+/* #endregion */

@@ -1,0 +1,784 @@
+// ==========================================================================
+// FOOTER (.site-footer)
+// --------------------------------------------------------------------------
+// HTML: home.html → #region footer
+// JS:   assets/js/site.js → #region footer-year
+//
+// Footer hər iki mövzuda tünd qalır (header-top kimi), ona görə rənglər
+// mövzu tokenlərinə yox, aşağıdakı yerli dəyişənlərə bağlıdır.
+// Vurğu rəngləri hero və kateqoriya slayderi ilə eyni palitradandır.
+// ==========================================================================
+
+/* #region bölmə və fon */
+
+.site-footer {
+  --f-bg: #0d1520;
+  --f-text: rgba(255, 255, 255, 0.72);
+  --f-muted: rgba(255, 255, 255, 0.5);
+  --f-line: rgba(255, 255, 255, 0.1);
+  --f-gold: #f2cf6b;
+  --f-brand: #c9142c;
+
+  /* boya dalğasının hündürlüyü (mobildə aşağıda azalır) */
+  --fw-h: 110px;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  /*
+    Footer dalğanın hündürlüyü qədər yuxarıdakı bölmənin üstünə çıxır; fon
+    dalğanın altından başlayır, dalğanın üstü isə şəffafdır — beləcə birləşmə
+    xəttində həmişə yuxarıdakı bölmənin öz fonu görünür (qradiyent, tünd mövzu).
+    Footer-dən əvvəlki bölmənin aşağı boşluğu --fw-h-dan böyük olmalıdır.
+  */
+  margin-top: calc(var(--fw-h) * -1);
+  padding: calc(var(--fw-h) + 40px) 0 0;
+  font-family: DMSans;
+  color: var(--f-text);
+  background: linear-gradient(180deg, #0d1520 0%, #0a1018 100%) 0 calc(var(--fw-h) - 1px) / 100% 100% no-repeat;
+}
+
+.footer-bg {
+  position: absolute;
+  /* işıq ləkələri dalğanın üstündəki şəffaf hissəyə (yuxarıdakı bölməyə) düşməsin */
+  inset: var(--fw-h) 0 0;
+  /* ləkələr yuxarı kənarda kəsik xətt yaratmasın — yumşaq başlayır */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px);
+  mask-image: linear-gradient(180deg, transparent 0, #000 120px);
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.footer-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.footer-blob-1 {
+  top: 60px;
+  left: -160px;
+  width: 460px;
+  height: 460px;
+  opacity: 0.35;
+  background: radial-gradient(circle, rgba(201, 20, 44, 0.9) 0%, transparent 70%);
+}
+
+.footer-blob-2 {
+  right: -140px;
+  bottom: -200px;
+  width: 520px;
+  height: 520px;
+  opacity: 0.22;
+  background: radial-gradient(circle, var(--f-gold) 0%, transparent 70%);
+}
+
+/* böyük kontur "ZAN" yazısı — sağ alt küncdə, çox zəif */
+.footer-wordmark {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.2em;
+  font-family: RobotoBold;
+  font-size: clamp(140px, 24vw, 360px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.06);
+  user-select: none;
+}
+
+/* #endregion */
+
+/* #region boya dalğası */
+
+/*
+  Footer yuxarıdakı bölmənin üstünə çıxır (.site-footer → margin-top), dalğanın
+  üstü şəffafdır — birləşmə xəttində həmişə həmin bölmənin öz fonu görünür.
+  Əyridən aşağı: qırmızı → qızılı fırça zolağı, incə qızılı xətt, kölgə, footer fonu.
+  Bütün qatlar əyridən aşağı dolur (.fw-top, .fw-gold-edge, .fw-shade, .fw-dark). Rəngli
+  zolaq qatları SVG-nin altından 2 vahid yuxarıda bağlanır — alt piksel sətrində
+  rəng tünd qatın altından sızıb nazik xətt yaratmasın.
+
+  Animasiya (minimal, yalnız CSS):
+    açılma  — footer ekrana girəndə zolaq soldan sağa "çəkilir" bir dəfə
+              (site.js → #region footer-wave: .is-waiting → .is-inview)
+    nəfəs   — dalğa 9 saniyəlik dövrlə yavaşca formasını dəyişir
+              (CSS "d" xassəsi; dəstəkləməyən brauzerdə dalğa sadəcə sabit qalır)
+    parıltı — hər 7 saniyədə zolağın üzərindən yaş boya parıltısı keçir
+  "Animasiyaları azalt" rejimində hamısı sönür.
+*/
+.footer-wave {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: var(--fw-h);
+  pointer-events: none;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .fw-paint {
+    fill: url(#footer-wave-paint);
+  }
+
+  .fw-gold {
+    fill: #f2cf6b;
+    opacity: 0.55;
+  }
+
+  /* zolağın altındakı kölgə — boya qalın görünsün */
+  .fw-shade {
+    fill: #05080d;
+    opacity: 0.55;
+    animation: fwBreatheShade 9s ease-in-out infinite alternate;
+  }
+
+  .fw-dark {
+    fill: var(--f-bg);
+    animation: fwBreatheDark 9s ease-in-out infinite alternate;
+  }
+
+  .fw-top {
+    animation: fwBreatheTop 9s ease-in-out infinite alternate;
+  }
+
+  .fw-gold-edge {
+    animation: fwBreatheGold 9s ease-in-out infinite alternate;
+  }
+
+  .fw-gloss {
+    animation: fwGloss 7s ease-in-out 1.6s infinite;
+  }
+
+  /* maska 1600 vahiddir: son 160-ı yumşaq keçiddir — zolağın ucu kəsik görünməsin */
+  &.is-waiting .fw-reveal {
+    transform: translateX(-1600px);
+  }
+
+  &.is-inview .fw-reveal {
+    transform: translateX(0);
+    transition: transform 1.8s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+}
+
+@keyframes fwBreatheTop {
+  from {
+    d: path("M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z");
+  }
+  to {
+    d: path("M0 118H1440V48C1260 76 1110 39 900 59S540 80 330 50 90 55 0 61Z");
+  }
+}
+
+@keyframes fwBreatheGold {
+  from {
+    d: path("M0 118H1440V66C1260 98 1110 34 900 58S540 102 330 72 90 46 0 78Z");
+  }
+  to {
+    d: path("M0 118H1440V57C1260 84 1110 48 900 68S540 88 330 59 90 63 0 70Z");
+  }
+}
+
+@keyframes fwBreatheShade {
+  from {
+    d: path("M0 120H1440V78C1260 112 1110 44 900 70S540 116 330 84 90 58 0 92Z");
+  }
+  to {
+    d: path("M0 120H1440V70C1260 96 1110 60 900 82S540 100 330 72 90 74 0 82Z");
+  }
+}
+
+@keyframes fwBreatheDark {
+  from {
+    d: path("M0 120H1440V84C1260 118 1110 50 900 76S540 122 330 90 90 64 0 98Z");
+  }
+  to {
+    d: path("M0 120H1440V76C1260 102 1110 66 900 88S540 106 330 78 90 80 0 88Z");
+  }
+}
+
+/* parıltı ~3 saniyədə keçir, sonra 4 saniyə fasilə */
+@keyframes fwGloss {
+  0% {
+    transform: translateX(0);
+  }
+  45%,
+  100% {
+    transform: translateX(2080px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-wave .fw-top,
+  .footer-wave .fw-gold-edge,
+  .footer-wave .fw-shade,
+  .footer-wave .fw-dark,
+  .footer-wave .fw-gloss {
+    animation: none;
+  }
+}
+
+/* #endregion */
+
+/* #region CTA kartı */
+
+.footer-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 44px 48px;
+  overflow: hidden;
+  border-radius: 28px;
+  color: #ffffff;
+  /* hero ilə eyni qırmızı keçid — footer-in ən parlaq nöqtəsi */
+  background-image: linear-gradient(118deg, #5d0818 0%, #a71930 48%, #c9142c 100%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+
+  /* hero-dakı incə tor naxışı */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 90% at 70% 50%, #000 10%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 90% at 70% 50%, #000 10%, transparent 75%);
+    pointer-events: none;
+  }
+}
+
+.footer-cta-copy {
+  position: relative;
+  max-width: 560px;
+}
+
+.footer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #ffeab4;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--f-gold);
+    animation: footer-pulse 2.4s ease-out infinite;
+  }
+}
+
+.footer-cta-title {
+  margin: 18px 0 0;
+  font-family: RobotoBold;
+  font-size: clamp(26px, 2.4vw, 36px);
+  line-height: 1.15;
+  color: #ffffff;
+
+  em {
+    font-style: normal;
+    color: var(--f-gold);
+  }
+}
+
+.footer-cta-text {
+  margin: 12px 0 0;
+  max-width: 44ch;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: 26px;
+}
+
+/* ağ zəng düyməsi — hero-btn ilə eyni dil */
+.footer-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px 0 8px;
+  border-radius: 999px;
+  font-family: RobotoBold;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: #a71930;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+
+  img {
+    width: 36px;
+    height: 36px;
+    padding: 9px;
+    border-radius: 50%;
+    background: rgba(201, 20, 44, 0.1);
+  }
+
+  &:hover {
+    color: #a71930;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 38px rgba(0, 0, 0, 0.32);
+  }
+}
+
+.footer-link-arrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.88);
+
+  &::after {
+    content: "→";
+    transition: transform 0.3s var(--ease);
+  }
+
+  &:hover {
+    color: #ffffff;
+
+    &::after {
+      transform: translateX(4px);
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region rəng yelpiyi */
+
+/*
+  Boya kataloqu (fan deck) kimi: hər kart kağız çərçivədə üç tonlu rəng
+  zolağıdır (açıq → əsas → tünd, hamısı --sw-dən color-mix ilə), altında ad
+  və HEX kodu. Kartlar alt mərkəzdəki qızılı pərçimə bərkidilib, --i (-2..2)
+  bucağı təyin edir. CTA-nın üzərinə gələndə yelpik daha geniş açılır,
+  kartın öz üzərinə gələndə isə kart pərçimdən ayrılmadan önə çıxıb böyüyür.
+*/
+.footer-fan {
+  --fan-pivot: 18px; /* pərçimin mərkəzi kartın alt kənarından bu qədər yuxarıdadır */
+
+  position: relative;
+  flex-shrink: 0;
+  width: 300px;
+  height: 214px;
+
+  /* pərçim — bütün kartların üstündə */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: var(--fan-pivot);
+    z-index: 2;
+    width: 16px;
+    height: 16px;
+    margin: 0 0 -8px -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff6d6 0%, var(--f-gold) 38%, #a8781f 100%);
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.85),
+      0 3px 6px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.footer-swatch {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 80px;
+  height: 196px;
+  margin-left: -40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  padding: 0 6px 40px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #f3efe7 100%);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 4px 10px rgba(40, 0, 8, 0.18),
+    0 18px 32px -10px rgba(40, 0, 8, 0.55);
+  transform-origin: 50% calc(100% - var(--fan-pivot));
+  transform: rotate(calc(var(--i) * 13deg));
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* rəng zolağı: üç ton, aralarında kağız xətti, üstdən yaş boya parıltısı */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 6px 6px auto;
+    height: 58%;
+    border-radius: 8px 8px 4px 4px;
+    background:
+      linear-gradient(115deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 42%),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--sw) 55%, #ffffff) 0 32.5%,
+        transparent 32.5% 34%,
+        var(--sw) 34% 66%,
+        transparent 66% 67.5%,
+        color-mix(in srgb, var(--sw) 78%, #000000) 67.5%
+      );
+  }
+
+  em {
+    font-style: normal;
+    font-family: RobotoBold;
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    line-height: 1.15;
+    color: #10151c;
+  }
+
+  small {
+    font-family: DMSans;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    color: #8a8f98;
+  }
+}
+
+.footer-cta:hover .footer-swatch {
+  transform: rotate(calc(var(--i) * 20deg)) translateY(-4px);
+}
+
+.footer-cta:hover .footer-swatch:hover {
+  z-index: 1;
+  transform: rotate(calc(var(--i) * 20deg)) scale(1.06);
+}
+
+/* #endregion */
+
+/* #region sütunlar: brend, naviqasiya, kateqoriyalar, əlaqə */
+
+.footer-grid {
+  position: relative;
+  padding: 64px 0 48px;
+}
+
+.footer-brand {
+  max-width: 340px;
+
+  p {
+    margin: 18px 0 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
+
+.footer-logo img {
+  display: block;
+  width: auto;
+  height: 54px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 16px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    transition:
+      background 0.3s var(--ease),
+      border-color 0.3s var(--ease),
+      transform 0.3s var(--ease);
+
+    &:hover {
+      color: #ffffff;
+      border-color: transparent;
+      background-image: var(--grad-brand);
+      transform: translateY(-3px);
+    }
+  }
+}
+
+/* sütun başlığı + altında qısa fırça izi */
+.footer-title {
+  position: relative;
+  margin: 6px 0 22px;
+  padding-bottom: 12px;
+  font-family: RobotoBold;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 3px;
+    border-radius: 999px;
+    background-image: linear-gradient(90deg, var(--f-brand), var(--f-gold));
+  }
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li + li {
+    margin-top: 12px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--f-text);
+    /* fırça ilə çəkilmiş alt xətt: hover-də soldan dolur */
+    background-image: linear-gradient(90deg, var(--f-brand), var(--f-gold));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    padding-bottom: 3px;
+    transition:
+      color 0.25s var(--ease),
+      background-size 0.35s var(--ease);
+
+    &:hover,
+    &[aria-current="page"] {
+      color: #ffffff;
+      background-size: 100% 2px;
+    }
+  }
+}
+
+/* kateqoriya rəngində boya damcısı (ucu yuxarı baxır) */
+.footer-paint-drop {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 0 50% 50% 50%;
+  background: var(--c);
+  box-shadow: 0 0 10px var(--c);
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--ease);
+}
+
+.footer-categories a:hover .footer-paint-drop {
+  transform: rotate(45deg) scale(1.3);
+}
+
+.footer-contact {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li + li {
+    margin-top: 18px;
+  }
+}
+
+.footer-contact-label {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--f-muted);
+}
+
+.footer-phone {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: RobotoBold;
+  font-size: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 0.25s var(--ease);
+
+  &:hover {
+    color: var(--f-gold);
+  }
+}
+
+.footer-delivery {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.footer-contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: rgba(242, 207, 107, 0.14);
+}
+
+/* #endregion */
+
+/* #region alt zolaq */
+
+.footer-bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0 28px;
+  border-top: 1px solid var(--f-line);
+
+  p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--f-muted);
+  }
+}
+
+.footer-dots {
+  display: flex;
+  gap: 6px;
+
+  i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c);
+  }
+}
+
+/* #endregion */
+
+/* #region fokus, animasiya, responsiv */
+
+.site-footer a:focus-visible {
+  outline: 2px solid var(--f-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@keyframes footer-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 207, 107, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(242, 207, 107, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(242, 207, 107, 0);
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .footer-cta {
+    padding: 36px 32px;
+  }
+  .footer-fan {
+    width: 250px;
+    height: 182px;
+    transform: scale(0.85);
+    transform-origin: right center;
+  }
+  .footer-brand {
+    max-width: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .site-footer {
+    padding-top: calc(var(--fw-h) + 32px);
+  }
+  /* kiçik ekranda dalğa alçalır — əyrilik daha yumşaq görünür */
+  .site-footer {
+    --fw-h: 64px;
+  }
+  .footer-cta {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    padding: 30px 24px 32px;
+  }
+  .footer-fan {
+    align-self: center;
+    transform: none;
+  }
+  .footer-grid {
+    padding: 48px 0 36px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .footer-cta-actions {
+    width: 100%;
+  }
+  .footer-call {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/*
+  "Animasiyaları azalt": nəbz sönür, yelpik hover-də tərpənmir, rəng
+  keçidləri qalır.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .footer-chip i {
+    animation: none;
+  }
+  .footer-cta:hover .footer-swatch,
+  .footer-cta:hover .footer-swatch:hover {
+    transform: rotate(calc(var(--i) * 13deg));
+  }
+  .footer-call:hover,
+  .footer-socials a:hover {
+    transform: none;
+  }
+}
+
+/* #endregion */

@@ -1,0 +1,46 @@
+// ==========================================================================
+// SITE.SCSS — bütün səhifələrdə işlənən ortaq stillər
+// --------------------------------------------------------------------------
+// Çıxış:   assets/sass/site/site.css (Live Sass Compiler)
+// Qoşulur: hər səhifənin <head>-ində, səhifə CSS-indən ƏVVƏL
+//          (.NET MVC-də: Views/Shared/_Layout.cshtml)
+//
+// SIRA VACİBDİR: eyni spesifiklikli seçicilərdə sonra gələn qalib gəlir.
+// Məs. layout/mobile-menu layout/header-dən sonra gəlməlidir ki,
+// ".mobile-menu .all-categories-toggle" header variantını əvəz etsin.
+// ==========================================================================
+
+/* #region base — şriftlər, tokenlər, ümumi qaydalar */
+@use "../base/fonts";
+@use "../base/tokens";
+@use "../base/base";
+@use "../base/icons";
+@use "../base/cursor";
+/* #endregion */
+
+/* #region components — təkrar istifadə olunan bloklar */
+@use "../components/preloader";
+@use "../components/back-to-top";
+@use "../components/theme-toggle";
+@use "../components/toast";
+/* #endregion */
+
+/* #region layout — header, mobil menyu, footer */
+@use "../layout/header";
+@use "../layout/mobile-menu";
+@use "../layout/footer";
+/* #endregion */
+
+/* #region shop — məhsul kartı və mini səbət */
+@use "../components/product-card";
+@use "../components/mini-cart";
+/* #endregion */
+
+/* #region hesab — forma sahələri və "daxil olun" pəncərəsi */
+@use "../components/form-field";
+@use "../components/auth-gate";
+/* #endregion */
+
+/* #region vendor üstü düzəlişlər */
+@use "../components/swiper";
+/* #endregion */

@@ -1,0 +1,17 @@
+// ==========================================================================
+// ACCOUNT.SCSS — "Şəxsi kabinet → Mənim hesabım" səhifəsi (account.html)
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/account/account.css (Live Sass Compiler)
+// Qoşulur:  account.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Account/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/account/
+//
+// Tokenlər, header, footer, forma sahələri (.zf-*) site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/account/hero";
+@use "../pages/account/layout";
+@use "../pages/account/details";
+@use "../pages/account/club";
+/* #endregion */

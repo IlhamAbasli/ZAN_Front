@@ -1,0 +1,116 @@
+// ==========================================================================
+// MƏHSUL — AŞAĞI PANEL (.pd-bar)
+// --------------------------------------------------------------------------
+// HTML: product-detail.html → #region pd-bar
+// JS:   product-page.js → bar (alış düyməsi ekrandan çıxanda .is-visible)
+// ==========================================================================
+
+/* #region panel */
+
+.pd-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* mini səbət (offcanvas) və modallar bunun üstündə qalır */
+  z-index: 1030;
+  border-top: 1px solid var(--c-line);
+  background: var(--c-sticky-bg);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 -14px 30px rgba(13, 21, 32, 0.08);
+  transform: translateY(105%);
+  visibility: hidden;
+  transition:
+    transform 0.4s var(--ease),
+    visibility 0s linear 0.4s;
+
+  &.is-visible {
+    transform: none;
+    visibility: visible;
+    transition:
+      transform 0.4s var(--ease),
+      visibility 0s;
+  }
+}
+
+.pd-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.pd-bar-img {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  padding: 5px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: color-mix(in srgb, var(--pc-tint) 10%, var(--c-surface-soft));
+}
+
+.pd-bar-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pd-bar-name {
+  margin: 0;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--c-ink);
+}
+
+.pd-bar-meta {
+  font-size: 13px;
+  color: var(--c-muted);
+
+  b {
+    color: var(--c-ink);
+  }
+}
+
+.pd-add.pd-bar-add {
+  flex: none;
+  height: 46px;
+  border-radius: 14px;
+}
+
+/* panel açıq olanda "yuxarı qalx" düyməsi onun üstünə keçir */
+body:has(.pd-bar.is-visible) #button {
+  bottom: 92px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-bar,
+  .pd-bar.is-visible {
+    transition: none;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 575px) {
+  .pd-bar-img {
+    width: 44px;
+    height: 44px;
+  }
+  .pd-bar-name {
+    font-size: 14px;
+  }
+  .pd-bar-add span {
+    display: none;
+  }
+  .pd-add.pd-bar-add {
+    width: 50px;
+    padding: 0;
+  }
+}
+
+/* #endregion */

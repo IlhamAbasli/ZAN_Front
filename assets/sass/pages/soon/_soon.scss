@@ -1,0 +1,574 @@
+// ==========================================================================
+// "SAYT HAZIRLANIR" ŞABLONU (#soon)
+// --------------------------------------------------------------------------
+// HTML: product-detail.html, cart.html, checkout.html, wishlist.html,
+//       terms.html, privacy.html, forgot-password.html → #region soon
+// JS:   soon-page.js ("Geri qayıt" düyməsi)
+//
+// Solda mətn və keçidlər, sağda tikinti səhnəsi (inline SVG): iskələ,
+// yarımçıq rənglənmiş divar, işləyən valik, baryer, konuslar, kaska.
+// Yuxarıda xəbərdarlıq lentləri sürüşür. Animasiyalar "animasiyaları azalt"
+// rejimində dayanır.
+// ==========================================================================
+
+/* #region bölmə və fon */
+
+#soon {
+  --hazard: #f2c230;
+  --hazard-ink: #16181c;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  /* altda footer dalğası bölmənin üstünə çıxır — lent ondan yuxarıda qalsın */
+  padding: 120px 0 170px;
+  background:
+    radial-gradient(circle at 85% 30%, color-mix(in srgb, var(--c-gold) 18%, transparent), transparent 45%),
+    var(--grad-section-soft);
+}
+
+/* çertyoj toru — tikinti planı hissi */
+#soon .sn-grid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--c-ink-ghost) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-ink-ghost) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 70% 45%, #000 0%, transparent 70%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+#soon .sn-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--c-muted-soft);
+  }
+
+  a {
+    color: var(--c-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  [aria-current="page"] {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+}
+
+#soon .sn-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 56px;
+  align-items: center;
+}
+
+/* #endregion */
+
+/* #region xəbərdarlıq lentləri */
+
+#soon .sn-tape {
+  position: absolute;
+  left: -5%;
+  z-index: 2;
+  width: 110%;
+  height: 40px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+
+  span {
+    flex: none;
+    display: flex;
+    gap: 28px;
+    padding-right: 28px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    white-space: nowrap;
+    animation: sn-marquee 26s linear infinite;
+  }
+
+  i {
+    font-style: normal;
+    opacity: 0.6;
+  }
+}
+
+/* sarı lent: kənarlarda qara-sarı zolaq */
+#soon .sn-tape-1 {
+  top: 18px;
+  color: var(--hazard-ink);
+  background:
+    repeating-linear-gradient(-45deg, var(--hazard-ink) 0 12px, var(--hazard) 12px 24px) top / 100% 6px no-repeat,
+    repeating-linear-gradient(-45deg, var(--hazard-ink) 0 12px, var(--hazard) 12px 24px) bottom / 100% 6px no-repeat,
+    var(--hazard);
+  transform: rotate(-1.6deg);
+}
+
+/* qara lent: arxada, əks istiqamətə */
+#soon .sn-tape-2 {
+  bottom: 96px;
+  z-index: 1;
+  color: var(--hazard);
+  background: var(--hazard-ink);
+  transform: rotate(1.4deg);
+
+  span {
+    animation-direction: reverse;
+    animation-duration: 32s;
+  }
+}
+
+@keyframes sn-marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* #endregion */
+
+/* #region mətn tərəfi */
+
+#soon .sn-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px 7px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: color-mix(in srgb, var(--hazard) 22%, var(--c-surface));
+  border: 1px solid color-mix(in srgb, var(--hazard) 55%, transparent);
+
+  /* yanıb-sönən xəbərdarlıq işığı */
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #f59e0b;
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+    animation: sn-beacon 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes sn-beacon {
+  50% {
+    opacity: 0.35;
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+  }
+}
+
+#soon .sn-title {
+  margin: 20px 0 0;
+  font-family: RobotoBold;
+  font-size: clamp(34px, 3.8vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+
+  em {
+    font-style: normal;
+    color: var(--c-brand);
+  }
+}
+
+#soon .sn-text {
+  max-width: 50ch;
+  margin: 18px 0 0;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--c-muted);
+
+  a {
+    font-weight: 700;
+    color: var(--c-brand);
+    white-space: nowrap;
+  }
+}
+
+/* qeyri-müəyyən tərəqqi: boya zolağı sürüşür */
+#soon .sn-progress {
+  max-width: 420px;
+  margin-top: 30px;
+}
+
+#soon .sn-progress-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--c-ink);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--c-brand);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+#soon .sn-progress-bar {
+  position: relative;
+  height: 10px;
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 8px, var(--c-ink-ghost) 8px 16px),
+    var(--c-track);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 45%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--c-gold), var(--c-brand));
+    animation: sn-progress 2.6s var(--ease) infinite;
+  }
+}
+
+@keyframes sn-progress {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
+}
+
+#soon .sn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+#soon .sn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    color: var(--c-on-brand);
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+
+  &.is-ghost {
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    box-shadow: none;
+
+    &:hover {
+      color: var(--c-ink);
+      border-color: var(--c-brand-line);
+    }
+  }
+}
+
+/* bu arada baxmaq üçün keçidlər */
+#soon .sn-links {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--c-divider-soft);
+
+  p {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-muted-soft);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-ink);
+    text-decoration: none;
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    transition:
+      border-color 0.25s var(--ease),
+      color 0.25s var(--ease);
+
+    &::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--c);
+    }
+
+    &:hover {
+      color: var(--c-brand);
+      border-color: var(--c-brand-line);
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region tikinti səhnəsi (SVG) */
+
+#soon .sn-scene {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* mövzudan asılı rənglər — qalanları SVG-də sabitdir */
+#soon .sn-wall {
+  fill: var(--c-surface);
+  stroke: var(--c-line);
+  stroke-width: 2;
+}
+
+#soon .sn-wall-line {
+  stroke: var(--c-line);
+  stroke-width: 1.5;
+}
+
+#soon .sn-ground {
+  stroke: var(--c-divider-soft);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+#soon .sn-shadow {
+  fill: var(--c-ink);
+  opacity: 0.07;
+}
+
+#soon .sn-steel {
+  stroke: var(--c-muted-soft);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+#soon .sn-steel-thin {
+  stroke: var(--c-muted-soft);
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+#soon .sn-clamp {
+  fill: var(--c-muted);
+}
+
+/* valik yuxarı-aşağı gedir, arxasınca boya zolağı çəkilir */
+#soon .sn-roller {
+  animation: sn-roll 4.2s var(--ease) infinite;
+}
+
+#soon .sn-stroke {
+  transform-box: fill-box;
+  transform-origin: top;
+  animation: sn-paint 4.2s var(--ease) infinite;
+}
+
+@keyframes sn-roll {
+  0%,
+  6% {
+    transform: translateY(0);
+  }
+  72%,
+  80% {
+    transform: translateY(206px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sn-paint {
+  0%,
+  6% {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  72%,
+  86% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* baryerin üstündəki işıq */
+#soon .sn-lamp {
+  animation: sn-lamp 1.4s ease-in-out infinite;
+}
+
+@keyframes sn-lamp {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* damcılar yavaşca uzanır */
+#soon .sn-drip {
+  transform-box: fill-box;
+  transform-origin: top;
+  animation: sn-drip 3.6s ease-in-out infinite;
+
+  &:nth-of-type(2) {
+    animation-delay: 1.2s;
+  }
+  &:nth-of-type(3) {
+    animation-delay: 2.1s;
+  }
+}
+
+@keyframes sn-drip {
+  0%,
+  100% {
+    transform: scaleY(0.75);
+  }
+  50% {
+    transform: scaleY(1.15);
+  }
+}
+
+/* #endregion */
+
+/* #region animasiyaları azalt */
+
+@media (prefers-reduced-motion: reduce) {
+  #soon .sn-tape span,
+  #soon .sn-chip i,
+  #soon .sn-progress-bar::before,
+  #soon .sn-roller,
+  #soon .sn-stroke,
+  #soon .sn-lamp,
+  #soon .sn-drip {
+    animation: none;
+  }
+
+  #soon .sn-progress-bar::before {
+    width: 60%;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 991px) {
+  #soon {
+    padding: 104px 0 150px;
+  }
+
+  #soon .sn-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  #soon .sn-art {
+    order: -1;
+    max-width: 520px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #soon {
+    padding: 92px 0 140px;
+  }
+
+  #soon .sn-tape-2 {
+    bottom: 78px;
+  }
+
+  #soon .sn-tape {
+    height: 32px;
+
+    span {
+      font-size: 11px;
+    }
+  }
+
+  #soon .sn-text {
+    font-size: 15.5px;
+  }
+
+  #soon .sn-btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* #endregion */

@@ -1,0 +1,55 @@
+// ==========================================================================
+// ƏSAS QAYDALAR: body və .container-main
+// ==========================================================================
+
+/* #region body */
+
+body {
+  font-family: Roboto;
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+}
+
+/*
+  Mövzu dəyişəndə səhifə fonu kəskin sıçramasın. Yalnız body-yə verilir:
+  kartların öz transition-ları (transform, box-shadow) burada əzilməməlidir.
+*/
+body {
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+/* #endregion */
+
+/* #region konteyner — .container-main */
+
+/*
+  Bootstrap .row hər tərəfə -12px margin verir, ona görə konteynerin də
+  Bootstrap .container kimi 12px daxili boşluğu olmalıdır. Əks halda dar
+  ekranda (kənar boşluq 2.5% < 12px) sıra ekrandan çıxır və səhifə yana
+  sürüşür. Boşluq enə əlavə olunur (--w + 24px), yəni məzmunun eni və
+  yeri dəyişmir; min(100%, ...) konteynerin özünü ekrandan çıxmağa qoymur.
+*/
+.container-main {
+  --container-w: 68%;
+  --container-pad: calc(var(--bs-gutter-x, 1.5rem) * 0.5);
+
+  width: min(100%, calc(var(--container-w) + var(--container-pad) * 2));
+  margin: 0 auto;
+  padding-inline: var(--container-pad);
+}
+
+@media only screen and (max-width: 768px) {
+  .container-main {
+    --container-w: 95%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1440px) {
+  .container-main {
+    --container-w: 97%;
+  }
+}
+
+/* #endregion */

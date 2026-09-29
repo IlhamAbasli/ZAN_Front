@@ -1,0 +1,245 @@
+// ==========================================================================
+// KABİNET — BAŞLIQ ZOLAĞI (#account-hero)
+// --------------------------------------------------------------------------
+// HTML: account.html → #region account-hero
+// Quruluş əlaqə səhifəsinin başlığı ilə eynidir (pages/contact/_hero.scss).
+// ==========================================================================
+
+/* #region bölmə və fon */
+
+#account-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 96px;
+  background: var(--grad-section-gold);
+}
+
+#account-hero .ah-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#account-hero .ah-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#account-hero .ah-blob-1 {
+  top: -180px;
+  right: 10%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#account-hero .ah-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/*
+  sağda dekor: boya valiki qırmızı zolaq çəkir, önündə profil kartı və klub
+  nişanı (inline SVG). Açılışda bir dəfə: valik soldan sağa gedir, zolaq
+  arxasınca "çəkilir", sonra kart və nişan görünür.
+*/
+#account-hero .ah-art {
+  position: absolute;
+  top: 50%;
+  right: max(4%, calc((100% - 1320px) / 2));
+  width: 290px;
+  height: auto;
+  overflow: visible;
+  transform: translateY(-72%);
+}
+
+#account-hero .ah-art-card-bg {
+  fill: var(--c-surface);
+  stroke: var(--c-line);
+  stroke-width: 1.5;
+}
+
+#account-hero .ah-art-card {
+  filter: drop-shadow(0 12px 18px rgba(16, 21, 28, 0.12));
+}
+
+#account-hero .ah-art-line-strong {
+  fill: var(--c-ink);
+  opacity: 0.85;
+}
+
+#account-hero .ah-art-line {
+  fill: var(--c-muted-soft);
+  opacity: 0.45;
+}
+
+/* zolaq pathLength="1" ilə — dasharray/offset 0..1 aralığındadır */
+#account-hero .ah-art-stroke {
+  stroke-dasharray: 1 2;
+  animation: ah-art-stroke 1.1s var(--ease) 0.2s both;
+}
+
+#account-hero .ah-art-stroke path {
+  stroke-dasharray: 1 2;
+  animation: inherit;
+}
+
+#account-hero .ah-art-roller {
+  animation: ah-art-roller 1.1s var(--ease) 0.2s both;
+}
+
+#account-hero .ah-art-drops {
+  animation: ah-art-fade 0.5s var(--ease) 1.1s both;
+}
+
+#account-hero .ah-art-card {
+  animation: ah-art-card 0.7s var(--ease) 0.9s both;
+}
+
+#account-hero .ah-art-badge {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ah-art-badge 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.35s both;
+}
+
+#account-hero .ah-art-sparks {
+  animation: ah-art-fade 0.6s var(--ease) 1.4s both;
+}
+
+@keyframes ah-art-stroke {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* zolağın uzunluğu (190) qədər geri — yerli koordinatda, -9° qrupun içində */
+@keyframes ah-art-roller {
+  from {
+    transform: translateX(-190px);
+  }
+}
+
+@keyframes ah-art-card {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes ah-art-badge {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes ah-art-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #account-hero .ah-art *,
+  #account-hero .ah-art-stroke path {
+    animation: none;
+  }
+  #account-hero .ah-art-stroke,
+  #account-hero .ah-art-stroke path {
+    stroke-dasharray: none;
+  }
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#account-hero .ah-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--c-muted-soft);
+  }
+
+  a {
+    color: var(--c-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  [aria-current="page"] {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+}
+
+#account-hero .ah-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--c-ink);
+
+  em {
+    font-style: normal;
+    color: var(--c-brand);
+  }
+}
+
+#account-hero .ah-text {
+  max-width: 54ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+
+  b {
+    color: var(--c-ink);
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 1199px) {
+  #account-hero .ah-art {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #account-hero {
+    padding: 28px 0 84px;
+  }
+  #account-hero .ah-title {
+    font-size: 32px;
+  }
+  #account-hero .ah-text {
+    font-size: 15px;
+  }
+}
+
+/* #endregion */

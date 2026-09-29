@@ -1,0 +1,255 @@
+// ==========================================================================
+// HAQQIMIZDA — ORTAQ HİSSƏLƏR (about.html, mission.html)
+// --------------------------------------------------------------------------
+// Bölmə aralığı, kiçik başlıq (.ab-eyebrow), başlıqlar, media yerləri
+// (.ab-media) və görünəndə yumşaq açılma ([data-reveal]).
+//
+// Üslub: sadə və zərif — geniş boşluq, incə xətlər, qızılı vurğu.
+// ==========================================================================
+
+/* #region bölmə və tipoqrafiya */
+
+.ab-section {
+  position: relative;
+  padding: 104px 0;
+}
+
+.ab-section.is-soft {
+  background: var(--grad-section-soft);
+}
+
+.ab-section.is-gold {
+  background: var(--grad-section-gold);
+}
+
+/* kiçik başlıq: qızılı xətt + böyük hərflər */
+.ab-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+
+  &::before {
+    content: "";
+    width: 36px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--c-gold), var(--c-brand));
+  }
+}
+
+.ab-title {
+  margin: 18px 0 0;
+  font-family: RobotoBold;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+
+  em {
+    font-style: normal;
+    color: var(--c-brand);
+  }
+}
+
+.ab-lead {
+  margin: 22px 0 0;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--c-ink);
+}
+
+.ab-text {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--c-muted);
+}
+
+.ab-head {
+  max-width: 640px;
+  margin-bottom: 56px;
+
+  &.is-center {
+    margin-inline: auto;
+    text-align: center;
+
+    .ab-eyebrow::after {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--c-brand), var(--c-gold));
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ab-section {
+    padding: 68px 0;
+  }
+
+  .ab-head {
+    margin-bottom: 36px;
+  }
+
+  .ab-lead {
+    font-size: 16.5px;
+  }
+}
+
+/* #endregion */
+
+/* #region media yerləri */
+
+/*
+  Şəkil və ya video yeri. Hazırda içində nişan (.ab-media-ph) var.
+  Yerləşdirmə: .ab-media içinə <img>, <video> və ya <iframe> qoyun —
+  nişan avtomatik gizlənir (silmək də olar). Nisbət: style="--ratio: 16 / 9".
+*/
+.ab-media {
+  position: relative;
+  aspect-ratio: var(--ratio, 4 / 3);
+  margin: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--c-surface-soft);
+  isolation: isolate;
+
+  > img,
+  > video,
+  > iframe,
+  > picture img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  > picture {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* hündürlüyü qonşu sütundan alır (qalereyanın böyük kartı) */
+  &.is-fill {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 420px;
+  }
+}
+
+.ab-media:has(> img, > video, > iframe, > picture) .ab-media-ph {
+  display: none;
+}
+
+/* nişan — media qoyulana qədər görünür */
+.ab-media-ph {
+  position: absolute;
+  inset: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1.5px dashed var(--c-divider-soft);
+  text-align: center;
+  color: var(--c-muted);
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 14px,
+      color-mix(in srgb, var(--c-ink) 2.5%, transparent) 14px 15px
+    );
+
+  b {
+    margin-top: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-ink);
+  }
+
+  span:not(.ab-media-icon) {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+.ab-media-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: var(--c-brand);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.ab-media.is-video .ab-media-icon svg {
+  fill: currentColor;
+  stroke: none;
+  transform: translateX(1px);
+}
+
+/* şəklin altındakı qısa izah */
+.ab-figure {
+  margin: 0;
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: var(--c-muted);
+
+    &::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--c-gold);
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region görünəndə açılma */
+
+// JS: about-page.js elementə əvvəlcə .is-waiting, ekrana girəndə .is-inview
+// verir. JS olmadan və "animasiyaları azalt" rejimində hər şey elə görünür.
+[data-reveal].is-waiting {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+[data-reveal].is-inview {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+
+/* #endregion */

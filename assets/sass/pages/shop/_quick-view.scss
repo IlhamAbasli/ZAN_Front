@@ -1,0 +1,302 @@
+// ==========================================================================
+// MƏHSULLAR — SÜRƏTLİ BAXIŞ (#quick-view)
+// --------------------------------------------------------------------------
+// HTML: shop.html → #region quick-view (bütün kartlar üçün tək modal)
+// JS:   shop-page.js → #region sürətli baxış (məlumat kartdan oxunur)
+// Rəng: data-category → --pc-tint (components/_product-card.scss)
+// ==========================================================================
+
+/* #region modal */
+
+#quick-view {
+  --bs-modal-width: 920px;
+  --bs-modal-bg: var(--c-surface);
+  --bs-modal-color: var(--c-ink);
+  --bs-modal-border-radius: 28px;
+  --bs-modal-border-color: var(--c-line);
+
+  z-index: 2060;
+}
+
+/* modal fonu mini səbətdən yuxarıda olmalıdır */
+.modal-backdrop {
+  z-index: 2055;
+}
+
+#quick-view .modal-content {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 90px rgba(13, 21, 32, 0.35);
+}
+
+#quick-view .qv-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+}
+
+#quick-view .qv-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+/* #endregion */
+
+/* #region şəkil */
+
+#quick-view .qv-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 460px;
+  padding: 40px 32px 24px;
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--pc-tint) 20%, transparent) 0%, transparent 62%),
+    linear-gradient(160deg, var(--c-surface-soft), color-mix(in srgb, var(--pc-tint) 9%, var(--c-surface-soft)));
+}
+
+#quick-view .qv-stage {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 340px;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 26px rgba(13, 21, 32, 0.22));
+  }
+}
+
+#quick-view .qv-badges {
+  top: 20px;
+  left: 20px;
+}
+
+/* əlavə şəkillər (kartda data-gallery olduqda) */
+#quick-view .qv-thumbs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+
+  &:empty {
+    display: none;
+  }
+
+  button {
+    width: 58px;
+    height: 58px;
+    padding: 4px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: var(--c-surface);
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &[aria-pressed="true"] {
+      border-color: var(--pc-tint);
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region məlumat */
+
+#quick-view .qv-body {
+  display: flex;
+  flex-direction: column;
+  padding: 44px 40px 36px;
+}
+
+#quick-view .qv-title {
+  margin: 10px 0 0;
+  padding-right: 30px;
+  font-family: RobotoBold;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--c-ink);
+}
+
+#quick-view .qv-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+
+  b {
+    font-family: RobotoBold;
+    font-size: 30px;
+    color: var(--c-ink);
+  }
+
+  s {
+    font-size: 16px;
+    color: var(--c-muted-soft);
+  }
+}
+
+#quick-view .qv-save {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-brand-deep);
+  background: var(--c-brand-tint);
+
+  &:empty {
+    display: none;
+  }
+}
+
+#quick-view .qv-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-success);
+
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 18%, transparent);
+  }
+
+  &.is-out {
+    color: var(--c-muted-soft);
+  }
+}
+
+#quick-view .qv-desc {
+  margin: 16px 0 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--c-muted);
+}
+
+#quick-view .qv-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+
+  &:empty {
+    display: none;
+  }
+}
+
+#quick-view .qv-buy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+#quick-view .qv-add {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  border: 0;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--pc-tint);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--pc-tint) 30%, transparent);
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+  }
+
+  &:disabled {
+    color: var(--c-muted-soft);
+    background: var(--c-surface-soft);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--pc-tint);
+    outline-offset: 2px;
+  }
+}
+
+/* kartdakı .pc-wish küncə yapışır — modalda adi axında dursun */
+#quick-view .qv-wish {
+  position: static;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+
+#quick-view .qv-more {
+  align-self: flex-start;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--pc-tint);
+
+  &::after {
+    content: " →";
+  }
+
+  &:hover {
+    color: var(--pc-tint);
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 767px) {
+  #quick-view .qv-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #quick-view .qv-media {
+    min-height: 0;
+    padding: 34px 24px 18px;
+  }
+  #quick-view .qv-stage img {
+    max-height: 230px;
+  }
+  #quick-view .qv-body {
+    padding: 24px 22px 28px;
+  }
+  #quick-view .qv-title {
+    font-size: 23px;
+  }
+}
+
+/* #endregion */

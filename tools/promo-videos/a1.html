@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A1 — ZAN brend videosu</title>
+    <style>
+      @font-face {
+        font-family: ZanTitle;
+        src: url(/assets/fonts/Roboto-Bold.ttf);
+      }
+      @font-face {
+        font-family: ZanBody;
+        src: url(/assets/fonts/DMSans-VariableFont_wght.ttf);
+        font-weight: 100 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="lib.js"></script>
+    <script>
+      /* ==========================================================================
+   A1 — "Evlərə rəng, ustalara etibar" · brend videosu (about.html hero)
+   0.0  damcı → boya çiçəklənməsi → "Gözəl nəticə rəngdən başlayır"
+   2.7  göy qurşağı fırçası + loqo + şüar
+   6.0  beş məhsul (hər biri 3 s, boya fırçası keçidləri ilə)
+   21.0 ailə kadrı — "Hər səth üçün doğru həll"
+   25.0 son kadr — loqo, şüar
+   ========================================================================== */
+      const { W, H, E, p, lerp, clamp } = Z;
+      const T = {
+        logo: 2.7,
+        prod0: 6.0,
+        per: 3.0,
+        wipe: 0.85,
+        family: 21.0,
+        end: 25.0,
+        dur: 29.0,
+      };
+
+      const RAINBOW = [
+        [0, "#1fae4b"],
+        [0.16, "#15b5c8"],
+        [0.32, "#2c63d8"],
+        [0.46, "#7d3cc8"],
+        [0.6, "#e2308c"],
+        [0.74, "#f4602a"],
+        [0.87, "#f9c51c"],
+        [1, "#e8242c"],
+      ];
+
+      const PRODUCTS = [
+        {
+          key: "lux",
+          src: "lux parlaq.png",
+          eyebrow: "Sintetik boya",
+          name: ["Lux Parlaq", "Boya"],
+          line: "Dərin parlaqlıq və davamlı örtük — nəmə və günəşə qarşı uzunömürlü qoruma.",
+          chips: ["3.5 kq", "Parlaq"],
+          liq: ["#2a0319", "#86104f", "#d23b8e", "#ffb0d8"],
+          glow: "#ff5fb0",
+          accent: "#ff8cc6",
+          light: "#ffc2e0",
+        },
+        {
+          key: "silan",
+          src: "silan.png",
+          eyebrow: "Silikonlu fasad boyası",
+          name: ["Zansilan"],
+          line: "Fasadlar üçün nəfəs alan, suyu dəf edən silikon tərkibli örtük.",
+          chips: ["25 kq", "Fasad", "Su əsaslı"],
+          liq: ["#0e0726", "#35207a", "#7457c9", "#cdbdff"],
+          glow: "#8a6cff",
+          accent: "#b7a2ff",
+          light: "#d9ceff",
+        },
+        {
+          key: "sin",
+          src: "sin parlaq boya.png",
+          eyebrow: "Sintetik parlaq boya",
+          name: ["Sintetik", "Parlaq Boya"],
+          line: "Metal, taxta və digər səthlər üçün parlaq, möhkəm və davamlı qoruma.",
+          chips: ["2.5 kq", "Metal · Taxta"],
+          liq: ["#030b29", "#10308e", "#3b72e6", "#b3cdff"],
+          glow: "#4f8bff",
+          accent: "#8fb6ff",
+          light: "#c8dbff",
+        },
+        {
+          key: "lak",
+          src: "sintetik parlaq lak.png",
+          eyebrow: "Sintetik parket lakı",
+          name: ["Parlaq", "Parket Lakı"],
+          line: "Taxtanın təbii naxışını parlaq və möhkəm örtüklə qoruyur.",
+          chips: ["0.75 kq", "Parket"],
+          liq: ["#1a0b03", "#653516", "#b77238", "#f6c994"],
+          glow: "#e39a4f",
+          accent: "#f2b877",
+          light: "#ffdcb3",
+        },
+        {
+          key: "dolgu",
+          src: "zan dolgu vernik.png",
+          eyebrow: "Sellülozik dolğu",
+          name: ["Dolğu", "Vernik"],
+          line: "Tez quruyur, asan yonulur — taxta və mebel üçün hamar, zərif səth.",
+          chips: ["2.5 kq", "Taxta · Mebel"],
+          liq: ["#10050d", "#3a1432", "#7a3b69", "#e8c57f"],
+          glow: "#c77bb0",
+          accent: "#e8c57f",
+          light: "#f6dfae",
+        },
+      ];
+
+      const CATS = [
+        ["Su əsaslı boyalar", "#86c7f0"],
+        ["Sintetik boya və laklar", "#f2cf6b"],
+        ["Sellülozik boya və dolğular", "#8fe3b0"],
+        ["Premium divar kağızları", "#e8d29a"],
+        ["Yapışdırıcılar", "#f0a3b1"],
+      ];
+
+      let liquid, logo;
+      const S = {};
+      const RB_PATH = Z.path([
+        [-120, 690],
+        [380, 560],
+        [640, 760],
+        [960, 640],
+        [1260, 520],
+        [1560, 610],
+        [2060, 420],
+      ]);
+      const END_PATH = Z.path([
+        [120, 610],
+        [520, 470],
+        [760, 700],
+        [1000, 580],
+        [1240, 470],
+        [1500, 560],
+        [1800, 430],
+      ]);
+
+      //#region S1 — damcı və çiçəklənmə
+      const GY = 640,
+        IMP = 0.85;
+      function redLiquid(t, amt = 1) {
+        return liquid.render({
+          mode: 0,
+          c: ["#3f040e", "#a10d23", "#e3263c", "#ff8f8f"],
+          to: [0.3 + t * 0.03, 0.2 + t * 0.015, 1.3 + t * 0.12],
+          scale: 0.5,
+          warp: 2.3,
+          bump: 0.22,
+          spec: 0.55 * amt,
+          shine: 80,
+          gloss: 0.14,
+          oct: 4,
+          gain: 0.5,
+        });
+      }
+      function tear(ctx, x, y, r, st) {
+        ctx.save();
+        ctx.translate(x, y);
+        const g = ctx.createRadialGradient(
+          -r * 0.35,
+          -r * 0.2,
+          r * 0.1,
+          0,
+          0,
+          r * 1.6,
+        );
+        g.addColorStop(0, "#ff7b86");
+        g.addColorStop(0.4, "#d8182f");
+        g.addColorStop(1, "#6d0616");
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.moveTo(0, -r * 2.4 * st);
+        ctx.bezierCurveTo(r * 0.35, -r * 1.2 * st, r, -r * 0.5, r, 0);
+        ctx.arc(0, 0, r, 0, Math.PI);
+        ctx.bezierCurveTo(
+          -r,
+          -r * 0.5,
+          -r * 0.35,
+          -r * 1.2 * st,
+          0,
+          -r * 2.4 * st,
+        );
+        ctx.fill();
+        ctx.fillStyle = "rgba(255,255,255,.8)";
+        ctx.beginPath();
+        ctx.ellipse(
+          -r * 0.38,
+          -r * 0.3,
+          r * 0.2,
+          r * 0.36,
+          0.2,
+          0,
+          Math.PI * 2,
+        );
+        ctx.fill();
+        ctx.restore();
+      }
+      function sceneOpen(ctx, t) {
+        ctx.save();
+        const push = lerp(1, 1.07, E.inOutSine(p(t, 0, 2.8)));
+        ctx.translate(960, 600);
+        ctx.scale(push, push);
+        ctx.translate(-960, -600);
+        ctx.fillStyle = "#070405";
+        ctx.fillRect(-100, -100, W + 200, H + 200);
+        Z.glow(
+          ctx,
+          960,
+          660,
+          900,
+          "#4a0b16",
+          0.55 * E.outCubic(p(t, 0, 0.9)),
+          "source-over",
+        );
+        // yerdəki incə işıq xətti
+        const la = E.outCubic(p(t, 0.1, 0.8)) * (1 - p(t, 0.9, 1.4));
+        if (la > 0) {
+          const g = ctx.createLinearGradient(560, 0, 1360, 0);
+          g.addColorStop(0, "rgba(255,120,130,0)");
+          g.addColorStop(0.5, `rgba(255,150,160,${0.35 * la})`);
+          g.addColorStop(1, "rgba(255,120,130,0)");
+          ctx.fillStyle = g;
+          ctx.fillRect(560, GY + 26, 800, 1.5);
+        }
+        if (t < IMP) {
+          const q = E.inQuad(p(t, 0.05, IMP));
+          tear(ctx, 960, lerp(-140, GY, q), 24, 1 + q * 0.9);
+        }
+        const bt = t - IMP;
+        if (bt > 0) {
+          const R =
+            170 * E.outExpo(p(bt, 0, 0.4)) +
+            1320 * E.inOutCubic(p(bt, 0.12, 1.75));
+          const shape = (k, ph) => {
+            ctx.beginPath();
+            for (let i = 0; i <= 200; i++) {
+              const a = (i / 200) * Math.PI * 2;
+              const r =
+                R *
+                k *
+                (1 +
+                  0.05 * Math.sin(5 * a + 1.3 + bt * 1.1 + ph) +
+                  0.03 * Math.sin(11 * a + 4.1 - bt * 1.7) +
+                  0.014 * Math.sin(23 * a + ph * 2));
+              const x = 960 + Math.cos(a) * r,
+                y = GY + Math.sin(a) * r * 0.92;
+              i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+            }
+            ctx.closePath();
+          };
+          ctx.fillStyle = "#5d0818";
+          shape(1.05, 2);
+          ctx.fill();
+          ctx.save();
+          shape(1, 0);
+          ctx.clip();
+          ctx.drawImage(redLiquid(t), -100, -100, W + 200, H + 200);
+          const g = ctx.createRadialGradient(
+            960,
+            GY,
+            0,
+            960,
+            GY,
+            Math.max(60, R),
+          );
+          g.addColorStop(0, "rgba(255,255,255,.12)");
+          g.addColorStop(0.7, "rgba(0,0,0,0)");
+          g.addColorStop(1, "rgba(40,0,6,.45)");
+          ctx.fillStyle = g;
+          ctx.fillRect(-100, -100, W + 200, H + 200);
+          ctx.restore();
+          // sıçrayan damcılar
+          const r = Z.rng(7);
+          for (let k = 0; k < 20; k++) {
+            const a = -Math.PI / 2 + (r() - 0.5) * 2.5,
+              v = 420 + r() * 820,
+              rad = 4 + r() * 11,
+              life = 0.7 + r() * 0.5;
+            const x = 960 + Math.cos(a) * v * bt,
+              y = GY + Math.sin(a) * v * bt + 0.5 * 2600 * bt * bt;
+            const fade = 1 - p(bt, life * 0.6, life);
+            if (fade > 0 && y < GY + 400)
+              Z.drop(
+                ctx,
+                x,
+                y,
+                rad * (1 - 0.4 * p(bt, 0, life)),
+                "#e11d35",
+                fade,
+              );
+          }
+        }
+        ctx.restore();
+        // mətn
+        const out = E.inCubic(p(t, 2.35, 2.72));
+        ctx.save();
+        ctx.globalAlpha = 1 - out;
+        ctx.translate(0, -70 * out);
+        Z.chars(ctx, "Gözəl nəticə", 960, 545, t, {
+          font: Z.f(112, "title"),
+          align: "center",
+          t0: 1.12,
+          stagger: 0.024,
+          dur: 0.7,
+          rise: 46,
+          blur: 14,
+          shadow: "rgba(60,0,10,.35)",
+          shadowBlur: 40,
+        });
+        Z.words(ctx, "rəngdən başlayır.", 960, 648, t, {
+          font: Z.f(58, "body", 400),
+          align: "center",
+          t0: 1.6,
+          stagger: 0.09,
+          dur: 0.7,
+          color: "rgba(255,236,220,.92)",
+          rise: 22,
+          blur: 8,
+        });
+        ctx.restore();
+      }
+      //#endregion
+
+      //#region S2 — göy qurşağı fırçası və loqo
+      function sceneLogo(ctx, t) {
+        const L = t - T.logo;
+        ctx.save();
+        const push = lerp(1.0, 1.05, E.inOutSine(p(L, 0, 4)));
+        ctx.translate(960, 540);
+        ctx.scale(push, push);
+        ctx.translate(-960, -540);
+        ctx.drawImage(redLiquid(t), -100, -100, W + 200, H + 200);
+        const g = ctx.createRadialGradient(960, 600, 0, 960, 600, 1300);
+        g.addColorStop(0, "rgba(255,255,255,.06)");
+        g.addColorStop(0.7, "rgba(0,0,0,0)");
+        g.addColorStop(1, "rgba(40,0,6,.45)");
+        ctx.fillStyle = g;
+        ctx.fillRect(-100, -100, W + 200, H + 200);
+        Z.vignette(ctx, 0.55);
+        Z.brushGrad(
+          ctx,
+          RB_PATH,
+          {
+            to: E.outCubic(p(L, 0.05, 0.85)),
+            width: 250,
+            bristles: 84,
+            seed: 11,
+            dry: 0.16,
+            wobble: 4,
+            gloss: 0.5,
+            shadow: 0.38,
+          },
+          RAINBOW,
+          [60, 0, 1860, 0],
+        );
+        const lp = p(L, 0.38, 1.25);
+        const lh = 430 * lerp(0.55, 1, E.outBack(lp));
+        Z.product(ctx, logo, {
+          x: 960,
+          y: 425 + lh / 2,
+          h: lh,
+          rot: lerp(-0.07, 0, E.outBack(lp)),
+          alpha: E.outCubic(p(L, 0.38, 0.62)),
+          shadow: 0,
+          refl: 0,
+          sheen: p(L, 1.25, 2.1),
+          drop: ["rgba(40,0,8,.55)", 60, 24],
+        });
+        ctx.restore();
+        Z.words(
+          ctx,
+          [
+            { w: "Evlərə" },
+            { w: "rəng," },
+            { w: "ustalara", color: "#ffd98a" },
+            { w: "etibar", color: "#ffd98a" },
+          ],
+          960,
+          915,
+          L,
+          {
+            font: Z.f(60, "title"),
+            align: "center",
+            t0: 1.35,
+            stagger: 0.085,
+            dur: 0.8,
+            rise: 30,
+            blur: 12,
+            shadow: "rgba(40,0,8,.45)",
+            shadowBlur: 30,
+          },
+        );
+      }
+      //#endregion
+
+      //#region S3 — məhsullar
+      function sceneProduct(ctx, t, i) {
+        const pr = PRODUCTS[i],
+          L = t - (T.prod0 + i * T.per),
+          spr = S[pr.key];
+        ctx.drawImage(
+          liquid.render({
+            mode: 0,
+            c: pr.liq,
+            to: [L * 0.05 + i * 7, -L * 0.03 + i * 3, i * 2.3 + L * 0.13],
+            pan: [i * 0.7, 0],
+            scale: 0.55,
+            warp: 1.7,
+            bump: 0.26,
+            spec: 0.55,
+            shine: 90,
+            gloss: 0.12,
+            oct: 4,
+            gain: 0.45,
+          }),
+          0,
+          0,
+          W,
+          H,
+        );
+        let g = ctx.createLinearGradient(0, 0, 1200, 0);
+        g.addColorStop(0, "rgba(0,0,0,.66)");
+        g.addColorStop(0.55, "rgba(0,0,0,.3)");
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+        Z.vignette(ctx, 0.62);
+        // döşəmə
+        g = ctx.createLinearGradient(0, 940, 0, H);
+        g.addColorStop(0, "rgba(0,0,0,0)");
+        g.addColorStop(1, "rgba(0,0,0,.45)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 940, W, 140);
+        const X =
+          1330 +
+          760 * (1 - E.outExpo(p(L, 0.12, 1.15))) -
+          Math.max(0, L - T.per) * 170;
+        Z.glow(ctx, X, 560, 640, pr.glow, 0.5);
+        ctx.save();
+        ctx.translate(X, 956);
+        ctx.scale(1, 0.13);
+        Z.glow(ctx, 0, 0, 520, pr.light, 0.45);
+        ctx.restore();
+        // arxa fondakı böyük indeks
+        Z.text(ctx, "0" + (i + 1), 1890 - L * 22, 900, {
+          font: Z.f(640, "title"),
+          align: "right",
+          stroke: "rgba(255,255,255,.1)",
+          lineWidth: 2,
+        });
+        // hissəciklər (uzaq qat)
+        const r = Z.rng(100 + i);
+        for (let k = 0; k < 26; k++) {
+          const z = 0.3 + r() * 1.0,
+            x0 = 640 + r() * 1400,
+            y0 = r() * 1080,
+            sz = (2.5 + r() * 7) * z;
+          const x =
+            x0 -
+            (24 + r() * 40) * z * L -
+            90 * z * (1 - E.outExpo(p(L, 0.1, 1.2)));
+          const y = y0 - (14 + r() * 30) * z * L + Math.sin(L * 1.4 + k) * 6;
+          Z.drop(
+            ctx,
+            x,
+            y,
+            sz,
+            pr.accent,
+            (0.25 + 0.5 * r()) * E.outCubic(p(L, 0.2, 0.9)),
+          );
+        }
+        // məhsul
+        const ep = p(L, 0.12, 1.15);
+        Z.product(ctx, spr, {
+          x: X,
+          y: 956,
+          h: 800 * (1 + L * 0.012),
+          rot: 0.17 * (1 - E.outBack(ep)) + Math.sin(L * 1.2) * 0.004,
+          alpha: E.outCubic(p(L, 0.12, 0.35)),
+          sheen: p(L, 1.15, 2.15),
+          refl: 0.9,
+          shadow: 0.6,
+        });
+        // yaxın qat — iri, bulanıq damcılar
+        const r2 = Z.rng(300 + i);
+        for (let k = 0; k < 4; k++) {
+          const x = 900 + r2() * 1000 - 120 * L - 300 * (1 - E.outExpo(ep)),
+            y = 150 + r2() * 800 - 30 * L,
+            sz = 18 + r2() * 22;
+          ctx.save();
+          ctx.filter = `blur(${7 + r2() * 5}px)`;
+          Z.drop(ctx, x, y, sz, pr.accent, 0.55 * E.outCubic(p(L, 0.3, 1)));
+          ctx.restore();
+        }
+        // mətn
+        const X0 = 150;
+        Z.eyebrow(
+          ctx,
+          pr.eyebrow.toLocaleUpperCase("az"),
+          X0,
+          382,
+          p(L, 0.42, 1.2),
+          { size: 21, color: Z.rgba(pr.light, 1) },
+        );
+        pr.name.forEach((ln, k) =>
+          Z.lineUp(
+            ctx,
+            ln,
+            X0 - 6,
+            508 + k * 128,
+            E.outExpo(p(L, 0.52 + k * 0.09, 1.35 + k * 0.09)),
+            {
+              font: Z.f(124, "title"),
+              size: 124,
+              color: "#fff",
+              shadow: "rgba(0,0,0,.28)",
+              shadowBlur: 30,
+            },
+          ),
+        );
+        const descY = 508 + (pr.name.length - 1) * 128 + 82;
+        const dFont = Z.f(30, "body", 400);
+        const lines = Z.wrap(ctx, pr.line, 660, dFont);
+        lines.forEach((ln, j) =>
+          Z.words(ctx, ln, X0, descY + j * 46, L, {
+            font: dFont,
+            color: "rgba(255,255,255,.86)",
+            t0: 0.95 + j * 0.12,
+            stagger: 0.03,
+            dur: 0.7,
+            rise: 18,
+            blur: 6,
+          }),
+        );
+        // çiplər
+        let cx = X0;
+        const cy = descY + lines.length * 46 + 36,
+          cf = Z.f(21, "body", 600);
+        pr.chips.forEach((c, k) => {
+          const q = E.outBack(p(L, 1.35 + k * 0.08, 1.95 + k * 0.08)),
+            w = Z.measure(ctx, c, cf, 0.5) + 40;
+          if (q > 0) {
+            ctx.save();
+            ctx.globalAlpha = clamp(q);
+            ctx.translate(cx + w / 2, cy);
+            ctx.scale(lerp(0.7, 1, q), lerp(0.7, 1, q));
+            ctx.translate(-w / 2, 0);
+            ctx.fillStyle = "rgba(255,255,255,.1)";
+            ctx.strokeStyle = Z.rgba(pr.light, 0.45);
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.roundRect(0, -22, w, 44, 22);
+            ctx.fill();
+            ctx.stroke();
+            Z.text(ctx, c, 20, 7, { font: cf, ls: 0.5, color: "#fff" });
+            ctx.restore();
+          }
+          cx += w + 12;
+        });
+        // sayğac
+        const ca = E.outCubic(p(L, 0.5, 1.1));
+        Z.text(ctx, "0" + (i + 1), X0, 996, {
+          font: Z.f(26, "title"),
+          color: "#fff",
+          alpha: ca,
+        });
+        Z.text(ctx, "/ 05", X0 + 40, 996, {
+          font: Z.f(20, "body", 500),
+          color: "rgba(255,255,255,.55)",
+          alpha: ca,
+        });
+        ctx.fillStyle = `rgba(255,255,255,${0.2 * ca})`;
+        ctx.fillRect(X0 + 110, 988, 220, 2);
+        ctx.fillStyle = Z.rgba(pr.light, ca);
+        ctx.fillRect(X0 + 110, 988, 220 * ((i + clamp(L / T.per)) / 5), 2);
+      }
+      //#endregion
+
+      //#region S4 — ailə kadrı
+      const ITEMS = [
+        { k: "wall", x: 200, y: 850, h: 260, o: 0, b: 0.7 },
+        { k: "silan", x: 660, y: 850, h: 430, o: 1, b: 0.78 },
+        { k: "lak", x: 1265, y: 850, h: 385, o: 2, b: 0.78 },
+        { k: "glue", x: 1705, y: 850, h: 185, o: 3, b: 0.7 },
+        { k: "lux", x: 420, y: 932, h: 400, o: 4, b: 1 },
+        { k: "sin", x: 960, y: 932, h: 455, o: 5, b: 1 },
+        { k: "dolgu", x: 1500, y: 932, h: 400, o: 6, b: 1 },
+      ];
+      function sceneFamily(ctx, t) {
+        const L = t - T.family;
+        ctx.save();
+        const push = lerp(1.0, 1.035, E.inOutSine(p(L, 0, 4.8)));
+        ctx.translate(960, 700);
+        ctx.scale(push, push);
+        ctx.translate(-960, -700);
+        ctx.drawImage(
+          liquid.render({
+            mode: 0,
+            c: ["#07050a", "#170a12", "#3d0c19", "#a8132a"],
+            to: [L * 0.04, L * 0.02, 20 + L * 0.1],
+            scale: 0.5,
+            warp: 1.8,
+            bump: 0.22,
+            spec: 0.35,
+            shine: 90,
+            gloss: 0.06,
+            oct: 4,
+            gain: 0.45,
+          }),
+          -60,
+          -60,
+          W + 120,
+          H + 120,
+        );
+        Z.vignette(ctx, 0.6);
+        Z.glow(ctx, 960, 1020, 1000, "#c9142c", 0.4);
+        Z.glow(ctx, 960, 560, 760, "#f2cf6b", 0.1);
+        let g = ctx.createLinearGradient(0, 0, W, 0);
+        g.addColorStop(0, "rgba(255,255,255,0)");
+        g.addColorStop(0.5, "rgba(255,255,255,.14)");
+        g.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 933, W, 1.5);
+        ITEMS.forEach((it) => {
+          const d = 0.35 + it.o * 0.1,
+            q = p(L, d, d + 0.9);
+          if (q <= 0) return;
+          Z.product(ctx, S[it.k], {
+            x: it.x,
+            y: it.y - 760 * (1 - E.outExpo(q)),
+            h: it.h,
+            alpha: E.outCubic(p(q, 0, 0.2)),
+            refl: it.b > 0.9 ? 0.75 : 0.4,
+            shadow: 0.55 * E.outCubic(q),
+            bright: it.b,
+            sheen: p(L, 2.0 + it.o * 0.08, 2.9 + it.o * 0.08),
+            sheenAmt: 0.5,
+          });
+        });
+        ctx.restore();
+        Z.eyebrow(ctx, "NƏ TƏQDİM EDİRİK", 960, 142, p(L, 0.3, 1.1), {
+          center: true,
+        });
+        Z.words(
+          ctx,
+          [
+            { w: "Hər" },
+            { w: "səth" },
+            { w: "üçün" },
+            { w: "doğru", color: "#ff4d67" },
+            { w: "həll" },
+          ],
+          960,
+          246,
+          L,
+          {
+            font: Z.f(88, "title"),
+            align: "center",
+            t0: 0.45,
+            stagger: 0.07,
+            dur: 0.8,
+            rise: 34,
+            blur: 12,
+            shadow: "rgba(0,0,0,.4)",
+          },
+        );
+        // kateqoriya çipləri
+        const cf = Z.f(21, "body", 600),
+          ws = CATS.map(([n]) => Z.measure(ctx, n, cf, 0.3) + 58),
+          gap = 14;
+        let cx =
+          960 - (ws.reduce((a, b) => a + b, 0) + gap * (CATS.length - 1)) / 2;
+        CATS.forEach(([n, c], k) => {
+          const q = E.outBack(p(L, 1.3 + k * 0.08, 1.9 + k * 0.08)),
+            w = ws[k];
+          if (q > 0) {
+            ctx.save();
+            ctx.globalAlpha = clamp(q);
+            ctx.translate(cx + w / 2, 1002 + (1 - q) * 20);
+            ctx.translate(-w / 2, 0);
+            ctx.fillStyle = "rgba(10,6,10,.55)";
+            ctx.strokeStyle = "rgba(255,255,255,.16)";
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.roundRect(0, -24, w, 48, 24);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = c;
+            ctx.beginPath();
+            ctx.arc(24, 0, 6, 0, Math.PI * 2);
+            ctx.fill();
+            Z.text(ctx, n, 40, 7, {
+              font: cf,
+              ls: 0.3,
+              color: "rgba(255,255,255,.92)",
+            });
+            ctx.restore();
+          }
+          cx += w + gap;
+        });
+      }
+      //#endregion
+
+      //#region S5 — son kadr
+      function sceneEnd(ctx, t) {
+        const L = t - T.end;
+        ctx.fillStyle = "#0a0607";
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(
+          liquid.render({
+            mode: 0,
+            c: ["#050304", "#12070a", "#2c0911", "#6d0c1c"],
+            to: [L * 0.03, 0, 40 + L * 0.08],
+            scale: 0.5,
+            warp: 1.8,
+            bump: 0.2,
+            spec: 0.22,
+            shine: 90,
+            gloss: 0.04,
+            oct: 4,
+            gain: 0.45,
+          }),
+          0,
+          0,
+          W,
+          H,
+        );
+        Z.glow(ctx, 960, 520, 950, "#c9142c", 0.32);
+        Z.vignette(ctx, 0.7);
+        Z.brushGrad(
+          ctx,
+          END_PATH,
+          {
+            to: E.outCubic(p(L, 0.3, 1.15)),
+            width: 215,
+            bristles: 76,
+            seed: 21,
+            dry: 0.2,
+            wobble: 4,
+            gloss: 0.45,
+            shadow: 0.45,
+          },
+          RAINBOW,
+          [180, 0, 1740, 0],
+        );
+        const lp = p(L, 0.7, 1.55),
+          lh = 370 * lerp(0.55, 1, E.outBack(lp));
+        Z.product(ctx, logo, {
+          x: 960,
+          y: 470 + lh / 2,
+          h: lh,
+          rot: lerp(0.06, 0, E.outBack(lp)),
+          alpha: E.outCubic(p(L, 0.7, 0.95)),
+          shadow: 0,
+          refl: 0,
+          sheen: p(L, 1.55, 2.4),
+          drop: ["rgba(0,0,0,.6)", 60, 24],
+        });
+        Z.words(
+          ctx,
+          [
+            { w: "Evlərə" },
+            { w: "rəng," },
+            { w: "ustalara", color: "#ff4d67" },
+            { w: "etibar", color: "#ff4d67" },
+          ],
+          960,
+          800,
+          L,
+          {
+            font: Z.f(64, "title"),
+            align: "center",
+            t0: 1.3,
+            stagger: 0.08,
+            dur: 0.8,
+            rise: 30,
+            blur: 12,
+          },
+        );
+        Z.eyebrow(ctx, "GÖZƏL NƏTİCƏ RƏNGDƏN BAŞLAYIR", 960, 872, p(L, 1.8, 2.7), {
+          center: true,
+          color: "rgba(255,255,255,.62)",
+        });
+        const fo = p(t, T.dur - 0.75, T.dur);
+        if (fo > 0) {
+          ctx.fillStyle = `rgba(0,0,0,${E.inOutSine(fo)})`;
+          ctx.fillRect(0, 0, W, H);
+        }
+      }
+      //#endregion
+
+      //#region montaj
+      const SEG = [
+        { s: 0, draw: sceneOpen },
+        { s: T.logo, draw: sceneLogo },
+        ...PRODUCTS.map((_, i) => ({
+          s: T.prod0 + i * T.per,
+          draw: (c, t) => sceneProduct(c, t, i),
+          wipe: {
+            seed: 3 + i * 2,
+            dir: i % 2 ? -1 : 1,
+            tilt: i % 2 ? 60 : -70,
+            color: PRODUCTS[i].glow,
+          },
+        })),
+        {
+          s: T.family,
+          draw: sceneFamily,
+          wipe: {
+            seed: 17,
+            dir: -1,
+            order: "center",
+            tilt: 45,
+            color: "#c9142c",
+          },
+        },
+        {
+          s: T.end,
+          draw: sceneEnd,
+          wipe: { seed: 19, dir: 1, tilt: -50, color: "#f2cf6b" },
+        },
+      ];
+      function bug(ctx, t) {
+        const a =
+          E.outCubic(p(t, T.prod0 + 0.5, T.prod0 + 1)) *
+          (1 - E.inCubic(p(t, T.end - 0.1, T.end + 0.4)));
+        if (a <= 0) return;
+        const h = 64,
+          w = (logo.w / logo.h) * h;
+        ctx.save();
+        ctx.globalAlpha = a;
+        ctx.shadowColor = "rgba(0,0,0,.4)";
+        ctx.shadowBlur = 16;
+        ctx.shadowOffsetY = 4;
+        ctx.drawImage(logo.c, 150, 58, w, h);
+        ctx.restore();
+      }
+      function draw(ctx, t) {
+        let i = 0;
+        while (i < SEG.length - 1 && SEG[i + 1].s <= t) i++;
+        const seg = SEG[i];
+        if (seg.wipe && t < seg.s + T.wipe) {
+          SEG[i - 1].draw(ctx, t);
+          Z.wipe(ctx, (c) => seg.draw(c, t), (t - seg.s) / T.wipe, seg.wipe);
+        } else seg.draw(ctx, t);
+        bug(ctx, t);
+      }
+      //#endregion
+
+      Z.run({
+        duration: T.dur,
+        fps: 30,
+        grain: 0.06,
+        async init() {
+          liquid = new Z.Liquid(1280, 720);
+          logo = await Z.sprite("/assets/images/Loqo silver pdf-1.png", 800);
+          await Promise.all(
+            PRODUCTS.map(
+              async (pr) =>
+                (S[pr.key] = await Z.sprite("/assets/images/" + pr.src, 1000)),
+            ),
+          );
+          S.wall = await Z.sprite("/assets/images/slider-4.png", 700);
+          S.glue = await Z.sprite("/assets/images/slider-3.png", 600);
+        },
+        draw,
+      });
+    </script>
+  </body>
+</html>

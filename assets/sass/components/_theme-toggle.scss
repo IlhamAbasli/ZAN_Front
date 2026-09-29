@@ -1,0 +1,118 @@
+// ==========================================================================
+// MÖVZU AÇARI (.theme-toggle)
+// --------------------------------------------------------------------------
+// HTML: home.html → #region header-top və #region mobile-menu
+// JS:   assets/js/site.js → #region theme
+// ==========================================================================
+
+/* #region header-top variantı */
+
+/*
+  Açarın özü: header-top zolağında, tünd fonun üstündə dayanır.
+  `.site-header button` sıfırlaması (color/border/padding) bu düyməyə də
+  toxunduğu üçün seçici qəsdən `.site-header` ilə gücləndirilib.
+*/
+.site-header .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--r-pill);
+  background-color: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 12.5px;
+  line-height: 1;
+  cursor: var(--cursor-pointer);
+  transition:
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+
+.site-header .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(242, 207, 107, 0.45);
+  color: #ffffff;
+}
+
+.site-header .theme-toggle:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+
+/* #endregion */
+
+/* #region ikon və etiket */
+
+.theme-toggle .theme-toggle-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #10151c;
+  background-image: var(--theme-knob);
+}
+
+.theme-toggle .theme-toggle-icon svg {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+/* işıqlı rejimdə günəş, tünd rejimdə ay görünür */
+.theme-toggle .theme-icon-sun {
+  opacity: var(--theme-sun-on, 1);
+  transform: rotate(var(--theme-sun-turn, 0deg))
+    scale(var(--theme-sun-scale, 1));
+}
+
+.theme-toggle .theme-icon-moon {
+  opacity: var(--theme-moon-on, 0);
+  transform: rotate(var(--theme-moon-turn, -90deg))
+    scale(var(--theme-moon-scale, 0.5));
+}
+
+.theme-toggle .theme-toggle-label {
+  white-space: nowrap;
+}
+
+/* #endregion */
+
+/* #region mobil menyu variantı */
+
+/* mobil menyudakı variant: açıq səthin üstündə dayanır */
+.mobile-menu .theme-toggle {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--c-ink);
+  background-color: var(--c-surface-soft);
+  border-color: var(--c-line);
+}
+
+.mobile-menu .theme-toggle:hover {
+  color: var(--c-ink);
+  background-color: var(--c-surface-soft);
+  border-color: var(--c-brand);
+}
+
+/* #endregion */
+
+/* #region hərəkət azaldılıb */
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle .theme-toggle-icon svg {
+    transition: none;
+  }
+}
+
+/* #endregion */

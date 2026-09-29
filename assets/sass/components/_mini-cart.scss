@@ -1,0 +1,392 @@
+// ==========================================================================
+// MİNİ SƏBƏT (#mini-cart) — sağdan açılan panel
+// --------------------------------------------------------------------------
+// HTML: hər səhifədə header-dən sonra → #region mini-cart
+// JS:   assets/js/shop.js → #region mini-cart (siyahı, say, cəmi)
+//
+// Panel Bootstrap offcanvas-dır (açılma, fon, fokus, Esc — Bootstrap-dan).
+// Header-dəki .cart düyməsi onu açır.
+// ==========================================================================
+
+/* #region panel */
+
+.mini-cart.offcanvas {
+  --bs-offcanvas-width: 420px;
+  --bs-offcanvas-bg: var(--c-surface);
+  --bs-offcanvas-color: var(--c-ink);
+
+  z-index: 2050;
+  border-left: 1px solid var(--c-line);
+  box-shadow: -24px 0 60px rgba(13, 21, 32, 0.18);
+}
+
+/* Bootstrap fonu: preloader-dən aşağı, header-dən yuxarı */
+.offcanvas-backdrop {
+  z-index: 2040;
+}
+
+.mc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.mc-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: RobotoBold;
+  font-size: 20px;
+  color: var(--c-ink);
+}
+
+.mc-count {
+  min-width: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: var(--grad-brand);
+}
+
+.mc-close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--c-ink);
+  background: var(--c-surface-soft);
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: var(--c-hover-fill);
+  }
+}
+
+.mc-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 24px;
+}
+
+/* #endregion */
+
+/* #region məhsul sətri */
+
+.mc-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mc-item {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px dashed var(--c-line);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.mc-thumb {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  padding: 6px;
+  border-radius: 14px;
+  background: var(--c-surface-soft);
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.mc-info {
+  min-width: 0;
+}
+
+.mc-name {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--c-ink);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.mc-unit {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--c-muted-soft);
+}
+
+.mc-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.mc-line-total {
+  font-family: RobotoBold;
+  font-size: 15px;
+  color: var(--c-ink);
+}
+
+.mc-remove {
+  align-self: start;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--c-muted-soft);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: var(--c-brand);
+    background: var(--c-brand-tint);
+  }
+}
+
+/* #endregion */
+
+/* #region say seçici (mini səbət və sürətli baxış) */
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  background: var(--c-surface);
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--c-ink);
+    background: transparent;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: var(--c-hover-fill);
+    }
+
+    &:disabled {
+      color: var(--c-muted-soft);
+      cursor: not-allowed;
+    }
+  }
+
+  input {
+    width: 34px;
+    padding: 0;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--c-ink);
+    background: transparent;
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--c-brand-line);
+  }
+}
+
+.qty-lg {
+  button {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  input {
+    width: 44px;
+    font-size: 16px;
+  }
+}
+
+/* #endregion */
+
+/* #region boş səbət */
+
+.mc-empty {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 12px;
+  text-align: center;
+
+  svg {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 18px;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: RobotoBold;
+    font-size: 18px;
+    color: var(--c-ink);
+  }
+
+  p {
+    max-width: 30ch;
+    margin: 8px 0 22px;
+    font-size: 14px;
+    color: var(--c-muted);
+  }
+}
+
+.mini-cart.is-empty {
+  .mc-empty {
+    display: flex;
+  }
+
+  .mc-list,
+  .mc-foot {
+    display: none;
+  }
+}
+
+/* #endregion */
+
+/* #region alt hissə və düymələr */
+
+.mc-foot {
+  padding: 20px 24px 24px;
+  border-top: 1px solid var(--c-line);
+  background: var(--c-surface-soft);
+}
+
+.mc-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  span {
+    font-size: 15px;
+    color: var(--c-muted);
+  }
+
+  b {
+    font-family: RobotoBold;
+    font-size: 24px;
+    color: var(--c-ink);
+  }
+}
+
+.mc-note {
+  margin: 4px 0 16px;
+  font-size: 12px;
+  color: var(--c-muted-soft);
+}
+
+.mc-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-on-brand);
+  text-decoration: none;
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  &:hover {
+    color: var(--c-on-brand);
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+  }
+
+  &.is-ghost {
+    color: var(--c-ink);
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    box-shadow: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .mini-cart.offcanvas {
+    --bs-offcanvas-width: 100%;
+  }
+}
+
+/* #endregion */

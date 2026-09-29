@@ -1,0 +1,20 @@
+// ==========================================================================
+// PRODUCT.SCSS — məhsul səhifəsinin (product-detail.html) stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/product/product.css (Live Sass Compiler)
+// Qoşulur:  product-detail.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Shop/Details.cshtml → @section Styles)
+// Modullar: assets/sass/pages/product/
+//
+// Tokenlər, header, footer, məhsul kartı, say seçici (.qty) və mini səbət
+// site.css-dən gəlir. Kateqoriya rəngi <main class="pd-tint" data-category>
+// → --pc-tint (components/_product-card.scss).
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/product/main";
+@use "../pages/product/details";
+@use "../pages/product/calc";
+@use "../pages/product/related";
+@use "../pages/product/bar";
+/* #endregion */

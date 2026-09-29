@@ -1,0 +1,150 @@
+// ==========================================================================
+// PRELOADER
+// --------------------------------------------------------------------------
+// HTML: home.html → #region preloader
+// JS:   assets/js/site.js → #region preloader
+// ==========================================================================
+
+/* #region örtük */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--c-surface);
+  background-image: radial-gradient(
+    ellipse 60% 55% at 50% 45%,
+    rgba(201, 20, 44, 0.07) 0%,
+    transparent 70%
+  );
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0.5s;
+
+  /* JS yüklənməsə və ya xəta versə belə səhifə bağlı qalmasın */
+  animation: preloader-failsafe 0.5s 8s forwards;
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* #endregion */
+
+/* #region loqo və fırlanan halqa */
+
+.preloader-mark {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: 72px;
+    height: auto;
+  }
+}
+
+/* fırlanan qradiyent halqa: conic-gradient + içəridən ağ disk */
+.preloader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: conic-gradient(
+    from 90deg,
+    rgba(201, 20, 44, 0) 0deg,
+    var(--c-brand) 190deg,
+    var(--c-gold) 310deg,
+    rgba(242, 207, 107, 0) 360deg
+  );
+  animation: preloader-spin 1.2s linear infinite;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background-color: var(--c-surface);
+  }
+}
+
+/* #endregion */
+
+/* #region tərəqqi zolağı */
+
+.preloader-bar {
+  margin-top: 26px;
+  width: 168px;
+  height: 3px;
+  border-radius: var(--r-pill);
+  background-color: var(--c-track);
+  overflow: hidden;
+
+  span {
+    display: block;
+    width: 40%;
+    height: 100%;
+    border-radius: inherit;
+    background-image: linear-gradient(90deg, var(--c-brand), var(--c-gold));
+    animation: preloader-slide 1.3s var(--ease) infinite;
+  }
+}
+
+/* #endregion */
+
+/* #region animasiyalar */
+
+@keyframes preloader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-slide {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(320%);
+  }
+}
+
+@keyframes preloader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* #endregion */
+
+/* #region hərəkət azaldılıb */
+
+@media (prefers-reduced-motion: reduce) {
+  /* hərəkət azaldılıbsa: halqa donur, zolaq sabit dolur;
+     preloader-in özü yenə yumşaq (şəffaflıqla) sönür */
+  .preloader-ring {
+    animation: none;
+  }
+
+  .preloader-bar span {
+    width: 100%;
+    animation: none;
+  }
+}
+
+/* #endregion */

@@ -1,0 +1,167 @@
+// ==========================================================================
+// BOYA VALİKİ KURSORU VƏ ONU İZLƏYƏN AĞ ÇEVRƏ
+// --------------------------------------------------------------------------
+// İkonlar: assets/icons/cursor-roller*.{svg,png}
+// Çevrə:   assets/js/site.js → #region cursor-ring (.cursor-ring)
+//
+// DİQQƏT: tokenlərdəki nisbi url() var()-ın İSTİFADƏ olunduğu CSS faylına
+// görə açılır. Ona görə bütün giriş faylları eyni dərinlikdə qalmalıdır:
+// assets/sass/<ad>/<ad>.scss → assets/sass/<ad>/<ad>.css
+// ==========================================================================
+
+/* #region kursor tokenləri */
+
+/*
+  Kursor iki tokendən idarə olunur: --cursor-default və --cursor-pointer.
+  Stil faylındakı bütün `cursor: pointer` təyinatları bu tokenə bağlanıb,
+  ona görə heç yerdə `!important` lazım gəlmir.
+
+  SVG əvvəl yazılır (kəskin görüntü üçün), PNG isə SVG kursoru
+  dəstəkləməyən brauzerlər — məsələn Safari — üçün ehtiyatdır.
+  Sonda həmişə sistem açarı (auto / pointer) qalır: şəkil yüklənməsə də
+  istifadəçi kursorsuz qalmır.
+*/
+:root {
+  --cursor-default:
+    url(../../icons/cursor-roller.svg) 4 8,
+    url(../../icons/cursor-roller.png) 4 8, auto;
+  --cursor-pointer:
+    url(../../icons/cursor-roller-active.svg) 4 8,
+    url(../../icons/cursor-roller-active.png) 4 8, pointer;
+}
+
+/*
+  Toxunma ekranlarında və dəqiq göstəricisi olmayan cihazlarda xüsusi
+  kursorun mənası yoxdur; sistem davranışına qayıdırıq.
+*/
+@media (hover: none), (pointer: coarse) {
+  :root {
+    --cursor-default: auto;
+    --cursor-pointer: pointer;
+  }
+}
+
+/* #endregion */
+
+/* #region elementlərə görə kursor */
+
+body {
+  cursor: var(--cursor-default);
+}
+
+/* mətn sahələrində yazı kursoru qalmalıdır */
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  cursor: auto;
+}
+
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  cursor: text;
+}
+
+/* klikləna bilən elementlər valikin damlalı variantını alır */
+a[href],
+button,
+summary,
+label[for],
+[role="button"],
+[role="tab"],
+[data-disclosure] {
+  cursor: var(--cursor-pointer);
+}
+
+/* söndürülmüş idarəedicilər sistem işarəsini saxlayır */
+button:disabled,
+[aria-disabled="true"],
+.swiper-button-disabled {
+  cursor: not-allowed;
+}
+
+/* #endregion */
+
+/* #region valik çevrəsi */
+
+/*
+  Ağ çevrə kursorun arxasınca gecikmə ilə gəlir və dayananda valiki əhatə
+  edir (site.js mövqeyi .cursor-ring-in transform-u ilə verir). Görünüş
+  ::before-dadır — onun scale-i JS-in transform-u ilə toqquşmur.
+  Vəziyyətlər (JS):
+    .is-visible  siçan səhifənin içindədir
+    .is-hover    klikləna bilən elementin üstündədir (kursor --cursor-pointer)
+    .is-down     düymə basılıb
+    .is-hidden   mətn sahəsinin üstündədir (yazı kursoru ilə çevrə lazım deyil)
+*/
+.cursor-ring {
+  --ring-size: 48px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483000;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity 0.3s var(--ease);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--ring-size) / -2);
+    left: calc(var(--ring-size) / -2);
+    width: var(--ring-size);
+    height: var(--ring-size);
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    /* ağ fonda da seçilsin: incə tünd kənar və yumşaq kölgə */
+    box-shadow:
+      0 0 0 1px rgba(13, 21, 32, 0.12),
+      inset 0 0 0 1px rgba(13, 21, 32, 0.08),
+      0 6px 18px rgba(13, 21, 32, 0.16);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 0.3s var(--ease);
+  }
+
+  &.is-visible {
+    opacity: 1;
+  }
+
+  &.is-hidden {
+    opacity: 0;
+  }
+
+  &.is-hover::before {
+    transform: scale(1.28);
+    background-color: rgba(255, 255, 255, 0.14);
+  }
+
+  &.is-down::before {
+    transform: scale(0.82);
+  }
+
+  &.is-hover.is-down::before {
+    transform: scale(1.08);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring::before {
+    transition: background-color 0.3s var(--ease);
+  }
+}
+
+/* #endregion */

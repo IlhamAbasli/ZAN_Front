@@ -1,0 +1,809 @@
+// ==========================================================================
+// HERO SLAYDER (#slider-area)
+// --------------------------------------------------------------------------
+// HTML: home.html → #region hero-slider
+// JS:   assets/js/home.js → #region hero-slider
+// ==========================================================================
+
+/* #region slayd mövzuları — hər slaydın öz fonu */
+
+/*
+  Uzun müddət eyni doymuş qırmızı göz yorur, ona görə hər slaydın öz tünd,
+  sakit fonu var. JS aktiv slaydın data-theme dəyərini bölməyə
+  data-hero-theme kimi yazır (home.js → syncHeroSlide).
+
+  Rənglər qeydiyyatlı dəyişənlərdir (@property): qradiyentin özü animasiya
+  olunmur, amma onun rəngləri olunur — fon bir slayddan digərinə yumşaq keçir.
+
+    --hero-c1/c2/c3  fon qradiyenti (sol-yuxarı → sağ-aşağı)
+    --hero-glow      sol-aşağıdakı işıq ləkəsi
+    --hero-ink       ağ düymələrin üzərindəki yazı rəngi (fonun tünd çaları)
+*/
+@property --hero-c1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #4f0915;
+}
+@property --hero-c2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8f1427;
+}
+@property --hero-c3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b0172e;
+}
+@property --hero-glow {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ff5f7a;
+}
+@property --hero-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a71930;
+}
+
+/* 01 — ZAN boyaları: marka qırmızısı, əvvəlkindən bir az tünd və sakit */
+#slider-area {
+  --hero-c1: #4f0915;
+  --hero-c2: #8f1427;
+  --hero-c3: #b0172e;
+  --hero-glow: #ff5f7a;
+  --hero-ink: #a71930;
+}
+
+/* 02 — DivoFix & EkoFix: tünd firuzəyi-yaşıl (nanə accent ilə) */
+#slider-area[data-hero-theme="teal"] {
+  --hero-c1: #062b28;
+  --hero-c2: #0b4740;
+  --hero-c3: #126356;
+  --hero-glow: #3fd1a8;
+  --hero-ink: #0b4740;
+}
+
+/* 03 — divar kağızları: tünd göy (Best Wall ailəsi, bej accent ilə) */
+#slider-area[data-hero-theme="navy"] {
+  --hero-c1: #0a2245;
+  --hero-c2: #12396a;
+  --hero-c3: #1b4e8c;
+  --hero-glow: #6fa3ff;
+  --hero-ink: #12396a;
+}
+
+/*
+  Düymə yazısının rəngi slaydın özündə də təyin olunur: bölmədəki --hero-ink
+  1s ərzində keçid edir və yeni slaydın düyməsi əvvəlcə köhnə rəngdə görünürdü.
+  Slayddakı dəyər keçidsizdir — yazı dərhal öz rəngində olur. Bölmədəki
+  animasiyalı dəyəri yalnız slayddan kənar elementlər (oxlar) işlədir.
+*/
+#slider-area .hero-slide {
+  --hero-ink: #a71930;
+}
+
+#slider-area .hero-slide[data-theme="teal"] {
+  --hero-ink: #0b4740;
+}
+
+#slider-area .hero-slide[data-theme="navy"] {
+  --hero-ink: #12396a;
+}
+
+/* #endregion */
+
+/* #region bölmə və fon */
+
+#slider-area {
+  --hero-accent: #f2cf6b;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 74px 0 40px;
+  color: #ffffff;
+  background-color: var(--hero-c2);
+  background-image: linear-gradient(
+    118deg,
+    var(--hero-c1) 0%,
+    var(--hero-c2) 48%,
+    var(--hero-c3) 100%
+  );
+  transition:
+    --hero-c1 1s var(--ease),
+    --hero-c2 1s var(--ease),
+    --hero-c3 1s var(--ease),
+    --hero-glow 1s var(--ease),
+    --hero-ink 1s var(--ease);
+}
+
+#slider-area .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#slider-area .hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  transition: background 0.9s ease;
+}
+
+#slider-area .hero-blob-1 {
+  width: 620px;
+  height: 620px;
+  top: -260px;
+  right: -120px;
+  opacity: 0.38;
+  background: radial-gradient(circle, var(--hero-accent) 0%, transparent 68%);
+  animation: heroFloat 16s ease-in-out infinite;
+}
+
+#slider-area .hero-blob-2 {
+  width: 520px;
+  height: 520px;
+  bottom: -280px;
+  left: -140px;
+  opacity: 0.32;
+  background: radial-gradient(circle, var(--hero-glow) 0%, transparent 68%);
+  animation: heroFloat 22s ease-in-out infinite reverse;
+}
+
+#slider-area .hero-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 68px 68px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 40%,
+    #000 15%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 40%,
+    #000 15%,
+    transparent 78%
+  );
+}
+
+#slider-area .hero-container {
+  position: relative;
+  z-index: 1;
+}
+
+#slider-area .hero-swiper {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+#slider-area .swiper-slide {
+  height: auto;
+  display: block;
+  font-size: inherit;
+  background: transparent;
+}
+
+#slider-area .hero-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 40px;
+  min-height: 470px;
+  padding-bottom: 10px;
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#slider-area .hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: DMSans;
+  font-size: 13px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #ffeab4;
+  padding: 8px 17px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+#slider-area .hero-chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hero-accent);
+  animation: heroPulse 2.4s ease-out infinite;
+}
+
+#slider-area .hero-title {
+  margin: 24px 0 0;
+  max-width: 15ch;
+  font-family: RobotoBold;
+  font-weight: 900;
+  font-size: clamp(34px, 3.3vw, 54px);
+  line-height: 1.07;
+  letter-spacing: -0.01em;
+}
+
+#slider-area .hero-title em {
+  font-style: normal;
+  color: var(--hero-accent);
+  background-image: linear-gradient(
+    90deg,
+    var(--hero-accent),
+    rgba(255, 255, 255, 0)
+  );
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-bottom: 4px;
+}
+
+#slider-area .hero-text {
+  margin: 20px 0 0;
+  max-width: 46ch;
+  font-size: 17px;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+#slider-area .hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin-top: 34px;
+}
+
+#slider-area .hero-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  overflow: hidden;
+  font-family: DMSans;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  /*
+    Hero fonu hər iki mövzuda tünd qalır, ona görə düymənin rəngləri sayt
+    mövzu tokenlərinə yox, slaydın fonuna bağlıdır (--hero-ink) — tokenlərə
+    bağlansa, qaranlıq rejimdə fon tündləşib yazı ilə qaynayır.
+  */
+  color: var(--hero-ink);
+  background-color: #ffffff;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+#slider-area .hero-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, var(--hero-accent), #ffffff 85%);
+  transform: translateX(-101%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#slider-area .hero-btn span,
+#slider-area .hero-btn .hero-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+#slider-area .hero-btn .hero-arrow {
+  width: 19px;
+  height: 19px;
+  transition: transform 0.35s ease;
+}
+
+#slider-area .hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.32);
+}
+
+#slider-area .hero-btn:hover::before {
+  transform: translateX(0);
+}
+
+#slider-area .hero-btn:hover .hero-arrow {
+  transform: translateX(5px);
+}
+
+#slider-area .hero-link {
+  position: relative;
+  font-family: DMSans;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  padding-bottom: 4px;
+}
+
+#slider-area .hero-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--hero-accent);
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+#slider-area .hero-link:hover {
+  color: #ffffff;
+}
+
+#slider-area .hero-link:hover::after {
+  transform: scaleX(1);
+}
+
+#slider-area .hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: DMSans;
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+#slider-area .hero-facts li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#slider-area .hero-facts li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hero-accent);
+}
+
+/* #endregion */
+
+/* #region vizual */
+
+#slider-area .hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+#slider-area .hero-glow {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.24) 0%,
+    rgba(255, 255, 255, 0.04) 45%,
+    transparent 66%
+  );
+}
+
+#slider-area .hero-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 74%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.24);
+  animation: heroSpin 28s linear infinite;
+}
+
+#slider-area .hero-ring::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--hero-accent);
+  box-shadow: 0 0 18px var(--hero-accent);
+}
+
+#slider-area .hero-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translate3d(
+    calc(var(--hero-px, 0) * 1px),
+    calc(var(--hero-py, 0) * 1px),
+    0
+  );
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#slider-area .hero-stage img {
+  width: 100%;
+  max-width: 420px;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.42));
+  animation: heroBob 6.5s ease-in-out infinite;
+}
+
+#slider-area .hero-stage img.is-card {
+  max-width: 380px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* #endregion */
+
+/* #region görünmə animasiyası */
+
+#slider-area .hero-chip,
+#slider-area .hero-title,
+#slider-area .hero-text,
+#slider-area .hero-actions,
+#slider-area .hero-facts {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#slider-area .hero-visual {
+  opacity: 0;
+  transform: translateX(42px) scale(0.97);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#slider-area .swiper-slide-active .hero-chip,
+#slider-area .swiper-slide-active .hero-title,
+#slider-area .swiper-slide-active .hero-text,
+#slider-area .swiper-slide-active .hero-actions,
+#slider-area .swiper-slide-active .hero-facts,
+#slider-area .swiper-slide-active .hero-visual {
+  opacity: 1;
+  transform: none;
+}
+
+#slider-area .swiper-slide-active .hero-chip {
+  transition-delay: 0.12s;
+}
+#slider-area .swiper-slide-active .hero-title {
+  transition-delay: 0.22s;
+}
+#slider-area .swiper-slide-active .hero-text {
+  transition-delay: 0.32s;
+}
+#slider-area .swiper-slide-active .hero-actions {
+  transition-delay: 0.42s;
+}
+#slider-area .swiper-slide-active .hero-facts {
+  transition-delay: 0.52s;
+}
+#slider-area .swiper-slide-active .hero-visual {
+  transition-delay: 0.18s;
+}
+
+/* #endregion */
+
+/* #region idarəetmə */
+
+#slider-area .hero-controls {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 26px 0 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  margin-top: 18px;
+}
+
+#slider-area .hero-count {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: RobotoBold;
+  letter-spacing: 0.06em;
+}
+
+#slider-area .hero-count-current {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+#slider-area .hero-count-total {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#slider-area .hero-bullets {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#slider-area .hero-bullet {
+  width: 78px;
+  height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: var(--cursor-pointer);
+  background: rgba(255, 255, 255, 0.22);
+  transition: background 0.3s ease;
+}
+
+#slider-area .hero-bullet:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+#slider-area .hero-bullet span {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffffff, var(--hero-accent));
+}
+
+#slider-area .hero-bullet.is-active {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+#slider-area .hero-bullet.is-active span {
+  width: calc(var(--p, 0) * 100%);
+}
+
+#slider-area .hero-nav {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+#slider-area .hero-nav-btn {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  cursor: var(--cursor-pointer);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+#slider-area .hero-nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+#slider-area .hero-nav-btn:hover {
+  /* hero-btn ilə eyni səbəb: hero fonu mövzudan asılı deyil */
+  color: var(--hero-ink);
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-3px);
+}
+
+#slider-area .hero-nav-btn:focus-visible,
+#slider-area .hero-bullet:focus-visible,
+#slider-area .hero-btn:focus-visible,
+#slider-area .hero-link:focus-visible {
+  outline: 2px solid var(--hero-accent);
+  outline-offset: 3px;
+}
+
+/* #endregion */
+
+/* #region keyframes */
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-40px, 30px, 0) scale(1.08);
+  }
+}
+
+@keyframes heroPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes heroSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes heroBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 1200px) {
+  #slider-area .hero-layout {
+    gap: 24px;
+    min-height: 420px;
+  }
+  #slider-area .hero-title {
+    max-width: 17ch;
+  }
+  #slider-area .hero-stage img {
+    max-width: 360px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #slider-area {
+    padding: 54px 0 32px;
+  }
+  #slider-area .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    min-height: 0;
+    text-align: center;
+  }
+  #slider-area .hero-copy {
+    order: 2;
+  }
+  #slider-area .hero-visual {
+    order: 1;
+    min-height: 300px;
+    transform: translateY(30px) scale(0.97);
+  }
+  #slider-area .hero-title,
+  #slider-area .hero-text {
+    max-width: none;
+  }
+  #slider-area .hero-actions,
+  #slider-area .hero-facts {
+    justify-content: center;
+  }
+  #slider-area .hero-stage img {
+    max-width: 300px;
+  }
+  #slider-area .hero-stage img.is-card {
+    max-width: 280px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #slider-area {
+    padding: 40px 0 26px;
+  }
+  #slider-area .hero-chip {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 7px 14px;
+  }
+  #slider-area .hero-text {
+    font-size: 15px;
+  }
+  #slider-area .hero-facts {
+    gap: 8px 18px;
+    font-size: 12.5px;
+  }
+  #slider-area .hero-actions {
+    margin-top: 26px;
+  }
+  #slider-area .hero-btn {
+    height: 48px;
+    padding: 0 22px;
+  }
+  #slider-area .hero-controls {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  #slider-area .hero-count {
+    order: 1;
+  }
+  #slider-area .hero-nav {
+    order: 2;
+    margin-left: auto;
+  }
+  #slider-area .hero-bullets {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  #slider-area .hero-bullet {
+    width: 56px;
+  }
+  #slider-area .hero-nav-btn {
+    width: 46px;
+    height: 46px;
+  }
+  #slider-area .hero-stage img {
+    max-width: 240px;
+  }
+}
+
+/*
+  "Animasiyaları azalt" açıq olanda slayder işləməyə davam edir (home.js).
+  Yalnız başgicəllənməyə səbəb ola biləcək hərəkətlər söndürülür:
+  sonsuz üzən/fırlanan/yellənən dekorlar və mətnin sürüşərək gəlməsi.
+  Mətn yenə də yumşaq görünür — sürüşmə yox, yalnız şəffaflıq keçidi ilə.
+*/
+@media (prefers-reduced-motion: reduce) {
+  #slider-area .hero-blob,
+  #slider-area .hero-ring,
+  #slider-area .hero-chip i,
+  #slider-area .hero-stage img {
+    animation: none;
+  }
+  #slider-area .hero-chip,
+  #slider-area .hero-title,
+  #slider-area .hero-text,
+  #slider-area .hero-actions,
+  #slider-area .hero-facts,
+  #slider-area .hero-visual {
+    transform: none;
+  }
+}
+
+/* #endregion */

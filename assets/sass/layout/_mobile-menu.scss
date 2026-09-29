@@ -1,0 +1,412 @@
+// ==========================================================================
+// MOBİL MENYU
+// --------------------------------------------------------------------------
+// HTML: home.html → #region mobile-menu
+// JS:   assets/js/site.js → #region mobile-menu
+// ==========================================================================
+
+/* #region panel */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* #header-sticky (1000) və #button (1000) menyunun üstündə qalmasın */
+  z-index: 1060;
+  width: 380px;
+  /* 380px-dən dar ekranlarda menyu ekrandan kənara çıxmasın */
+  max-width: 100%;
+  height: 100%;
+  padding: 24px 20px 40px;
+  background-color: var(--c-surface);
+  border-radius: 24px 0 0 24px;
+  box-shadow: -30px 0 60px rgba(13, 21, 32, 0.18);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* bağlı vəziyyət: sağa çıxarılıb və fokus ala bilməz */
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform 0.4s var(--ease),
+    visibility 0.4s;
+
+  &.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .logo img {
+    max-width: 100%;
+    max-height: 48px;
+    width: auto;
+    height: auto;
+  }
+
+  .menu-close {
+    padding-bottom: 26px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    .menu-close-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: var(--c-surface-soft);
+      transition:
+        background-color 0.25s var(--ease),
+        transform 0.25s var(--ease);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--hdr-a1) 10%, transparent);
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .all-categories-toggle {
+    height: 50px;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: DMSans;
+    box-shadow: var(--hdr-shadow);
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  /* panel statik axındadır, ona görə bağlı olanda yer tutmamalıdır */
+  .categories {
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: var(--r-card);
+    border: 1px solid var(--c-line);
+    background-color: var(--c-surface);
+
+    &.is-open {
+      display: block;
+    }
+  }
+
+  .main-nav {
+    padding-top: 26px;
+
+    ul {
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        border-radius: 12px;
+        transition: background-color 0.25s var(--ease);
+
+        a {
+          text-decoration: none;
+          font-size: 15.5px;
+          font-weight: 500;
+          color: var(--c-ink);
+          font-family: DMSans;
+          transition: color 0.25s var(--ease);
+        }
+
+        .icon {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          border: 1px solid var(--c-line);
+          /* ox inline SVG-dir: rəngi mövzu ilə birlikdə dəyişir */
+          color: var(--c-muted-soft);
+          transition:
+            border-color 0.25s var(--ease),
+            color 0.25s var(--ease),
+            transform 0.25s var(--ease);
+
+          svg {
+            width: 8px;
+            height: 14px;
+          }
+        }
+
+        &:hover {
+          background-color: var(--c-surface-soft);
+
+          a {
+            color: var(--hdr-accent);
+          }
+
+          .icon {
+            color: var(--hdr-accent);
+            border-color: color-mix(in srgb, var(--hdr-accent) 30%, transparent);
+            transform: translateX(3px);
+          }
+        }
+
+        a[aria-current="page"] {
+          color: var(--hdr-accent);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .contact-us {
+    margin-top: 28px;
+    width: 100%;
+    padding: 0 16px;
+
+    a {
+      display: block;
+      text-align: center;
+      padding: 14px 30px;
+      font-size: 14px;
+      border-radius: var(--r-pill);
+      background-image: var(--hdr-grad);
+      box-shadow: var(--hdr-shadow);
+      text-decoration: none;
+      color: var(--c-on-brand);
+      font-family: RobotoBold;
+      transition:
+        filter 0.25s var(--ease),
+        transform 0.25s var(--ease);
+
+      &:hover {
+        filter: brightness(1.06);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region arxa fon (.menu-backdrop) */
+
+/* menyu açıq olanda arxa fon: kliklə menyunu bağlayır */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background-color: rgba(13, 21, 32, 0.55);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s var(--ease),
+    visibility 0.4s;
+}
+
+.mobile-menu.is-open ~ .menu-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* menyu açıq olanda arxadaki səhifə sürüşməsin */
+body.has-menu-open {
+  overflow: hidden;
+}
+
+/* "Animasiyaları azalt": panel yandan sürüşmür, yerində yumşaq görünür */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transform: none;
+    opacity: 0;
+    transition:
+      opacity 0.25s var(--ease),
+      visibility 0.25s;
+  }
+
+  .mobile-menu.is-open {
+    opacity: 1;
+  }
+}
+
+/* #endregion */
+
+/* #region əlavə bloklar: axtarış, sürətli keçidlər, dil, mövzu */
+
+.mobile-menu .mobile-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.mobile-menu .mobile-search input {
+  width: 100%;
+  height: 46px;
+  padding: 0 52px 0 18px;
+  font-size: 14px;
+  font-family: DMSans;
+  color: var(--c-ink);
+  background-color: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  outline: none;
+  transition: border-color 0.25s var(--ease);
+}
+
+.mobile-menu .mobile-search input::placeholder {
+  color: var(--c-muted-soft);
+}
+
+.mobile-menu .mobile-search input:focus {
+  border-color: var(--hdr-accent);
+}
+
+.mobile-menu .mobile-search button {
+  position: absolute;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  cursor: var(--cursor-pointer);
+  background-image: var(--hdr-grad);
+  box-shadow: var(--hdr-shadow);
+}
+
+.mobile-menu .mobile-search button img {
+  filter: brightness(0) invert(1);
+}
+
+.mobile-menu .mobile-section-title {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-family: RobotoBold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-muted-soft);
+}
+
+/* sürətli keçidlər: kabinet / sevimlilər */
+.mobile-menu .mobile-quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.mobile-menu .mobile-quick-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 6px;
+  text-align: center;
+  font-size: 12px;
+  font-family: DMSans;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--c-ink);
+  background-color: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  transition:
+    border-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.mobile-menu .mobile-quick-links a img {
+  height: 20px;
+  width: auto;
+}
+
+.mobile-menu .mobile-quick-links a:hover {
+  color: var(--hdr-accent);
+  border-color: var(--hdr-accent);
+  transform: translateY(-2px);
+}
+
+/* dil seçimi */
+.mobile-menu .mobile-languages {
+  margin-top: 24px;
+}
+
+/* 5 dil bir sətirdə; çox dar ekranda (<375px) 3 + 2 düzülür */
+.mobile-menu .mobile-lang-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+@media only screen and (max-width: 374px) {
+  .mobile-menu .mobile-lang-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.mobile-menu .mobile-lang-options a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 4px;
+  font-size: 13px;
+  font-family: DMSans;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--c-ink);
+  background-color: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  transition:
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+
+.mobile-menu .mobile-lang-options a img {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mobile-menu .mobile-lang-options a:hover {
+  border-color: var(--hdr-accent);
+  color: var(--hdr-accent);
+}
+
+.mobile-menu .mobile-lang-options a.is-active {
+  color: var(--hdr-accent);
+  border-color: var(--hdr-accent);
+  background-color: color-mix(in srgb, var(--hdr-a1) 8%, transparent);
+}
+
+/* mövzu açarı bloku */
+.mobile-menu .mobile-theme {
+  margin-top: 16px;
+}
+
+/* #endregion */

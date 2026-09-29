@@ -1,0 +1,427 @@
+// ==========================================================================
+// KABİNET — ZAN USTALAR KLUBU (#club)
+// --------------------------------------------------------------------------
+// HTML: account.html → #region acc-club
+// JS:   account-page.js → club (vəziyyət, müraciət forması)
+//
+// #club[data-club-status] vəziyyətinə görə yalnız bir panel görünür:
+//   none    → tanıtım + müraciət forması
+//   pending → "müraciət baxılır" (addımlar)
+//   member  → üzvlük kartı
+// ==========================================================================
+
+/* #region bölmə */
+
+#account .acc-club {
+  scroll-margin-top: calc(var(--h-header-sticky) + 20px);
+  display: grid;
+  gap: 20px;
+
+  [data-club-panel][hidden] {
+    display: none;
+  }
+
+  [data-club-panel]:focus {
+    outline: none;
+  }
+}
+
+/* müraciət edilibsə tanıtımdakı "Müraciət et" düyməsi lazım deyil */
+#account .acc-club:not([data-club-status="none"]) [data-club-start] {
+  display: none;
+}
+
+/* #endregion */
+
+/* #region tanıtım zolağı — mövzudan asılı olmayaraq tünd */
+
+#account .club-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 36px 36px 32px;
+  border-radius: 24px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(242, 207, 107, 0.32), transparent 42%),
+    radial-gradient(circle at 0% 100%, rgba(201, 20, 44, 0.4), transparent 50%),
+    linear-gradient(150deg, #1d2634 0%, #0d1520 70%);
+  box-shadow: var(--shadow-card);
+}
+
+/* fonda böyük kontur "USTA" yazısı */
+#account .club-hero::after {
+  content: "USTA";
+  position: absolute;
+  right: -10px;
+  bottom: -38px;
+  z-index: -1;
+  font-family: RobotoBold;
+  font-size: 150px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 207, 107, 0.16);
+  pointer-events: none;
+}
+
+#account .club-hero-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+}
+
+#account .club-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  background: rgba(242, 207, 107, 0.12);
+  border: 1px solid rgba(242, 207, 107, 0.25);
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+}
+
+#account .club-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold;
+  font-size: 30px;
+  line-height: 1.2;
+  color: #fff;
+
+  em {
+    font-style: normal;
+    color: var(--c-gold);
+  }
+}
+
+#account .club-text {
+  max-width: 56ch;
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+#account .club-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  height: 50px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1204;
+  background: linear-gradient(135deg, #f6d886 0%, #f2cf6b 45%, #d9a93a 100%);
+  box-shadow: 0 10px 24px rgba(242, 207, 107, 0.25);
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.25s var(--ease);
+  }
+
+  &:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateY(2px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-gold);
+    outline-offset: 3px;
+  }
+}
+
+/* sağda medal */
+#account .club-medal {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.45));
+  animation: club-float 5s ease-in-out infinite;
+}
+
+@keyframes club-float {
+  50% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #account .club-medal {
+    animation: none;
+  }
+}
+
+/* üstünlüklər */
+#account .club-perks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 16px 16px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  b {
+    display: block;
+    margin-top: 12px;
+    font-size: 14.5px;
+    color: #fff;
+  }
+
+  b + span {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+#account .club-perk-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--c-gold);
+  background: rgba(242, 207, 107, 0.12);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+@media only screen and (max-width: 1399px) {
+  #account .club-perks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #account .club-hero-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #account .club-medal {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #account .club-hero {
+    padding: 26px 18px 22px;
+    border-radius: 20px;
+  }
+
+  #account .club-title {
+    font-size: 24px;
+  }
+
+  #account .club-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #account .club-perks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* #endregion */
+
+/* #region müraciət forması */
+
+#account .club-form-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--c-muted);
+  background: var(--c-surface-soft);
+  border: 1px dashed var(--c-line);
+
+  svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--c-success);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+/* #endregion */
+
+/* #region vəziyyət panelləri (pending / member) */
+
+#account .club-state {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  animation: club-state-in 0.5s var(--ease) both;
+}
+
+@keyframes club-state-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #account .club-state {
+    animation: none;
+  }
+}
+
+#account .club-state-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: #b8862a;
+  background: color-mix(in srgb, var(--c-gold) 22%, transparent);
+
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &.is-success {
+    color: var(--c-success);
+    background: color-mix(in srgb, var(--c-success) 14%, transparent);
+  }
+}
+
+/* addımlar: göndərildi → baxılır → üzvlük */
+#account .club-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: club-step;
+
+  li {
+    position: relative;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--c-line);
+    background: var(--c-surface-soft);
+    counter-increment: club-step;
+
+    b {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--c-ink);
+
+      &::before {
+        content: counter(club-step);
+        display: grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        font-size: 12px;
+        color: var(--c-muted);
+        background: var(--c-surface);
+        border: 1px solid var(--c-line);
+      }
+    }
+
+    span {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--c-muted);
+    }
+  }
+
+  .is-done b::before {
+    content: "✓";
+    color: #fff;
+    border-color: transparent;
+    background: var(--c-success);
+  }
+
+  .is-current {
+    border-color: color-mix(in srgb, var(--c-gold) 60%, transparent);
+    background: color-mix(in srgb, var(--c-gold) 10%, var(--c-surface));
+
+    b::before {
+      color: #1a1204;
+      border-color: transparent;
+      background: var(--c-gold);
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #account .club-state {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  #account .club-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* #endregion */

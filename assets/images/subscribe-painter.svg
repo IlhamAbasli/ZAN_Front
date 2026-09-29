@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 460" fill="none">
+  <!-- ZAN — fırça tutan boya ustası (subscribe bölməsi) -->
+  <defs>
+    <linearGradient id="paint" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e3243d"/>
+      <stop offset="1" stop-color="#a71930"/>
+    </linearGradient>
+    <linearGradient id="overall" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#557aa3"/>
+      <stop offset="1" stop-color="#3b5a80"/>
+    </linearGradient>
+    <linearGradient id="bucket" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f4f5f7"/>
+      <stop offset="1" stop-color="#c9ced6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- yer kölgəsi -->
+  <ellipse cx="170" cy="444" rx="112" ry="10" fill="#0d1520" opacity=".14"/>
+
+  <!-- arxa ayaq -->
+  <path d="M196 246 L204 330 L210 420" stroke="#324d70" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M190 420 h26 q18 0 22 16 v4 h-52 z" fill="#1d2a3a"/>
+  <rect x="188" y="436" width="52" height="6" rx="3" fill="#0d1520"/>
+
+  <!-- ön ayaq -->
+  <path d="M158 246 L150 330 L142 420" stroke="url(#overall)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M123 400 h40" stroke="#2f4868" stroke-width="7" stroke-linecap="round"/>
+  <path d="M118 420 h32 q6 0 8 6 v10 h-62 q0 -16 22 -16 z" fill="#1d2a3a"/>
+  <rect x="94" y="436" width="66" height="6" rx="3" fill="#0d1520"/>
+
+  <!-- boya vedrəsi -->
+  <path d="M214 372 L270 372 L264 440 L220 440 Z" fill="url(#bucket)"/>
+  <!-- brend loqosu (Loqo silver pdf-1.png, 160px-ə kiçildilib; <img> içində xarici fayl yüklənmir) -->
+  <image x="223" y="398" width="38" height="30" preserveAspectRatio="xMidYMid meet" href="data:image/webp;base64,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"/>
+  <path d="M252 374 q3 14 0 22 q-3 5 -6 0 q-2 -8 1 -22 z" fill="#c9142c"/>
+  <ellipse cx="242" cy="372" rx="28" ry="7" fill="#b3bac4"/>
+  <ellipse cx="242" cy="372" rx="23" ry="4.6" fill="#c9142c"/>
+  <path d="M215 372 q27 -40 54 0" stroke="#55606c" stroke-width="3" fill="none"/>
+
+  <!-- sağ qol (aşağı) -->
+  <path d="M222 132 L234 178" stroke="#e0b64f" stroke-width="28" stroke-linecap="round"/>
+  <path d="M234 178 L238 232" stroke="#c68a62" stroke-width="17" stroke-linecap="round"/>
+  <circle cx="238" cy="238" r="11" fill="#b77a55"/>
+
+  <!-- köynək -->
+  <path d="M136 126 Q178 112 222 126 L228 236 L132 236 Z" fill="#f2cf6b"/>
+
+  <!-- kombinezon -->
+  <path d="M146 168 L212 168 L218 252 Q180 262 140 252 Z" fill="url(#overall)"/>
+  <path d="M152 170 L150 130" stroke="#557aa3" stroke-width="9" stroke-linecap="round"/>
+  <path d="M206 170 L210 130" stroke="#3b5a80" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="152" cy="170" r="4" fill="#f2cf6b"/>
+  <circle cx="206" cy="170" r="4" fill="#f2cf6b"/>
+  <rect x="164" y="182" width="30" height="24" rx="4" fill="#2f4868"/>
+  <path d="M170 182 v-10" stroke="#55606c" stroke-width="3" stroke-linecap="round"/>
+  <path d="M177 182 v-14" stroke="#c98a3d" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- kombinezondakı boya ləkələri -->
+  <circle cx="150" cy="300" r="6" fill="#c9142c"/>
+  <circle cx="160" cy="312" r="3" fill="#c9142c"/>
+  <circle cx="141" cy="350" r="4" fill="#fff"/>
+  <circle cx="206" cy="292" r="5" fill="#f2cf6b"/>
+  <circle cx="197" cy="226" r="4" fill="#c9142c"/>
+  <circle cx="204" cy="236" r="2.5" fill="#fff"/>
+  <path d="M146 222 q10 -6 18 2" stroke="#c9142c" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- boyun və baş -->
+  <rect x="170" y="98" width="20" height="26" rx="6" fill="#b77a55"/>
+  <path d="M164 122 q16 12 32 0" stroke="#c99a30" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="206" cy="76" rx="6" ry="8" fill="#b77a55"/>
+  <ellipse cx="180" cy="74" rx="26" ry="29" fill="#c68a62"/>
+  <path d="M198 56 Q213 62 211 84 Q208 97 199 100 Q205 80 194 60 Z" fill="#2a1d17"/>
+  <!-- üz: sola baxır -->
+  <path d="M156 78 q-6 4 -2 9 q3 2 6 0" fill="#b77a55"/>
+  <ellipse cx="168" cy="72" rx="3" ry="3.6" fill="#1d2a3a"/>
+  <path d="M162 63 q6 -4 12 -1" stroke="#2a1d17" stroke-width="3" stroke-linecap="round"/>
+  <path d="M164 91 q7 5 14 0" stroke="#7a3f2a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="182" cy="84" r="5" fill="#e0796a" opacity=".45"/>
+  <circle cx="189" cy="70" r="2.6" fill="#c9142c"/>
+
+  <!-- papaq -->
+  <path d="M152 60 Q154 30 182 30 Q210 30 208 62 Z" fill="#c9142c"/>
+  <path d="M154 56 L124 62 Q120 68 128 68 L160 64 Z" fill="#a71930"/>
+  <path d="M152 60 L208 62" stroke="#a71930" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="186" cy="44" r="6" fill="#f2cf6b"/>
+  <path d="M183.5 41.5 h5 l-5 5 h5" stroke="#a71930" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- sol qol (qalxmış) -->
+  <path d="M146 134 L108 132" stroke="#f2cf6b" stroke-width="28" stroke-linecap="round"/>
+  <path d="M104 132 L84 90" stroke="#c68a62" stroke-width="17" stroke-linecap="round"/>
+
+  <!-- fırça -->
+  <path d="M94 112 L60 46" stroke="#c98a3d" stroke-width="8" stroke-linecap="round"/>
+  <path d="M94 112 L78 81" stroke="#a86d2a" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+  <path d="M61 48 L53 32" stroke="#aab2bc" stroke-width="14" stroke-linecap="butt"/>
+  <path d="M60.5 33 L47 40 L33 14 Q38 4 42 6 Q48 4 49 8 Z" fill="url(#paint)"/>
+  <path d="M43 30 q6 2 6 9 q1 9 -2 13 q-4 4 -6 -2 q-1 -8 2 -20 z" fill="#b8162e"/>
+  <path d="M46 26 L38 10" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".45"/>
+  <!-- əl fırçanı tutur -->
+  <circle cx="82" cy="86" r="11" fill="#c68a62"/>
+  <path d="M73 82 q9 -4 16 2" stroke="#a96f4c" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M74 89 q8 -4 15 1" stroke="#a96f4c" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

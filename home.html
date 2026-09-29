@@ -1,0 +1,2789 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZAN Boya</title>
+    <link rel="icon" href="./assets/icons/ZAN_icon.ico" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.css"
+      integrity="sha512-o7Knr4VAyVWuQ+zWMXH8bbv8zhp2EAQQKSMTiM7S6KjoK5MXagmNbVhUdmojS94zr3cCIERxQyEOoqSdSk2bLA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./assets/sass/site/site.css" />
+    <link rel="stylesheet" href="./assets/sass/home/home.css" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("zan-theme");
+          if (saved === "dark" || saved === "light") {
+            document.documentElement.setAttribute("data-theme", saved);
+          }
+        } catch (e) {
+          /* localStorage bağlıdırsa sistem seçimi ilə davam edirik */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- #region preloader — site.js → #region preloader -->
+    <div id="preloader" class="preloader" role="status" aria-live="polite">
+      <div class="preloader-inner">
+        <div class="preloader-mark" aria-hidden="true">
+          <span class="preloader-ring"></span>
+          <img
+            src="./assets/images/Loqo silver pdf-1.png"
+            alt=""
+            width="636"
+            height="502"
+          />
+        </div>
+        <div class="preloader-bar" aria-hidden="true"><span></span></div>
+        <span class="visually-hidden">Səhifə yüklənir…</span>
+      </div>
+    </div>
+    <!-- #endregion -->
+
+    <!-- klaviatura ilə gəzənlər üçün: header-i keçib birbaşa məzmuna -->
+    <a class="skip-link" href="#main">Əsas məzmuna keç</a>
+
+    <!-- #region header -->
+    <header class="site-header">
+      <!-- #region header-top — çatdırılma qeydi, mövzu, dil -->
+      <div id="header-top" class="d-none d-sm-block">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="left-side">
+                <span class="icon-badge">
+                  <img
+                    src="./assets/icons/truck.svg"
+                    alt=""
+                    width="22"
+                    height="19"
+                  />
+                </span>
+                <p>Ölkənin dörd bir yanına sürətli çatdırılma</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="right-side">
+                <ul>
+                  <li>
+                    <button
+                      type="button"
+                      class="theme-toggle"
+                      aria-label="Tünd rejim"
+                    >
+                      <span class="theme-toggle-icon" aria-hidden="true">
+                        <svg
+                          class="theme-icon-sun"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="4.2"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          />
+                          <path
+                            d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                        <svg
+                          class="theme-icon-moon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M20.5 13.4A8.6 8.6 0 0 1 10.6 3.5a8.6 8.6 0 1 0 9.9 9.9z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span class="theme-toggle-label">Tünd rejim</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="content"
+                      data-disclosure
+                      aria-expanded="false"
+                      aria-controls="language-menu"
+                    >
+                      AZ
+                      <img
+                        src="./assets/icons/AZ.png"
+                        alt=""
+                        width="20"
+                        height="20"
+                      />
+                      <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" id="language-menu">
+                      <ul>
+                        <li>
+                          <a href="#" lang="en" hreflang="en">
+                            EN
+                            <img
+                              src="./assets/icons/EN.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="ru" hreflang="ru">
+                            RU
+                            <img
+                              src="./assets/icons/RU.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="tr" hreflang="tr">
+                            TR
+                            <img
+                              src="./assets/icons/TR.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" lang="zh" hreflang="zh">
+                            CN
+                            <img
+                              src="./assets/icons/CN.png"
+                              alt=""
+                              width="20"
+                              height="20"
+                            />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-mid — loqo, axtarış, kabinet, səbət -->
+      <div id="header-mid">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-6 col-lg-2">
+              <div class="logo">
+                <a href="home.html">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/Loqo silver pdf-1.png"
+                    alt="ZAN Boya"
+                    width="636"
+                    height="502"
+                  />
+                </a>
+                <div class="border-line" aria-hidden="true"></div>
+                <a href="home.html" tabindex="-1" aria-hidden="true">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/zan main icon.jpeg"
+                    alt=""
+                    width="523"
+                    height="523"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="d-none d-lg-block col-lg-6">
+              <form
+                class="search-area"
+                role="search"
+                action="shop.html"
+                method="get"
+              >
+                <div class="content">
+                  <label class="visually-hidden" for="product-search"
+                    >Məhsul axtarışı</label
+                  >
+                  <input
+                    id="product-search"
+                    type="search"
+                    name="q"
+                    autocomplete="off"
+                    placeholder="Məhsul axtarışı..."
+                  />
+                  <div class="line" aria-hidden="true"></div>
+                  <!--
+                    Kateqoriya formanın öz sahəsidir: seçiləndə axtarış yalnız həmin
+                    kateqoriyada aparılır → shop.html?q=...&category=slug (site.js →
+                    header-search). value = kateqoriyanın slug-ı (shop.html filtrləri ilə eyni).
+                    TODO (backend): kateqoriyalar bazadan çəkilir; cari kateqoriyaya checked yazılır.
+                  -->
+                  <div class="selection">
+                    <button
+                      type="button"
+                      class="selector"
+                      data-disclosure
+                      aria-expanded="false"
+                      aria-controls="search-category-menu"
+                    >
+                      <span data-search-category-label>Kateqoriyalar</span>
+                      <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="menu" id="search-category-menu">
+                      <ul>
+                        <li>Kateqoriya seçin</li>
+                        <li>
+                          <label class="search-cat">
+                            <input
+                              type="radio"
+                              name="category"
+                              value=""
+                              checked
+                            />
+                            <span>Bütün kateqoriyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input
+                              type="radio"
+                              name="category"
+                              value="su-esasli-boyalar"
+                            />
+                            <span>Su əsaslı boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input
+                              type="radio"
+                              name="category"
+                              value="sintetik-boyalar"
+                            />
+                            <span>Sintetik boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input
+                              type="radio"
+                              name="category"
+                              value="sellulozik-boyalar"
+                            />
+                            <span>Sellülozik boyalar</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input
+                              type="radio"
+                              name="category"
+                              value="divar-kagizlari"
+                            />
+                            <span>Divar kağızları</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="search-cat">
+                            <input
+                              type="radio"
+                              name="category"
+                              value="yapisdiricilar"
+                            />
+                            <span>Yapışdırıcılar</span>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button type="submit" class="search-icon">
+                    <img
+                      src="./assets/icons/search-icon.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                    />
+                    <span class="visually-hidden">Axtar</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="d-none d-lg-block col-lg-2">
+              <div class="account">
+                <a href="login.html" data-account-link>
+                  <div class="login-icon">
+                    <img
+                      src="./assets/icons/login-icon.svg"
+                      alt=""
+                      width="17"
+                      height="21"
+                    />
+                  </div>
+                  <div class="content d-lg-none d-xl-block">
+                    <p>Şəxsi kabinet</p>
+                  </div>
+                  <span class="visually-hidden d-xl-none">Şəxsi kabinet</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-2">
+              <div class="actions">
+                <a href="wishlist.html" class="wishlist d-none d-lg-flex">
+                  <img
+                    src="./assets/icons/wishlist-icon.svg"
+                    alt=""
+                    width="22"
+                    height="20"
+                  />
+                  <span class="wishlist-count">0</span>
+                  <span class="visually-hidden">məhsul sevimlilərdə</span>
+                </a>
+                <button
+                  type="button"
+                  class="cart"
+                  aria-controls="mini-cart"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    src="./assets/icons/cart-icon.svg"
+                    alt=""
+                    width="21"
+                    height="22"
+                  />
+                  <span class="cart-count">0</span>
+                  <span class="visually-hidden">məhsul səbətdə</span>
+                </button>
+                <button
+                  type="button"
+                  class="bars d-lg-none"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon (2).svg"
+                    alt=""
+                    width="30"
+                    height="16"
+                  />
+                  <span class="visually-hidden">Menyunu aç</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-sticky — 200px scroll-dan sonra görünür (site.js → scroll-state) -->
+      <div id="header-sticky">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-6 col-sm-3 col-xl-2">
+              <div class="logo">
+                <a href="home.html">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/Loqo silver pdf-1.png"
+                    alt="ZAN Boya"
+                    width="636"
+                    height="502"
+                  />
+                </a>
+                <div class="border-line" aria-hidden="true"></div>
+                <a href="home.html" tabindex="-1" aria-hidden="true">
+                  <img
+                    class="logo-3d-image"
+                    src="./assets/images/zan main icon.jpeg"
+                    alt=""
+                    width="523"
+                    height="523"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="d-none d-sm-block col-sm-7 col-xl-8">
+              <nav class="main-nav" aria-label="Sabit başlıq naviqasiyası">
+                <ul>
+                  <li>
+                    <a href="home.html" aria-current="page">Əsas səhifə</a>
+                  </li>
+                  <li><a href="about.html">Haqqımızda</a></li>
+                  <li><a href="shop.html">Məhsullar</a></li>
+                  <li><a href="contact.html">Bizimlə əlaqə</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-6 col-sm-2 col-xl-2">
+              <div class="actions">
+                <a href="wishlist.html" class="wishlist d-none d-lg-flex">
+                  <img
+                    src="./assets/icons/wishlist-icon.svg"
+                    alt=""
+                    width="22"
+                    height="20"
+                  />
+                  <span class="wishlist-count">0</span>
+                  <span class="visually-hidden">məhsul sevimlilərdə</span>
+                </a>
+                <button
+                  type="button"
+                  class="cart"
+                  aria-controls="mini-cart"
+                  aria-haspopup="dialog"
+                >
+                  <img
+                    src="./assets/icons/cart-icon.svg"
+                    alt=""
+                    width="21"
+                    height="22"
+                  />
+                  <span class="cart-count">0</span>
+                  <span class="visually-hidden">məhsul səbətdə</span>
+                </button>
+                <button
+                  type="button"
+                  class="bars d-lg-none"
+                  aria-expanded="false"
+                  aria-controls="mobile-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon (2).svg"
+                    alt=""
+                    width="30"
+                    height="16"
+                  />
+                  <span class="visually-hidden">Menyunu aç</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region header-bottom — kataloq, naviqasiya, qaynar xətt (yalnız lg+) -->
+      <div id="header-bottom" class="d-none d-lg-block">
+        <div class="container-main">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="all-categories">
+                <button
+                  type="button"
+                  class="all-categories-toggle"
+                  data-disclosure
+                  aria-expanded="false"
+                  aria-controls="catalog-menu"
+                >
+                  <img
+                    src="./assets/icons/bars-icon.svg"
+                    alt=""
+                    width="18"
+                    height="14"
+                  />
+                  <span>Kataloq</span>
+                  <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+                </button>
+
+                <div class="categories" id="catalog-menu">
+                  <ul>
+                    <li>
+                      <a href="shop.html?category=su-esasli-boyalar"
+                        ><img
+                          src="./assets/images/silan.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Su əsaslı boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                    <li>
+                      <a href="shop.html?category=sellulozik-boyalar"
+                        ><img
+                          src="./assets/images/lux parlaq.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Sellülozik boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                    <li>
+                      <a href="shop.html?category=sintetik-boyalar"
+                        ><img
+                          src="./assets/images/sin parlaq boya.png"
+                          alt=""
+                          width="50"
+                          height="50"
+                        />Sintetik boyalar</a
+                      ><i
+                        class="fa-solid fa-chevron-right"
+                        aria-hidden="true"
+                      ></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <nav class="main-nav" aria-label="Əsas naviqasiya">
+                <ul>
+                  <li>
+                    <a href="home.html" aria-current="page">Əsas səhifə</a>
+                  </li>
+                  <li><a href="about.html">Haqqımızda</a></li>
+                  <li><a href="shop.html">Məhsullar</a></li>
+                  <li><a href="contact.html">Bizimlə əlaqə</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-lg-3">
+              <div class="contact">
+                <!-- ikon inline SVG-dir: rəngi hero slaydı ilə dəyişir (--hdr-accent) -->
+                <span class="icon-badge" aria-hidden="true">
+                  <svg
+                    width="21"
+                    height="20"
+                    viewBox="0 0 21 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M1.97 3.25C2.27 2.75 3.92.95 5.1 1c.35.03.66.24.92.49.58.57 2.24 2.71 2.34 3.16.23 1.11-1.09 1.75-.69 2.86 1.03 2.52 2.8 4.3 5.32 5.32 1.12.41 1.75-.91 2.86-.68.45.09 2.6 1.76 3.16 2.34.25.25.46.56.49.92.04 1.24-1.88 2.91-2.25 3.13-.88.63-2.03.62-3.43-.03C9.91 16.87 3.66 10.74 2 6.68c-.63-1.39-.68-2.55-.03-3.43Z"
+                    />
+                    <path d="M12.94 1.24a7.3 7.3 0 0 1 6.67 6.66" />
+                    <path d="M12.94 4.59a3.9 3.9 0 0 1 3.31 3.32" />
+                  </svg>
+                </span>
+                <div class="number">
+                  <p>Qaynar xətt:</p>
+                  <a href="tel:+994512065054">+(994) 51 206 50 54</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region mobile-menu — lg-dən kiçik ekranlar (site.js → mobile-menu) -->
+      <div
+        id="mobile-menu"
+        class="mobile-menu d-lg-none"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobil menyu"
+      >
+        <div class="row">
+          <div class="col-6">
+            <div class="logo">
+              <img
+                src="./assets/images/Loqo silver pdf-1.png"
+                alt="ZAN Boya"
+                width="636"
+                height="502"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="menu-close">
+              <button type="button" class="menu-close-btn">
+                <img
+                  src="./assets/icons/xmark.svg"
+                  alt=""
+                  width="12"
+                  height="12"
+                />
+                <span class="visually-hidden">Menyunu bağla</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <form
+              class="mobile-search"
+              role="search"
+              action="shop.html"
+              method="get"
+            >
+              <label class="visually-hidden" for="mobile-product-search"
+                >Məhsul axtarışı</label
+              >
+              <input
+                id="mobile-product-search"
+                type="search"
+                name="q"
+                autocomplete="off"
+                placeholder="Məhsul axtarışı..."
+              />
+              <button type="submit">
+                <img
+                  src="./assets/icons/search-icon.svg"
+                  alt=""
+                  width="18"
+                  height="18"
+                />
+                <span class="visually-hidden">Axtar</span>
+              </button>
+            </form>
+          </div>
+          <div class="col-12">
+            <div class="all-categories">
+              <button
+                type="button"
+                class="all-categories-toggle"
+                data-disclosure
+                aria-expanded="false"
+                aria-controls="mobile-catalog-menu"
+              >
+                <span
+                  ><i class="fa-solid fa-bars" aria-hidden="true"></i
+                  >Kataloq</span
+                >
+                <i class="fa-solid fa-angle-down" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="categories" id="mobile-catalog-menu">
+              <ul>
+                <li>
+                  <a href="shop.html?category=su-esasli-boyalar"
+                    ><img
+                      src="./assets/images/silan.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Su əsaslı boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <a href="shop.html?category=sellulozik-boyalar"
+                    ><img
+                      src="./assets/images/lux parlaq.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Sellülozik boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+                <li>
+                  <a href="shop.html?category=sintetik-boyalar"
+                    ><img
+                      src="./assets/images/sin parlaq boya.png"
+                      alt=""
+                      width="50"
+                      height="50"
+                    />Sintetik boyalar</a
+                  ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <nav class="main-nav" aria-label="Mobil naviqasiya">
+              <ul>
+                <li>
+                  <a href="home.html" aria-current="page">Əsas səhifə</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="about.html">Haqqımızda</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="shop.html">Məhsullar</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+                <li>
+                  <a href="contact.html">Bizimlə əlaqə</a>
+                  <div class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 8 14" fill="none">
+                      <path
+                        d="M1 13L7 7L1 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-12">
+            <div class="mobile-quick-links">
+              <a href="login.html" data-account-link>
+                <img
+                  src="./assets/icons/login-icon.svg"
+                  alt=""
+                  width="17"
+                  height="21"
+                />
+                <span>Şəxsi kabinet</span>
+              </a>
+              <a href="wishlist.html">
+                <img
+                  src="./assets/icons/wishlist-icon.svg"
+                  alt=""
+                  width="22"
+                  height="20"
+                />
+                <span>Sevimlilər</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mobile-languages">
+              <span class="mobile-section-title" id="mobile-lang-title"
+                >Dil</span
+              >
+              <div
+                class="mobile-lang-options"
+                role="group"
+                aria-labelledby="mobile-lang-title"
+              >
+                <a href="#" class="is-active" lang="az" hreflang="az">
+                  <img
+                    src="./assets/icons/AZ.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />AZ
+                </a>
+                <a href="#" lang="en" hreflang="en">
+                  <img
+                    src="./assets/icons/EN.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />EN
+                </a>
+                <a href="#" lang="ru" hreflang="ru">
+                  <img
+                    src="./assets/icons/RU.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />RU
+                </a>
+                <a href="#" lang="tr" hreflang="tr">
+                  <img
+                    src="./assets/icons/TR.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />TR
+                </a>
+                <a href="#" lang="zh" hreflang="zh">
+                  <img
+                    src="./assets/icons/CN.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />CN
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mobile-theme">
+              <button
+                type="button"
+                class="theme-toggle"
+                aria-label="Tünd rejim"
+              >
+                <span class="theme-toggle-icon" aria-hidden="true">
+                  <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="4.2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M20.5 13.4A8.6 8.6 0 0 1 10.6 3.5a8.6 8.6 0 1 0 9.9 9.9z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="theme-toggle-label">Tünd rejim</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact-us">
+              <a href="contact.html">Əlaqə</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- menyu açıq olanda arxa fon; klik menyunu bağlayır -->
+      <div class="menu-backdrop d-lg-none"></div>
+      <!-- #endregion -->
+    </header>
+    <!-- #endregion -->
+
+    <!-- #region mini-cart — sağdan açılan səbət paneli, stil: components/_mini-cart.scss, JS: shop.js → mini-cart -->
+    <aside
+      class="offcanvas offcanvas-end mini-cart is-empty"
+      tabindex="-1"
+      id="mini-cart"
+      aria-labelledby="mini-cart-title"
+    >
+      <div class="mc-head">
+        <h2 class="mc-title" id="mini-cart-title">
+          Səbət <span class="mc-count">0</span>
+        </h2>
+        <button
+          type="button"
+          class="mc-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Səbəti bağla"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mc-body">
+        <!-- məhsul sətirləri JS ilə çəkilir (shop.js → renderMiniCart) -->
+        <ul class="mc-list"></ul>
+
+        <div class="mc-empty">
+          <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <ellipse
+              cx="60"
+              cy="104"
+              rx="38"
+              ry="6"
+              fill="currentColor"
+              opacity=".08"
+            />
+            <path
+              d="M30 42h60l-6 58H36z"
+              fill="var(--c-surface-soft)"
+              stroke="var(--c-line)"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="60"
+              cy="42"
+              rx="30"
+              ry="8"
+              fill="var(--c-surface)"
+              stroke="var(--c-line)"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="60"
+              cy="42"
+              rx="24"
+              ry="5"
+              fill="#c9142c"
+              opacity=".85"
+            />
+            <path
+              d="M72 44c2 8 1 16-2 18-3 1-4-8-3-17"
+              fill="#c9142c"
+              opacity=".85"
+            />
+            <path
+              d="M32 40c4-22 52-22 56 0"
+              stroke="var(--c-muted-soft)"
+              stroke-width="3"
+              fill="none"
+            />
+          </svg>
+          <h3>Səbətiniz boşdur</h3>
+          <p>Bəyəndiyiniz boyaları səbətə atın — hamısı burada toplanacaq.</p>
+          <a class="mc-btn" href="shop.html">Məhsullara bax</a>
+        </div>
+      </div>
+
+      <div class="mc-foot">
+        <div class="mc-total">
+          <span>Cəmi</span>
+          <b class="mc-total-value">0,00 ₼</b>
+        </div>
+        <p class="mc-note">Çatdırılma sifarişi rəsmiləşdirərkən hesablanır.</p>
+        <div class="mc-actions">
+          <a class="mc-btn is-ghost" href="cart.html">Səbətə keç</a>
+          <a class="mc-btn" href="checkout.html">Sifariş et</a>
+        </div>
+      </div>
+    </aside>
+    <!-- #endregion -->
+
+    <!-- #region main — səhifəyə məxsus məzmun (MVC: Views/Home/Index.cshtml) -->
+    <main id="main">
+      <!-- #region hero-slider — home.js → hero-slider -->
+      <section id="slider-area" aria-label="Əsas slayder">
+        <div class="hero-bg" aria-hidden="true">
+          <span class="hero-blob hero-blob-1"></span>
+          <span class="hero-blob hero-blob-2"></span>
+          <span class="hero-mesh"></span>
+        </div>
+
+        <div class="container-main hero-container">
+          <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+              <!-- slide 1 -->
+              <div
+                class="swiper-slide hero-slide"
+                data-accent="#f2cf6b"
+                data-theme="red"
+              >
+                <div class="hero-layout">
+                  <div class="hero-copy">
+                    <span class="hero-chip"
+                      ><i aria-hidden="true"></i>Yüksək keyfiyyəti ilə
+                      seçilən</span
+                    >
+                    <h1 class="hero-title">
+                      Ən qabaqcıl texnologiyalar ilə hazırlanmış
+                      <em>ZAN boyaları</em>
+                    </h1>
+                    <p class="hero-text">
+                      Qısa zamanda ustaların sevimlisinə çevrilən ZAN boyaları
+                      ilə siz də evinizi gözəlləşdirin.
+                    </p>
+                    <div class="hero-actions">
+                      <a class="hero-btn" href="shop.html">
+                        <span>Bütün məhsullar</span>
+                        <svg
+                          class="hero-arrow"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 12h13M12 5l7 7-7 7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                      <a class="hero-link" href="#product-categories"
+                        >Kateqoriyalara bax</a
+                      >
+                    </div>
+                    <ul class="hero-facts">
+                      <li>30+ il təcrübə</li>
+                      <li>100% orijinal istehsal</li>
+                      <li>Ödənişsiz çatdırılma</li>
+                    </ul>
+                  </div>
+
+                  <div class="hero-visual">
+                    <span class="hero-glow" aria-hidden="true"></span>
+                    <span class="hero-ring" aria-hidden="true"></span>
+                    <div class="hero-stage">
+                      <img
+                        src="./assets/images/slider-img-1.png"
+                        alt="ZAN sintetik və akrilik boya çeşidləri"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- slide 2 -->
+              <div
+                class="swiper-slide hero-slide"
+                data-accent="#8fe3b0"
+                data-theme="teal"
+              >
+                <div class="hero-layout">
+                  <div class="hero-copy">
+                    <span class="hero-chip"
+                      ><i aria-hidden="true"></i>Uzunmüddətli qoruma və
+                      estetika</span
+                    >
+                    <h1 class="hero-title">
+                      Divarlarınızın parlaqlığını geri qaytaran
+                      <em>DivoFix &amp; EkoFix</em>
+                    </h1>
+                    <p class="hero-text">
+                      Yüksək örtücülük, sürətli quruma və uzun ömürlü parlaqlıq
+                      — hər otaq üçün doğru seçim.
+                    </p>
+                    <div class="hero-actions">
+                      <a class="hero-btn" href="shop.html">
+                        <span>Məhsulları kəşf et</span>
+                        <svg
+                          class="hero-arrow"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 12h13M12 5l7 7-7 7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                      <a class="hero-link" href="#product-categories"
+                        >Kateqoriyalara bax</a
+                      >
+                    </div>
+                    <ul class="hero-facts">
+                      <li>UV şüalarına davamlı</li>
+                      <li>Sürətli quruma</li>
+                      <li>Maksimum örtücülük</li>
+                    </ul>
+                  </div>
+
+                  <div class="hero-visual">
+                    <span class="hero-glow" aria-hidden="true"></span>
+                    <span class="hero-ring" aria-hidden="true"></span>
+                    <div class="hero-stage">
+                      <img
+                        src="./assets/images/slider-img-2.png"
+                        alt="DivoFix və EkoFix parlaq boya çeşidləri"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- slide 3 -->
+              <div
+                class="swiper-slide hero-slide"
+                data-accent="#e8d29a"
+                data-theme="navy"
+              >
+                <div class="hero-layout">
+                  <div class="hero-copy">
+                    <span class="hero-chip"
+                      ><i aria-hidden="true"></i>30 ildən çox təcrübə</span
+                    >
+                    <h1 class="hero-title">
+                      İnteryerinizi yeniləyən premium
+                      <em>ZAN divar kağızları</em>
+                    </h1>
+                    <p class="hero-text">
+                      Zəngin naxış və rəng çeşidləri ilə evinizə yeni bir
+                      xarakter qazandırın.
+                    </p>
+                    <div class="hero-actions">
+                      <a class="hero-btn" href="shop.html">
+                        <span>Kolleksiyaya bax</span>
+                        <svg
+                          class="hero-arrow"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 12h13M12 5l7 7-7 7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                      <a class="hero-link" href="#product-categories"
+                        >Kateqoriyalara bax</a
+                      >
+                    </div>
+                    <ul class="hero-facts">
+                      <li>Premium keyfiyyət</li>
+                      <li>Geniş naxış seçimi</li>
+                      <li>Asan quraşdırma</li>
+                    </ul>
+                  </div>
+
+                  <div class="hero-visual">
+                    <span class="hero-glow" aria-hidden="true"></span>
+                    <span class="hero-ring" aria-hidden="true"></span>
+                    <div class="hero-stage">
+                      <img
+                        class="is-card"
+                        src="./assets/images/slider-4.png"
+                        alt="ZAN yüksək keyfiyyətli divar kağızları"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-controls">
+            <div class="hero-count">
+              <span class="hero-count-current">01</span
+              ><span class="hero-count-total">/03</span>
+            </div>
+            <div class="hero-bullets"></div>
+            <div class="hero-nav">
+              <button
+                type="button"
+                class="hero-nav-btn hero-prev"
+                aria-label="Əvvəlki slayd"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M15 5l-7 7 7 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="hero-nav-btn hero-next"
+                aria-label="Növbəti slayd"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 5l7 7-7 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region product-categories — home.js → category-slider -->
+      <section id="product-categories" aria-labelledby="cat-title">
+        <div class="cat-bg" aria-hidden="true">
+          <span class="cat-blob cat-blob-1"></span>
+          <span class="cat-blob cat-blob-2"></span>
+        </div>
+
+        <div class="container-main">
+          <div class="cat-head">
+            <div class="cat-heading">
+              <span class="cat-chip"><i></i>Kateqoriyalar</span>
+              <h2 class="cat-title" id="cat-title">
+                Rəng dünyasını <em>kəşf edin</em>
+              </h2>
+              <p class="cat-text">
+                Hər səth üçün uyğun həll — ustaların seçdiyi ZAN
+                kolleksiyasından.
+              </p>
+            </div>
+
+            <div class="cat-nav">
+              <button
+                type="button"
+                class="cat-nav-btn cat-prev"
+                aria-label="Əvvəlki kateqoriyalar"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M15 5l-7 7 7 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="cat-nav-btn cat-next"
+                aria-label="Növbəti kateqoriyalar"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 5l7 7-7 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="swiper cat-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a
+                  class="cat-card"
+                  href="shop.html?category=sintetik-boyalar"
+                  style="--cat-accent: #f2cf6b"
+                >
+                  <span class="cat-card-glow" aria-hidden="true"></span>
+                  <span class="cat-index" aria-hidden="true">01</span>
+                  <span class="cat-thumb">
+                    <img
+                      src="./assets/images/slider-1.png"
+                      alt="Sintetik boyalar"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="cat-body">
+                    <h3 class="cat-name">Sintetik boyalar</h3>
+                    <span class="cat-desc"
+                      >Uzunömürlü, parlaq bitişli örtük</span
+                    >
+                  </span>
+                  <span class="cat-cta">
+                    Məhsullara bax
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M5 12h13M12 5l7 7-7 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  class="cat-card"
+                  href="shop.html?category=sellulozik-boyalar"
+                  style="--cat-accent: #8fe3b0"
+                >
+                  <span class="cat-card-glow" aria-hidden="true"></span>
+                  <span class="cat-index" aria-hidden="true">02</span>
+                  <span class="cat-thumb">
+                    <img
+                      src="./assets/images/slider-2.png"
+                      alt="Sellülozik boyalar"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="cat-body">
+                    <h3 class="cat-name">Sellülozik boyalar</h3>
+                    <span class="cat-desc">Sürətli quruma, peşəkar nəticə</span>
+                  </span>
+                  <span class="cat-cta">
+                    Məhsullara bax
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M5 12h13M12 5l7 7-7 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  class="cat-card"
+                  href="shop.html?category=su-esasli-boyalar"
+                  style="--cat-accent: #86c7f0"
+                >
+                  <span class="cat-card-glow" aria-hidden="true"></span>
+                  <span class="cat-index" aria-hidden="true">03</span>
+                  <span class="cat-thumb">
+                    <img
+                      src="./assets/images/slider-5.png"
+                      alt="Su əsaslı boyalar"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="cat-body">
+                    <h3 class="cat-name">Su əsaslı boyalar</h3>
+                    <span class="cat-desc">İysiz və ekoloji təmiz formula</span>
+                  </span>
+                  <span class="cat-cta">
+                    Məhsullara bax
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M5 12h13M12 5l7 7-7 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  class="cat-card"
+                  href="shop.html?category=divar-kagizlari"
+                  style="--cat-accent: #e8d29a"
+                >
+                  <span class="cat-card-glow" aria-hidden="true"></span>
+                  <span class="cat-index" aria-hidden="true">04</span>
+                  <span class="cat-thumb">
+                    <img
+                      src="./assets/images/slider-4.png"
+                      alt="Premium divar kağızları"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="cat-body">
+                    <h3 class="cat-name">Premium divar kağızları</h3>
+                    <span class="cat-desc">Toxumalı və modern dizaynlar</span>
+                  </span>
+                  <span class="cat-cta">
+                    Məhsullara bax
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M5 12h13M12 5l7 7-7 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  class="cat-card"
+                  href="shop.html?category=yapisdiricilar"
+                  style="--cat-accent: #f0a3b1"
+                >
+                  <span class="cat-card-glow" aria-hidden="true"></span>
+                  <span class="cat-index" aria-hidden="true">05</span>
+                  <span class="cat-thumb">
+                    <img
+                      src="./assets/images/slider-3.png"
+                      alt="Yüksək keyfiyyətli yapışdırıcılar"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="cat-body">
+                    <h3 class="cat-name">Yapışdırıcılar</h3>
+                    <span class="cat-desc">Güclü tutuş, təmiz tətbiq</span>
+                  </span>
+                  <span class="cat-cta">
+                    Məhsullara bax
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M5 12h13M12 5l7 7-7 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cat-progress" aria-hidden="true"></div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region features — üstünlüklər -->
+      <section id="features" aria-labelledby="feat-title">
+        <div class="feat-bg" aria-hidden="true">
+          <span class="feat-blob feat-blob-1"></span>
+          <span class="feat-blob feat-blob-2"></span>
+        </div>
+
+        <div class="container-main">
+          <h2 class="visually-hidden" id="feat-title">ZAN üstünlükləri</h2>
+
+          <div class="row row-gap-3">
+            <div class="col-12 col-xl-3 col-sm-6">
+              <article class="feat-card" style="--feat-accent: #f2cf6b">
+                <span class="feat-card-glow" aria-hidden="true"></span>
+                <span class="feat-icon" aria-hidden="true">
+                  <svg viewBox="-1 -1 35 29" fill="none">
+                    <path
+                      d="M10.7222 1H31.5555V19.0556H10.7222V1Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10.7222 7.94446H5.16667L1.00001 12.1111V19.0556H10.7222V7.94446Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M25.3055 26C23.3879 26 21.8333 24.4454 21.8333 22.5278C21.8333 20.6101 23.3879 19.0555 25.3055 19.0555C27.2232 19.0555 28.7778 20.6101 28.7778 22.5278C28.7778 24.4454 27.2232 26 25.3055 26Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.25001 26C5.33235 26 3.77778 24.4454 3.77778 22.5278C3.77778 20.6101 5.33235 19.0555 7.25001 19.0555C9.16766 19.0555 10.7222 20.6101 10.7222 22.5278C10.7222 24.4454 9.16766 26 7.25001 26Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="feat-body">
+                  <h3 class="feat-name">Ödənişsiz çatdırılma</h3>
+                  <span class="feat-desc"
+                    >Ölkədaxili istənilən bölgəyə çatdırılma</span
+                  >
+                </span>
+              </article>
+            </div>
+
+            <div class="col-12 col-xl-3 col-sm-6">
+              <article class="feat-card" style="--feat-accent: #8fe3b0">
+                <span class="feat-card-glow" aria-hidden="true"></span>
+                <span class="feat-icon" aria-hidden="true">
+                  <svg viewBox="-1 -1 23 37" fill="none">
+                    <path
+                      d="M10.3636 1V34"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M17.8636 7H6.61365C5.22126 7 3.8859 7.55312 2.90134 8.53769C1.91677 9.52226 1.36365 10.8576 1.36365 12.25C1.36365 13.6424 1.91677 14.9777 2.90134 15.9623C3.8859 16.9469 5.22126 17.5 6.61365 17.5H14.1136C15.506 17.5 16.8414 18.0531 17.826 19.0377C18.8105 20.0223 19.3636 21.3576 19.3636 22.75C19.3636 24.1424 18.8105 25.4777 17.826 26.4623C16.8414 27.4469 15.506 28 14.1136 28H1.36365"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="feat-body">
+                  <h3 class="feat-name">Geri qaytarma</h3>
+                  <span class="feat-desc"
+                    >Məhsul alındıqdan 30 gün ərzində qaytarma imkanı</span
+                  >
+                </span>
+              </article>
+            </div>
+
+            <div class="col-12 col-xl-3 col-sm-6">
+              <article class="feat-card" style="--feat-accent: #86c7f0">
+                <span class="feat-card-glow" aria-hidden="true"></span>
+                <span class="feat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 31 30" fill="none">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M13.4168 27.1116C14.3017 27.9756 15.7266 27.9651 16.6056 27.0816L17.6885 26.0017C18.5285 25.1632 19.6894 24.6848 20.8728 24.6848H22.4178C23.6687 24.6848 24.6856 23.6678 24.6856 22.4184V20.875C24.6856 19.6736 25.1506 18.5441 25.9995 17.6937L27.0795 16.6122C27.519 16.1713 27.7544 15.5998 27.7529 14.9938C27.7514 14.3894 27.513 13.8209 27.0825 13.3919L26.001 12.309C25.1506 11.4525 24.6856 10.3246 24.6856 9.12318V7.58277C24.6856 6.33184 23.6687 5.3149 22.4178 5.3149H20.8758C19.6744 5.3149 18.545 4.84842 17.6945 4.00397L16.6116 2.91954C15.7101 2.02709 14.2717 2.03159 13.3913 2.91804L12.3128 3.99947C11.4519 4.84992 10.3225 5.3149 9.12553 5.3149H7.58212C6.33269 5.3164 5.31575 6.33334 5.31575 7.58277V9.12018C5.31575 10.3216 4.84927 11.451 4.00332 12.303L2.93839 13.3694C2.92789 13.3814 2.91739 13.3904 2.90689 13.4009C2.02644 14.2874 2.03094 15.7258 2.91739 16.6062L4.00032 17.6892C4.84927 18.5411 5.31575 19.6706 5.31575 20.872V22.4184C5.31575 23.6678 6.33119 24.6848 7.58212 24.6848H9.12253C10.3255 24.6863 11.4549 25.1527 12.3053 26.0002L13.3868 27.0786C13.3958 27.0891 13.4063 27.0996 13.4168 27.1116ZM14.9972 30.0002C13.8468 30.0002 12.6963 29.5652 11.8159 28.6923C11.8039 28.6803 11.7919 28.6683 11.7799 28.6548L10.715 27.5914C10.2905 27.1699 9.72352 26.9359 9.12055 26.9344H7.58164C5.09029 26.9344 3.06541 24.908 3.06541 22.4182V20.8717C3.06541 20.2688 2.82992 19.7033 2.40694 19.2773L1.32851 18.2004C-0.423392 16.4575 -0.444391 13.6197 1.27601 11.8498C1.28951 11.8363 1.30301 11.8228 1.31651 11.8093L2.40844 10.7143C2.82992 10.2899 3.06541 9.72139 3.06541 9.11993V7.58252C3.06541 5.09266 5.09029 3.06628 7.58014 3.06478H9.12505C9.72652 3.06478 10.2935 2.82929 10.724 2.40482L11.7964 1.32938C13.5498 -0.436017 16.4161 -0.445016 18.1845 1.31288L19.281 2.40932C19.7054 2.83079 20.2724 3.06478 20.8754 3.06478H22.4173C24.9086 3.06478 26.935 5.09116 26.935 7.58252V9.12293C26.935 9.72439 27.169 10.2929 27.5935 10.7203L28.6704 11.7988C29.5239 12.6462 29.9978 13.7787 30.0023 14.9861C30.0068 16.1935 29.5404 17.329 28.6899 18.1854L27.5905 19.2818C27.169 19.7063 26.935 20.2718 26.935 20.8747V22.4182C26.935 24.908 24.9086 26.9344 22.4188 26.9344H20.8724C20.2784 26.9344 19.6979 27.1744 19.2765 27.5929L18.1995 28.6698C17.3191 29.5562 16.1581 30.0002 14.9972 30.0002Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.145 19.9811C10.857 19.9811 10.569 19.8716 10.3501 19.6511C9.91058 19.2116 9.91058 18.5006 10.3501 18.0612L18.0596 10.3501C18.4991 9.91064 19.2115 9.91064 19.651 10.3501C20.0905 10.7896 20.0905 11.502 19.651 11.9415L11.94 19.6511C11.721 19.8716 11.433 19.9811 11.145 19.9811Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M18.7544 20.2476C17.925 20.2476 17.247 19.5772 17.247 18.7477C17.247 17.9183 17.9115 17.2478 18.7409 17.2478H18.7544C19.5839 17.2478 20.2543 17.9183 20.2543 18.7477C20.2543 19.5772 19.5839 20.2476 18.7544 20.2476Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.2548 12.748C10.4254 12.748 9.74744 12.0775 9.74744 11.2481C9.74744 10.4186 10.4119 9.74817 11.2413 9.74817H11.2548C12.0843 9.74817 12.7548 10.4186 12.7548 11.2481C12.7548 12.0775 12.0843 12.748 11.2548 12.748Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <span class="feat-body">
+                  <h3 class="feat-name">Münasib qiymət</h3>
+                  <span class="feat-desc"
+                    >Büdcənizə uyğun yüksək keyfiyyətli məhsullar</span
+                  >
+                </span>
+              </article>
+            </div>
+
+            <div class="col-12 col-xl-3 col-sm-6">
+              <article class="feat-card" style="--feat-accent: #f0a3b1">
+                <span class="feat-card-glow" aria-hidden="true"></span>
+                <span class="feat-icon" aria-hidden="true">
+                  <svg viewBox="-1 -1 33 32" fill="none">
+                    <path
+                      d="M1.5 24.3333V15C1.5 11.287 2.975 7.72602 5.60051 5.10051C8.22602 2.475 11.787 1 15.5 1C19.213 1 22.774 2.475 25.3995 5.10051C28.025 7.72602 29.5 11.287 29.5 15V24.3333"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M29.5 25.8889C29.5 26.714 29.1722 27.5053 28.5888 28.0888C28.0053 28.6722 27.214 29 26.3889 29H24.8333C24.0082 29 23.2169 28.6722 22.6335 28.0888C22.05 27.5053 21.7222 26.714 21.7222 25.8889V21.2222C21.7222 20.3971 22.05 19.6058 22.6335 19.0223C23.2169 18.4389 24.0082 18.1111 24.8333 18.1111H29.5V25.8889ZM1.5 25.8889C1.5 26.714 1.82778 27.5053 2.41122 28.0888C2.99467 28.6722 3.78599 29 4.61111 29H6.16667C6.99179 29 7.78311 28.6722 8.36656 28.0888C8.95 27.5053 9.27778 26.714 9.27778 25.8889V21.2222C9.27778 20.3971 8.95 19.6058 8.36656 19.0223C7.78311 18.4389 6.99179 18.1111 6.16667 18.1111H1.5V25.8889Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="feat-body">
+                  <h3 class="feat-name">24/7 Dəstək</h3>
+                  <span class="feat-desc"
+                    >Operatorlarımız daim suallarınızı cavablandırır</span
+                  >
+                </span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region visualizer-promo — rəng vizualizatoruna keçid, stil: pages/home/_visualizer-promo.scss -->
+      <section id="vz-promo" aria-labelledby="vp-title">
+        <div class="container-main">
+          <div class="vp-card">
+            <div class="vp-copy">
+              <span class="vp-eyebrow">
+                <i aria-hidden="true"></i>
+                Yeni · onlayn alət
+              </span>
+              <h2 class="vp-title" id="vp-title">
+                Divarınızın yeni rəngini <em>əvvəlcədən</em> görün
+              </h2>
+              <p class="vp-text">
+                Rəng vizualizatorunda hazır otaqları və ya öz otağınızın şəklini
+                ZAN palitrası ilə rəngləyin, əvvəl və sonrakı görünüşü müqayisə
+                edin, nəticəni yükləyib yaxınlarınızla paylaşın.
+              </p>
+
+              <!-- rənglər divardakı animasiya ilə eyni sırada yanır (--i) -->
+              <ul class="vp-swatches" aria-label="Trend rənglər">
+                <li>
+                  <a
+                    href="visualizer.html?color=G708"
+                    style="--sw: #4f7f73; --i: 0"
+                  >
+                    <span aria-hidden="true"></span>Göygöl
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="visualizer.html?color=T506"
+                    style="--sw: #c0673e; --i: 1"
+                  >
+                    <span aria-hidden="true"></span>Terrakota
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="visualizer.html?color=B805"
+                    style="--sw: #5e8fa8; --i: 2"
+                  >
+                    <span aria-hidden="true"></span>Xəzər dalğası
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="visualizer.html?color=S305"
+                    style="--sw: #d4be94; --i: 3"
+                  >
+                    <span aria-hidden="true"></span>Abşeron sahili
+                  </a>
+                </li>
+              </ul>
+
+              <div class="vp-cta">
+                <a class="vp-btn" href="visualizer.html">
+                  Vizualizatoru aç
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+                <small>Pulsuz · qeydiyyatsız · 100 rəng</small>
+              </div>
+            </div>
+
+            <!-- dekor: rəngi dəyişən otaq (CSS animasiyası, JS yoxdur) -->
+            <a
+              class="vp-art"
+              href="visualizer.html"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 600 420">
+                <defs>
+                  <linearGradient id="vp-l" x1="0" x2="1">
+                    <stop offset="0" stop-color="#000" stop-opacity=".22" />
+                    <stop offset="1" stop-color="#000" stop-opacity=".06" />
+                  </linearGradient>
+                  <linearGradient id="vp-r" x1="1" x2="0">
+                    <stop offset="0" stop-color="#000" stop-opacity=".16" />
+                    <stop offset="1" stop-color="#000" stop-opacity=".04" />
+                  </linearGradient>
+                  <radialGradient id="vp-sun" cx=".3" cy=".35" r=".9">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".28" />
+                    <stop offset="1" stop-color="#fff" stop-opacity="0" />
+                  </radialGradient>
+                  <linearGradient id="vp-floor" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#94643f" />
+                    <stop offset="1" stop-color="#c38e60" />
+                  </linearGradient>
+                  <filter
+                    id="vp-blur"
+                    x="-50%"
+                    y="-50%"
+                    width="200%"
+                    height="200%"
+                  >
+                    <feGaussianBlur stdDeviation="10" />
+                  </filter>
+                </defs>
+                <path fill="#efece6" d="M0 -20H600V-15L490 60H110L0 -15Z" />
+                <path
+                  class="vp-wall"
+                  d="M0 -15L110 60V300L0 364ZM600 -15L490 60V300L600 364Z"
+                />
+                <path class="vp-wall" d="M110 60H490V300H110Z" />
+                <path fill="url(#vp-l)" d="M0 -15L110 60V300L0 364Z" />
+                <path fill="url(#vp-r)" d="M600 -15L490 60V300L600 364Z" />
+                <rect
+                  x="110"
+                  y="60"
+                  width="380"
+                  height="240"
+                  fill="url(#vp-sun)"
+                />
+                <path
+                  fill="url(#vp-floor)"
+                  d="M0 364L110 300H490L600 364V420H0Z"
+                />
+                <path
+                  d="M110 300L20 420M180 300L140 420M250 300L240 420M320 300L330 420M390 300L430 420M460 300L530 420"
+                  stroke="#5e3d25"
+                  stroke-opacity=".3"
+                  stroke-width="2"
+                />
+                <rect x="110" y="293" width="380" height="7" fill="#f4f2ee" />
+                <rect
+                  x="232"
+                  y="104"
+                  width="136"
+                  height="86"
+                  fill="#000"
+                  opacity=".22"
+                  filter="url(#vp-blur)"
+                />
+                <rect x="226" y="96" width="148" height="84" fill="#2a2522" />
+                <rect x="232" y="102" width="136" height="72" fill="#f4f1ea" />
+                <circle cx="276" cy="132" r="15" fill="#c9142c" opacity=".85" />
+                <path d="M232 174v-18q40-26 76-6t60-8v32z" fill="#2f5a55" />
+                <ellipse
+                  cx="300"
+                  cy="296"
+                  rx="140"
+                  ry="26"
+                  fill="#000"
+                  opacity=".26"
+                  filter="url(#vp-blur)"
+                />
+                <rect
+                  x="188"
+                  y="214"
+                  width="224"
+                  height="58"
+                  rx="14"
+                  fill="#56627a"
+                />
+                <rect
+                  x="180"
+                  y="252"
+                  width="240"
+                  height="50"
+                  rx="10"
+                  fill="#465166"
+                />
+                <rect
+                  x="170"
+                  y="232"
+                  width="32"
+                  height="74"
+                  rx="12"
+                  fill="#3d4759"
+                />
+                <rect
+                  x="398"
+                  y="232"
+                  width="32"
+                  height="74"
+                  rx="12"
+                  fill="#3d4759"
+                />
+                <rect
+                  x="212"
+                  y="226"
+                  width="46"
+                  height="36"
+                  rx="10"
+                  fill="#d9b36c"
+                  transform="rotate(-8 235 244)"
+                />
+                <rect
+                  x="344"
+                  y="226"
+                  width="46"
+                  height="36"
+                  rx="10"
+                  fill="#efe9dd"
+                  transform="rotate(7 367 244)"
+                />
+                <path d="M460 170v134" stroke="#2a2522" stroke-width="3" />
+                <ellipse cx="460" cy="305" rx="18" ry="4" fill="#2a2522" />
+                <path d="M438 172l8-32h28l8 32z" fill="#f3e5c6" />
+                <path d="M128 274h34l-4 34h-26z" fill="#b8643f" />
+                <g fill="#4f8a5f">
+                  <ellipse cx="145" cy="232" rx="8" ry="32" />
+                  <ellipse
+                    cx="130"
+                    cy="244"
+                    rx="7"
+                    ry="26"
+                    transform="rotate(-28 130 244)"
+                  />
+                  <ellipse
+                    cx="160"
+                    cy="244"
+                    rx="7"
+                    ry="26"
+                    transform="rotate(28 160 244)"
+                  />
+                </g>
+              </svg>
+
+              <!-- divarın hazırkı rənginin adı -->
+              <span class="vp-label">
+                <span style="--sw: #4f7f73; --i: 0">G708 · Göygöl</span>
+                <span style="--sw: #c0673e; --i: 1">T506 · Terrakota</span>
+                <span style="--sw: #5e8fa8; --i: 2">B805 · Xəzər dalğası</span>
+                <span style="--sw: #d4be94; --i: 3">S305 · Abşeron sahili</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region bestwall — qardaş brend Best Wall, stil: pages/home/_bestwall.scss, JS: home.js → reveal -->
+      <section id="bestwall" aria-labelledby="bw-title">
+        <div class="container-main">
+          <div class="bw-card">
+            <!-- dekor: divar kağızı naxışı, böyük "B" monoqramı, açılan rulonlar -->
+            <div class="bw-bg" aria-hidden="true">
+              <img
+                class="bw-mark"
+                src="./assets/images/bestwall-mark.png"
+                alt=""
+                loading="lazy"
+              />
+              <span class="bw-glow"></span>
+            </div>
+
+            <div class="bw-content">
+              <img
+                class="bw-logo"
+                src="./assets/images/bestwall-logo.png"
+                alt="Best Wall — Original Wallpaper"
+                width="1533"
+                height="383"
+                loading="lazy"
+              />
+              <!-- TODO: şüar firma ilə razılaşdırılmalıdır -->
+              <h2 class="bw-title" id="bw-title">
+                Divarlarınıza <em>xarakter</em> verin
+              </h2>
+              <p class="bw-text">
+                Klassikdən müasirə qədər orijinal divar kağızı kolleksiyaları.
+                Evinizə uyğun naxışı birlikdə seçək — sadəcə zəng edin.
+              </p>
+
+              <a class="bw-call" href="tel:+994512065055">
+                <span class="bw-call-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="bw-call-body">
+                  <small>Zəng edin</small>
+                  <b>+994 51 206 50 55</b>
+                </span>
+              </a>
+            </div>
+
+            <!-- yuxarıdan açılan divar kağızı rulonları (hər biri öz naxışı ilə) -->
+            <div class="bw-wall" aria-hidden="true">
+              <span class="bw-strip bw-strip-1"
+                ><span class="bw-roll"></span
+              ></span>
+              <span class="bw-strip bw-strip-2"
+                ><span class="bw-roll"></span
+              ></span>
+              <span class="bw-strip bw-strip-3"
+                ><span class="bw-roll"></span
+              ></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region product-lines — məhsul xətləri (şaquli slayder), stil: pages/home/_product-lines.scss, JS: home.js → product-lines -->
+      <section id="product-lines" aria-labelledby="pl-heading">
+        <div class="container-main">
+          <div class="pl-head">
+            <div class="pl-heading">
+              <span class="pl-chip"><i></i>Məhsul çeşidləri</span>
+              <h2 class="pl-heading-title" id="pl-heading">
+                Hər iş üçün <em>doğru</em> seçim!
+              </h2>
+            </div>
+            <div class="pl-nav">
+              <button
+                type="button"
+                class="pl-nav-btn pl-prev"
+                aria-label="Əvvəlki məhsul xətti"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M5 15l7-7 7 7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="pl-nav-btn pl-next"
+                aria-label="Növbəti məhsul xətti"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M5 9l7 7 7-7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="pl-card">
+            <div class="pl-bg" aria-hidden="true">
+              <span class="pl-blob"></span>
+              <span class="pl-dots"></span>
+            </div>
+
+            <!-- slaydlar: rəng data-accent-dən gəlir (bölmənin --pl-accent dəyişəni) -->
+            <div class="swiper pl-swiper">
+              <div class="swiper-wrapper">
+                <!-- 01 — Sintetik məhsullar -->
+                <div class="swiper-slide pl-slide" data-accent="#c9142c">
+                  <div class="pl-copy">
+                    <span
+                      class="pl-kicker"
+                      data-swiper-parallax="-80"
+                      data-swiper-parallax-opacity="0"
+                      ><b>01</b>Sintetik məhsullar</span
+                    >
+                    <h3
+                      class="pl-title"
+                      data-swiper-parallax="-160"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      Sintetik boya və laklar
+                    </h3>
+                    <p
+                      class="pl-text"
+                      data-swiper-parallax="-240"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      Metal, taxta və digər səthlər üçün davamlı, parlaq örtük —
+                      nəmə və günəşə qarşı uzunömürlü qoruma.
+                    </p>
+                    <ul
+                      class="pl-points"
+                      data-swiper-parallax="-300"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      <li>Parlaq və yarımat seçimlər</li>
+                      <li>Daxili və xarici işlər üçün</li>
+                      <li>Yüksək örtücülük</li>
+                    </ul>
+                    <a
+                      class="pl-link"
+                      href="shop.html?category=sintetik-boyalar"
+                      data-swiper-parallax="-360"
+                      data-swiper-parallax-opacity="0"
+                      >Məhsullara bax</a
+                    >
+                  </div>
+
+                  <!-- ŞƏKİL: yalnız src/alt dəyişin. Tövsiyə: ~1000px, şəffaf fonlu PNG/WebP;
+                     istənilən nisbət kəsilmədən sığır (object-fit: contain) -->
+                  <figure
+                    class="pl-media"
+                    data-swiper-parallax="-30%"
+                    data-swiper-parallax-scale="0.8"
+                    data-swiper-parallax-opacity="0"
+                  >
+                    <img
+                      src="./assets/images/sintetik parlaq lak.png"
+                      alt="ZAN sintetik parlaq lak"
+                      width="2000"
+                      height="2000"
+                      loading="lazy"
+                    />
+                  </figure>
+
+                  <span
+                    class="pl-word"
+                    aria-hidden="true"
+                    data-swiper-parallax="-45%"
+                    >Sintetik</span
+                  >
+                </div>
+
+                <!-- 02 — Sellülozik məhsullar -->
+                <div class="swiper-slide pl-slide" data-accent="#b8692a">
+                  <div class="pl-copy">
+                    <span
+                      class="pl-kicker"
+                      data-swiper-parallax="-80"
+                      data-swiper-parallax-opacity="0"
+                      ><b>02</b>Sellülozik məhsullar</span
+                    >
+                    <h3
+                      class="pl-title"
+                      data-swiper-parallax="-160"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      Sellülozik boya və dolğular
+                    </h3>
+                    <p
+                      class="pl-text"
+                      data-swiper-parallax="-240"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      Taxta və mebel üçün tez quruyan, asan yonulma və hamar,
+                      zərif səth yaradan sellüloz əsaslı məhsullar.
+                    </p>
+                    <ul
+                      class="pl-points"
+                      data-swiper-parallax="-300"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      <li>Tez quruyur</li>
+                      <li>Asan yonulur</li>
+                      <li>Mebel və taxta işləri üçün</li>
+                    </ul>
+                    <a
+                      class="pl-link"
+                      href="shop.html?category=sellulozik-boyalar"
+                      data-swiper-parallax="-360"
+                      data-swiper-parallax-opacity="0"
+                      >Məhsullara bax</a
+                    >
+                  </div>
+
+                  <!-- ŞƏKİL: yalnız src/alt dəyişin. Tövsiyə: ~1000px, şəffaf fonlu PNG/WebP;
+                     istənilən nisbət kəsilmədən sığır (object-fit: contain) -->
+                  <figure
+                    class="pl-media"
+                    data-swiper-parallax="-30%"
+                    data-swiper-parallax-scale="0.8"
+                    data-swiper-parallax-opacity="0"
+                  >
+                    <img
+                      src="./assets/images/zan dolgu vernik.png"
+                      alt="ZAN sellülozik dolğu vernik"
+                      width="2000"
+                      height="2000"
+                      loading="lazy"
+                    />
+                  </figure>
+
+                  <span
+                    class="pl-word"
+                    aria-hidden="true"
+                    data-swiper-parallax="-45%"
+                    >Sellülozik</span
+                  >
+                </div>
+
+                <!-- 03 — Divar kağızı yapışdırıcıları -->
+                <div class="swiper-slide pl-slide" data-accent="#1f7ad6">
+                  <div class="pl-copy">
+                    <span
+                      class="pl-kicker"
+                      data-swiper-parallax="-80"
+                      data-swiper-parallax-opacity="0"
+                      ><b>03</b>Divar kağızı yapışdırıcıları</span
+                    >
+                    <h3
+                      class="pl-title"
+                      data-swiper-parallax="-160"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      Divar kağızı yapışdırıcıları
+                    </h3>
+                    <p
+                      class="pl-text"
+                      data-swiper-parallax="-240"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      Kağız, vinil və flizelin divar kağızları üçün etibarlı
+                      yapışma — asan hazırlanır, iz qoymur.
+                    </p>
+                    <ul
+                      class="pl-points"
+                      data-swiper-parallax="-300"
+                      data-swiper-parallax-opacity="0"
+                    >
+                      <li>Bütün növ divar kağızları üçün</li>
+                      <li>Asan həll olunur</li>
+                      <li>Yüksək yapışma qabiliyyəti</li>
+                    </ul>
+                    <a
+                      class="pl-link"
+                      href="shop.html?category=yapisdiricilar"
+                      data-swiper-parallax="-360"
+                      data-swiper-parallax-opacity="0"
+                      >Məhsullara bax</a
+                    >
+                  </div>
+
+                  <!-- ŞƏKİL: yalnız src/alt dəyişin. Tövsiyə: ~1000px, şəffaf fonlu PNG/WebP;
+                     istənilən nisbət kəsilmədən sığır (object-fit: contain) -->
+                  <figure
+                    class="pl-media"
+                    data-swiper-parallax="-30%"
+                    data-swiper-parallax-scale="0.8"
+                    data-swiper-parallax-opacity="0"
+                  >
+                    <img
+                      src="./assets/images/slider-3.png"
+                      alt="ZAN divar kağızı yapışdırıcıları"
+                      width="1787"
+                      height="834"
+                      loading="lazy"
+                    />
+                  </figure>
+
+                  <span
+                    class="pl-word"
+                    aria-hidden="true"
+                    data-swiper-parallax="-45%"
+                    >Yapışdırıcı</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- sağdakı şaquli naviqasiya; aktiv xəttin zolağı avtopley vaxtı ilə dolur -->
+            <nav class="pl-rail" aria-label="Məhsul xətləri">
+              <button type="button" class="pl-rail-item" data-index="0">
+                <span class="pl-rail-num">01</span>
+                <span class="pl-rail-name">Sintetik</span>
+                <span class="pl-rail-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button type="button" class="pl-rail-item" data-index="1">
+                <span class="pl-rail-num">02</span>
+                <span class="pl-rail-name">Sellülozik</span>
+                <span class="pl-rail-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button type="button" class="pl-rail-item" data-index="2">
+                <span class="pl-rail-num">03</span>
+                <span class="pl-rail-name">Yapışdırıcılar</span>
+                <span class="pl-rail-bar" aria-hidden="true"><i></i></span>
+              </button>
+            </nav>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
+      <!-- #region subscribe — abunəlik, stil: pages/home/_subscribe.scss, JS: home.js → subscribe -->
+      <section id="subscribe" aria-labelledby="sub-title">
+        <div class="sub-bg" aria-hidden="true">
+          <span class="sub-blob sub-blob-1"></span>
+          <span class="sub-blob sub-blob-2"></span>
+        </div>
+
+        <div class="container-main">
+          <div class="row align-items-center row-gap-4">
+            <!-- #region subscribe-copy — mətn və forma -->
+            <div class="col-12 col-lg-6">
+              <div class="sub-copy">
+                <span class="sub-chip"><i></i>Abunəlik</span>
+                <h2 class="sub-title" id="sub-title">
+                  Yeniliklərdən <em>ilk siz</em> xəbər tutun
+                </h2>
+                <p class="sub-text">
+                  Yeni kolleksiyalar, özəl endirimlər və ustalarımızdan rəng
+                  məsləhətləri — ayda bir-iki dəfə, birbaşa e‑poçtunuza.
+                </p>
+
+                <!-- TODO(.NET MVC): action="/Newsletter/Subscribe" method="post" + @Html.AntiForgeryToken() -->
+                <form class="sub-form" novalidate>
+                  <label class="visually-hidden" for="sub-email"
+                    >E-poçt ünvanınız</label
+                  >
+                  <div class="sub-field">
+                    <svg
+                      class="sub-field-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <rect
+                        x="3"
+                        y="5"
+                        width="18"
+                        height="14"
+                        rx="3"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                      />
+                      <path
+                        d="m4 7 8 6 8-6"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <input
+                      id="sub-email"
+                      type="email"
+                      name="email"
+                      placeholder="E-poçt ünvanınız"
+                      autocomplete="email"
+                      required
+                    />
+                    <button type="submit" class="sub-btn">
+                      <span>Abunə ol</span>
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M21 3 10 14"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="m21 3-7 18-4-7-7-4 18-7Z"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+
+                <p class="sub-note">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect
+                      x="5"
+                      y="11"
+                      width="14"
+                      height="10"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M8 11V8a4 4 0 0 1 8 0v3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  Spam yoxdur — istənilən vaxt abunəlikdən çıxa bilərsiniz.
+                </p>
+
+                <ul class="sub-perks">
+                  <li style="--c: #c9142c">Yeni kolleksiyalar</li>
+                  <li style="--c: #f2cf6b">Özəl endirimlər</li>
+                  <li style="--c: #3b5a80">Rəng məsləhətləri</li>
+                </ul>
+              </div>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region subscribe-art — boya ustası divara endirim yazır -->
+            <div class="col-12 col-lg-6">
+              <div class="sub-art">
+                <div class="sub-wall">
+                  <!-- fırça izi: forma sabitdir, görünəndə sağdan sola "çəkilir" -->
+                  <svg
+                    class="sub-stroke"
+                    viewBox="0 0 540 250"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <defs>
+                      <linearGradient id="sub-paint" x1="0" x2="1">
+                        <stop offset="0" stop-color="#8e0f22" />
+                        <stop offset=".55" stop-color="#c9142c" />
+                        <stop offset="1" stop-color="#e3243d" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      fill="url(#sub-paint)"
+                      d="M46 83.4L52 85.1L58 88.3L64 89.5L70 88.4L76 87.7L82 88.2L88 88L94 85.7L100 83.9L106 85.1L112 88.1L118 89.2L124 88L130 87L136 87.1L142 86.1L148 82.7L154 79.5L160 79.3L166 80.9L172 80.8L178 78.7L184 77L190 76.4L196 74.5L202 70L208 65.5L214 64.1L220 64.7L226 64.1L232 61.7L238 60.1L244 59.8L250 58.2L256 54L262 49.7L268 48.4L274 49.2L280 49.2L286 47.9L292 47.5L298 48.6L304 48.5L310 45.6L316 42.3L322 41.7L328 43.3L334 44.1L340 43.7L346 44.4L352 46.7L358 47.7L364 45.5L370 42.6L376 42.1L382 43.4L388 43.9L394 43.2L400 43.8L406 46.1L412 47L418 44.7L424 41.2L430 39.8L436 40L442 39.3L448 37.6L454 37.4L460 39.2L466 39.8L472 37.2L478 33.5L484 32L490 32.3L496 32L502 31.2C532 27.8 534 142 506 140L443.6 142.2C430.8 142.2 423 147.9 423 161.2C423 166.2 426 162.5 426 171.2A6 7.2 0 0 1 414 171.2C414 162.5 417 166.2 417 161.2C417 152.2 409.2 148.4 396.4 148.4L376.8 146.5C361.4 146.5 352 155.6 352 176.9C352 190.4 356 192.4 356 203.9A8 9.6 0 0 1 340 203.9C340 192.4 344 190.4 344 176.9C344 166.1 334.6 161.5 319.2 161.5L283 170.3C271.5 170.3 264.5 174.8 264.5 185.5C264.5 189.7 267 186.8 267 194A5 6 0 0 1 257 194C257 186.8 259.5 189.7 259.5 185.5C259.5 177.4 252.5 174 241 174L236.4 175.3C219.7 175.3 209.5 182 209.5 197.7C209.5 219 214 227.3 214 240.2A9 10.8 0 0 1 196 240.2C196 227.3 200.5 219 200.5 197.7C200.5 186 190.3 181 173.6 181L146.2 186.7C132.1 186.7 123.5 193.6 123.5 209.7C123.5 220.5 127 221.2 127 231.2A7 8.4 0 0 1 113 231.2C113 221.2 116.5 220.5 116.5 209.7C116.5 199.9 107.9 195.6 93.8 195.6L93.8 195.6L87.8 197.1L81.8 200.3L75.8 203.9L69.8 206.1L63.8 206.4L57.8 206L51.8 206.5L46 207.6Q17.1 206.4 -6.5 203.7Q17.1 200.2 46 198.7L49.4 198.7Q25.1 197.4 5.3 194.2Q25.1 191.2 49.4 189.9L51.3 189.9Q26.5 188.3 6.2 184.8Q26.5 182.1 51.3 181L54.7 181Q31.5 179.6 12.6 176.2Q31.5 173.4 54.7 172.1L59.1 172.1Q46.6 170.9 36.4 168Q46.6 164.7 59.1 163.3L57.3 163.3Q33.8 162.3 14.6 160Q33.8 156.1 57.3 154.4L56.9 154.4Q39 152.7 24.4 148.8Q39 146.5 56.9 145.5L58.9 145.5Q49.3 144.2 41.5 141.1Q49.3 138 58.9 136.7L60.8 136.7Q37.5 135.2 18.5 131.8Q37.5 129 60.8 127.8L55.2 127.8Q26.6 126.1 3.1 122.3Q26.6 119.9 55.2 118.9L52 118.9Q37.2 117.3 25.2 113.6Q37.2 111.1 52 110.1L51.3 110.1Q41 108.9 32.6 106.2Q41 102.7 51.3 101.2L52.9 101.2Q39.1 99.5 27.9 95.6Q39.1 93.3 52.9 92.3L54.9 92.3Q30.7 90.7 10.8 86.9Q30.7 84.5 54.9 83.4Z"
+                    />
+                    <g
+                      class="sub-stroke-bristles"
+                      fill="none"
+                      stroke="#fff"
+                      stroke-linecap="round"
+                    >
+                      <path
+                        stroke-opacity="0.1"
+                        stroke-width="2.3"
+                        d="M62.4 106.1L82.4 104.8L102.4 101.6L122.4 98.1L142.4 94.8L162.4 91.8L182.4 88.9L202.4 85.9L222.4 82.6L242.4 78.7L262.4 74.3L282.4 69.8L302.4 65.5L322.4 62L342.4 59.5L362.4 58.1L382.4 57.3"
+                      />
+                      <path
+                        stroke-opacity="0.1"
+                        stroke-width="1.9"
+                        d="M100.5 116L120.5 112L140.5 109.6L160.5 107.1L180.5 104.4L200.5 100.9L220.5 96.8L240.5 92L260.5 87.2L280.5 82.7L300.5 79L320.5 76.4L340.5 74.6L360.5 73.4L380.5 72.3L400.5 70.9L420.5 69.1L440.5 67"
+                      />
+                      <path
+                        stroke-opacity="0.1"
+                        stroke-width="1.4"
+                        d="M101.5 131.8L121.5 128.8L141.5 126.7L161.5 124L181.5 120.5L201.5 116.1L221.5 111.2L241.5 106.2L261.5 101.8L281.5 98.2L301.5 95.5L321.5 93.5L341.5 91.8L361.5 90L381.5 88L401.5 85.7"
+                      />
+                      <path
+                        stroke-opacity="0.2"
+                        stroke-width="1.8"
+                        d="M67.9 146L87.9 143.5L107.9 142.1L127.9 140.2L147.9 137.3L167.9 133.4L187.9 128.7L207.9 123.8L227.9 119.1L247.9 115.1L267.9 111.8L287.9 109.2L307.9 106.9L327.9 104.5L347.9 102L367.9 99.2L387.9 96.6L407.9 94.3"
+                      />
+                      <path
+                        stroke-opacity="0.2"
+                        stroke-width="2.1"
+                        d="M60 161.7L80 160.4L100 158.9L120 156.5L140 153.1L160 148.8L180 144.2L200 139.7L220 135.7L240 132.3L260 129.3L280 126.5L300 123.6L320 120.4L340 117.1"
+                      />
+                      <path
+                        stroke-opacity="0.2"
+                        stroke-width="2.3"
+                        d="M84.1 172.5L104.1 171.5L124.1 168L144.1 163.9L164.1 159.8L184.1 155.8L204.1 152.4L224.1 149.2L244.1 146.2L264.1 143L284.1 139.3L304.1 135.4L324.1 131.6L344.1 128.2L364.1 125.6L384.1 124"
+                      />
+                      <path
+                        stroke-opacity="0.2"
+                        stroke-width="1.6"
+                        d="M69.8 188.8L89.8 187.4L109.8 184L129.8 180.4L149.8 176.9L169.8 173.7L189.8 170.7L209.8 167.7L229.8 164.4L249.8 160.6L269.8 156.3L289.8 151.8L309.8 147.7L329.8 144.3L349.8 142L369.8 140.6"
+                      />
+                    </g>
+                  </svg>
+                  <p class="sub-offer">
+                    <strong>−20%</strong>
+                    <span>bütün məhsullara</span>
+                  </p>
+                </div>
+
+                <!-- bülletendən nümunə: ayın rəngi -->
+                <div class="sub-color-card" aria-hidden="true">
+                  <span class="sub-color-swatch"></span>
+                  <span class="sub-color-body">
+                    <small>Ayın rəngi</small>
+                    <b>Lalə qırmızısı</b>
+                    <code>#C9142C</code>
+                  </span>
+                </div>
+
+                <img
+                  class="sub-painter"
+                  src="./assets/images/subscribe-painter.svg"
+                  alt=""
+                  width="300"
+                  height="460"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <!-- #endregion -->
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+    </main>
+    <!-- #endregion -->
+
+    <!-- #region footer — stil: layout/_footer.scss, JS: site.js → footer-year -->
+    <footer class="site-footer" aria-labelledby="footer-cta-title">
+      <!--
+        boya dalğası: footer yuxarıdakı bölmənin üstünə çıxır, dalğanın üstü şəffafdır —
+        bölmənin öz fonu görünür; xətt boyunca fırça zolağı (layout/_footer.scss → #region boya dalğası)
+      -->
+      <div class="footer-wave" aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient id="footer-wave-paint" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#5d0818" />
+              <stop offset=".5" stop-color="#c9142c" />
+              <stop offset="1" stop-color="#f2cf6b" />
+            </linearGradient>
+            <!-- yaş boya parıltısı -->
+            <linearGradient id="footer-wave-gloss" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#fff" stop-opacity="0" />
+              <stop offset=".5" stop-color="#fff" stop-opacity=".6" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <!-- parıltı yalnız zolağın üzərində görünsün -->
+            <clipPath id="footer-wave-clip">
+              <path
+                class="fw-top"
+                d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z"
+              />
+            </clipPath>
+            <!-- açılma: ucu yumşaq olan ağ zolaq soldan sağa sürüşür (JS: .is-inview) -->
+            <linearGradient
+              id="footer-wave-reveal-edge"
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="0"
+            >
+              <stop offset=".9" stop-color="#fff" />
+              <stop offset="1" stop-color="#fff" stop-opacity="0" />
+            </linearGradient>
+            <mask
+              id="footer-wave-reveal"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="1440"
+              height="120"
+            >
+              <rect
+                class="fw-reveal"
+                width="1600"
+                height="120"
+                fill="url(#footer-wave-reveal-edge)"
+              />
+            </mask>
+          </defs>
+
+          <!--
+            Dalğanın üstü şəffafdır — yuxarıdakı bölmənin öz fonu görünür.
+            Qatlar (hamısı əyridən aşağı dolur): rəngli zolaq → qızılı xətt →
+            rəngli zolaq → parıltı → kölgə → footer fonu
+          -->
+          <g mask="url(#footer-wave-reveal)">
+            <path
+              class="fw-paint fw-top"
+              d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z"
+            />
+            <path
+              class="fw-gold fw-top"
+              d="M0 118H1440V58C1260 88 1110 26 900 50S540 92 330 64 90 38 0 68Z"
+            />
+            <path
+              class="fw-paint fw-gold-edge"
+              d="M0 118H1440V66C1260 98 1110 34 900 58S540 102 330 72 90 46 0 78Z"
+            />
+            <g clip-path="url(#footer-wave-clip)">
+              <rect
+                class="fw-gloss"
+                x="-320"
+                y="0"
+                width="320"
+                height="120"
+                fill="url(#footer-wave-gloss)"
+              />
+            </g>
+          </g>
+          <path
+            class="fw-shade"
+            d="M0 120H1440V78C1260 112 1110 44 900 70S540 116 330 84 90 58 0 92Z"
+          />
+          <path
+            class="fw-dark"
+            d="M0 120H1440V84C1260 118 1110 50 900 76S540 122 330 90 90 64 0 98Z"
+          />
+        </svg>
+      </div>
+
+      <!-- dekorativ fon: işıq ləkələri və böyük kontur "ZAN" yazısı -->
+      <div class="footer-bg" aria-hidden="true">
+        <span class="footer-blob footer-blob-1"></span>
+        <span class="footer-blob footer-blob-2"></span>
+        <span class="footer-wordmark">ZAN</span>
+      </div>
+
+      <div class="container-main">
+        <!-- #region footer-cta — məsləhət çağırışı və rəng yelpiyi -->
+        <div class="footer-cta">
+          <div class="footer-cta-copy">
+            <span class="footer-chip"
+              ><i aria-hidden="true"></i>24/7 dəstək</span
+            >
+            <h2 class="footer-cta-title" id="footer-cta-title">
+              Rəng seçimində <em>kömək</em> lazımdır?
+            </h2>
+            <p class="footer-cta-text">
+              Operatorlarımız evinizə uyğun boyanı seçməyə kömək edəcək — bir
+              zəng kifayətdir.
+            </p>
+            <div class="footer-cta-actions">
+              <a class="footer-call" href="tel:+994512065054">
+                <img
+                  src="./assets/icons/phone-icon-red.svg"
+                  alt=""
+                  width="18"
+                  height="18"
+                />
+                <span>+(994) 51 206 50 54</span>
+              </a>
+              <a class="footer-link-arrow" href="contact.html">Bizimlə əlaqə</a>
+            </div>
+          </div>
+
+          <!-- boya nümunəsi kartları; rənglər kateqoriya slayderindən gəlir -->
+          <div class="footer-fan" aria-hidden="true">
+            <span class="footer-swatch" style="--sw: #f0a3b1; --i: -2"
+              ><em>Çəhrayı</em><small>#F0A3B1</small></span
+            >
+            <span class="footer-swatch" style="--sw: #f2cf6b; --i: 2"
+              ><em>Qızılı</em><small>#F2CF6B</small></span
+            >
+            <span class="footer-swatch" style="--sw: #86c7f0; --i: -1"
+              ><em>Səma</em><small>#86C7F0</small></span
+            >
+            <span class="footer-swatch" style="--sw: #8fe3b0; --i: 1"
+              ><em>Nanə</em><small>#8FE3B0</small></span
+            >
+            <span class="footer-swatch" style="--sw: #c9142c; --i: 0"
+              ><em>ZAN qırmızı</em><small>#C9142C</small></span
+            >
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region footer-grid — brend, naviqasiya, kateqoriyalar, əlaqə -->
+        <div class="footer-grid row row-gap-4">
+          <div class="col-12 col-lg-4">
+            <div class="footer-brand">
+              <a class="footer-logo" href="home.html">
+                <img
+                  src="./assets/images/Loqo silver pdf-1.png"
+                  alt="ZAN Boya"
+                  width="636"
+                  height="502"
+                />
+              </a>
+              <p>
+                Qısa zamanda ustaların sevimlisinə çevrilən ZAN boyaları ilə siz
+                də evinizi gözəlləşdirin.
+              </p>
+              <!-- TODO: sosial şəbəkələrin real ünvanları yazılmalıdır -->
+              <ul class="footer-socials">
+                <li>
+                  <a href="#" aria-label="Instagram"
+                    ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="Facebook"
+                    ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="WhatsApp"
+                    ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" aria-label="TikTok"
+                    ><i class="fa-brands fa-tiktok" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <nav class="footer-col" aria-labelledby="footer-nav-title">
+              <h2 class="footer-title" id="footer-nav-title">Naviqasiya</h2>
+              <ul class="footer-links">
+                <li><a href="home.html" aria-current="page">Əsas səhifə</a></li>
+                <li><a href="about.html">Haqqımızda</a></li>
+                <li><a href="shop.html">Məhsullar</a></li>
+                <li><a href="contact.html">Bizimlə əlaqə</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="footer-col">
+              <h2 class="footer-title">Kateqoriyalar</h2>
+              <!-- damcının rəngi kateqoriya kartının --cat-accent rəngi ilə eynidir -->
+              <ul class="footer-links footer-categories">
+                <li>
+                  <a href="shop.html?category=sintetik-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #f2cf6b"></span
+                    >Sintetik boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=sellulozik-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #8fe3b0"></span
+                    >Sellülozik boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=su-esasli-boyalar"
+                    ><span class="footer-paint-drop" style="--c: #86c7f0"></span
+                    >Su əsaslı boyalar</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=divar-kagizlari"
+                    ><span class="footer-paint-drop" style="--c: #e8d29a"></span
+                    >Premium divar kağızları</a
+                  >
+                </li>
+                <li>
+                  <a href="shop.html?category=yapisdiricilar"
+                    ><span class="footer-paint-drop" style="--c: #f0a3b1"></span
+                    >Yapışdırıcılar</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <div class="footer-col">
+              <h2 class="footer-title">Əlaqə</h2>
+              <ul class="footer-contact">
+                <li>
+                  <span class="footer-contact-label">Qaynar xətt</span>
+                  <a class="footer-phone" href="tel:+994512065054"
+                    >+(994) 51 206 50 54</a
+                  >
+                </li>
+                <li class="footer-delivery">
+                  <span class="footer-contact-icon">
+                    <img
+                      src="./assets/icons/truck.svg"
+                      alt=""
+                      width="18"
+                      height="16"
+                    />
+                  </span>
+                  Ölkənin dörd bir yanına sürətli çatdırılma
+                </li>
+                <!-- TODO: e-poçt və ünvan məlum olanda buraya əlavə edilməlidir -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region footer-bottom — müəllif hüququ -->
+        <div class="footer-bottom">
+          <p>
+            © <span data-current-year>2026</span> ZAN Boya. Bütün hüquqlar
+            qorunur.
+          </p>
+          <!-- kiçik palitra: markanın rəngləri -->
+          <span class="footer-dots" aria-hidden="true">
+            <i style="--c: #c9142c"></i><i style="--c: #f2cf6b"></i
+            ><i style="--c: #8fe3b0"></i><i style="--c: #86c7f0"></i
+            ><i style="--c: #f0a3b1"></i>
+          </span>
+        </div>
+        <!-- #endregion -->
+      </div>
+    </footer>
+    <!-- #endregion -->
+
+    <!-- #region back-to-top — site.js → scroll-state -->
+    <button type="button" id="button" aria-label="Səhifənin başına qayıt">
+      <!-- kənardakı halqa səhifənin nə qədərinin oxunduğunu göstərir -->
+      <svg class="scroll-progress" viewBox="0 0 52 52" aria-hidden="true">
+        <circle class="scroll-progress-track" cx="26" cy="26" r="24" />
+        <circle class="scroll-progress-bar" cx="26" cy="26" r="24" />
+      </svg>
+      <svg
+        class="scroll-arrow"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 19V5M5 12l7-7 7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+    <!-- #endregion -->
+
+    <!-- #region vendor JS -->
+    <script
+      src="https://kit.fontawesome.com/83dcd321a4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.js"
+      integrity="sha512-nM1ZmLe8KJ0bEkxcoG3D09bO8YvrITjvqMRPqEj14rYoNH/Hdg+ZR3hC+ez1S08A5NxEkRDgyBWVTZZgLQLhaQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <!-- #endregion -->
+
+    <!-- #region öz skriptlərimiz — sıra vacibdir: site.js → auth.js → shop.js → səhifə skripti -->
+    <script src="./assets/js/site.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script src="./assets/js/shop.js"></script>
+    <script src="./assets/js/home.js"></script>
+    <!-- #endregion -->
+  </body>
+</html>

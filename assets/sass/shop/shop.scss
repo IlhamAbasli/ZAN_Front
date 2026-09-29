@@ -1,0 +1,17 @@
+// ==========================================================================
+// SHOP.SCSS — yalnız məhsullar səhifəsinin (shop.html) stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/shop/shop.css (Live Sass Compiler)
+// Qoşulur:  shop.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Shop/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/shop/
+//
+// Tokenlər, header, footer, məhsul kartı və mini səbət site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/shop/hero";
+@use "../pages/shop/filters";
+@use "../pages/shop/catalog";
+@use "../pages/shop/quick-view";
+/* #endregion */

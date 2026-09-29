@@ -1,0 +1,212 @@
+// ==========================================================================
+// MƏHSULLAR — BAŞLIQ ZOLAĞI (#shop-hero)
+// --------------------------------------------------------------------------
+// HTML: shop.html → #region shop-hero
+// JS:   shop-page.js → kateqoriya düymələri filtrlə sinxrondur
+// ==========================================================================
+
+/* #region bölmə və fon */
+
+#shop-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 36px;
+  background: var(--grad-section-gold);
+  border-bottom: 1px solid var(--c-line);
+}
+
+#shop-hero .sh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#shop-hero .sh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#shop-hero .sh-blob-1 {
+  top: -180px;
+  right: 8%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#shop-hero .sh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* sağda boya nümunələri — dekor */
+#shop-hero .sh-swatches {
+  position: absolute;
+  top: 50%;
+  right: max(3%, calc((100% - 1320px) / 2));
+  display: flex;
+  gap: 10px;
+  transform: translateY(-50%) rotate(-8deg);
+
+  span {
+    width: 46px;
+    height: 120px;
+    border-radius: 14px 14px 22px 22px;
+    background: var(--sw);
+    box-shadow: var(--shadow-soft);
+    opacity: 0.9;
+
+    &:nth-child(even) {
+      transform: translateY(18px);
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#shop-hero .sh-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--c-muted-soft);
+  }
+
+  a {
+    color: var(--c-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  [aria-current="page"] {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+}
+
+#shop-hero .sh-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--c-ink);
+}
+
+#shop-hero .sh-text {
+  max-width: 52ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* sürətli kateqoriya düymələri — filtr panelindəki kateqoriya ilə eyni işi görür */
+#shop-hero .sh-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+#shop-hero .sh-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  cursor: pointer;
+  transition:
+    color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--c, var(--c-muted-soft));
+  }
+
+  &:hover {
+    border-color: var(--c, var(--c-brand));
+  }
+
+  &[aria-pressed="true"] {
+    color: #fff;
+    border-color: transparent;
+    background: var(--c, var(--c-ink));
+
+    i {
+      background: #fff;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c, var(--c-brand));
+    outline-offset: 2px;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 1199px) {
+  #shop-hero .sh-swatches {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #shop-hero {
+    padding: 28px 0 24px;
+  }
+  #shop-hero .sh-title {
+    font-size: 32px;
+  }
+  #shop-hero .sh-text {
+    font-size: 15px;
+  }
+  /* dar ekranda düymələr yana sürüşür */
+  #shop-hero .sh-cats {
+    flex-wrap: nowrap;
+    margin-inline: calc(var(--container-pad) * -1);
+    padding: 2px var(--container-pad) 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  #shop-hero .sh-cat {
+    flex: none;
+  }
+}
+
+/* #endregion */

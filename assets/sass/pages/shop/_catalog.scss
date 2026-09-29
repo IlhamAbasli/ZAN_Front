@@ -1,0 +1,533 @@
+// ==========================================================================
+// MƏHSULLAR — DÜZÜLÜŞ, ALƏTLƏR ZOLAĞI, KATALOQ, SƏHİFƏLƏMƏ (#shop-area)
+// --------------------------------------------------------------------------
+// HTML: shop.html → #region shop-area
+// JS:   shop-page.js → sıralama, görünüş, aktiv filtrlər, səhifələmə
+// Kartın özü: components/_product-card.scss
+// ==========================================================================
+
+/* #region düzülüş */
+
+/* aşağı boşluq footer-in boya dalğası üçündür (footer bu bölmənin üstünə çıxır) */
+#shop-area {
+  padding: 36px 0 calc(110px + 70px);
+}
+
+#shop-area .shop-layout {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+@media only screen and (max-width: 1199px) {
+  #shop-area .shop-layout {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #shop-area .shop-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* #endregion */
+
+/* #region alətlər zolağı */
+
+#shop-area .shop-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 12px 12px 12px 20px;
+  border-radius: 18px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+}
+
+#shop-area .st-result {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  color: var(--c-muted);
+
+  b {
+    color: var(--c-ink);
+  }
+}
+
+#shop-area .st-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+#shop-area .st-filter-count {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--c-brand);
+  background: #fff;
+
+  &:empty {
+    display: none;
+  }
+}
+
+#shop-area .st-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#shop-area .st-sort {
+  position: relative;
+  margin: 0;
+
+  select {
+    height: 42px;
+    padding: 0 38px 0 14px;
+    border-radius: 12px;
+    border: 1px solid var(--c-line);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-ink);
+    background: var(--c-surface-soft);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+      outline-offset: 2px;
+    }
+  }
+
+  /* ox */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--c-muted);
+    border-bottom: 2px solid var(--c-muted);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+}
+
+#shop-area .st-view {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--c-surface-soft);
+  border: 1px solid var(--c-line);
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 9px;
+    color: var(--c-muted-soft);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
+
+    svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    &[aria-pressed="true"] {
+      color: var(--c-brand);
+      background: var(--c-surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+    }
+  }
+}
+
+/* dar ekranda sıralama və görünüş ayrıca tam enli sətirdə */
+@media only screen and (max-width: 575px) {
+  #shop-area .shop-toolbar {
+    padding: 12px;
+  }
+  #shop-area .st-controls {
+    width: 100%;
+  }
+  #shop-area .st-sort {
+    flex: 1;
+    min-width: 0;
+
+    select {
+      width: 100%;
+    }
+  }
+}
+
+/* aktiv filtrlər — hər biri klikləyəndə silinir */
+#shop-area .st-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+
+  &:empty {
+    display: none;
+  }
+}
+
+#shop-area .st-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--c-brand-tint-line);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-brand-deep);
+  background: var(--c-brand-tint);
+  cursor: pointer;
+
+  &::after {
+    content: "×";
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 15px;
+    line-height: 1;
+    background: var(--c-surface);
+  }
+
+  &:hover::after {
+    color: #fff;
+    background: var(--c-brand);
+  }
+
+  &.is-clear {
+    color: var(--c-muted);
+    border-color: transparent;
+    background: none;
+
+    &::after {
+      content: none;
+    }
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region kataloq toru */
+
+#shop-area .catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+}
+
+@media only screen and (max-width: 1399px) and (min-width: 992px) {
+  #shop-area .catalog-grid:not(.is-list) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #shop-area .catalog-grid:not(.is-list) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+/* filtrlərə uyğun gəlməyən və başqa səhifədə olan kartlar (JS) */
+#shop-area .product-card[hidden] {
+  display: none;
+}
+
+/* səhifə dəyişəndə kartlar yumşaq görünür */
+#shop-area .product-card.is-entering {
+  animation: catalogIn 0.45s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 40ms);
+}
+
+@keyframes catalogIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* #endregion */
+
+/* #region siyahı görünüşü */
+
+#shop-area .catalog-grid.is-list {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+
+  .product-card {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .pc-image {
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 220px;
+  }
+
+  .pc-body {
+    padding: 14px 16px 10px;
+  }
+
+  .pc-name {
+    min-height: 0;
+    font-size: 20px;
+  }
+
+  .pc-desc {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .pc-cart span {
+    display: inline;
+  }
+
+  .pc-cart {
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #shop-area .catalog-grid.is-list .product-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+  }
+  #shop-area .catalog-grid.is-list .pc-image {
+    min-height: 150px;
+    padding: 10px;
+  }
+  #shop-area .catalog-grid.is-list .pc-quick,
+  #shop-area .catalog-grid.is-list .pc-desc,
+  #shop-area .catalog-grid.is-list .pc-cart span {
+    display: none;
+  }
+  #shop-area .catalog-grid.is-list .pc-name {
+    font-size: 16px;
+  }
+  #shop-area .catalog-grid.is-list .pc-cart {
+    padding: 0 14px;
+  }
+}
+
+/* dar ekranda (2 sütun) kart yığcamlaşır */
+@media only screen and (max-width: 575px) {
+  #shop-area .catalog-grid:not(.is-list) {
+    .product-card {
+      padding: 8px;
+      border-radius: 18px;
+    }
+    .pc-body {
+      padding: 12px 4px 2px;
+    }
+    .pc-name {
+      font-size: 15px;
+    }
+    /* dar kartda kateqoriya bir sətrə sığsın */
+    .pc-category {
+      font-size: 10px;
+      letter-spacing: 0.05em;
+
+      &::before {
+        width: 7px;
+        height: 7px;
+        margin-right: 6px;
+      }
+    }
+    .pc-price b {
+      font-size: 17px;
+    }
+    .pc-cart {
+      height: 40px;
+      min-width: 40px;
+      padding: 0 10px;
+      border-radius: 12px;
+    }
+    .pc-quick {
+      display: none;
+    }
+    .pc-badge {
+      padding: 3px 8px;
+      font-size: 10px;
+    }
+    .pc-wish {
+      width: 34px;
+      height: 34px;
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region boş nəticə */
+
+#shop-area .catalog-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 22px;
+  padding: 56px 20px;
+  border-radius: 22px;
+  border: 1px dashed var(--c-divider-soft);
+  text-align: center;
+  background: var(--c-surface);
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: RobotoBold;
+    font-size: 20px;
+    color: var(--c-ink);
+  }
+
+  p {
+    max-width: 40ch;
+    margin: 8px 0 20px;
+    color: var(--c-muted);
+  }
+
+  button {
+    height: 46px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 14px;
+    font-weight: 600;
+    color: var(--c-on-brand);
+    background: var(--grad-brand);
+    box-shadow: var(--shadow-brand);
+  }
+}
+
+/* #endregion */
+
+/* #region səhifələmə */
+
+#shop-area .catalog-pages {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 14px;
+    border: 1px solid var(--c-line);
+    font-weight: 600;
+    color: var(--c-ink);
+    background: var(--c-surface);
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover:not(:disabled) {
+      color: var(--c-brand);
+      border-color: var(--c-brand-line);
+    }
+
+    &[aria-current="page"] {
+      color: var(--c-on-brand);
+      border-color: transparent;
+      background: var(--grad-brand);
+      box-shadow: var(--shadow-brand);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region azaldılmış hərəkət */
+
+@media (prefers-reduced-motion: reduce) {
+  #shop-area .product-card.is-entering {
+    animation: none;
+  }
+}
+
+/* #endregion */

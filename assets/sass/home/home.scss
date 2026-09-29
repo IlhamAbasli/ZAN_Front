@@ -1,0 +1,22 @@
+// ==========================================================================
+// HOME.SCSS — yalnız əsas səhifənin (home.html) stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/home/home.css (Live Sass Compiler)
+// Qoşulur:  home.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Home/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/home/
+//
+// Tokenlər (var(--c-...)) site.css-dən gəlir.
+// Yeni səhifə üçün eyni quruluş: assets/sass/<ad>/<ad>.scss +
+// assets/sass/pages/<ad>/_*.scss (bax: base/_cursor.scss → DİQQƏT).
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/home/hero";
+@use "../pages/home/categories";
+@use "../pages/home/features";
+@use "../pages/home/visualizer-promo";
+@use "../pages/home/subscribe";
+@use "../pages/home/bestwall";
+@use "../pages/home/product-lines";
+/* #endregion */

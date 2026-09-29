@@ -1,0 +1,216 @@
+// ==========================================================================
+// DİZAYN TOKENLƏRİ (CSS custom properties)
+// --------------------------------------------------------------------------
+// Bütün rənglər, kölgələr və ölçülər buradan gəlir. Komponentlər yalnız
+// var(--...) istifadə edir, ona görə mövzu dəyişəndə heç bir komponentə
+// toxunmaq lazım gəlmir.
+//
+// Mövzu seçimi: <html data-theme="light|dark"> (JS: site.js → #region theme).
+// Atribut yoxdursa sistemin prefers-color-scheme dəyəri tətbiq olunur.
+// ==========================================================================
+
+/* #region açıq mövzu (standart) */
+
+/*
+  Rəng tokenləri iki mövzunu (light / dark) idarə edir.
+  Mövzu <html data-theme="light|dark"> atributu ilə seçilir; atribut yoxdursa
+  sistem seçimi (prefers-color-scheme) tətbiq olunur.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* marka rəngləri hero bölməsi ilə eyni palitradan gəlir */
+  --c-brand: #c9142c;
+  --c-brand-deep: #a71930;
+  --c-brand-dark: #5d0818;
+  --c-gold: #f2cf6b;
+
+  /* mətn */
+  --c-ink: #0d1520;
+  --c-muted: #55606c;
+  --c-muted-soft: #8a929c;
+
+  /* səthlər */
+  --c-bg: #ffffff;
+  --c-surface: #ffffff;
+  --c-surface-soft: #f5f6f8;
+  --c-surface-alt: #f4f5f7;
+
+  /* haşiyələr */
+  --c-line: #e7e9ee;
+  --c-line-warm: #f0e7d5;
+
+  /* tünd dolğun düymələr (üzərində həmişə ağ mətn olur) */
+  /*
+    Marka qradiyenti və həmişə tünd qalan zolaqlar mövzu ilə dəyişmir,
+    ona görə onların üzərindəki mətn də sabit ağ olmalıdır. --c-surface
+    burada işlənsə, tünd rejimdə yazı fonla qaynayır.
+  */
+  --c-on-brand: #ffffff;
+
+  /* bildiriş (toast) statusları — components/_toast.scss */
+  --c-success: #1f9d6a;
+  --c-warning: #e3a41c;
+  --c-info: #3b5a80;
+
+  --c-solid: #010f1c;
+  --c-solid-hover: #17222e;
+  --c-solid-soft: #55585b;
+
+  /* dekorativ bölmə fonları */
+  --grad-section-gold: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fdf7ea 52%,
+    #ffffff 100%
+  );
+  --grad-section-soft: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f6f7f9 52%,
+    #ffffff 100%
+  );
+  /* sabit başlıq və başlıq daxili incə səthlər */
+  --c-sticky-bg: rgba(255, 255, 255, 0.86);
+  --shadow-sticky: 0 12px 30px rgba(13, 21, 32, 0.07);
+  --c-divider: rgba(13, 21, 32, 0.22);
+  --c-divider-soft: rgba(13, 21, 32, 0.12);
+  --c-hover-fill: rgba(13, 21, 32, 0.05);
+  --c-ink-ghost: rgba(16, 21, 28, 0.07);
+  --c-track: rgba(16, 21, 28, 0.08);
+  --c-brand-tint: rgba(167, 25, 48, 0.07);
+  --c-brand-tint-line: rgba(167, 25, 48, 0.16);
+  --c-brand-line: rgba(167, 25, 48, 0.18);
+  --c-brand-ghost: rgba(167, 25, 48, 0.14);
+  --blob-gold: rgba(242, 207, 107, 1);
+  --blob-brand: rgba(167, 25, 48, 0.32);
+  --blob-alpha: 0.55;
+
+  /* kölgələr */
+  --shadow-card: 0 14px 30px rgba(16, 21, 28, 0.06);
+  --shadow-card-hover: 0 24px 46px rgba(16, 21, 28, 0.13);
+  --shadow-soft: 0 12px 26px rgba(16, 21, 28, 0.08);
+
+  /* mövzudan asılı ikon və açar dəyərləri */
+  --icon-filter: none;
+  --theme-knob: linear-gradient(
+    135deg,
+    rgba(242, 207, 107, 0.9),
+    rgba(201, 20, 44, 0.8)
+  );
+  --theme-sun-on: 1;
+  --theme-sun-turn: 0deg;
+  --theme-sun-scale: 1;
+  --theme-moon-on: 0;
+  --theme-moon-turn: -90deg;
+  --theme-moon-scale: 0.5;
+
+  --h-header-top: 48px;
+  --h-header-mid: 96px;
+  --h-header-bottom: 56px;
+  --h-header-sticky: 84px;
+  --h-logo: 52px;
+
+  --grad-brand: linear-gradient(135deg, #c9142c 0%, #a71930 55%, #7d0f21 100%);
+  --shadow-menu: 0 18px 38px rgba(13, 21, 32, 0.13);
+  --shadow-brand: 0 10px 24px rgba(201, 20, 44, 0.28);
+  --r-pill: 999px;
+  --r-card: 16px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* #endregion */
+
+/* #region tünd mövzu */
+
+// Tünd mövzu dəyərləri iki yerdə lazımdır (sistem seçimi və istifadəçi
+// seçimi). Təkrarlanmasın deyə bir mixin-də saxlanılır.
+@mixin dark-theme-tokens {
+  color-scheme: dark;
+
+  /* qaranlıq fonda oxunaqlı olsun deyə marka rəngi bir az açılır */
+  --c-brand: #ff4d67;
+  --c-brand-deep: #ef3b56;
+  --c-brand-dark: #a71930;
+  --c-gold: #f6d886;
+
+  --c-ink: #e8edf3;
+  --c-muted: #a3adb9;
+  --c-muted-soft: #808b98;
+
+  --c-bg: #0b1017;
+  --c-surface: #141b24;
+  --c-surface-soft: #1b232d;
+  --c-surface-alt: #1b232d;
+
+  --c-line: #28323e;
+  --c-line-warm: #2d3340;
+
+  --c-success: #34c38f;
+  --c-warning: #f6c451;
+  --c-info: #7ea6d8;
+
+  --c-solid: #2b3542;
+  --c-solid-hover: #384555;
+  --c-solid-soft: #3a4654;
+
+  --grad-section-gold: linear-gradient(
+    180deg,
+    #0b1017 0%,
+    #171b1b 52%,
+    #0b1017 100%
+  );
+  --grad-section-soft: linear-gradient(
+    180deg,
+    #0b1017 0%,
+    #121924 52%,
+    #0b1017 100%
+  );
+  --c-sticky-bg: rgba(13, 18, 25, 0.9);
+  --shadow-sticky: 0 12px 30px rgba(0, 0, 0, 0.5);
+  --c-divider: rgba(232, 237, 243, 0.24);
+  --c-divider-soft: rgba(232, 237, 243, 0.16);
+  --c-hover-fill: rgba(232, 237, 243, 0.08);
+  --c-ink-ghost: rgba(232, 237, 243, 0.12);
+  --c-track: rgba(232, 237, 243, 0.14);
+  --c-brand-tint: rgba(255, 77, 103, 0.14);
+  --c-brand-tint-line: rgba(255, 77, 103, 0.32);
+  --c-brand-line: rgba(255, 77, 103, 0.34);
+  --c-brand-ghost: rgba(255, 77, 103, 0.24);
+  --blob-gold: rgba(242, 207, 107, 0.75);
+  --blob-brand: rgba(255, 77, 103, 0.35);
+  --blob-alpha: 0.28;
+
+  --icon-filter: brightness(0) invert(0.88);
+  --theme-knob: linear-gradient(
+    135deg,
+    rgba(154, 178, 214, 0.95),
+    rgba(58, 74, 102, 0.9)
+  );
+  --theme-sun-on: 0;
+  --theme-sun-turn: 90deg;
+  --theme-sun-scale: 0.5;
+  --theme-moon-on: 1;
+  --theme-moon-turn: 0deg;
+  --theme-moon-scale: 1;
+
+  --shadow-card: 0 14px 30px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 24px 46px rgba(0, 0, 0, 0.6);
+  --shadow-soft: 0 12px 26px rgba(0, 0, 0, 0.4);
+  --shadow-menu: 0 18px 38px rgba(0, 0, 0, 0.55);
+}
+
+/* sistem qaranlıq rejimdədirsə və istifadəçi əl ilə seçim etməyibsə */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-theme-tokens;
+  }
+}
+
+/* istifadəçinin açar ilə etdiyi seçim sistem seçimini əvəz edir */
+:root[data-theme="dark"] {
+  @include dark-theme-tokens;
+}
+
+/* #endregion */

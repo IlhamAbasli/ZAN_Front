@@ -1,0 +1,273 @@
+// ==========================================================================
+// MƏHSUL — TÖVSİYƏ OLUNANLAR (#pd-related) VƏ SON BAXILANLAR (#pd-recent)
+// --------------------------------------------------------------------------
+// HTML: product-detail.html → #region pd-related, #region pd-recent
+// JS:   product-page.js → related (Swiper), recent (localStorage "zan-recent")
+// Kartlar components/_product-card.scss-dəndir.
+// ==========================================================================
+
+/* #region bölmə başlığı */
+
+#pd-related {
+  padding: 56px 0 12px;
+}
+
+.pd-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 26px;
+}
+
+.pd-section-title {
+  margin: 0;
+  font-family: RobotoBold;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.2;
+  color: var(--c-ink);
+
+  em {
+    font-style: normal;
+    color: var(--c-brand);
+  }
+}
+
+.pd-section-text {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--c-muted);
+}
+
+.pd-section-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pd-all {
+  margin-right: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--c-ink);
+  border-bottom: 2px solid var(--c-brand);
+
+  &::after {
+    content: " →";
+  }
+
+  &:hover {
+    color: var(--c-brand);
+  }
+}
+
+.pd-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--c-line);
+  color: var(--c-ink);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition:
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    opacity 0.25s var(--ease);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--c-brand);
+    border-color: var(--c-brand-line);
+  }
+
+  /* Swiper kənarda düyməni bağlayır */
+  &:disabled,
+  &.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  /* bütün kartlar ekrana sığanda oxlara ehtiyac yoxdur */
+  &.swiper-button-lock {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+}
+
+/* #endregion */
+
+/* #region karusel */
+
+/* kartların kölgəsi və hover-də qalxması kəsilməsin */
+.pd-related-swiper {
+  margin: -10px -6px -30px;
+  padding: 10px 6px 30px;
+
+  .swiper-slide {
+    height: auto;
+  }
+}
+
+/* JS işə düşməyəndə (və ya Swiper yüklənməyəndə) kartlar üfüqi sürüşür */
+.pd-related-swiper:not(.swiper-initialized) .swiper-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(250px, calc((100% - 60px) / 4));
+  gap: 20px;
+  overflow-x: auto;
+}
+
+/* #endregion */
+
+/* #region son baxılanlar */
+
+#pd-recent {
+  padding: 48px 0 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.pd-recent-clear {
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  color: var(--c-muted);
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--c-brand);
+  }
+}
+
+.pd-recent-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 100%;
+    padding: 10px 16px 10px 10px;
+    border-radius: 18px;
+    border: 1px solid var(--c-line);
+    text-decoration: none;
+    background: var(--c-surface);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.3s var(--ease),
+      border-color 0.3s var(--ease);
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--pc-tint) 35%, var(--c-line));
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--pc-tint);
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* hər elementin öz kateqoriya rəngi var (JS: .pd-tint + data-category) */
+.pd-recent-img {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--pc-tint) 18%, transparent) 0%, transparent 70%),
+    var(--c-surface-soft);
+
+  img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+}
+
+.pd-recent-info {
+  min-width: 0;
+
+  small {
+    display: block;
+    overflow: hidden;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--c-muted-soft);
+  }
+
+  b {
+    display: -webkit-box;
+    margin-top: 3px;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--c-ink);
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  span {
+    display: block;
+    margin-top: 4px;
+    font-family: RobotoBold;
+    font-size: 14px;
+    color: var(--pc-tint);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-recent-list a:hover {
+    transform: none;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 575px) {
+  #pd-related {
+    padding-top: 44px;
+  }
+  .pd-all {
+    margin-right: auto;
+  }
+  .pd-section-nav {
+    width: 100%;
+  }
+}
+
+/* #endregion */

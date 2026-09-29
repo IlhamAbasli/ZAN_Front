@@ -1,0 +1,29 @@
+// ==========================================================================
+// ABOUT.SCSS — "Haqqımızda" səhifələri: about.html (Ümumi məlumat) və
+//              mission.html (Missiya, məqsəd və dəyərlərimiz)
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/about/about.css (Live Sass Compiler)
+// Qoşulur:  hər iki səhifənin <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/About/Index.cshtml, Mission.cshtml →
+//           @section Styles)
+// Modullar: assets/sass/pages/about/
+//
+// Tokenlər, header, footer site.css-dən gəlir.
+// ==========================================================================
+
+/* #region ortaq — tipoqrafiya, media yerləri, açılma */
+@use "../pages/about/base";
+@use "../pages/about/hero";
+/* #endregion */
+
+/* #region ümumi məlumat (about.html) */
+@use "../pages/about/overview";
+/* #endregion */
+
+/* #region missiya, məqsəd, dəyərlər (mission.html) */
+@use "../pages/about/mission";
+/* #endregion */
+
+/* #region hər iki səhifənin sonu */
+@use "../pages/about/next";
+/* #endregion */
