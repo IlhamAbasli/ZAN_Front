@@ -63,29 +63,22 @@
   //#endregion
 
   //#region helpers
-  function showFormError(form, message) {
-    const alert = form.querySelector(".zf-alert");
-    if (!alert) return;
-    alert.querySelector("span").textContent = message;
-    alert.hidden = !message;
-  }
+  const showFormError = ZAN.forms.showError;
+  const handleServerError = ZAN.forms.handleError;
 
   // "28 sentyabr 2026" — brauzerlərin az-AZ formatı hər yerdə eyni deyil
   const MONTHS = [
     "yanvar", "fevral", "mart", "aprel", "may", "iyun",
     "iyul", "avqust", "sentyabr", "oktyabr", "noyabr", "dekabr",
   ];
+  // digər dillərdə brauzerin formatı ("28 September 2026", "28 сентября 2026 г.")
   function formatDate(date) {
+    if (ZAN.i18n.lang !== "az") {
+      return new Intl.DateTimeFormat(ZAN.i18n.locale, { day: "numeric", month: "long", year: "numeric" }).format(date);
+    }
     return `${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
   }
 
-  function handleServerError(form, validator, error, fallback) {
-    const data = (error && error.data) || {};
-    if (data.errors) {
-      Object.keys(data.errors).forEach((name) => validator.show(name, data.errors[name]));
-    }
-    showFormError(form, data.message || fallback);
-  }
   //#endregion
 
   //#region password
@@ -161,12 +154,8 @@
   }
 
   function readDemoClub() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(CLUB_KEY));
-      return saved && saved.status ? saved : null;
-    } catch (e) {
-      return null;
-    }
+    const saved = ZAN.store.get(CLUB_KEY, null);
+    return saved && saved.status ? saved : null;
   }
 
   if (club) {
@@ -184,11 +173,7 @@
   if (clubForm) {
     const rules = ZAN.forms.rules;
     const validator = ZAN.forms.bind(clubForm, {
-      fullName: function (input) {
-        const value = input.value.trim();
-        if (!value) return "Adınızı və soyadınızı yazın.";
-        return value.length < 3 ? "Ad və soyad ən azı 3 hərfdən ibarət olmalıdır." : "";
-      },
+      fullName: rules.fullName(),
       phone: rules.phone(),
       city: rules.required("Şəhər və ya rayonu seçin."),
       specialties: rules.someChecked("Ən azı bir ixtisas seçin."),
@@ -233,13 +218,7 @@
         .submit(clubForm)
         .then(function () {
           const date = formatDate(new Date());
-          if (ZAN.auth.isDemo) {
-            try {
-              localStorage.setItem(CLUB_KEY, JSON.stringify({ status: "pending", date: date }));
-            } catch (e) {
-              /* saxlaya bilmiriksə də cari səhifədə vəziyyət qalır */
-            }
-          }
+          if (ZAN.auth.isDemo) ZAN.store.set(CLUB_KEY, { status: "pending", date: date });
           const dateEl = club.querySelector("[data-club-date]");
           if (dateEl) dateEl.textContent = date;
 

@@ -126,7 +126,7 @@
 
 #contact-channels .cc-title {
   margin: 18px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 19px;
   color: var(--c-ink);
 }
@@ -170,7 +170,7 @@
   color: var(--c-muted);
   background: none;
   text-decoration: none;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease);
 
   svg {

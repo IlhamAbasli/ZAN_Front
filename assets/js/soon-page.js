@@ -1,8 +1,8 @@
 /* ==========================================================================
    soon-page.js — "Sayt hazırlanır" şablonu
    --------------------------------------------------------------------------
-   Qoşulur:     product-detail.html, cart.html, checkout.html, wishlist.html,
-                terms.html, privacy.html, forgot-password.html — shop.js-dən sonra
+   Qoşulur:     hazırda heç bir səhifə — HTML: templates/soon-main.html;
+                hazır olmayan səhifədə shop.js-dən sonra
                 (.NET MVC-də: Views/Shared/ComingSoon.cshtml → @section Scripts)
    Asılılıqlar: yoxdur
 

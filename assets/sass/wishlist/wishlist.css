@@ -1,0 +1,287 @@
+@charset "UTF-8";
+/* #region bölmələr (səhifədəki sıra ilə) */
+/* #region bölmə və fon */
+#wishlist-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 96px;
+  background: var(--grad-section-gold);
+}
+
+#wishlist-hero .wh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#wishlist-hero .wh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#wishlist-hero .wh-blob-1 {
+  top: -180px;
+  right: 10%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#wishlist-hero .wh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* sağda yavaşca üzən ürəklər */
+#wishlist-hero .wh-hearts {
+  position: absolute;
+  top: 50%;
+  right: max(4%, (100% - 1320px) / 2);
+  width: 230px;
+  height: 170px;
+  transform: translateY(-62%);
+}
+#wishlist-hero .wh-hearts svg {
+  position: absolute;
+  fill: var(--c-brand);
+  animation: wh-float 5s ease-in-out infinite;
+}
+#wishlist-hero .wh-hearts svg:nth-child(1) {
+  top: 18px;
+  left: 70px;
+  width: 96px;
+  filter: drop-shadow(0 16px 24px var(--c-brand-ghost));
+}
+#wishlist-hero .wh-hearts svg:nth-child(2) {
+  top: 0;
+  left: 0;
+  width: 44px;
+  opacity: 0.35;
+  animation-delay: -1.6s;
+}
+#wishlist-hero .wh-hearts svg:nth-child(3) {
+  right: 0;
+  bottom: 6px;
+  width: 58px;
+  fill: var(--c-gold);
+  animation-delay: -3.2s;
+}
+
+@keyframes wh-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #wishlist-hero .wh-hearts svg {
+    animation: none;
+  }
+}
+/* #endregion */
+/* #region mətn */
+#wishlist-hero .wh-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+#wishlist-hero .wh-crumbs ol li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--c-muted-soft);
+}
+#wishlist-hero .wh-crumbs ol a {
+  color: var(--c-muted);
+  text-decoration: none;
+}
+#wishlist-hero .wh-crumbs ol a:hover {
+  color: var(--c-brand);
+}
+#wishlist-hero .wh-crumbs ol [aria-current=page] {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+#wishlist-hero .wh-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--c-ink);
+}
+#wishlist-hero .wh-title em {
+  font-style: normal;
+  color: var(--c-brand);
+}
+
+#wishlist-hero .wh-text {
+  max-width: 54ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+/* #region responsiv */
+@media only screen and (max-width: 1199px) {
+  #wishlist-hero .wh-hearts {
+    display: none;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #wishlist-hero {
+    padding: 28px 0 84px;
+  }
+  #wishlist-hero .wh-title {
+    font-size: 32px;
+  }
+  #wishlist-hero .wh-text {
+    font-size: 15px;
+  }
+}
+/* #endregion */
+/* #region düzülüş */
+#wishlist {
+  position: relative;
+  padding: 0 0 72px;
+}
+
+#wishlist .wl-view[hidden] {
+  display: none;
+}
+
+/* başlıq zolağının üstünə bir az çıxır — kabinet və səbətdə olduğu kimi */
+#wishlist .wl-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-top: -56px;
+  padding: 20px 24px;
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+}
+
+#wishlist .wl-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  margin: 0;
+}
+#wishlist .wl-summary > span:last-child {
+  min-width: 0;
+}
+#wishlist .wl-summary b {
+  display: block;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 19px;
+  color: var(--c-ink);
+}
+#wishlist .wl-summary small {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  color: var(--c-muted);
+}
+#wishlist .wl-summary small:empty {
+  display: none;
+}
+
+#wishlist .wl-summary-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+}
+#wishlist .wl-summary-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+#wishlist .wl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#wishlist .wl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 26px;
+}
+
+@media only screen and (max-width: 1399px) {
+  #wishlist .wl-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media only screen and (max-width: 991px) {
+  #wishlist .wl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media only screen and (max-width: 767px) {
+  #wishlist .wl-grid {
+    gap: 14px;
+    margin-top: 18px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #wishlist {
+    padding-bottom: 56px;
+  }
+  #wishlist .wl-bar {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+  #wishlist .wl-actions {
+    width: 100%;
+  }
+  #wishlist .wl-actions .zan-btn {
+    flex: 1;
+  }
+}
+/* #endregion */
+/* #region düymələr — .zan-btn: components/_button.scss */
+@media only screen and (max-width: 575px) {
+  #wishlist .zan-btn {
+    padding: 0 14px;
+    font-size: 13.5px;
+  }
+}
+/* #endregion */
+/* #region boş vəziyyət — .zan-empty: components/_empty-state.scss */
+/* başlıq zolağının üstünə bir az çıxır — kabinet və səbətdə olduğu kimi */
+#wishlist .zan-empty {
+  margin-top: -56px;
+}
+
+/* #endregion */
+/* #endregion */
+
+/*# sourceMappingURL=wishlist.css.map */

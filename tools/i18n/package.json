@@ -1,0 +1,14 @@
+{
+  "name": "zan-i18n-tools",
+  "private": true,
+  "description": "Tərcümə lüğətləri üçün köməkçi skriptlər: mənbə mətnlərin çıxarılması və çatışmayan tərcümələrin yoxlanması",
+  "scripts": {
+    "extract": "node extract.js",
+    "check": "node check.js"
+  },
+  "dependencies": {
+    "acorn": "^8.12.1",
+    "acorn-walk": "^8.3.4",
+    "node-html-parser": "^6.1.13"
+  }
+}

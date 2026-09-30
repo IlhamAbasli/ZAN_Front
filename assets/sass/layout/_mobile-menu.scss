@@ -12,7 +12,7 @@
   top: 0;
   right: 0;
   /* #header-sticky (1000) və #button (1000) menyunun üstündə qalmasın */
-  z-index: 1060;
+  z-index: var(--z-menu);
   width: 380px;
   /* 380px-dən dar ekranlarda menyu ekrandan kənara çıxmasın */
   max-width: 100%;
@@ -74,7 +74,7 @@
     border-radius: 14px;
     font-size: 15px;
     font-weight: 600;
-    font-family: DMSans;
+    font-family: DMSans, Roboto, Arial, sans-serif;
     box-shadow: var(--hdr-shadow);
 
     span {
@@ -125,7 +125,7 @@
           font-size: 15.5px;
           font-weight: 500;
           color: var(--c-ink);
-          font-family: DMSans;
+          font-family: DMSans, Roboto, Arial, sans-serif;
           transition: color 0.25s var(--ease);
         }
 
@@ -187,7 +187,7 @@
       box-shadow: var(--hdr-shadow);
       text-decoration: none;
       color: var(--c-on-brand);
-      font-family: RobotoBold;
+      font-family: RobotoBold, Roboto, Arial, sans-serif;
       transition:
         filter 0.25s var(--ease),
         transform 0.25s var(--ease);
@@ -208,7 +208,7 @@
 .menu-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1050;
+  z-index: var(--z-menu-backdrop);
   background-color: rgba(13, 21, 32, 0.55);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
@@ -261,7 +261,7 @@ body.has-menu-open {
   height: 46px;
   padding: 0 52px 0 18px;
   font-size: 14px;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   color: var(--c-ink);
   background-color: var(--c-surface-soft);
   border: 1px solid var(--c-line);
@@ -301,7 +301,7 @@ body.has-menu-open {
   display: block;
   margin-bottom: 10px;
   font-size: 12px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--c-muted-soft);
@@ -323,7 +323,7 @@ body.has-menu-open {
   padding: 14px 6px;
   text-align: center;
   font-size: 12px;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   font-weight: 500;
   text-decoration: none;
   color: var(--c-ink);
@@ -373,7 +373,7 @@ body.has-menu-open {
   gap: 6px;
   padding: 10px 4px;
   font-size: 13px;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   font-weight: 500;
   text-decoration: none;
   color: var(--c-ink);

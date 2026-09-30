@@ -1,12 +1,12 @@
 /* ==========================================================================
    site.js — bütün səhifələrdə işləyən layout skriptləri
    --------------------------------------------------------------------------
-   Qoşulur:     hər səhifədə, jQuery-dən sonra
+   Qoşulur:     hər səhifədə, <body>-nin sonunda, auth.js və shop.js-dən əvvəl
                 (.NET MVC-də: Views/Shared/_Layout.cshtml)
-   Asılılıqlar: jQuery 3
+   Asılılıqlar: yoxdur (vanilla JS)
    Namespace:   window.ZAN — shop.js və səhifə skriptlərinin (home.js ...)
-                istifadə etdiyi ortaq köməkçilər (notify, prefersReducedMotion,
-                headerSearch)
+                istifadə etdiyi ortaq köməkçilər: prefersReducedMotion,
+                escapeHtml, copyText, store (localStorage), notify, headerSearch
    ========================================================================== */
 
 //#region namespace
@@ -22,6 +22,71 @@ window.ZAN = window.ZAN || {};
   ZAN.prefersReducedMotion = function () {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   };
+
+  /**
+   * innerHTML-ə yazılan istənilən mətn (məhsul adı, URL parametri, server
+   * məlumatı) bundan keçməlidir: & < > " ' → HTML entity.
+   */
+  ZAN.escapeHtml = function (text) {
+    return String(text == null ? "" : text).replace(/[&<>"']/g, (ch) => `&#${ch.charCodeAt(0)};`);
+  };
+
+  /**
+   * localStorage üçün təhlükəsiz köməkçi: gizli rejimdə və ya bağlı
+   * olanda xəta atmır, pozulmuş JSON-da fallback qaytarır.
+   *   ZAN.store.get(key, fallback)  → JSON.parse edilmiş dəyər
+   *   ZAN.store.set(key, value)     → JSON.stringify edib yazır
+   *   ZAN.store.remove(key)
+   */
+  /**
+   * Mətni buferə köçürür → Promise. file:// və http-də Clipboard API
+   * bağlıdır — onda gizli textarea + execCommand("copy") işlədilir.
+   */
+  ZAN.copyText = function (text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.append(area);
+      area.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (e) {
+        /* köhnə brauzer */
+      }
+      area.remove();
+      ok ? resolve() : reject(new Error("copy failed"));
+    });
+  };
+
+  ZAN.store = {
+    get(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw === null ? fallback : JSON.parse(raw);
+      } catch (e) {
+        return fallback;
+      }
+    },
+    set(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (e) {
+        /* saxlaya bilmiriksə də cari səhifədə vəziyyət qalır */
+      }
+    },
+    remove(key) {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        /* localStorage bağlıdır */
+      }
+    },
+  };
 })(window.ZAN);
 //#endregion
 
@@ -31,6 +96,8 @@ window.ZAN = window.ZAN || {};
   "use strict";
 
   const DURATION = 1500;
+  // düyməli bildiriş ("Geri qaytar", "Səbətə bax") — basmağa vaxt qalsın
+  const DURATION_ACTION = 5000;
   const MAX_VISIBLE = 4;
   const SWIPE_CLOSE = 90; // bu qədər px sürüşdürüləndə bağlanır
 
@@ -159,7 +226,7 @@ window.ZAN = window.ZAN || {};
    *     icon:     "cart" | "heart" — növün ikonunun əvəzinə
    *     image:    məhsul şəklinin ünvanı (sağda kiçik şəkil)
    *     action:   { label, onClick } — mətnin altında düymə
-   *     duration: ms (standart 4500)
+   *     duration: ms (standart 1500, düyməli bildirişdə 5000)
    *   }
    * Eyni bildiriş artıq görünürsə yenisi yaranmır: ×2, ×3 sayğacı artır.
    */
@@ -195,7 +262,7 @@ window.ZAN = window.ZAN || {};
     );
     toast.style.setProperty(
       "--zt-duration",
-      (opts.duration || DURATION) + "ms",
+      (opts.duration || (opts.action ? DURATION_ACTION : DURATION)) + "ms",
     );
 
     const card = el("div", "zan-toast-card");
@@ -324,7 +391,7 @@ window.ZAN = window.ZAN || {};
     label.textContent = text;
     selector.classList.toggle("is-filtered", filtered);
     if (filtered) {
-      selector.setAttribute("aria-label", `Kateqoriya: ${text}`);
+      selector.setAttribute("aria-label", ZAN.t("Kateqoriya: {name}", { name: text }));
     } else {
       selector.removeAttribute("aria-label");
     }
@@ -437,18 +504,21 @@ window.ZAN = window.ZAN || {};
 })(window.ZAN);
 //#endregion
 
-$(function () {
+// layout: header, mövzu, scroll, mobil menyu, footer. Skript <body>-nin sonunda
+// qoşulur — DOM artıq hazırdır, ayrıca "ready" gözləmək lazım deyil.
+(function (ZAN) {
   "use strict";
 
   //#region search-placeholder
   // Axtarış sahəsinin placeholder-i yazılıb-silinən animasiya ilə dəyişir.
-  const searchInput = $("#product-search");
+  const searchInput = document.getElementById("product-search");
+  // hərf-hərf yazılır — tərcümə əvvəlcədən (observer yarımçıq mətni tanımır)
   const placeholders = [
     "Məhsul axtarışı...",
     "Su əsaslı boya axtarın...",
     "Sintetik boya axtarın...",
     "Sellülozik boya axtarın...",
-  ];
+  ].map((text) => ZAN.t(text));
   let placeholderIndex = 0;
   let characterIndex = 0;
   let isDeleting = false;
@@ -463,7 +533,7 @@ $(function () {
       ? currentPlaceholder.slice(0, characterIndex - 1)
       : currentPlaceholder.slice(0, characterIndex + 1);
 
-    searchInput.attr("placeholder", visibleText);
+    searchInput.setAttribute("placeholder", visibleText);
     characterIndex += isDeleting ? -1 : 1;
 
     let typingDelay = isDeleting ? 45 : 80;
@@ -480,11 +550,13 @@ $(function () {
     setTimeout(typePlaceholder, typingDelay);
   }
 
-  if (searchInput.length) {
-    searchInput.on("focus input", function () {
+  if (searchInput) {
+    const stopTyping = function () {
       placeholderTypingActive = false;
-      searchInput.attr("placeholder", placeholders[0]);
-    });
+      searchInput.setAttribute("placeholder", placeholders[0]);
+    };
+    searchInput.addEventListener("focus", stopTyping);
+    searchInput.addEventListener("input", stopTyping);
 
     typePlaceholder();
   }
@@ -493,11 +565,11 @@ $(function () {
   //#region theme
   // Mövzu <html data-theme> atributu ilə idarə olunur. Seçim localStorage-də
   // saxlanılır; seçim yoxdursa sistemin prefers-color-scheme dəyəri işləyir.
-  // İlk rəsmdən əvvəl tətbiqi: home.html → <head>-dəki inline skript
-  // (açar adı eyni olmalıdır).
+  // İlk rəsmdən əvvəl tətbiqi: head-init.js (<head>-də qoşulur)
+  // (açar adı eyni olmalıdır; dəyər JSON deyil, sadə "dark" / "light").
   const THEME_KEY = "zan-theme";
   const themeRoot = document.documentElement;
-  const $themeToggles = $(".theme-toggle");
+  const themeToggles = document.querySelectorAll(".theme-toggle");
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
   function storedTheme() {
@@ -518,24 +590,29 @@ $(function () {
   // düymənin mətni növbəti addımı bildirir; dar ekranda mətn gizləndiyi üçün
   // eyni ifadə aria-label kimi də yazılır
   function syncThemeToggles() {
-    const label = activeTheme() === "dark" ? "İşıqlı rejim" : "Tünd rejim";
+    const label = ZAN.t(activeTheme() === "dark" ? "İşıqlı rejim" : "Tünd rejim");
 
-    $themeToggles.attr("aria-label", label);
-    $themeToggles.find(".theme-toggle-label").text(label);
+    themeToggles.forEach(function (toggle) {
+      toggle.setAttribute("aria-label", label);
+      const text = toggle.querySelector(".theme-toggle-label");
+      if (text) text.textContent = label;
+    });
   }
 
   syncThemeToggles();
 
-  $themeToggles.on("click", function () {
-    const next = activeTheme() === "dark" ? "light" : "dark";
+  themeToggles.forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+      const next = activeTheme() === "dark" ? "light" : "dark";
 
-    themeRoot.setAttribute("data-theme", next);
-    try {
-      localStorage.setItem(THEME_KEY, next);
-    } catch (e) {
-      /* saxlaya bilmiriksə də cari sessiyada mövzu işləyir */
-    }
-    syncThemeToggles();
+      themeRoot.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch (e) {
+        /* saxlaya bilmiriksə də cari sessiyada mövzu işləyir */
+      }
+      syncThemeToggles();
+    });
   });
 
   // istifadəçi əl ilə seçim etməyibsə, sistem rejimi dəyişəndə də uyğunlaşırıq
@@ -549,51 +626,47 @@ $(function () {
   //#region header-disclosures
   // data-disclosure atributu olan hər düymə aria-controls ilə göstərdiyi
   // paneli açıb-örtür: dil seçimi, axtarış kateqoriyaları və kataloq
-  const $disclosures = $("[data-disclosure]");
+  const disclosures = Array.from(document.querySelectorAll("[data-disclosure]"));
+  const panelOf = (toggle) => document.getElementById(toggle.getAttribute("aria-controls"));
 
-  function closeDisclosure($toggle) {
-    $toggle.attr("aria-expanded", "false");
-    $("#" + $toggle.attr("aria-controls")).removeClass("is-open");
+  function setDisclosure(toggle, open) {
+    toggle.setAttribute("aria-expanded", String(open));
+    const panel = panelOf(toggle);
+    if (panel) panel.classList.toggle("is-open", open);
   }
 
-  function openDisclosure($toggle) {
-    $toggle.attr("aria-expanded", "true");
-    $("#" + $toggle.attr("aria-controls")).addClass("is-open");
-  }
-
-  function closeAllDisclosures($except) {
-    $disclosures.each(function () {
-      if (!$except || this !== $except[0]) {
-        closeDisclosure($(this));
-      }
+  function closeAllDisclosures(except) {
+    disclosures.forEach(function (toggle) {
+      if (toggle !== except) setDisclosure(toggle, false);
     });
   }
 
-  $disclosures.on("click", function () {
-    const $toggle = $(this);
-    const isOpen = $toggle.attr("aria-expanded") === "true";
-
-    closeAllDisclosures($toggle);
-
-    if (isOpen) {
-      closeDisclosure($toggle);
-    } else {
-      openDisclosure($toggle);
-    }
+  disclosures.forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      closeAllDisclosures(toggle);
+      setDisclosure(toggle, !isOpen);
+    });
   });
 
   // panelin kənarına klik onu bağlayır
-  $(document).on("click", function (e) {
-    if (!$(e.target).closest("[data-disclosure], .menu, .categories").length) {
-      closeAllDisclosures();
-    }
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest("[data-disclosure], .menu, .categories")) closeAllDisclosures();
+  });
+  //#endregion
+
+  //#region empty-links
+  // href="#" — hələ ünvanı olmayan linklər (sosial şəbəkələr, dil seçimi):
+  // klikdə səhifə yuxarı sıçramasın. JS sonradan href yazırsa (paylaşma) — təsirsizdir.
+  document.addEventListener("click", function (e) {
+    if (e.target.closest('a[href="#"]')) e.preventDefault();
   });
   //#endregion
 
   //#region scroll-state
   // yuxarı qalxma düyməsi və sabit header eyni scroll hadisəsindən idarə olunur
-  const $backToTop = $("#button");
-  const $headerSticky = $("#header-sticky");
+  const backToTop = document.getElementById("button");
+  const headerSticky = document.getElementById("header-sticky");
   let scrollTicking = false;
 
   // yuxarı qalxma düyməsinin kənarındakı halqa oxunma tərəqqisini göstərir
@@ -610,118 +683,153 @@ $(function () {
     progressBar.style.strokeDashoffset = String(progressLength);
   }
 
-  function syncScrollProgress(offset) {
-    if (!progressBar) return;
-
-    // sürüşdürülə bilən ümumi məsafə
-    const scrollable =
-      document.documentElement.scrollHeight - window.innerHeight;
-    const ratio = scrollable > 0 ? Math.min(offset / scrollable, 1) : 0;
-
-    progressBar.style.strokeDashoffset = String(progressLength * (1 - ratio));
-  }
-
   function syncScrollState() {
+    // əvvəl oxuyuruq, sonra yazırıq — sinif dəyişikliyindən sonra ölçü
+    // oxunsa brauzer hər kadrda layout-u yenidən hesablamalı olur
     const offset = window.scrollY;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
 
-    $backToTop.toggleClass("show", offset > 300);
-    $headerSticky.toggleClass("show", offset > 200);
-    syncScrollProgress(offset);
+    if (backToTop) backToTop.classList.toggle("show", offset > 300);
+    if (headerSticky) headerSticky.classList.toggle("show", offset > 200);
+    if (progressBar) {
+      const ratio = scrollable > 0 ? Math.min(offset / scrollable, 1) : 0;
+      progressBar.style.strokeDashoffset = String(progressLength * (1 - ratio));
+    }
     scrollTicking = false;
   }
 
-  $(window).on("scroll resize", function () {
-    // hər scroll hadisəsində DOM-a toxunmamaq üçün rAF-a yığırıq
+  // hər scroll hadisəsində DOM-a toxunmamaq üçün rAF-a yığırıq
+  function requestScrollSync() {
     if (scrollTicking) return;
-
     scrollTicking = true;
     requestAnimationFrame(syncScrollState);
-  });
+  }
 
+  window.addEventListener("scroll", requestScrollSync, { passive: true });
+  window.addEventListener("resize", requestScrollSync);
   syncScrollState();
 
-  $backToTop.on("click", function (e) {
-    e.preventDefault();
-    $("html, body").animate({ scrollTop: 0 }, 300);
-  });
+  if (backToTop) {
+    backToTop.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: ZAN.prefersReducedMotion() ? "auto" : "smooth" });
+    });
+  }
   //#endregion
 
   //#region mobile-menu
-  const $mobileMenu = $("#mobile-menu");
-  const $menuTriggers = $(".bars");
-  const $menuBackdrop = $(".menu-backdrop");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuTriggers = document.querySelectorAll(".bars");
+  const menuBackdrop = document.querySelector(".menu-backdrop");
   let lastMenuTrigger = null;
+
+  const isMenuOpen = () => Boolean(mobileMenu && mobileMenu.classList.contains("is-open"));
+  const setTriggers = (open) => menuTriggers.forEach((t) => t.setAttribute("aria-expanded", String(open)));
 
   function openMobileMenu(trigger) {
     lastMenuTrigger = trigger || null;
-    $mobileMenu.addClass("is-open");
-    $menuTriggers.attr("aria-expanded", "true");
-    $("body").addClass("has-menu-open");
+    mobileMenu.classList.add("is-open");
+    setTriggers(true);
+    document.body.classList.add("has-menu-open");
 
     // fokus menyunun içinə keçsin ki, klaviatura ilə idarə oluna bilsin.
     // panel bu an hələ visibility:hidden sayılır, ona görə növbəti kadrı gözləyirik
     requestAnimationFrame(function () {
-      $mobileMenu.find(".menu-close-btn").trigger("focus");
+      const close = mobileMenu.querySelector(".menu-close-btn");
+      if (close) close.focus();
     });
   }
 
   function closeMobileMenu() {
-    if (!$mobileMenu.hasClass("is-open")) return;
+    if (!isMenuOpen()) return;
 
-    $mobileMenu.removeClass("is-open");
-    $menuTriggers.attr("aria-expanded", "false");
-    $("body").removeClass("has-menu-open");
+    mobileMenu.classList.remove("is-open");
+    setTriggers(false);
+    document.body.classList.remove("has-menu-open");
     closeAllDisclosures();
 
     if (lastMenuTrigger) {
-      $(lastMenuTrigger).trigger("focus");
+      lastMenuTrigger.focus();
       lastMenuTrigger = null;
     }
   }
 
-  $menuTriggers.on("click", function () {
-    openMobileMenu(this);
-  });
+  if (mobileMenu) {
+    menuTriggers.forEach((trigger) => trigger.addEventListener("click", () => openMobileMenu(trigger)));
 
-  $mobileMenu.find(".menu-close-btn").on("click", closeMobileMenu);
-  $menuBackdrop.on("click", closeMobileMenu);
-  $mobileMenu.find(".main-nav a, .categories a").on("click", closeMobileMenu);
+    const closeButton = mobileMenu.querySelector(".menu-close-btn");
+    if (closeButton) closeButton.addEventListener("click", closeMobileMenu);
+    if (menuBackdrop) menuBackdrop.addEventListener("click", closeMobileMenu);
+    mobileMenu
+      .querySelectorAll(".main-nav a, .categories a")
+      .forEach((link) => link.addEventListener("click", closeMobileMenu));
 
-  $(document).on("keydown", function (e) {
+    // menyu modal dialoqdur (aria-modal="true"): Tab fokusu onun içində saxlayır
+    mobileMenu.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      const focusable = Array.from(
+        mobileMenu.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null);
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  // Esc: əvvəl açıq panel bağlanır (fokus onun düyməsinə qayıdır), sonra menyu
+  document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
 
-    closeAllDisclosures();
+    const open = disclosures.find((toggle) => toggle.getAttribute("aria-expanded") === "true");
+    if (open) {
+      const panel = panelOf(open);
+      const focusInside =
+        open.contains(document.activeElement) || Boolean(panel && panel.contains(document.activeElement));
+      closeAllDisclosures();
+      if (focusInside) open.focus();
+      return;
+    }
     closeMobileMenu();
   });
   //#endregion
 
   //#region footer-year
   // footer-dəki il hər il əl ilə dəyişdirilməsin
-  $("[data-current-year]").text(new Date().getFullYear());
+  document.querySelectorAll("[data-current-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
   //#endregion
 
   //#region footer-wave
   // footer ekrana girəndə boya zolağı soldan sağa bir dəfə "çəkilir".
   // JS olmadan və "animasiyaları azalt" rejimində zolaq elə əvvəldən görünür.
+  // Ekrandan kənarda dalğanın sonsuz "nəfəs alma" animasiyaları dayanır (.is-paused).
   // Stil: layout/_footer.scss → #region boya dalğası
   const footerWave = document.querySelector(".footer-wave");
 
-  if (
-    footerWave &&
-    "IntersectionObserver" in window &&
-    !ZAN.prefersReducedMotion()
-  ) {
-    footerWave.classList.add("is-waiting");
+  if (footerWave && "IntersectionObserver" in window) {
+    const reveal = !ZAN.prefersReducedMotion();
+    if (reveal) footerWave.classList.add("is-waiting");
+    footerWave.classList.add("is-paused");
 
-    const waveObserver = new IntersectionObserver(
+    new IntersectionObserver(
       function (entries) {
-        if (!entries[0].isIntersecting) return;
-        footerWave.classList.replace("is-waiting", "is-inview");
-        waveObserver.disconnect();
+        const entry = entries[0];
+        footerWave.classList.toggle("is-paused", !entry.isIntersecting);
+        if (reveal && entry.intersectionRatio >= 0.6) {
+          footerWave.classList.replace("is-waiting", "is-inview");
+        }
       },
-      { threshold: 0.6 },
-    );
-    waveObserver.observe(footerWave);
+      { threshold: [0, 0.6] },
+    ).observe(footerWave);
   }
   //#endregion
 
@@ -850,4 +958,4 @@ $(function () {
     window.addEventListener("blur", hideRing);
   }
   //#endregion
-});
+})(window.ZAN);

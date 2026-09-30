@@ -1,13 +1,15 @@
 // ==========================================================================
 // GİRİŞ VƏ QEYDİYYAT (#auth)
 // --------------------------------------------------------------------------
-// HTML: login.html, register.html → #region auth
+// HTML: login.html, register.html, forgot-password.html → #region auth
 // JS:   auth-page.js (forma), forms.js (sahələr)
 // Sahələrin stili: components/_form-field.scss (.zf-*)
 //
 // Quruluş: solda tünd marka paneli (.au-aside), sağda forma (.au-main).
 // Dar ekranda panel formadan sonra gəlir və qısalır.
 // ==========================================================================
+
+@use "../../base/mixins" as *;
 
 /* #region bölmə və fon */
 
@@ -20,17 +22,11 @@
 }
 
 #auth .au-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+  @include hero-bg;
 }
 
 #auth .au-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: var(--blob-alpha);
+  @include hero-blob;
 }
 
 #auth .au-blob-1 {
@@ -174,7 +170,7 @@
 
 #auth .au-aside-title {
   margin: 16px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 30px;
   line-height: 1.2;
   color: #fff;
@@ -279,7 +275,7 @@
 
 #auth .au-title {
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 32px;
   line-height: 1.15;
   color: var(--c-ink);
@@ -315,7 +311,7 @@
     width: 20px;
     height: 20px;
     fill: none;
-    stroke: #b8862a;
+    stroke: var(--c-gold-ink);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;

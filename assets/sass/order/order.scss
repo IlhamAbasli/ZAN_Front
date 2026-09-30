@@ -1,0 +1,19 @@
+// ==========================================================================
+// ORDER.SCSS — sifariş axını: səbət (cart.html) və sifariş (checkout.html)
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/order/order.css (Live Sass Compiler)
+// Qoşulur:  cart.html, checkout.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Cart/Index.cshtml, Views/Checkout/Index.cshtml
+//           → @section Styles)
+// Modullar: assets/sass/pages/order/
+//
+// Tokenlər, header, footer, forma sahələri (.zf-*), say düyməsi (.qty)
+// site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/order/hero";
+@use "../pages/order/layout";
+@use "../pages/order/cart";
+@use "../pages/order/checkout";
+/* #endregion */

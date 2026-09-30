@@ -114,7 +114,7 @@
 .pc-badge {
   padding: 4px 10px;
   border-radius: 999px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 11px;
   letter-spacing: 0.04em;
   line-height: 1.4;
@@ -149,7 +149,7 @@
   color: var(--c-ink);
   background: var(--c-surface);
   box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     color 0.25s var(--ease),
     background-color 0.25s var(--ease),
@@ -204,7 +204,7 @@
   background: color-mix(in srgb, var(--c-surface) 88%, transparent);
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   opacity: 0;
   transform: translate(-50%, 10px);
   transition:
@@ -275,7 +275,7 @@
   display: -webkit-box;
   margin: 8px 0 0;
   overflow: hidden;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.3;
   -webkit-line-clamp: 2;
@@ -335,7 +335,7 @@
   line-height: 1.1;
 
   b {
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 21px;
     color: var(--c-ink);
   }
@@ -364,7 +364,7 @@
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 10px 20px color-mix(in srgb, var(--pc-tint) 30%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     transform 0.25s var(--ease),
     box-shadow 0.25s var(--ease),

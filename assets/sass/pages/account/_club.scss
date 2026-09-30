@@ -49,14 +49,14 @@
   box-shadow: var(--shadow-card);
 }
 
-/* fonda böyük kontur "USTA" yazısı */
+/* fonda böyük kontur "USTA" yazısı — mətn HTML-dədir (data-watermark), tərcümə olunur */
 #account .club-hero::after {
-  content: "USTA";
+  content: attr(data-watermark);
   position: absolute;
   right: -10px;
   bottom: -38px;
   z-index: -1;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 150px;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -95,7 +95,7 @@
 
 #account .club-title {
   margin: 14px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 30px;
   line-height: 1.2;
   color: #fff;
@@ -327,7 +327,7 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  color: #b8862a;
+  color: var(--c-gold-ink);
   background: color-mix(in srgb, var(--c-gold) 22%, transparent);
 
   svg {

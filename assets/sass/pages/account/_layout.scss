@@ -81,7 +81,7 @@
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 20px;
   letter-spacing: 0.02em;
   color: var(--c-on-brand);
@@ -96,7 +96,7 @@
 
   b {
     display: block;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 16.5px;
     color: var(--c-ink);
     overflow: hidden;
@@ -126,7 +126,7 @@
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.03em;
-  color: #8a6212;
+  color: var(--c-gold-ink);
   background: color-mix(in srgb, var(--c-gold) 30%, transparent);
 
   &[hidden] {
@@ -147,15 +147,7 @@
   }
 }
 
-:root[data-theme="dark"] #account .acc-badge[data-club-badge="member"] {
-  color: var(--c-gold);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) #account .acc-badge[data-club-badge="member"] {
-    color: var(--c-gold);
-  }
-}
+/* tünd mövzuda rəng --c-gold-ink tokenindən gəlir (base/_tokens.scss) */
 
 /* #endregion */
 
@@ -339,7 +331,7 @@
 
 #account .acc-card-title {
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 22px;
   line-height: 1.25;
   color: var(--c-ink);

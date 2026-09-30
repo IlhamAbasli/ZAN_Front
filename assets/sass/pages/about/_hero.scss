@@ -6,6 +6,8 @@
 // Başlıq zolağının altında geniş media yeri (video / şəkil) dayanır.
 // ==========================================================================
 
+@use "../../base/mixins" as *;
+
 /* #region bölmə */
 
 #about-hero {
@@ -41,34 +43,7 @@
 }
 
 #about-hero .ah-crumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 13px;
-  color: var(--c-muted);
-
-  li + li::before {
-    content: "/";
-    margin-right: 8px;
-    color: var(--c-muted-soft);
-  }
-
-  a {
-    color: var(--c-muted);
-    text-decoration: none;
-
-    &:hover {
-      color: var(--c-brand);
-    }
-  }
-
-  [aria-current="page"] {
-    color: var(--c-ink);
-    font-weight: 600;
-  }
+  @include page-crumbs;
 }
 
 #about-hero .ah-top {
@@ -81,7 +56,7 @@
 
 #about-hero .ah-title {
   margin: 20px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(38px, 4.6vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.02em;

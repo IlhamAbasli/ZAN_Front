@@ -1,10 +1,11 @@
 /* ==========================================================================
    shop-page.js — yalnız məhsullar səhifəsinin (shop.html) skriptləri
    --------------------------------------------------------------------------
-   Qoşulur:     shop.html, site.js və shop.js-dən sonra
+   Qoşulur:     shop.html, site.js → auth.js → shop.js-dən sonra
                 (.NET MVC-də: Views/Shop/Index.cshtml → @section Scripts)
-   Asılılıqlar: shop.js (ZAN.cart, ZAN.wishlist, ZAN.readProductCard), auth.js,
-                Bootstrap JS (modal, offcanvas)
+   Asılılıqlar: site.js (ZAN.escapeHtml, ZAN.store, ZAN.headerSearch),
+                shop.js (ZAN.cart, ZAN.wishlist, ZAN.readProductCard,
+                ZAN.formatPrice), auth.js, Bootstrap JS (modal, offcanvas)
 
    Kartlar HTML-dədir (MVC-də serverdə render olunur); bu skript onları
    yalnız süzür, sıralayır və səhifələyir. Vəziyyət URL-də saxlanılır:
@@ -20,6 +21,7 @@
   if (!area) return;
 
   const reduceMotion = ZAN.prefersReducedMotion();
+  const esc = ZAN.escapeHtml;
   const PER_PAGE = 9;
 
   //#region elementlər
@@ -83,7 +85,9 @@
     state.min = clampPrice(Number(params.get("min")) || PRICE_FLOOR);
     state.max = clampPrice(Number(params.get("max")) || PRICE_CEIL);
     if (state.min > state.max) [state.min, state.max] = [state.max, state.min];
-    state.sort = sortSelect.querySelector(`option[value="${params.get("sort")}"]`) ? params.get("sort") : "default";
+    // dəyər seçicidə yazılmır — ?sort=" kimi parametr querySelector-u sındırmasın
+    const sort = params.get("sort");
+    state.sort = Array.from(sortSelect.options).some((o) => o.value === sort) ? sort : "default";
     state.page = Math.max(1, parseInt(params.get("page"), 10) || 1);
   }
 
@@ -144,7 +148,7 @@
     default: (a, b) => a.card.dataset.order - b.card.dataset.order,
     "price-asc": (a, b) => a.data.price - b.data.price,
     "price-desc": (a, b) => b.data.price - a.data.price,
-    name: (a, b) => a.data.name.localeCompare(b.data.name, "az"),
+    name: (a, b) => a.data.name.localeCompare(b.data.name, ZAN.i18n.locale),
     new: (a, b) => b.data.isNew - a.data.isNew || a.card.dataset.order - b.card.dataset.order,
   };
   //#endregion
@@ -167,17 +171,18 @@
       p.card.classList.remove("is-entering");
     });
 
+    // animasiyanın yenidən başlaması üçün bir dəfə reflow kifayətdir
+    // (hər kart üçün ayrıca offsetWidth oxumaq layout-u N dəfə hesablatdırır)
     if (animate) {
-      [...visible].forEach((p, i) => {
-        p.card.style.setProperty("--i", String(i));
-        void p.card.offsetWidth;
-        p.card.classList.add("is-entering");
-      });
+      const shown = [...visible];
+      shown.forEach((p, i) => p.card.style.setProperty("--i", String(i)));
+      void grid.offsetWidth;
+      shown.forEach((p) => p.card.classList.add("is-entering"));
     }
 
     emptyBox.hidden = found.length > 0;
     resultText.innerHTML = found.length
-      ? `<b>${found.length}</b> məhsuldan <b>${start + 1}–${start + visible.size}</b> göstərilir`
+      ? ZAN.t("<b>{total}</b> məhsuldan <b>{from}–{to}</b> göstərilir", { total: found.length, from: start + 1, to: start + visible.size })
       : "Uyğun məhsul yoxdur";
 
     renderPages(pageCount);
@@ -198,7 +203,7 @@
       state.page === 1 ? "disabled" : ""
     }>${arrow("M15 5l-7 7 7 7")}</button></li>`;
     for (let n = 1; n <= pageCount; n++) {
-      html += `<li><button type="button" data-page="${n}" aria-label="${n}-ci səhifə" ${
+      html += `<li><button type="button" data-page="${n}" aria-label="${ZAN.t("Səhifə {n}", { n })}" ${
         n === state.page ? 'aria-current="page"' : ""
       }>${n}</button></li>`;
     }
@@ -221,7 +226,8 @@
     chipsBox.innerHTML = chips
       .map(
         (c) =>
-          `<button type="button" class="st-chip" data-chip="${c.type}" data-value="${c.value || ""}" aria-label="Filtri sil: ${c.label}">${c.label}</button>`,
+          // label URL-dən gəlir (?q=) — mütləq escape olunur
+          `<button type="button" class="st-chip" data-chip="${c.type}" data-value="${esc(c.value || "")}" aria-label="${esc(ZAN.t("Filtri sil: {label}", { label: ZAN.t(c.label) }))}">${esc(c.label)}</button>`,
       )
       .join("");
     if (chips.length > 1) {
@@ -247,7 +253,7 @@
     const count = activeFilterCount();
     filterCount.textContent = count ? String(count) : "";
     resetButton.disabled = count === 0;
-    if (applyButton) applyButton.textContent = foundCount ? `${foundCount} məhsulu göstər` : "Nəticə yoxdur";
+    if (applyButton) applyButton.textContent = foundCount ? ZAN.t("{n} məhsulu göstər", { n: foundCount }) : ZAN.t("Nəticə yoxdur");
   }
 
   function syncPrice() {
@@ -285,8 +291,8 @@
       update();
     }, 220);
   });
-  // Enter axtarış formunu göndərməsin (səhifə yenilənməsin)
-  searchInput.addEventListener("keydown", (e) => e.key === "Enter" && e.preventDefault());
+  // filtr forması heç vaxt göndərilmir — hər şey dərhal tətbiq olunur (səhifə yenilənməsin)
+  searchInput.closest("form").addEventListener("submit", (e) => e.preventDefault());
 
   categoryInputs.forEach((input) =>
     input.addEventListener("change", function () {
@@ -579,8 +585,8 @@
       qv(".qv-desc").textContent = d.description;
       qv(".qv-price b").textContent = ZAN.formatPrice(d.price);
       qv(".qv-price s").textContent = d.oldPrice ? ZAN.formatPrice(d.oldPrice) : "";
-      qv(".qv-save").textContent = d.oldPrice ? `${ZAN.formatPrice(d.oldPrice - d.price)} qənaət` : "";
-      qv(".qv-meta").innerHTML = d.volume ? `<span class="pc-chip">${d.volume}</span>` : "";
+      qv(".qv-save").textContent = d.oldPrice ? ZAN.t("{amount} qənaət", { amount: ZAN.formatPrice(d.oldPrice - d.price) }) : "";
+      qv(".qv-meta").innerHTML = d.volume ? `<span class="pc-chip">${esc(d.volume)}</span>` : "";
       qv(".qv-more").href = d.url;
 
       const stock = qv(".qv-stock");
@@ -599,7 +605,7 @@
           ? images
               .map(
                 (src, i) =>
-                  `<button type="button" data-src="${src}" aria-pressed="${i === 0}" aria-label="${i + 1}-ci şəkil"><img src="${src}" alt="" /></button>`,
+                  `<button type="button" data-src="${esc(src)}" aria-pressed="${i === 0}" aria-label="${ZAN.t("Şəkil {n}", { n: i + 1 })}"><img src="${esc(src)}" alt="" /></button>`,
               )
               .join("")
           : "";

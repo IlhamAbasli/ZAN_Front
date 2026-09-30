@@ -1,0 +1,15 @@
+// ==========================================================================
+// WISHLIST.SCSS — "Sevimlilər" səhifəsi (wishlist.html)
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/wishlist/wishlist.css (Live Sass Compiler)
+// Qoşulur:  wishlist.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Wishlist/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/wishlist/
+//
+// Tokenlər, header, footer, məhsul kartı (.product-card) site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/wishlist/hero";
+@use "../pages/wishlist/list";
+/* #endregion */

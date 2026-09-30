@@ -1,11 +1,11 @@
 /* ==========================================================================
    contact-page.js — yalnız "Bizimlə əlaqə" səhifəsinin (contact.html) skriptləri
    --------------------------------------------------------------------------
-   Qoşulur:     contact.html, site.js və shop.js-dən sonra
+   Qoşulur:     contact.html, forms.js-dən sonra
                 (.NET MVC-də: Views/Contact/Index.cshtml → @section Scripts)
-   Asılılıqlar: site.js (ZAN.notify)
+   Asılılıqlar: site.js (ZAN.notify), forms.js (ZAN.forms)
 
-   Forma serverə <form action>-dakı ünvana göndərilir (fetch, FormData).
+   Forma serverə <form action>-dakı ünvana göndərilir (ZAN.forms.submit).
    action="#" olduqca göndəriş imitasiya olunur — backend hazır olanda yalnız
    HTML-də action-u dəyişmək kifayətdir.
    ========================================================================== */
@@ -80,7 +80,7 @@
       if (offset === 0 && now.minutes >= toMinutes(slot.open)) continue;
 
       const when =
-        offset === 0 ? "bu gün" : offset === 1 ? "sabah" : DAY_NAMES[day];
+        offset === 0 ? ZAN.t("bu gün") : offset === 1 ? ZAN.t("sabah") : ZAN.t(DAY_NAMES[day]);
       return `${when}, ${slot.open}`;
     }
     return null;
@@ -103,10 +103,10 @@
 
     let text;
     if (isOpen) {
-      text = `İndi açıqdır · ${today.close}-dək`;
+      text = ZAN.t("İndi açıqdır · {time}-dək", { time: today.close });
     } else {
       const next = nextOpening(schedule, now);
-      text = next ? `Hazırda bağlıdır · açılış: ${next}` : "Hazırda bağlıdır";
+      text = next ? ZAN.t("Hazırda bağlıdır · açılış: {when}", { when: next }) : ZAN.t("Hazırda bağlıdır");
     }
 
     statusEls.forEach(function (el) {
@@ -130,24 +130,7 @@
 
   //#region copy
   // HTML: .cc-copy[data-copy] — telefon və e-poçtu buferə köçürür
-  const copyText = function (text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-    // file:// və http-də clipboard API bağlıdır — köhnə üsul
-    return new Promise(function (resolve, reject) {
-      const area = document.createElement("textarea");
-      area.value = text;
-      area.setAttribute("readonly", "");
-      area.style.position = "fixed";
-      area.style.opacity = "0";
-      document.body.append(area);
-      area.select();
-      const ok = document.execCommand("copy");
-      area.remove();
-      ok ? resolve() : reject(new Error("copy failed"));
-    });
-  };
+  const copyText = ZAN.copyText;
 
   document.querySelectorAll(".cc-copy[data-copy]").forEach(function (button) {
     const label = button.querySelector("span");
@@ -164,7 +147,7 @@
             button.classList.remove("is-copied");
             label.textContent = initialText;
           }, 2000);
-          ZAN.notify("success", `${button.dataset.copy} buferə köçürüldü`, {
+          ZAN.notify("success", ZAN.t("{value} buferə köçürüldü", { value: button.dataset.copy }), {
             title: "Kopyalandı",
             duration: 2500,
           });
@@ -177,80 +160,42 @@
   //#endregion
 
   //#region form
-  // HTML: #region contact-area → #contact-form
+  // HTML: #region contact-area → #contact-form. Sahələr və yoxlama ümumi forma
+  // komponentindəndir (forms.js: ZAN.forms.bind / submit / setLoading).
   const form = document.getElementById("contact-form");
   if (!form) return;
 
   const success = document.getElementById("contact-success");
-  const submitBtn = form.querySelector(".cf-submit");
+  const submitBtn = form.querySelector(".zf-submit");
   const message = form.elements.message;
   const counter = form.querySelector("[data-count]");
-  const counterWrap = form.querySelector(".cf-count");
+  const counterWrap = form.querySelector(".zf-count");
   const MESSAGE_MAX = Number(message.getAttribute("maxlength")) || 1000;
   const MESSAGE_MIN = Number(message.getAttribute("minlength")) || 10;
+  const rules = ZAN.forms.rules;
 
-  // hər sahə üçün yoxlama: boş sətir = xəta yoxdur
-  const RULES = {
+  const validator = ZAN.forms.bind(form, {
     name(input) {
       const value = input.value.trim();
       if (!value) return "Adınızı yazın.";
-      if (value.length < 2) return "Ad ən azı 2 hərfdən ibarət olmalıdır.";
-      return "";
+      return value.length < 2 ? "Ad ən azı 2 hərfdən ibarət olmalıdır." : "";
     },
+    // maskasız sahə: +994 ilə və ya onsuz yazıla bilər
     phone(input) {
       const value = input.value.trim();
       const digits = value.replace(/\D/g, "");
       if (!value) return "Telefon nömrənizi yazın.";
-      if (!/^[+\d\s()-]+$/.test(value) || digits.length < 9 || digits.length > 12) {
-        return "Nömrəni düzgün yazın, məsələn: +994 50 123 45 67.";
-      }
-      return "";
+      return /^[+\d\s()-]+$/.test(value) && digits.length >= 9 && digits.length <= 12
+        ? ""
+        : "Nömrəni düzgün yazın, məsələn: +994 50 123 45 67.";
     },
-    email(input) {
-      const value = input.value.trim();
-      if (!value) return "";
-      if (input.validity.typeMismatch || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        return "E-poçt ünvanı düzgün deyil.";
-      }
-      return "";
-    },
+    email: rules.email({ optional: true }),
     message(input) {
       const value = input.value.trim();
       if (!value) return "Mesajınızı yazın.";
-      if (value.length < MESSAGE_MIN) {
-        return `Mesaj ən azı ${MESSAGE_MIN} simvoldan ibarət olmalıdır.`;
-      }
-      return "";
+      return value.length < MESSAGE_MIN ? ZAN.t("Mesaj ən azı {n} simvoldan ibarət olmalıdır.", { n: MESSAGE_MIN }) : "";
     },
-    consent(input) {
-      return input.checked ? "" : "Davam etmək üçün razılığınızı təsdiqləyin.";
-    },
-  };
-
-  const validateField = function (input) {
-    const rule = RULES[input.name];
-    if (!rule) return true;
-
-    const error = rule(input);
-    // xəta mətninin yeri: #cf-{name}-error (aria-describedby ilə bağlıdır)
-    const target = document.getElementById(`cf-${input.name}-error`);
-    if (target) target.textContent = error;
-    input.setAttribute("aria-invalid", error ? "true" : "false");
-    return !error;
-  };
-
-  const fields = Object.keys(RULES).map((name) => form.elements[name]);
-
-  // sahədən çıxanda yoxlanır; xəta göstərilibsə yazdıqca təzələnir
-  fields.forEach(function (input) {
-    const live = function () {
-      if (input.getAttribute("aria-invalid") === "true") validateField(input);
-    };
-    input.addEventListener("blur", function () {
-      if (input.type === "checkbox" || input.value.trim()) validateField(input);
-    });
-    input.addEventListener("input", live);
-    input.addEventListener("change", live);
+    consent: rules.checked("Davam etmək üçün razılığınızı təsdiqləyin."),
   });
 
   // mesaj sayğacı
@@ -262,32 +207,9 @@
   message.addEventListener("input", updateCounter);
   updateCounter();
 
-  const setLoading = function (loading) {
-    submitBtn.classList.toggle("is-loading", loading);
-    submitBtn.disabled = loading;
-    submitBtn.setAttribute("aria-busy", String(loading));
-  };
-
-  const send = function () {
-    const endpoint = form.getAttribute("action");
-
-    // TODO (backend): action="#" olduqca göndəriş imitasiya olunur
-    if (!endpoint || endpoint === "#") {
-      return new Promise((resolve) => setTimeout(resolve, 900));
-    }
-
-    return fetch(endpoint, {
-      method: (form.getAttribute("method") || "post").toUpperCase(),
-      body: new FormData(form),
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-    }).then(function (response) {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    });
-  };
-
   const showSuccess = function () {
     form.reset();
-    fields.forEach((input) => input.removeAttribute("aria-invalid"));
+    validator.clear();
     updateCounter();
     form.hidden = true;
     success.hidden = false;
@@ -296,12 +218,7 @@
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-
-    const invalid = fields.filter((input) => !validateField(input));
-    if (invalid.length) {
-      invalid[0].focus();
-      return;
-    }
+    if (!validator.validate()) return;
 
     // spam tələsi doludursa bot-dur — göndərmirik, amma uğur göstəririk
     if (form.elements.website.value) {
@@ -309,16 +226,20 @@
       return;
     }
 
-    setLoading(true);
-    send()
+    ZAN.forms.setLoading(submitBtn, true);
+    ZAN.forms
+      .submit(form)
       .then(showSuccess)
-      .catch(function () {
+      .catch(function (error) {
+        // formanın başında .zf-alert yoxdur — sahə xətaları altlarına, ümumi mətn bildirişə
+        const data = (error && error.data) || {};
+        if (data.errors) Object.keys(data.errors).forEach((name) => validator.show(name, data.errors[name]));
         ZAN.notify(
           "error",
-          "Müraciət göndərilmədi. Bir az sonra yenidən cəhd edin və ya bizə zəng edin.",
+          data.message || "Müraciət göndərilmədi. Bir az sonra yenidən cəhd edin və ya bizə zəng edin.",
         );
       })
-      .finally(() => setLoading(false));
+      .finally(() => ZAN.forms.setLoading(submitBtn, false));
   });
 
   success.querySelector(".cf-again").addEventListener("click", function () {

@@ -6,6 +6,8 @@
 // bucağı HTML-də --sw və --r ilə verilir.
 // ==========================================================================
 
+@use "../../base/mixins" as *;
+
 /* #region bölmə və fon */
 
 #vz-hero {
@@ -17,17 +19,11 @@
 }
 
 #vz-hero .vh-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+  @include hero-bg;
 }
 
 #vz-hero .vh-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: var(--blob-alpha);
+  @include hero-blob;
 }
 
 #vz-hero .vh-blob-1 {
@@ -124,40 +120,13 @@
 /* #region mətn */
 
 #vz-hero .vh-crumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 13px;
-  color: var(--c-muted);
-
-  li + li::before {
-    content: "/";
-    margin-right: 8px;
-    color: var(--c-muted-soft);
-  }
-
-  a {
-    color: var(--c-muted);
-    text-decoration: none;
-
-    &:hover {
-      color: var(--c-brand);
-    }
-  }
-
-  [aria-current="page"] {
-    color: var(--c-ink);
-    font-weight: 600;
-  }
+  @include page-crumbs;
 }
 
 #vz-hero .vh-title {
   max-width: 16ch;
   margin: 14px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 44px;
   line-height: 1.1;
   color: var(--c-ink);

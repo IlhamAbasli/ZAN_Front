@@ -46,7 +46,7 @@
   b {
     grid-column: 2;
     align-self: start;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 17px;
     line-height: 1.3;
     color: var(--c-ink);
@@ -104,7 +104,7 @@
     white-space: nowrap;
     color: var(--c-muted);
     background: transparent;
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
     transition:
       color 0.25s var(--ease),
       background-color 0.25s var(--ease),
@@ -160,7 +160,7 @@
 
 .pd-h3 {
   margin: 0 0 14px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   color: var(--c-ink);
 
@@ -325,7 +325,7 @@
       width: 38px;
       height: 38px;
       border-radius: 12px;
-      font-family: RobotoBold;
+      font-family: RobotoBold, Roboto, Arial, sans-serif;
       font-size: 16px;
       color: #fff;
       background: var(--pc-tint);
@@ -336,7 +336,7 @@
   b {
     display: block;
     margin: 16px 0 6px;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 16px;
     color: var(--c-ink);
   }

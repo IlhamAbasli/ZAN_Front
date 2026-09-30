@@ -112,7 +112,7 @@
     font-weight: 600;
     color: var(--c-ink);
     background: var(--c-surface-soft);
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
     -webkit-appearance: none;
     appearance: none;
 
@@ -154,7 +154,7 @@
     border-radius: 9px;
     color: var(--c-muted-soft);
     background: transparent;
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
     transition:
       color 0.2s var(--ease),
       background-color 0.2s var(--ease);
@@ -217,7 +217,7 @@
   font-weight: 600;
   color: var(--c-brand-deep);
   background: var(--c-brand-tint);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 
   &::after {
     content: "×";
@@ -433,7 +433,7 @@
 
   h3 {
     margin: 0;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 20px;
     color: var(--c-ink);
   }
@@ -485,7 +485,7 @@
     font-weight: 600;
     color: var(--c-ink);
     background: var(--c-surface);
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
     transition:
       color 0.2s var(--ease),
       border-color 0.2s var(--ease),

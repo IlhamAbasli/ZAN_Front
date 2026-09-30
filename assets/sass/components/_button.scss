@@ -1,0 +1,83 @@
+// ==========================================================================
+// İKİNCİ DƏRƏCƏLİ DÜYMƏ (.zan-btn)
+// --------------------------------------------------------------------------
+// HTML: cart.html, checkout.html, wishlist.html (boş vəziyyət, alətlər
+//       zolağı, "Əsas səhifə", "Rəng vizualizatoru" ...)
+//   <a class="zan-btn" href="…">Mətn</a>
+//   <button type="button" class="zan-btn is-primary"><svg>…</svg>Mətn</button>
+// Əsas (qırmızı, böyük) düymə formalardakı .zf-submit-dir
+// (components/_form-field.scss); bu isə yanındakı sakit düymədir.
+// ==========================================================================
+
+/* #region düymə */
+
+.zan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  font-size: 14.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--c-ink);
+  text-decoration: none;
+  background: var(--c-surface);
+  cursor: var(--cursor-pointer);
+  transition:
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    filter 0.25s var(--ease);
+
+  svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--c-brand);
+    border-color: var(--c-brand-line);
+    background: var(--c-brand-tint);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* marka rəngində — alətlər zolağındakı əsas əməliyyat */
+  &.is-primary {
+    border-color: transparent;
+    color: var(--c-on-brand);
+    background: var(--grad-brand);
+    box-shadow: var(--shadow-brand);
+
+    &:hover:not(:disabled) {
+      color: var(--c-on-brand);
+      border-color: transparent;
+      background: var(--grad-brand);
+      filter: saturate(1.15) brightness(1.06);
+    }
+
+    &:disabled {
+      box-shadow: none;
+    }
+  }
+}
+
+/* #endregion */

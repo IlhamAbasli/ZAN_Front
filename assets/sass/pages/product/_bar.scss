@@ -13,7 +13,7 @@
   right: 0;
   bottom: 0;
   /* mini səbət (offcanvas) və modallar bunun üstündə qalır */
-  z-index: 1030;
+  z-index: var(--z-bar);
   border-top: 1px solid var(--c-line);
   background: var(--c-sticky-bg);
   backdrop-filter: blur(14px);

@@ -9,6 +9,8 @@
 // göyü (#0f4188), ağ və divar kağızına xas krem çalar.
 // ==========================================================================
 
+@use "../../base/mixins" as *;
+
 /* #region palitra və naxışlar */
 
 $bw-navy: #0f4188;
@@ -66,10 +68,7 @@ $bw-sky: #d3e3f6;
 }
 
 #bestwall .bw-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+  @include hero-bg;
 }
 
 /* loqodakı "B" — kartın solunda çox zəif, böyük */
@@ -114,7 +113,7 @@ $bw-sky: #d3e3f6;
 
 #bestwall .bw-title {
   margin: 30px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 44px;
   line-height: 1.12;
   color: #fff;
@@ -219,7 +218,7 @@ $bw-sky: #d3e3f6;
 
   b {
     margin-top: 3px;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 22px;
     letter-spacing: 0.01em;
     white-space: nowrap;

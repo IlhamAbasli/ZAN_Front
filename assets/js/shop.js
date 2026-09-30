@@ -4,17 +4,18 @@
    Qoşulur:  hər səhifədə, site.js və auth.js-dən sonra, səhifə skriptindən (home.js,
              shop-page.js ...) əvvəl — header sayğacları və mini səbət hər
              səhifədə işləməlidir (.NET MVC-də: Views/Shared/_Layout.cshtml)
-   Asılılıq: site.js (ZAN.notify), auth.js (ZAN.auth — səbət və sevimlilər
-             yalnız daxil olmuş istifadəçi üçündür), Bootstrap JS (mini səbət
-             offcanvas-dır)
+   Asılılıq: site.js (ZAN.notify, ZAN.store, ZAN.escapeHtml), auth.js
+             (ZAN.auth — səbət və sevimlilər yalnız daxil olmuş istifadəçi
+             üçündür), Bootstrap JS (mini səbət offcanvas-dır)
    Saxlama:  localStorage
-               "products" → səbət       [{ id, name, price, image, count, volume }]
-               "wishlist" → sevimlilər  [{ id, name, price, image }]
+               "products" → səbət       [{ id, name, price, image, count, volume, url }]
+               "wishlist" → sevimlilər  [{ id, name, price, oldPrice, image, category,
+                                         categorySlug, volume, url, inStock }]
 
    Başqa skriptlər üçün API (window.ZAN):
-     ZAN.cart.add(product, count) / setCount(id, count) / remove(id)
-     ZAN.cart.items() / count() / total() / onChange(fn)
-     ZAN.wishlist.has(id) / toggle(product) / onChange(fn)
+     ZAN.cart.add(product, count) / setCount(id, count) / remove(id) / clear()
+     ZAN.cart.items() / count() / total() / onChange(fn) / MAX_COUNT
+     ZAN.wishlist.has(id) / toggle(product, index?) / clear() / items() / onChange(fn)
      ZAN.readProductCard(cardEl)   → kartdan məhsul obyekti
      ZAN.formatPrice(24.9)         → "24,90 ₼"
      ZAN.notifyAddedToCart(product, count)
@@ -35,51 +36,56 @@ window.ZAN = window.ZAN || {};
     wishlist: "wishlist",
   };
 
-  function readStored(key, fallback) {
-    try {
-      const value = JSON.parse(localStorage.getItem(key));
-      if (Array.isArray(value)) return value;
-    } catch (e) {
-      /* localStorage bağlıdır və ya məlumat pozulub */
-    }
-    return fallback;
+  // siyahı deyilsə (pozulub) boş siyahı
+  function readStored(key) {
+    const value = ZAN.store.get(key, []);
+    return Array.isArray(value) ? value : [];
   }
 
-  function writeStored(key, value) {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (e) {
-      /* saxlaya bilmiriksə də cari səhifədə vəziyyət qalır */
-    }
-  }
+  const writeStored = ZAN.store.set;
 
   // köhnə yazılarda id rəqəm idi — hamısı sətirə çevrilir
   const normalize = (list) =>
     list
       .filter((item) => item && item.id != null)
-      .map((item) => Object.assign({}, item, { id: String(item.id), price: Number(item.price) || 0 }));
+      .map((item) =>
+        Object.assign({}, item, {
+          id: String(item.id),
+          price: Number(item.price) || 0,
+          // səbət sətrində say; sevimlilərdə count yoxdur
+          ...(item.count !== undefined && { count: Math.max(1, parseInt(item.count, 10) || 1) }),
+        }),
+      );
   //#endregion
 
   //#region helpers
-  // Azərbaycan yazılışı: 1 234,50 ₼ (brauzerin az-AZ formatı hər yerdə eyni deyil)
+  // Azərbaycan yazılışı: 1 234,50 ₼ (brauzerin az-AZ formatı hər yerdə eyni deyil).
+  // Digər dillərdə brauzerin formatı: 1,234.50 ₼ (en, zh), 1.234,50 ₼ (tr), 1 234,50 ₼ (ru)
+  const priceFormat =
+    ZAN.i18n && ZAN.i18n.lang !== "az" && typeof Intl === "object"
+      ? new Intl.NumberFormat(ZAN.i18n.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      : null;
+
   ZAN.formatPrice = function (value) {
-    const [whole, cents] = (Number(value) || 0).toFixed(2).split(".");
+    const amount = Number(value) || 0;
+    if (priceFormat) return `${priceFormat.format(amount)} ₼`;
+    const [whole, cents] = amount.toFixed(2).split(".");
     return `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, " ")},${cents} ₼`;
   };
 
   // məhsul adları HTML-dən oxunur — mini səbətə yazılanda təhlükəsiz olsun
-  function escapeHtml(text) {
-    return String(text).replace(/[&<>"']/g, (ch) => `&#${ch.charCodeAt(0)};`);
-  }
+  const escapeHtml = ZAN.escapeHtml;
 
   /**
    * Məhsul kartından məlumat oxuyur. Görünən mətn (ad, kateqoriya, şəkil)
    * HTML-dən, hesablama üçün dəyərlər data-* atributlarından gəlir.
    */
   ZAN.readProductCard = function (card) {
+    // mətn dildən asılı olmasın: səbətə / sevimlilərə Azərbaycanca yazılır,
+    // göstərəndə yenidən tərcümə olunur (i18n.js → ZAN.i18n.source)
     const text = (selector) => {
       const el = card.querySelector(selector);
-      return el ? el.textContent.trim() : "";
+      return el ? ZAN.i18n.source(el) : "";
     };
     const image = card.querySelector(".pc-image img");
     const link = card.querySelector(".pc-name a");
@@ -103,7 +109,7 @@ window.ZAN = window.ZAN || {};
   //#endregion
 
   //#region cart
-  let cart = normalize(readStored(STORAGE_KEYS.cart, []));
+  let cart = normalize(readStored(STORAGE_KEYS.cart));
   const cartListeners = [];
   const MAX_COUNT = 99;
 
@@ -113,6 +119,7 @@ window.ZAN = window.ZAN || {};
   }
 
   ZAN.cart = {
+    MAX_COUNT: MAX_COUNT,
     items: () => cart.slice(),
     count: () => cart.reduce((sum, item) => sum + item.count, 0),
     total: () => cart.reduce((sum, item) => sum + item.price * item.count, 0),
@@ -130,9 +137,16 @@ window.ZAN = window.ZAN || {};
           price: Number(product.price) || 0,
           image: product.image,
           volume: product.volume || "",
+          url: product.url || "",
           count: Math.min(MAX_COUNT, amount),
         });
       }
+      commitCart();
+    },
+
+    // sifariş qəbul olunanda (checkout-page.js)
+    clear() {
+      cart = [];
       commitCart();
     },
 
@@ -157,25 +171,54 @@ window.ZAN = window.ZAN || {};
   //#endregion
 
   //#region wishlist
-  let wishlist = normalize(readStored(STORAGE_KEYS.wishlist, []));
+  let wishlist = normalize(readStored(STORAGE_KEYS.wishlist));
   const wishlistListeners = [];
+
+  // sevimlilər səhifəsində kart çəkmək üçün lazım olan sahələr (wishlist-page.js)
+  function wishEntry(product) {
+    return {
+      id: String(product.id),
+      name: product.name,
+      price: Number(product.price) || 0,
+      oldPrice: Number(product.oldPrice) || null,
+      image: product.image,
+      category: product.category || "",
+      categorySlug: product.categorySlug || "",
+      volume: product.volume || "",
+      url: product.url || "",
+      inStock: product.inStock !== false,
+    };
+  }
+
+  function commitWishlist() {
+    writeStored(STORAGE_KEYS.wishlist, wishlist);
+    wishlistListeners.forEach((fn) => fn(wishlist.slice()));
+  }
 
   ZAN.wishlist = {
     items: () => wishlist.slice(),
     has: (id) => wishlist.some((item) => item.id === String(id)),
 
-    // true — əlavə olundu, false — çıxarıldı
-    toggle(product) {
+    // true — əlavə olundu, false — çıxarıldı.
+    // index — "Geri qaytar"da məhsul əvvəlki yerinə qayıtsın deyə
+    toggle(product, index) {
       const id = String(product.id);
-      const added = !this.has(id);
+      const added = !ZAN.wishlist.has(id);
 
-      wishlist = added
-        ? wishlist.concat({ id, name: product.name, price: product.price, image: product.image })
-        : wishlist.filter((item) => item.id !== id);
-
-      writeStored(STORAGE_KEYS.wishlist, wishlist);
-      wishlistListeners.forEach((fn) => fn(wishlist.slice()));
+      if (added) {
+        wishlist = wishlist.slice();
+        const at = Number.isInteger(index) ? Math.min(index, wishlist.length) : wishlist.length;
+        wishlist.splice(at, 0, wishEntry(product));
+      } else {
+        wishlist = wishlist.filter((item) => item.id !== id);
+      }
+      commitWishlist();
       return added;
+    },
+
+    clear() {
+      wishlist = [];
+      commitWishlist();
     },
 
     onChange(fn) {
@@ -186,7 +229,7 @@ window.ZAN = window.ZAN || {};
 
   //#region notifications
   ZAN.notifyAddedToCart = function (product, count) {
-    ZAN.notify("success", count > 1 ? `${count} əd. — ${product.name}` : product.name, {
+    ZAN.notify("success", count > 1 ? ZAN.t("{n} əd. — {name}", { n: count, name: ZAN.t(product.name) }) : ZAN.t(product.name), {
       title: "Səbətə əlavə olundu",
       icon: "cart",
       image: product.image,
@@ -195,7 +238,7 @@ window.ZAN = window.ZAN || {};
   };
 
   function notifyOutOfStock(product) {
-    ZAN.notify("warning", `${product.name} hazırda anbarda yoxdur`, {
+    ZAN.notify("warning", ZAN.t("{name} hazırda anbarda yoxdur", { name: ZAN.t(product.name) }), {
       title: "Stokda yoxdur",
       image: product.image,
     });
@@ -238,15 +281,16 @@ window.ZAN = window.ZAN || {};
 
     miniCart.querySelector(".mc-list").innerHTML = cart
       .map((item) => {
-        const name = escapeHtml(item.name);
+        // ad Azərbaycanca saxlanılır — göstərəndə tərcümə olunur
+        const name = escapeHtml(ZAN.t(item.name));
         return `
         <li class="mc-item" data-id="${escapeHtml(item.id)}">
           <span class="mc-thumb"><img src="${escapeHtml(item.image)}" alt="" loading="lazy" /></span>
           <div class="mc-info">
             <p class="mc-name">${name}</p>
-            <span class="mc-unit">${ZAN.formatPrice(item.price)}${item.volume ? " · " + escapeHtml(item.volume) : ""}</span>
+            <span class="mc-unit">${ZAN.formatPrice(item.price)}${item.volume ? " · " + escapeHtml(ZAN.t(item.volume)) : ""}</span>
             <div class="mc-line">
-              <div class="qty" role="group" aria-label="${name} — say">
+              <div class="qty" role="group" aria-label="${escapeHtml(ZAN.t("{name} — say", { name: ZAN.t(item.name) }))}">
                 <button type="button" data-mc="dec" aria-label="Azalt" ${item.count <= 1 ? "disabled" : ""}>−</button>
                 <input type="number" inputmode="numeric" min="1" max="${MAX_COUNT}" value="${item.count}" data-mc="set" aria-label="Say" />
                 <button type="button" data-mc="inc" aria-label="Artır" ${item.count >= MAX_COUNT ? "disabled" : ""}>+</button>
@@ -254,7 +298,7 @@ window.ZAN = window.ZAN || {};
               <span class="mc-line-total">${ZAN.formatPrice(item.price * item.count)}</span>
             </div>
           </div>
-          <button type="button" class="mc-remove" data-mc="remove" aria-label="${name} — səbətdən sil">${ICON_TRASH}</button>
+          <button type="button" class="mc-remove" data-mc="remove" aria-label="${escapeHtml(ZAN.t("{name} — səbətdən sil", { name: ZAN.t(item.name) }))}">${ICON_TRASH}</button>
         </li>`;
       })
       .join("");
@@ -351,12 +395,36 @@ window.ZAN = window.ZAN || {};
       return;
     }
 
+    // çıxarılanda saxlanmış yazı "Geri qaytar" üçün lazımdır
+    const savedIndex = ZAN.wishlist.items().findIndex((item) => item.id === product.id);
+    const saved = ZAN.wishlist.items()[savedIndex];
     const added = ZAN.wishlist.toggle(product);
     ZAN.notify(added ? "success" : "info", product.name, {
       title: added ? "Sevimlilərə əlavə olundu" : "Sevimlilərdən çıxarıldı",
       icon: "heart",
       image: product.image,
+      action: added
+        ? null
+        : {
+            label: "Geri qaytar",
+            onClick: () => ZAN.wishlist.has(product.id) || ZAN.wishlist.toggle(saved || product, savedIndex),
+          },
     });
+  });
+  //#endregion
+
+  //#region cross-tab
+  // başqa vərəqdə səbət / sevimlilər dəyişəndə bu vərəq də yenilənir
+  // (storage hadisəsi yalnız digər vərəqlərə gəlir; key=null — hamısı silinib)
+  window.addEventListener("storage", function (e) {
+    if (e.key === STORAGE_KEYS.cart || e.key === null) {
+      cart = normalize(readStored(STORAGE_KEYS.cart));
+      cartListeners.forEach((fn) => fn(cart.slice()));
+    }
+    if (e.key === STORAGE_KEYS.wishlist || e.key === null) {
+      wishlist = normalize(readStored(STORAGE_KEYS.wishlist));
+      wishlistListeners.forEach((fn) => fn(wishlist.slice()));
+    }
   });
   //#endregion
 

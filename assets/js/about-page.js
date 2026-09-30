@@ -72,8 +72,14 @@
       video.addEventListener("play", function () {
         delete video.dataset.userPaused;
       });
-      observer.observe(video);
     });
+
+    // video səhifə yüklənəndən sonra başlayır: hero-dakı video ilk ekranda
+    // görünür və dərhal oynasa, bir neçə MB-lıq yükləmə səhifənin qalanı ilə
+    // yarışar və "load" hadisəsini (preloader-i) gecikdirər
+    const start = () => videos.forEach((video) => observer.observe(video));
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
   })();
   //#endregion
 })(window.ZAN);

@@ -4,7 +4,7 @@
    Qoşulur:     hər səhifədə, site.js-dən sonra, shop.js-dən ƏVVƏL — shop.js
                 səbət və sevimlilər düymələrində ZAN.auth.require() çağırır
                 (.NET MVC-də: Views/Shared/_Layout.cshtml)
-   Asılılıqlar: site.js (ZAN.notify — girişdən sonrakı bildiriş üçün)
+   Asılılıqlar: site.js (ZAN.notify — girişdən sonrakı bildiriş üçün, ZAN.store)
    Stil:        components/_auth-gate.scss
 
    GİRİŞ VƏZİYYƏTİ HARADAN GƏLİR
@@ -46,13 +46,8 @@ window.ZAN = window.ZAN || {};
   const serverState = body.dataset.auth; // "user" | "guest" | undefined
 
   function readDemoProfile() {
-    try {
-      const value = JSON.parse(localStorage.getItem(DEMO_KEY));
-      if (value && typeof value === "object") return value;
-    } catch (e) {
-      /* localStorage bağlıdır və ya məlumat pozulub */
-    }
-    return null;
+    const value = ZAN.store.get(DEMO_KEY, null);
+    return value && typeof value === "object" ? value : null;
   }
 
   function readServerUser() {
@@ -218,8 +213,9 @@ window.ZAN = window.ZAN || {};
         phone: user.phone || "",
         email: user.email || "",
       };
+      ZAN.store.set(DEMO_KEY, currentUser);
+      // sessiya bayrağı JSON deyil, sadə "1" — başqa yerlərdə də belə oxunur
       try {
-        localStorage.setItem(DEMO_KEY, JSON.stringify(currentUser));
         localStorage.setItem(SESSION_KEY, "1");
       } catch (e) {
         /* saxlaya bilmiriksə də cari səhifədə vəziyyət qalır */
@@ -273,7 +269,7 @@ window.ZAN = window.ZAN || {};
       kind === "register"
         ? "Artıq məhsulları səbətə və sevimlilərə əlavə edə bilərsiniz."
         : firstName
-          ? `Xoş gördük, ${firstName}!`
+          ? ZAN.t("Xoş gördük, {name}!", { name: firstName })
           : "Xoş gördük!",
       { title: kind === "register" ? "Qeydiyyat tamamlandı" : "Hesabınıza daxil oldunuz" },
     );

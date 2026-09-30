@@ -103,7 +103,7 @@ button:disabled,
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2147483000;
+  z-index: var(--z-cursor);
   width: 0;
   height: 0;
   opacity: 0;

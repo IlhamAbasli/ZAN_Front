@@ -1,0 +1,88 @@
+// ==========================================================================
+// BOŞ VƏZİYYƏT (.zan-empty) — "Səbətiniz boşdur", "Sevimlilər boşdur" ...
+// --------------------------------------------------------------------------
+// HTML: cart.html, wishlist.html
+//   <div class="zan-empty" tabindex="-1" hidden>
+//     <svg>…</svg> <h2>…</h2> <p>…</p>
+//     <div class="zan-empty-actions"> .zf-submit + .zan-btn </div>
+//   </div>
+// JS göstərir və son element silinəndə fokusu buraya verir (tabindex="-1").
+// Başlıq zolağının üstünə çıxma (margin-top) səhifə modulundadır.
+// ==========================================================================
+
+/* #region boş vəziyyət */
+
+.zan-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px 60px;
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  text-align: center;
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+
+  &[hidden] {
+    display: none;
+  }
+
+  /* fokus proqramla verilir — çərçivə lazım deyil */
+  &:focus {
+    outline: none;
+  }
+
+  > svg {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
+    font-size: 26px;
+    color: var(--c-ink);
+  }
+
+  p {
+    max-width: 46ch;
+    margin: 10px 0 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--c-muted);
+  }
+}
+
+.zan-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+
+  .zf-submit {
+    text-decoration: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .zan-empty {
+    padding: 40px 18px 44px;
+    border-radius: 20px;
+
+    h2 {
+      font-size: 22px;
+    }
+  }
+  .zan-empty-actions {
+    align-self: stretch;
+    flex-direction: column;
+
+    .zan-btn {
+      width: 100%;
+    }
+  }
+}
+
+/* #endregion */

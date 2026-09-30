@@ -25,6 +25,8 @@
   --c-brand-deep: #a71930;
   --c-brand-dark: #5d0818;
   --c-gold: #f2cf6b;
+  /* qızılı fonda (--c-gold qarışığı) mətn və ikon rəngi */
+  --c-gold-ink: #8a6212;
 
   /* mətn */
   --c-ink: #0d1520;
@@ -115,6 +117,21 @@
   --grad-brand: linear-gradient(135deg, #c9142c 0%, #a71930 55%, #7d0f21 100%);
   --shadow-menu: 0 18px 38px rgba(13, 21, 32, 0.13);
   --shadow-brand: 0 10px 24px rgba(201, 20, 44, 0.28);
+  /* qatlar (z-index): aşağıdan yuxarı. Bootstrap offcanvas/modal öz
+     dəyərlərini (1040–1055) işlədir — bizimkilər onların üstündədir */
+  --z-sticky: 1000; /* sabit header, yuxarı qalxma düyməsi */
+  --z-bar: 1030; /* məhsul səhifəsinin aşağı paneli */
+  --z-menu-backdrop: 1050;
+  --z-menu: 1060; /* mobil menyu */
+  --z-skip-link: 1100;
+  --z-preloader: 2000;
+  --z-drawer-backdrop: 2040;
+  --z-drawer: 2050; /* mini səbət, kataloq filtrləri (mobil) */
+  --z-modal-backdrop: 2055;
+  --z-modal: 2060; /* sürətli baxış */
+  --z-toast: 2100;
+  --z-cursor: 2147483000; /* valik kursorunun çevrəsi — hər şeyin üstündə */
+
   --r-pill: 999px;
   --r-card: 16px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -134,6 +151,7 @@
   --c-brand-deep: #ef3b56;
   --c-brand-dark: #a71930;
   --c-gold: #f6d886;
+  --c-gold-ink: #f2cf6b;
 
   --c-ink: #e8edf3;
   --c-muted: #a3adb9;

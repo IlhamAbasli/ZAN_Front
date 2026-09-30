@@ -92,7 +92,7 @@
 
 #shop-hero .sh-title {
   margin: 14px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 44px;
   line-height: 1.1;
   color: var(--c-ink);
@@ -125,7 +125,7 @@
   color: var(--c-ink);
   background: var(--c-surface);
   border: 1px solid var(--c-line);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 #shop-hero .sh-cat i {
@@ -211,7 +211,7 @@
 }
 @media only screen and (max-width: 991px) {
   #shop-filters.offcanvas-lg {
-    z-index: 2050;
+    z-index: var(--z-drawer);
   }
 }
 #shop-filters .sf-head {
@@ -227,7 +227,7 @@
   align-items: center;
   gap: 10px;
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 18px;
   color: var(--c-ink);
 }
@@ -251,7 +251,7 @@
   font-weight: 600;
   color: var(--c-brand);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 #shop-filters .sf-reset:hover {
   background: var(--c-brand-tint);
@@ -313,6 +313,11 @@
   padding: 14px 0;
   border: 0;
   border-bottom: 1px dashed var(--c-line);
+  /*
+    Yalnız legend float-dur (Bootstrap reboot kimi): əks halda brauzer
+    fieldset-in padding-top-unu legend-in altına qoyur və artıq boşluq qalır.
+    Adi label float olmamalıdır — axtarış sahəsi onun ətrafına uzanırdı.
+  */
 }
 #shop-filters .sf-group:last-child {
   border-bottom: 0;
@@ -323,17 +328,10 @@
   width: 100%;
   margin: 0 0 12px;
   padding: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--c-ink);
-}
-#shop-filters .sf-group {
-  /*
-    Yalnız legend float-dur (Bootstrap reboot kimi): əks halda brauzer
-    fieldset-in padding-top-unu legend-in altına qoyur və artıq boşluq qalır.
-    Adi label float olmamalıdır — axtarış sahəsi onun ətrafına uzanırdı.
-  */
 }
 #shop-filters .sf-group legend {
   float: left;
@@ -365,9 +363,7 @@
   color: var(--c-ink);
   background: var(--c-surface-soft);
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-}
-#shop-filters .sf-search input::-moz-placeholder {
-  color: var(--c-muted-soft);
+  /* brauzerin mavi "×" düyməsi əvəzinə saytın rəngində təmizləmə ikonu */
 }
 #shop-filters .sf-search input::placeholder {
   color: var(--c-muted-soft);
@@ -377,15 +373,12 @@
   border-color: var(--c-brand-line);
   box-shadow: 0 0 0 4px var(--c-brand-tint);
 }
-#shop-filters .sf-search input {
-  /* brauzerin mavi "×" düyməsi əvəzinə saytın rəngində təmizləmə ikonu */
-}
 #shop-filters .sf-search input::-webkit-search-cancel-button {
   width: 16px;
   height: 16px;
   margin-left: 8px;
   background: var(--c-muted);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   -webkit-appearance: none;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center/contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") center/contain no-repeat;
@@ -459,14 +452,12 @@
   border-radius: 10px;
   font-size: 14px;
   color: var(--c-ink);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: background-color 0.2s var(--ease);
+  /* əsl checkbox görünməzdir, amma fokus və klaviatura onda qalır */
 }
 #shop-filters .sf-check:hover {
   background: var(--c-hover-fill);
-}
-#shop-filters .sf-check {
-  /* əsl checkbox görünməzdir, amma fokus və klaviatura onda qalır */
 }
 #shop-filters .sf-check input {
   position: absolute;
@@ -562,8 +553,7 @@
   background: none;
   pointer-events: none;
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
 }
 #shop-filters .sf-range input::-webkit-slider-thumb {
   width: 22px;
@@ -716,6 +706,7 @@
 #shop-area .st-sort {
   position: relative;
   margin: 0;
+  /* ox */
 }
 #shop-area .st-sort select {
   height: 42px;
@@ -726,17 +717,13 @@
   font-weight: 600;
   color: var(--c-ink);
   background: var(--c-surface-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
 }
 #shop-area .st-sort select:focus-visible {
   outline: 2px solid var(--c-brand);
   outline-offset: 2px;
-}
-#shop-area .st-sort {
-  /* ox */
 }
 #shop-area .st-sort::after {
   content: "";
@@ -768,7 +755,7 @@
   border-radius: 9px;
   color: var(--c-muted-soft);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
 #shop-area .st-view button svg {
@@ -822,7 +809,7 @@
   font-weight: 600;
   color: var(--c-brand-deep);
   background: var(--c-brand-tint);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 #shop-area .st-chip::after {
   content: "×";
@@ -946,6 +933,9 @@
 }
 /* dar ekranda (2 sütun) kart yığcamlaşır */
 @media only screen and (max-width: 575px) {
+  #shop-area .catalog-grid:not(.is-list) {
+    /* dar kartda kateqoriya bir sətrə sığsın */
+  }
   #shop-area .catalog-grid:not(.is-list) .product-card {
     padding: 8px;
     border-radius: 18px;
@@ -955,9 +945,6 @@
   }
   #shop-area .catalog-grid:not(.is-list) .pc-name {
     font-size: 15px;
-  }
-  #shop-area .catalog-grid:not(.is-list) {
-    /* dar kartda kateqoriya bir sətrə sığsın */
   }
   #shop-area .catalog-grid:not(.is-list) .pc-category {
     font-size: 10px;
@@ -1012,7 +999,7 @@
 }
 #shop-area .catalog-empty h3 {
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 20px;
   color: var(--c-ink);
 }
@@ -1058,7 +1045,7 @@
   font-weight: 600;
   color: var(--c-ink);
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
 #shop-area .catalog-pages button svg {
@@ -1099,12 +1086,12 @@
   --bs-modal-color: var(--c-ink);
   --bs-modal-border-radius: 28px;
   --bs-modal-border-color: var(--c-line);
-  z-index: 2060;
+  z-index: var(--z-modal);
 }
 
 /* modal fonu mini səbətdən yuxarıda olmalıdır */
 .modal-backdrop {
-  z-index: 2055;
+  z-index: var(--z-modal-backdrop);
 }
 
 #quick-view .modal-content {
@@ -1146,8 +1133,7 @@
 #quick-view .qv-stage img {
   max-width: 100%;
   max-height: 340px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   filter: drop-shadow(0 24px 26px rgba(13, 21, 32, 0.22));
 }
 
@@ -1173,13 +1159,12 @@
   border-radius: 12px;
   border: 2px solid transparent;
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 #quick-view .qv-thumbs button img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 #quick-view .qv-thumbs button[aria-pressed=true] {
   border-color: var(--pc-tint);
@@ -1196,7 +1181,7 @@
 #quick-view .qv-title {
   margin: 10px 0 0;
   padding-right: 30px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 28px;
   line-height: 1.2;
   color: var(--c-ink);
@@ -1210,7 +1195,7 @@
   margin-top: 16px;
 }
 #quick-view .qv-price b {
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 30px;
   color: var(--c-ink);
 }
@@ -1290,7 +1275,7 @@
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 12px 24px color-mix(in srgb, var(--pc-tint) 30%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease);
 }
 #quick-view .qv-add svg {
@@ -1358,4 +1343,6 @@
   }
 }
 /* #endregion */
-/* #endregion *//*# sourceMappingURL=shop.css.map */
+/* #endregion */
+
+/*# sourceMappingURL=shop.css.map */

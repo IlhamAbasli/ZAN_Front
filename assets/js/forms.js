@@ -1,8 +1,9 @@
 /* ==========================================================================
    forms.js — giriş, qeydiyyat və kabinet formalarının ortaq köməkçiləri
    --------------------------------------------------------------------------
-   Qoşulur:     login.html, register.html, account.html — shop.js-dən sonra,
-                səhifə skriptindən (auth-page.js, account-page.js) əvvəl
+   Qoşulur:     login.html, register.html, forgot-password.html, account.html,
+                checkout.html — shop.js-dən sonra,
+                səhifə skriptindən (auth-page.js, account-page.js, checkout-page.js) əvvəl
                 (.NET MVC-də: həmin view-ların @section Scripts bölməsində)
    Asılılıqlar: yoxdur (yalnız window.ZAN)
    Stil:        components/_form-field.scss (.zf-* sinifləri)
@@ -19,6 +20,8 @@
      ZAN.forms.rules.*             → hazır yoxlamalar (required, email, phone ...)
      ZAN.forms.submit(form)        → Promise; action="#" olduqca imitasiya
      ZAN.forms.setLoading(button, bool)
+     ZAN.forms.showError(form, text)          → .zf-alert (boş mətn gizlədir)
+     ZAN.forms.handleError(form, validator, error, fallback) → server xətası
      ZAN.forms.fullPhone(input)    → "+994501234567"
    ========================================================================== */
 
@@ -75,7 +78,7 @@ window.ZAN = window.ZAN || {};
       return function (input) {
         const value = input.value;
         if (!value) return "Şifrə yazın.";
-        if (value.length < PASSWORD_MIN) return `Şifrə ən azı ${PASSWORD_MIN} simvol olmalıdır.`;
+        if (value.length < PASSWORD_MIN) return ZAN.t("Şifrə ən azı {n} simvol olmalıdır.", { n: PASSWORD_MIN });
         if (!/\p{L}/u.test(value) || !/\d/.test(value)) return "Şifrədə həm hərf, həm rəqəm olmalıdır.";
         return "";
       };
@@ -99,6 +102,15 @@ window.ZAN = window.ZAN || {};
 
     checked(message) {
       return (input) => (input.checked ? "" : message);
+    },
+
+    // ad və soyad: qeydiyyat, kabinet (klub), sifariş
+    fullName() {
+      return function (input) {
+        const value = input.value.trim();
+        if (!value) return "Adınızı və soyadınızı yazın.";
+        return value.length < 3 ? "Ad və soyad ən azı 3 hərfdən ibarət olmalıdır." : "";
+      };
     },
   };
   //#endregion
@@ -165,6 +177,26 @@ window.ZAN = window.ZAN || {};
   }
   //#endregion
 
+  //#region errors
+  // formanın başındakı ümumi xəta (.zf-alert > span); boş mətn — gizlədir
+  function showError(form, message) {
+    const alert = form.querySelector(".zf-alert");
+    if (!alert) return;
+    alert.querySelector("span").textContent = message;
+    alert.hidden = !message;
+  }
+
+  // server xətası (4xx + { message, errors }): sahə xətaları altlarına,
+  // ümumi mətn formanın başına
+  function handleError(form, validator, error, fallback) {
+    const data = (error && error.data) || {};
+    if (data.errors) {
+      Object.keys(data.errors).forEach((name) => validator.show(name, data.errors[name]));
+    }
+    showError(form, data.message || fallback);
+  }
+  //#endregion
+
   //#region submit
   function setLoading(button, loading) {
     if (!button) return;
@@ -172,6 +204,13 @@ window.ZAN = window.ZAN || {};
     button.disabled = loading;
     button.setAttribute("aria-busy", String(loading));
   }
+
+  // "Geri" ilə keşdən (bfcache) qayıdanda göndərilmiş formanın düyməsi
+  // fırlanmaqda və bağlı qalmasın
+  window.addEventListener("pageshow", function (e) {
+    if (!e.persisted) return;
+    document.querySelectorAll(".zf-submit.is-loading").forEach((button) => setLoading(button, false));
+  });
 
   /**
    * Formanı <form action>-dakı ünvana göndərir (fetch, FormData).
@@ -293,6 +332,8 @@ window.ZAN = window.ZAN || {};
     bind: bind,
     submit: submit,
     setLoading: setLoading,
+    showError: showError,
+    handleError: handleError,
     strength: strength,
     formatPhone: formatPhone,
     fullPhone: (input) => "+994" + digits(input.value),

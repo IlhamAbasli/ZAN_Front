@@ -1,0 +1,142 @@
+// ==========================================================================
+// SEVİMLİLƏR — BAŞLIQ ZOLAĞI (#wishlist-hero)
+// --------------------------------------------------------------------------
+// HTML: wishlist.html → #region wishlist-hero
+// Quruluş kabinet və sifariş başlıqları ilə eynidir (pages/account/_hero.scss,
+// pages/order/_hero.scss); sağda üzən ürəklər — dekor.
+// ==========================================================================
+
+@use "../../base/mixins" as *;
+
+/* #region bölmə və fon */
+
+#wishlist-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 96px;
+  background: var(--grad-section-gold);
+}
+
+#wishlist-hero .wh-bg {
+  @include hero-bg;
+}
+
+#wishlist-hero .wh-blob {
+  @include hero-blob;
+}
+
+#wishlist-hero .wh-blob-1 {
+  top: -180px;
+  right: 10%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#wishlist-hero .wh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* sağda yavaşca üzən ürəklər */
+#wishlist-hero .wh-hearts {
+  position: absolute;
+  top: 50%;
+  right: max(4%, calc((100% - 1320px) / 2));
+  width: 230px;
+  height: 170px;
+  transform: translateY(-62%);
+
+  svg {
+    position: absolute;
+    fill: var(--c-brand);
+    animation: wh-float 5s ease-in-out infinite;
+  }
+
+  svg:nth-child(1) {
+    top: 18px;
+    left: 70px;
+    width: 96px;
+    filter: drop-shadow(0 16px 24px var(--c-brand-ghost));
+  }
+
+  svg:nth-child(2) {
+    top: 0;
+    left: 0;
+    width: 44px;
+    opacity: 0.35;
+    animation-delay: -1.6s;
+  }
+
+  svg:nth-child(3) {
+    right: 0;
+    bottom: 6px;
+    width: 58px;
+    fill: var(--c-gold);
+    animation-delay: -3.2s;
+  }
+}
+
+@keyframes wh-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wishlist-hero .wh-hearts svg {
+    animation: none;
+  }
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#wishlist-hero .wh-crumbs ol {
+  @include page-crumbs;
+}
+
+#wishlist-hero .wh-title {
+  @include page-hero-title;
+}
+
+#wishlist-hero .wh-text {
+  max-width: 54ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 1199px) {
+  #wishlist-hero .wh-hearts {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #wishlist-hero {
+    padding: 28px 0 84px;
+  }
+  #wishlist-hero .wh-title {
+    font-size: 32px;
+  }
+  #wishlist-hero .wh-text {
+    font-size: 15px;
+  }
+}
+
+/* #endregion */

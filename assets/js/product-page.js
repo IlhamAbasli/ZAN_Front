@@ -3,8 +3,10 @@
    --------------------------------------------------------------------------
    Qoşulur:     product-detail.html, site.js → auth.js → shop.js-dən sonra
                 (.NET MVC-də: Views/Shop/Details.cshtml → @section Scripts)
-   Asılılıqlar: shop.js (ZAN.cart, ZAN.wishlist, ZAN.formatPrice,
+   Asılılıqlar: site.js (ZAN.notify, ZAN.store, ZAN.prefersReducedMotion),
+                shop.js (ZAN.cart, ZAN.wishlist, ZAN.formatPrice,
                 ZAN.notifyAddedToCart), auth.js (ZAN.auth.require),
+                product-demo.js (demo: ?id= ilə məhsul məlumatını HTML-ə yazır),
                 Swiper (tövsiyə olunan məhsullar karuseli)
 
    Bütün məlumat HTML-dən oxunur (MVC-də serverdə render olunur):
@@ -30,11 +32,16 @@
   const setText = (name, text) => $$(`[data-pd="${name}"]`).forEach((el) => (el.textContent = text));
   const cleanText = (el) => (el ? el.textContent.replace(/\s+/g, " ").trim() : "");
 
-  // 3.5 → "3,5"; 12 → "12" (Azərbaycan yazılışı)
-  const formatNumber = (value, digits) =>
-    Number(value.toFixed(digits === undefined ? 1 : digits))
-      .toString()
-      .replace(".", ",");
+  // 3.5 → "3,5"; 12 → "12" (Azərbaycan yazılışı); digər dillərdə brauzerin formatı (en: 3.5)
+  const numberFormat = ZAN.i18n.lang !== "az" ? new Intl.NumberFormat(ZAN.i18n.locale, { maximumFractionDigits: 2 }) : null;
+  const formatNumber = function (value, digits) {
+    const rounded = Number(value.toFixed(digits === undefined ? 1 : digits));
+    return numberFormat ? numberFormat.format(rounded) : rounded.toString().replace(".", ",");
+  };
+
+  // vahid (kq / rulon) mətnin içində — tərcümə şablonla (ZAN.t)
+  const perUnit = (price) =>
+    product.unit === "kq" ? ZAN.t("{price} / kq", { price }) : ZAN.t("{price} / rulon", { price });
 
   // qısa "sıçrayış" animasiyası hər dəfə yenidən başlasın
   function pop(el, className) {
@@ -59,8 +66,9 @@
   //#region məhsul
   const product = {
     id: String(root.dataset.id),
-    name: cleanText($("#pd-title")),
-    category: cleanText($(".pd-category", root)),
+    // dildən asılı olmasın: səbətə və sevimlilərə Azərbaycanca ad yazılır
+    name: ZAN.i18n.source($("#pd-title")),
+    category: ZAN.i18n.source($(".pd-category", root)),
     categorySlug: document.getElementById("main").dataset.category || "",
     image: $(".pd-stage-img", root).getAttribute("src"),
     unit: root.dataset.unit || "kq",
@@ -102,7 +110,7 @@
         unitEl.textContent = !v.inStock
           ? "Stokda yoxdur"
           : v.amount
-            ? `${ZAN.formatPrice(unitPrice(v))} / ${product.unit}`
+            ? perUnit(ZAN.formatPrice(unitPrice(v)))
             : "";
       }
       v.label.classList.toggle("is-out", !v.inStock);
@@ -120,8 +128,8 @@
 
     setText("price", ZAN.formatPrice(v.price));
     setText("old-price", v.oldPrice ? ZAN.formatPrice(v.oldPrice) : "");
-    setText("save", v.oldPrice ? `${ZAN.formatPrice(v.oldPrice - v.price)} qənaət` : "");
-    setText("unit-price", v.amount ? `${ZAN.formatPrice(unitPrice(v))} / ${product.unit}` : "");
+    setText("save", v.oldPrice ? ZAN.t("{amount} qənaət", { amount: ZAN.formatPrice(v.oldPrice - v.price) }) : "");
+    setText("unit-price", v.amount ? perUnit(ZAN.formatPrice(unitPrice(v))) : "");
     setText("variant-label", v.size);
     setText("code", v.code);
 
@@ -190,7 +198,8 @@
     if (n < 2) return;
     totalEl.innerHTML = "";
     totalEl.append(
-      `Cəmi: ${n} × ${ZAN.formatPrice(current.price)} = `,
+      // açar boşluqsuz saxlanılır (norm) — qalın cəmdən əvvəlki boşluq ayrıca
+      ZAN.t("Cəmi: {n} × {price} =", { n, price: ZAN.formatPrice(current.price) }) + " ",
       el("b", { text: ZAN.formatPrice(current.price * n) }),
     );
   }
@@ -209,6 +218,7 @@
     price: v.price,
     image: product.image,
     volume: v.size,
+    url: `product-detail.html?id=${encodeURIComponent(product.id)}&v=${encodeURIComponent(v.value)}`,
   });
 
   function addCurrentToCart(button) {
@@ -237,11 +247,18 @@
 
   wishButton.addEventListener("click", function () {
     if (!ZAN.auth.require("wishlist")) return;
+    // sevimlilər səhifəsindəki kart seçilmiş çəkini göstərir
     const added = ZAN.wishlist.toggle({
       id: product.id,
       name: product.name,
       price: current.price,
+      oldPrice: current.oldPrice,
       image: product.image,
+      category: product.category,
+      categorySlug: product.categorySlug,
+      volume: current.size,
+      url: `product-detail.html?id=${encodeURIComponent(product.id)}&v=${encodeURIComponent(current.value)}`,
+      inStock: variants.some((v) => v.inStock),
     });
     ZAN.notify(added ? "success" : "info", product.name, {
       title: added ? "Sevimlilərə əlavə olundu" : "Sevimlilərdən çıxarıldı",
@@ -348,15 +365,6 @@
   // sosial şəbəkə linki yeni pəncərədə açılır — menyu bağlansın
   $$(".pd-share-grid a", shareBox).forEach((link) => link.addEventListener("click", () => setShareOpen(false)));
 
-  function copyFallback() {
-    shareInput.select();
-    try {
-      return document.execCommand("copy");
-    } catch (err) {
-      return false;
-    }
-  }
-
   $('[data-share="copy"]', shareBox).addEventListener("click", function () {
     const url = shareUrl();
     const done = () =>
@@ -364,11 +372,11 @@
     const failed = () =>
       ZAN.notify("warning", "Linki sahədən seçib əl ilə kopyalayın.", { title: "Kopyalamaq alınmadı" });
 
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(url).then(done, () => (copyFallback() ? done() : failed()));
-    } else {
-      copyFallback() ? done() : failed();
-    }
+    ZAN.copyText(url).then(done, function () {
+      // alınmadısa link sahədə seçili qalsın — əl ilə kopyalamaq asan olsun
+      shareInput.select();
+      failed();
+    });
   });
 
   // telefonda sistemin paylaşma pəncərəsi (Instagram, Messenger ...)
@@ -493,9 +501,9 @@
 
     // miqdar: rulon tam ədəddir, kq-da 10-dan az olanda bir onluq rəqəmlə
     function formatNeed(value) {
-      if (product.unit !== "kq") return `${Math.ceil(value)} ${product.unit}`;
-      if (value < 1) return `${Math.ceil(value * 1000 / 50) * 50} q`;
-      return `${value < 10 ? formatNumber(Math.ceil(value * 10) / 10) : Math.ceil(value)} kq`;
+      if (product.unit !== "kq") return ZAN.t("{n} rulon", { n: Math.ceil(value) });
+      if (value < 1) return ZAN.t("{n} q", { n: Math.ceil((value * 1000) / 50) * 50 });
+      return ZAN.t("{n} kq", { n: value < 10 ? formatNumber(Math.ceil(value * 10) / 10) : Math.ceil(value) });
     }
 
     function renderEmpty(message) {
@@ -516,10 +524,11 @@
       const activeInputs = mode() === "area" ? [inputs.area] : [inputs.length, inputs.height];
       activeInputs.forEach((input) => input.setAttribute("aria-invalid", String(!valid && input.value !== "" && num(input) <= 0)));
 
-      const coatText = product.coatsFixed ? "" : `, ${coats()} qat`;
       out("area").textContent = valid
-        ? `${formatNumber(area)} m²${coatText}, 10% ehtiyat ilə`
-        : `Sahə 1–${MAX_AREA} m² arasında olmalıdır`;
+        ? product.coatsFixed
+          ? ZAN.t("{area} m², 10% ehtiyat ilə", { area: formatNumber(area) })
+          : ZAN.t("{area} m², {coats} qat, 10% ehtiyat ilə", { area: formatNumber(area), coats: coats() })
+        : ZAN.t("Sahə 1–{max} m² arasında olmalıdır", { max: MAX_AREA });
 
       if (!valid) return renderEmpty("Sahəni daxil edin");
 
@@ -616,21 +625,11 @@
   const recentBox = document.getElementById("pd-recent");
 
   function readRecent() {
-    try {
-      const list = JSON.parse(localStorage.getItem(RECENT_KEY));
-      return Array.isArray(list) ? list.filter((item) => item && item.id) : [];
-    } catch (e) {
-      return [];
-    }
+    const list = ZAN.store.get(RECENT_KEY, []);
+    return Array.isArray(list) ? list.filter((item) => item && item.id) : [];
   }
 
-  function writeRecent(list) {
-    try {
-      localStorage.setItem(RECENT_KEY, JSON.stringify(list));
-    } catch (e) {
-      /* saxlaya bilmiriksə, siyahı sadəcə görünmür */
-    }
-  }
+  const writeRecent = (list) => ZAN.store.set(RECENT_KEY, list);
 
   function rememberProduct() {
     const prices = variants.map((v) => v.price);
@@ -656,7 +655,8 @@
     const list = $("[data-recent-list]", recentBox);
     list.innerHTML = "";
     others.forEach(function (item) {
-      const price = `${ZAN.formatPrice(item.price)}${item.multiple ? "-dən" : ""}`;
+      // bir neçə çəki varsa — "12,50 ₼-dən" (dillərdə "from 12.50 ₼")
+      const price = item.multiple ? ZAN.t("{price}-dən", { price: ZAN.formatPrice(item.price) }) : ZAN.formatPrice(item.price);
       list.appendChild(
         el("li", {}, [
           el("a", { class: "pd-tint", href: item.url, dataset: { category: item.categorySlug || "" } }, [

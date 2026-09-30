@@ -33,7 +33,7 @@
   */
   margin-top: calc(var(--fw-h) * -1);
   padding: calc(var(--fw-h) + 40px) 0 0;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   color: var(--f-text);
   background: linear-gradient(180deg, #0d1520 0%, #0a1018 100%) 0 calc(var(--fw-h) - 1px) / 100% 100% no-repeat;
 }
@@ -79,7 +79,7 @@
   position: absolute;
   right: -0.04em;
   bottom: -0.2em;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(140px, 24vw, 360px);
   line-height: 1;
   letter-spacing: -0.04em;
@@ -152,6 +152,18 @@
 
   .fw-gloss {
     animation: fwGloss 7s ease-in-out 1.6s infinite;
+  }
+
+  /* footer ekrandan kənardadırsa sonsuz animasiyalar dayanır — boş yerə
+     hər kadr SVG yenidən çəkilməsin (site.js → footer-wave: .is-paused) */
+  &.is-paused {
+    .fw-shade,
+    .fw-dark,
+    .fw-top,
+    .fw-gold-edge,
+    .fw-gloss {
+      animation-play-state: paused;
+    }
   }
 
   /* maska 1600 vahiddir: son 160-ı yumşaq keçiddir — zolağın ucu kəsik görünməsin */
@@ -284,7 +296,7 @@
 
 .footer-cta-title {
   margin: 18px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(26px, 2.4vw, 36px);
   line-height: 1.15;
   color: #ffffff;
@@ -319,7 +331,7 @@
   height: 52px;
   padding: 0 26px 0 8px;
   border-radius: 999px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 15px;
   letter-spacing: 0.02em;
   text-decoration: none;
@@ -451,7 +463,7 @@
 
   em {
     font-style: normal;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 10.5px;
     letter-spacing: 0.02em;
     text-align: center;
@@ -460,7 +472,7 @@
   }
 
   small {
-    font-family: DMSans;
+    font-family: DMSans, Roboto, Arial, sans-serif;
     font-size: 8.5px;
     letter-spacing: 0.08em;
     color: #8a8f98;
@@ -539,7 +551,7 @@
   position: relative;
   margin: 6px 0 22px;
   padding-bottom: 12px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -628,7 +640,7 @@
 .footer-phone {
   display: inline-block;
   margin-top: 4px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 20px;
   text-decoration: none;
   color: #ffffff;

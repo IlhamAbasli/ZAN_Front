@@ -132,7 +132,7 @@
   position: absolute;
   top: 0;
   left: -9999px;
-  z-index: 1100;
+  z-index: var(--z-skip-link);
   padding: 12px 22px;
   border-radius: 0 0 var(--r-card) 0;
   background-image: var(--grad-brand);
@@ -172,11 +172,11 @@
   }
 
   /* açıq panelin oxu çevrilir */
-  [data-disclosure] .fa-angle-down {
+  [data-disclosure] .zan-icon-angle-down {
     transition: transform 0.25s var(--ease);
   }
 
-  [data-disclosure][aria-expanded="true"] .fa-angle-down {
+  [data-disclosure][aria-expanded="true"] .zan-icon-angle-down {
     transform: rotate(180deg);
   }
 
@@ -450,7 +450,7 @@
     align-items: center;
     padding-left: 40px;
     margin: 0;
-    font-family: Inter;
+    font-family: Inter, Roboto, Arial, sans-serif;
 
     .content {
       display: flex;
@@ -668,7 +668,7 @@
       justify-content: center;
       align-items: center;
       text-decoration: none;
-      font-family: Inter;
+      font-family: Inter, Roboto, Arial, sans-serif;
 
       .login-icon {
         width: 44px;
@@ -1096,11 +1096,11 @@
 
 #header-sticky {
   height: var(--h-header-sticky);
-  font-family: Roboto;
+  font-family: Roboto, Arial, sans-serif;
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: var(--z-sticky);
   /* yarı-şəffaf bulanıq fon: altındakı məzmun hiss olunur */
   background-color: var(--c-sticky-bg);
   -webkit-backdrop-filter: saturate(1.5) blur(14px);

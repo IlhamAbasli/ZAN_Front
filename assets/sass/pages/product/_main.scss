@@ -135,12 +135,6 @@ main.pd-tint {
 
 /* #region qalereya */
 
-/* uzun məlumat panelində şəkil göz önündə qalsın */
-#pd-main .pd-gallery {
-  position: sticky;
-  top: calc(var(--h-header-sticky) + 20px);
-}
-
 #pd-main .pd-stage {
   position: relative;
   display: flex;
@@ -207,7 +201,7 @@ main.pd-tint {
   z-index: 2;
   padding: 8px 16px;
   border-radius: 14px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   letter-spacing: 0.02em;
   color: #fff;
@@ -275,7 +269,7 @@ main.pd-tint {
     border-radius: 16px;
     border: 2px solid var(--c-line);
     background: var(--c-surface);
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
     transition: border-color 0.25s var(--ease);
 
     img {
@@ -325,7 +319,7 @@ main.pd-tint {
 
 #pd-main .pd-title {
   margin: 12px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(28px, 2.5vw, 40px);
   line-height: 1.15;
   color: var(--c-ink);
@@ -383,7 +377,7 @@ main.pd-tint {
   margin-top: 24px;
 
   b {
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 38px;
     line-height: 1;
     color: var(--c-ink);
@@ -458,7 +452,7 @@ main.pd-tint {
   border-radius: 16px;
   border: 1.5px solid var(--c-line);
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     border-color 0.25s var(--ease),
     background-color 0.25s var(--ease),
@@ -472,7 +466,7 @@ main.pd-tint {
     z-index: 1;
     margin: 0;
     opacity: 0;
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
   }
 
   /* sağ üst küncdə seçim dairəsi */
@@ -526,7 +520,7 @@ main.pd-tint {
 
 #pd-main .pd-variant-size {
   padding-right: 24px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 18px;
   color: var(--c-ink);
 }
@@ -553,7 +547,7 @@ main.pd-tint {
   left: 12px;
   padding: 2px 8px;
   border-radius: 999px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -594,7 +588,7 @@ main.pd-tint {
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 14px 26px color-mix(in srgb, var(--pc-tint) 32%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     transform 0.25s var(--ease),
     filter 0.25s var(--ease),
@@ -679,7 +673,7 @@ main.pd-tint {
   text-decoration: none;
   color: var(--c-ink);
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     color 0.25s var(--ease),
     border-color 0.25s var(--ease);
@@ -815,7 +809,7 @@ main.pd-tint {
     font-weight: 600;
     color: #fff;
     background: var(--pc-tint);
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
 
     &:hover {
       filter: brightness(1.08);
@@ -838,7 +832,7 @@ main.pd-tint {
   font-weight: 600;
   color: var(--c-muted);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 
   &:hover {
     color: var(--pc-tint);
@@ -948,9 +942,6 @@ main.pd-tint {
   #pd-main .pd-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
-  }
-  #pd-main .pd-gallery {
-    position: static;
   }
   #pd-main .pd-stage {
     aspect-ratio: 4 / 3;

@@ -212,7 +212,7 @@
     1: {
       name: "ZANSİLAN silikonlu fasad boyası",
       category: "su-esasli-boyalar",
-      image: "./assets/images/silan.png",
+      image: "./assets/images/silan.webp",
       code: "ZS",
       isNew: true,
       coverage: 6,
@@ -256,7 +256,7 @@
     2: {
       name: "LUX parlaq boya",
       category: "sintetik-boyalar",
-      image: "./assets/images/lux parlaq.png",
+      image: "./assets/images/lux-parlaq.webp",
       code: "LX",
       lead: "Metal və taxta səthlər üçün yüksək parlaqlıqlı, uzunömürlü sintetik boya.",
       about: [
@@ -280,7 +280,7 @@
     3: {
       name: "Sintetik parlaq boya",
       category: "sintetik-boyalar",
-      image: "./assets/images/sin parlaq boya.png",
+      image: "./assets/images/sin-parlaq-boya.webp",
       code: "SP",
       lead: "Daxili və xarici işlər üçün asan çəkilən, parlaq və davamlı sintetik emal.",
       about: [
@@ -299,7 +299,7 @@
     4: {
       name: "Sintetik parlaq parket lakı",
       category: "sintetik-boyalar",
-      image: "./assets/images/sintetik parlaq lak.png",
+      image: "./assets/images/sintetik-parlaq-lak.webp",
       code: "PL",
       noun: "lak",
       paint: false,
@@ -338,7 +338,7 @@
     5: {
       name: "Sellülozik dolğu vernik",
       category: "sellulozik-boyalar",
-      image: "./assets/images/zan dolgu vernik.png",
+      image: "./assets/images/zan-dolgu-vernik.webp",
       code: "DV",
       noun: "vernik",
       paint: false,
@@ -376,7 +376,7 @@
     6: {
       name: "Sintetik mat boya",
       category: "sintetik-boyalar",
-      image: "./assets/images/slider-1.png",
+      image: "./assets/images/slider-1.webp",
       code: "SM",
       isNew: true,
       lead: "Göz yormayan mat səth yaradan, yüksək örtücülüklü sintetik boya.",
@@ -402,7 +402,7 @@
     7: {
       name: "Sellülozik parlaq boya",
       category: "sellulozik-boyalar",
-      image: "./assets/images/slider-2.png",
+      image: "./assets/images/slider-2.webp",
       code: "SLP",
       lead: "Mebel və taxta işləri üçün tez quruyan, hamar və parlaq sellülozik boya.",
       about: [
@@ -420,7 +420,7 @@
     8: {
       name: "DivoFix parlaq boya",
       category: "sellulozik-boyalar",
-      image: "./assets/images/slider-img-2.png",
+      image: "./assets/images/slider-img-2.webp",
       code: "DF",
       lead: "Divarlara parlaqlıq qaytaran, sürətli quruyan və UV şüalarına davamlı boya.",
       about: [
@@ -438,7 +438,7 @@
     9: {
       name: "ZANPLASTİK akril boya",
       category: "su-esasli-boyalar",
-      image: "./assets/images/slider-img-1.png",
+      image: "./assets/images/slider-img-1.webp",
       code: "ZP",
       lead: "Daxili divarlar üçün su əsaslı, iysiz və silinə bilən akril boya.",
       about: [
@@ -457,7 +457,7 @@
     10: {
       name: "ZANTAVAN tavan boyası",
       category: "su-esasli-boyalar",
-      image: "./assets/images/slider-5.png",
+      image: "./assets/images/slider-5.webp",
       code: "ZT",
       lead: "Tavanlar üçün ağ, yüksək örtücülüklü və sıçramayan su əsaslı boya.",
       about: [
@@ -482,7 +482,7 @@
     11: {
       name: "Premium divar kağızı",
       category: "divar-kagizlari",
-      image: "./assets/images/slider-4.png",
+      image: "./assets/images/slider-4.webp",
       code: "PW",
       isNew: true,
       lead: "Zəngin naxışlı, yuyula bilən premium divar kağızı kolleksiyası.",
@@ -507,7 +507,7 @@
     12: {
       name: "Universal divar kağızı yapışdırıcısı",
       category: "yapisdiricilar",
-      image: "./assets/images/slider-3.png",
+      image: "./assets/images/slider-3.webp",
       code: "UY",
       lead: "Kağız, vinil və flizelin divar kağızları üçün asan həll olunan yapışdırıcı.",
       about: [
@@ -527,7 +527,8 @@
 
   //#region göstərmə
   const id = new URLSearchParams(location.search).get("id");
-  const data = PRODUCTS[id];
+  // ?id=constructor kimi dəyərlər prototipdən gəlməsin
+  const data = Object.prototype.hasOwnProperty.call(PRODUCTS, id) ? PRODUCTS[id] : null;
   const root = document.getElementById("pd-main");
   if (!data || !root) return;
 
@@ -536,8 +537,7 @@
   const $ = (selector, scope) => (scope || document).querySelector(selector);
   const $$ = (selector, scope) => Array.from((scope || document).querySelectorAll(selector));
   const fields = (name) => $$(`[data-pd="${name}"]`);
-  const esc = (text) => String(text).replace(/[&<>"']/g, (ch) => `&#${ch.charCodeAt(0)};`);
-  const price = (value) => `${value.toFixed(2).replace(".", ",")} ₼`;
+  const esc = ZAN.escapeHtml;
   const slug = (size) => size.toLowerCase().replace(",", "-").replace(/\s+/g, "-");
   const svg = (name) => `<svg viewBox="0 0 24 24">${ICONS[name] || ICONS.layers}</svg>`;
 
@@ -600,7 +600,7 @@
           data-price="${v.price}"${v.oldPrice ? ` data-old-price="${v.oldPrice}"` : ""} data-amount="${v.amount}"
           data-stock="${v.stock}"${v === defaultVariant ? " checked" : ""} />
         <span class="pd-variant-size">${esc(v.size)}</span>
-        <span class="pd-variant-price">${price(v.price)}</span>
+        <span class="pd-variant-price">${ZAN.formatPrice(v.price)}</span>
         <small class="pd-variant-unit"></small>
       </label>`,
     )

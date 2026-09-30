@@ -15,14 +15,14 @@
   --bs-offcanvas-bg: var(--c-surface);
   --bs-offcanvas-color: var(--c-ink);
 
-  z-index: 2050;
+  z-index: var(--z-drawer);
   border-left: 1px solid var(--c-line);
   box-shadow: -24px 0 60px rgba(13, 21, 32, 0.18);
 }
 
 /* Bootstrap fonu: preloader-dən aşağı, header-dən yuxarı */
 .offcanvas-backdrop {
-  z-index: 2040;
+  z-index: var(--z-drawer-backdrop);
 }
 
 .mc-head {
@@ -38,7 +38,7 @@
   align-items: center;
   gap: 10px;
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 20px;
   color: var(--c-ink);
 }
@@ -63,7 +63,7 @@
   border-radius: 50%;
   color: var(--c-ink);
   background: var(--c-surface-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: background-color 0.25s var(--ease);
 
   svg {
@@ -152,7 +152,7 @@
 }
 
 .mc-line-total {
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 15px;
   color: var(--c-ink);
 }
@@ -168,7 +168,7 @@
   border-radius: 50%;
   color: var(--c-muted-soft);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     color 0.2s var(--ease),
     background-color 0.2s var(--ease);
@@ -207,7 +207,7 @@
     line-height: 1;
     color: var(--c-ink);
     background: transparent;
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
 
     &:hover:not(:disabled) {
       background: var(--c-hover-fill);
@@ -279,7 +279,7 @@
 
   h3 {
     margin: 0;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 18px;
     color: var(--c-ink);
   }
@@ -324,7 +324,7 @@
   }
 
   b {
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 24px;
     color: var(--c-ink);
   }

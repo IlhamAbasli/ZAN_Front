@@ -1,7 +1,7 @@
 // ==========================================================================
 // FORMA SAHƏLƏRİ (.zf-*) — giriş, qeydiyyat, kabinet formaları
 // --------------------------------------------------------------------------
-// HTML: login.html, register.html, account.html
+// HTML: login.html, register.html, forgot-password.html, account.html, checkout.html
 // JS:   assets/js/forms.js (yoxlama, şifrəni göstər, güc, telefon maskası)
 //
 // Görünüş əlaqə formasının (pages/contact/_form.scss) sahələri ilə eynidir;
@@ -430,7 +430,9 @@ select.zf-input {
     place-items: center;
     width: 22px;
     height: 22px;
-    margin-top: 1px;
+    /* qutunun mərkəzi mətnin birinci sətrinin mərkəzində olsun:
+       sətir hündürlüyü 1.5em (yuxarıda line-height: 1.5), qutu 22px */
+    margin-top: calc((1.5em - 22px) / 2);
     border-radius: 7px;
     border: 1.5px solid var(--c-divider);
     background: var(--c-surface);

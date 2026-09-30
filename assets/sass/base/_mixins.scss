@@ -1,0 +1,72 @@
+// ==========================================================================
+// MİXİNLƏR — səhifə modullarında təkrarlanan bloklar
+// --------------------------------------------------------------------------
+// Özü heç bir CSS yaratmır. Modulda: @use "../../base/mixins" as *;
+// Səhifə seçiciləri (#account-hero .ah-crumbs ...) modulda qalır — mixin
+// yalnız bloku doldurur, ona görə səhifələrin izolyasiyası pozulmur.
+// ==========================================================================
+
+// #region başlıq zolağı (hero)
+
+// breadcrumb: <nav class="xx-crumbs"><ol><li><a>…</a></li><li aria-current="page">…
+@mixin page-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+
+  li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--c-muted-soft);
+  }
+
+  a {
+    color: var(--c-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--c-brand);
+    }
+  }
+
+  [aria-current="page"] {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+}
+
+// səhifə başlığı: "Mənim <em>hesabım</em>"
+@mixin page-hero-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--c-ink);
+
+  em {
+    font-style: normal;
+    color: var(--c-brand);
+  }
+}
+
+// dekorativ fon qatı və onun içindəki bulanıq rəng ləkələri
+@mixin hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@mixin hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+// #endregion

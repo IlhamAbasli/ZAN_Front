@@ -113,12 +113,6 @@ main.pd-tint {
 
 /* #endregion */
 /* #region qalereya */
-/* uzun məlumat panelində şəkil göz önündə qalsın */
-#pd-main .pd-gallery {
-  position: sticky;
-  top: calc(var(--h-header-sticky) + 20px);
-}
-
 #pd-main .pd-stage {
   position: relative;
   display: flex;
@@ -181,7 +175,7 @@ main.pd-tint {
   z-index: 2;
   padding: 8px 16px;
   border-radius: 14px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   letter-spacing: 0.02em;
   color: #fff;
@@ -243,7 +237,7 @@ main.pd-tint {
   border-radius: 16px;
   border: 2px solid var(--c-line);
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: border-color 0.25s var(--ease);
 }
 #pd-main .pd-thumbs button img {
@@ -285,7 +279,7 @@ main.pd-tint {
 
 #pd-main .pd-title {
   margin: 12px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(28px, 2.5vw, 40px);
   line-height: 1.15;
   color: var(--c-ink);
@@ -340,7 +334,7 @@ main.pd-tint {
   margin-top: 24px;
 }
 #pd-main .pd-price b {
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 38px;
   line-height: 1;
   color: var(--c-ink);
@@ -408,7 +402,7 @@ main.pd-tint {
   border-radius: 16px;
   border: 1.5px solid var(--c-line);
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
   /* radio görünmür, amma klaviatura ilə seçilir (ox düymələri) */
   /* sağ üst küncdə seçim dairəsi */
@@ -420,7 +414,7 @@ main.pd-tint {
   z-index: 1;
   margin: 0;
   opacity: 0;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 #pd-main .pd-variant::after {
   content: "";
@@ -460,7 +454,7 @@ main.pd-tint {
 
 #pd-main .pd-variant-size {
   padding-right: 24px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 18px;
   color: var(--c-ink);
 }
@@ -486,7 +480,7 @@ main.pd-tint {
   left: 12px;
   padding: 2px 8px;
   border-radius: 999px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -525,7 +519,7 @@ main.pd-tint {
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 14px 26px color-mix(in srgb, var(--pc-tint) 32%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease), box-shadow 0.25s var(--ease);
   /* əlavə olunanda qısa "təsdiq" (JS: .is-added) */
 }
@@ -598,7 +592,7 @@ main.pd-tint {
   text-decoration: none;
   color: var(--c-ink);
   background: var(--c-surface);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 #pd-main .pd-tool svg {
@@ -716,7 +710,7 @@ main.pd-tint {
   font-weight: 600;
   color: #fff;
   background: var(--pc-tint);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 #pd-main .pd-share-link button:hover {
   filter: brightness(1.08);
@@ -736,7 +730,7 @@ main.pd-tint {
   font-weight: 600;
   color: var(--c-muted);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 #pd-main .pd-share-native:hover {
   color: var(--pc-tint);
@@ -831,9 +825,6 @@ main.pd-tint {
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
   }
-  #pd-main .pd-gallery {
-    position: static;
-  }
   #pd-main .pd-stage {
     aspect-ratio: 4/3;
   }
@@ -924,7 +915,7 @@ main.pd-tint {
 .pd-facts b {
   grid-column: 2;
   align-self: start;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.3;
   color: var(--c-ink);
@@ -977,7 +968,7 @@ main.pd-tint {
   white-space: nowrap;
   color: var(--c-muted);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), background-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
   /* aktiv tab: ağ fon və önündə kateqoriya rəngində nöqtə */
 }
@@ -1023,7 +1014,7 @@ main.pd-tint {
 
 .pd-h3 {
   margin: 0 0 14px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   color: var(--c-ink);
 }
@@ -1168,7 +1159,7 @@ main.pd-tint {
   width: 38px;
   height: 38px;
   border-radius: 12px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 16px;
   color: #fff;
   background: var(--pc-tint);
@@ -1177,7 +1168,7 @@ main.pd-tint {
 .pd-steps b {
   display: block;
   margin: 16px 0 6px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 16px;
   color: var(--c-ink);
 }
@@ -1336,7 +1327,7 @@ main.pd-tint {
 
 .pd-calc-title {
   margin: 16px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(24px, 2.2vw, 32px);
   line-height: 1.2;
   color: #fff;
@@ -1380,7 +1371,7 @@ main.pd-tint {
   inset: 0;
   margin: 0;
   opacity: 0;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 .pd-calc-mode span,
 .pd-calc-seg span {
@@ -1421,11 +1412,14 @@ main.pd-tint {
   display: none;
 }
 
+/* etiket iki sətrə keçsə də inputlar eyni xətdə qalır (input aşağıya sıxılır) */
 .pd-calc-field {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .pd-calc-field > span:first-child {
   display: block;
+  margin-bottom: 6px;
   font-size: 13px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
@@ -1436,7 +1430,7 @@ main.pd-tint {
   align-items: center;
   gap: 8px;
   height: 52px;
-  margin-top: 6px;
+  margin-top: auto;
   padding: 0 16px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.26);
@@ -1448,7 +1442,7 @@ main.pd-tint {
   min-width: 0;
   padding: 0;
   border: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 19px;
   color: #fff;
   background: transparent;
@@ -1518,7 +1512,7 @@ main.pd-tint {
 .pd-calc-need b {
   display: block;
   margin-top: 6px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 42px;
   line-height: 1.05;
   color: var(--pc-tint);
@@ -1584,7 +1578,7 @@ main.pd-tint {
 .pd-calc-sum b {
   display: block;
   margin-top: 4px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 28px;
   color: var(--c-ink);
 }
@@ -1602,7 +1596,7 @@ main.pd-tint {
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 12px 24px color-mix(in srgb, var(--pc-tint) 30%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease);
   /* əlavə olunanda qısa "təsdiq" (JS: .is-added; pdPop — _main.scss) */
 }
@@ -1667,6 +1661,13 @@ main.pd-tint {
     padding: 0 10px;
     font-size: 13px;
   }
+  /* 2 sütun; sahə sayı təkdirsə birincisi tam en tutur (divar rejimi: uzunluq / hündürlük + açıqlıqlar) */
+  .pd-calc-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pd-calc-field:first-child:nth-last-child(odd) {
+    grid-column: 1/-1;
+  }
   .pd-calc-result {
     padding: 22px 20px;
     border-radius: 20px;
@@ -1696,7 +1697,7 @@ main.pd-tint {
 
 .pd-section-title {
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(24px, 2.2vw, 32px);
   line-height: 1.2;
   color: var(--c-ink);
@@ -1744,7 +1745,7 @@ main.pd-tint {
   color: var(--c-ink);
   background: var(--c-surface);
   box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease), opacity 0.25s var(--ease);
   /* Swiper kənarda düyməni bağlayır */
   /* bütün kartlar ekrana sığanda oxlara ehtiyac yoxdur */
@@ -1806,7 +1807,7 @@ main.pd-tint {
   background: none;
   text-decoration: underline;
   text-underline-offset: 3px;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 .pd-recent-clear:hover {
   color: var(--c-brand);
@@ -1886,7 +1887,7 @@ main.pd-tint {
 .pd-recent-info span {
   display: block;
   margin-top: 4px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 14px;
   color: var(--pc-tint);
 }
@@ -1917,7 +1918,7 @@ main.pd-tint {
   right: 0;
   bottom: 0;
   /* mini səbət (offcanvas) və modallar bunun üstündə qalır */
-  z-index: 1030;
+  z-index: var(--z-bar);
   border-top: 1px solid var(--c-line);
   background: var(--c-sticky-bg);
   backdrop-filter: blur(14px);

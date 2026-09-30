@@ -36,6 +36,11 @@
 @use "../components/mini-cart";
 /* #endregion */
 
+/* #region ortaq bloklar — ikinci dərəcəli düymə, boş vəziyyət */
+@use "../components/button";
+@use "../components/empty-state";
+/* #endregion */
+
 /* #region hesab — forma sahələri və "daxil olun" pəncərəsi */
 @use "../components/form-field";
 @use "../components/auth-gate";

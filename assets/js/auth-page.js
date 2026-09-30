@@ -1,12 +1,14 @@
 /* ==========================================================================
-   auth-page.js — giriş (login.html) və qeydiyyat (register.html) formaları
+   auth-page.js — giriş (login.html), qeydiyyat (register.html) və şifrənin
+                  bərpası (forgot-password.html) formaları
    --------------------------------------------------------------------------
-   Qoşulur:     login.html və register.html, forms.js-dən sonra
-                (.NET MVC-də: Views/Account/Login.cshtml, Register.cshtml →
-                @section Scripts)
+   Qoşulur:     login.html, register.html, forgot-password.html — forms.js-dən sonra
+                (.NET MVC-də: Views/Account/Login.cshtml, Register.cshtml,
+                ForgotPassword.cshtml → @section Scripts)
    Asılılıqlar: site.js (ZAN.notify), auth.js (ZAN.auth), forms.js (ZAN.forms)
 
-   Hər iki forma <form action>-dakı ünvana göndərilir (fetch, FormData).
+   Bütün formalar <form action>-dakı ünvana göndərilir (fetch, FormData).
+   Şifrənin bərpası addımları və cavab formatı: forgot-password.html-dəki şərh.
    TODO (backend): action="#" olduqca göndəriş imitasiya olunur və istifadəçi
    demo rejimdə "daxil olur" (auth.js → demoSignIn). Backend hazır olanda:
      - action-u dəyişin (MVC: asp-action="Login" / "Register",
@@ -44,21 +46,8 @@
   //#endregion
 
   //#region helpers
-  function showFormError(form, message) {
-    const alert = form.querySelector(".zf-alert");
-    if (!alert) return;
-    alert.querySelector("span").textContent = message;
-    alert.hidden = !message;
-  }
-
-  // server xətası: sahə xətaları altlarına, ümumi mətn formanın başına
-  function handleServerError(form, validator, error, fallback) {
-    const data = (error && error.data) || {};
-    if (data.errors) {
-      Object.keys(data.errors).forEach((name) => validator.show(name, data.errors[name]));
-    }
-    showFormError(form, data.message || fallback);
-  }
+  const showFormError = ZAN.forms.showError;
+  const handleServerError = ZAN.forms.handleError;
 
   // növbəti səhifədə bildiriş üçün (auth.js → welcome)
   function flagWelcome(kind) {
@@ -134,16 +123,11 @@
   if (registerForm) {
     const rules = ZAN.forms.rules;
     const validator = ZAN.forms.bind(registerForm, {
-      name: function (input) {
-        const value = input.value.trim();
-        if (!value) return "Adınızı və soyadınızı yazın.";
-        return value.length < 3 ? "Ad və soyad ən azı 3 hərfdən ibarət olmalıdır." : "";
-      },
+      name: rules.fullName(),
       phone: rules.phone(),
       email: rules.email(),
       password: rules.password(),
       passwordConfirm: rules.match("password"),
-      terms: rules.checked("Qeydiyyat üçün şərtlərlə razılaşın."),
     });
     const submitBtn = registerForm.querySelector(".zf-submit");
 
@@ -184,6 +168,212 @@
           );
         });
     });
+  }
+  //#endregion
+
+  //#region forgot
+  // Şifrənin bərpası (forgot-password.html): request → verify → reset → done.
+  // Hər addım öz formasıdır; backend cavabları HTML-dəki şərhdə yazılıb.
+  const requestForm = document.getElementById("forgot-request-form");
+
+  if (requestForm) {
+    const rules = ZAN.forms.rules;
+    const verifyForm = document.getElementById("forgot-verify-form");
+    const resetForm = document.getElementById("forgot-reset-form");
+    const title = document.getElementById("auth-title");
+    const progress = document.querySelector("[data-forgot-progress]");
+    const progressLabel = document.querySelector("[data-forgot-progress-label]");
+    const footer = document.querySelector("[data-forgot-footer]");
+    const resendButton = verifyForm.querySelector("[data-forgot-resend]");
+    const codeInput = verifyForm.elements.code;
+
+    const STEPS = {
+      request: { index: 1, label: "Addım 1 / 3 — hesabınızı tapaq" },
+      verify: { index: 2, label: "Addım 2 / 3 — təsdiq kodu" },
+      reset: { index: 3, label: "Addım 3 / 3 — yeni şifrə" },
+      done: { index: 4, label: "Hazırdır" },
+    };
+    const RESEND_SECONDS = 60;
+    const CODE_LENGTH = 6;
+    const digitsOf = (value) => String(value).replace(/\D/g, "");
+
+    // addımı göstərir və fokusu onun ilk sahəsinə keçirir
+    function showStep(name) {
+      document.querySelectorAll("[data-forgot-step]").forEach(function (panel) {
+        panel.hidden = panel.dataset.forgotStep !== name;
+      });
+      progress.dataset.step = String(STEPS[name].index);
+      progressLabel.textContent = STEPS[name].label;
+      // sonda "Şifrəni bərpa edin" əvəzinə panelin öz başlığı ("Şifrəniz yeniləndi")
+      title.hidden = name === "done";
+      if (footer) footer.hidden = name === "done";
+
+      const panel = document.querySelector(`[data-forgot-step="${name}"]`);
+      const field = panel.querySelector("input:not([type='hidden'])");
+      (field || panel).focus();
+      progress.scrollIntoView({ block: "nearest", behavior: ZAN.prefersReducedMotion() ? "auto" : "smooth" });
+    }
+
+    // kodun getdiyi ünvan server bilmirsə: "+994 50 *** ** 67", "a***@numune.az"
+    function maskTarget(value) {
+      if (value.includes("@")) {
+        const [name, domain] = value.split("@");
+        return `${name.slice(0, 1)}***@${domain}`;
+      }
+      const d = digitsOf(value).slice(-9);
+      return `+994 ${d.slice(0, 2)} *** ** ${d.slice(7, 9)}`;
+    }
+
+    //#region forgot: geri sayım
+    let resendTimer = null;
+
+    function startResendTimer() {
+      let left = RESEND_SECONDS;
+      clearInterval(resendTimer);
+      resendButton.disabled = true;
+
+      const tick = function () {
+        if (left <= 0) {
+          clearInterval(resendTimer);
+          resendButton.disabled = false;
+          resendButton.textContent = "Yenidən göndər";
+          return;
+        }
+        const time = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`;
+        resendButton.textContent = ZAN.t("Yenidən göndər ({time})", { time });
+        left--;
+      };
+      tick();
+      resendTimer = setInterval(tick, 1000);
+    }
+    //#endregion
+
+    //#region forgot: 1 — kod istəmək
+    const requestValidator = ZAN.forms.bind(requestForm, { login: rules.login() });
+    const requestBtn = requestForm.querySelector(".zf-submit");
+
+    function sendCode() {
+      return ZAN.forms.submit(requestForm).then(function (data) {
+        const login = requestForm.elements.login.value.trim();
+        verifyForm.elements.login.value = login;
+        document.querySelector("[data-forgot-target]").textContent =
+          (data && data.target) || maskTarget(login);
+        startResendTimer();
+      });
+    }
+
+    requestForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      showFormError(requestForm, "");
+      if (!requestValidator.validate()) return;
+
+      ZAN.forms.setLoading(requestBtn, true);
+      sendCode()
+        .then(function () {
+          ZAN.forms.setLoading(requestBtn, false);
+          codeInput.value = "";
+          verifyValidator.clear();
+          showFormError(verifyForm, "");
+          showStep("verify");
+        })
+        .catch(function (error) {
+          ZAN.forms.setLoading(requestBtn, false);
+          handleServerError(requestForm, requestValidator, error, "Kodu göndərmək alınmadı. Bir az sonra yenidən cəhd edin.");
+        });
+    });
+    //#endregion
+
+    //#region forgot: 2 — kodu təsdiqləmək
+    const verifyValidator = ZAN.forms.bind(verifyForm, {
+      code: function (input) {
+        const value = digitsOf(input.value);
+        if (!value) return "Təsdiq kodunu yazın.";
+        return value.length === CODE_LENGTH ? "" : ZAN.t("Kod {n} rəqəmdən ibarətdir.", { n: CODE_LENGTH });
+      },
+    });
+    const verifyBtn = verifyForm.querySelector(".zf-submit");
+
+    // yalnız rəqəm; 6 rəqəm yığılan kimi (və ya yapışdırılanda) özü göndərilir
+    codeInput.addEventListener("input", function () {
+      const clean = digitsOf(codeInput.value).slice(0, CODE_LENGTH);
+      if (clean !== codeInput.value) codeInput.value = clean;
+      if (clean.length === CODE_LENGTH && !verifyBtn.disabled) verifyForm.requestSubmit(verifyBtn);
+    });
+
+    verifyForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      showFormError(verifyForm, "");
+      if (!verifyValidator.validate()) return;
+
+      ZAN.forms.setLoading(verifyBtn, true);
+      ZAN.forms
+        .submit(verifyForm)
+        .then(function (data) {
+          ZAN.forms.setLoading(verifyBtn, false);
+          clearInterval(resendTimer);
+          resetForm.elements.resetToken.value = (data && data.resetToken) || "";
+          showStep("reset");
+        })
+        .catch(function (error) {
+          ZAN.forms.setLoading(verifyBtn, false);
+          handleServerError(verifyForm, verifyValidator, error, "Kodu yoxlamaq alınmadı. Bir az sonra yenidən cəhd edin.");
+          codeInput.select();
+        });
+    });
+
+    resendButton.addEventListener("click", function () {
+      resendButton.disabled = true;
+      showFormError(verifyForm, "");
+      sendCode()
+        .then(function () {
+          ZAN.notify("success", "Yeni təsdiq kodu göndərildi.", { title: "Kod göndərildi" });
+          codeInput.focus();
+        })
+        .catch(function (error) {
+          resendButton.disabled = false;
+          handleServerError(verifyForm, verifyValidator, error, "Kodu göndərmək alınmadı. Bir az sonra yenidən cəhd edin.");
+        });
+    });
+
+    // telefon / e-poçtu dəyişmək — 1-ci addıma qayıdış
+    verifyForm.querySelector("[data-forgot-back]").addEventListener("click", function () {
+      clearInterval(resendTimer);
+      showStep("request");
+      requestForm.elements.login.select();
+    });
+    //#endregion
+
+    //#region forgot: 3 — yeni şifrə
+    const resetValidator = ZAN.forms.bind(resetForm, {
+      password: rules.password(),
+      passwordConfirm: rules.match("password"),
+    });
+    const resetBtn = resetForm.querySelector(".zf-submit");
+
+    resetForm.elements.password.addEventListener("input", function () {
+      if (resetForm.elements.passwordConfirm.value) resetValidator.check("passwordConfirm");
+    });
+
+    resetForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      showFormError(resetForm, "");
+      if (!resetValidator.validate()) return;
+
+      ZAN.forms.setLoading(resetBtn, true);
+      ZAN.forms
+        .submit(resetForm)
+        .then(function () {
+          ZAN.forms.setLoading(resetBtn, false);
+          // şifrələr səhifədə qalmasın
+          resetForm.reset();
+          showStep("done");
+        })
+        .catch(function (error) {
+          ZAN.forms.setLoading(resetBtn, false);
+          handleServerError(resetForm, resetValidator, error, "Şifrəni yeniləmək alınmadı. Bir az sonra yenidən cəhd edin.");
+        });
+    });
+    //#endregion
   }
   //#endregion
 })(window.ZAN);

@@ -1,9 +1,29 @@
 @charset "UTF-8";
 /* #region base — şriftlər, tokenlər, ümumi qaydalar */
 /* #region @font-face elanları */
+/* Roboto: 400 və əsl 700 — font-weight: 600/700 süni qalınlaşdırılmır */
 @font-face {
   font-family: Roboto;
-  src: url(../../fonts/Roboto-Regular.ttf);
+  src: url(../../fonts/roboto-400.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(../../fonts/roboto-700.woff2) format("woff2");
+  font-weight: 600 900;
+  font-display: swap;
+}
+/*
+  "RobotoBold" — köhnə ad (111 yerdə işlənir): eyni 700 faylı, ona görə
+  yenidən yüklənmir. Çəki diapazonu verilib ki, font-weight: 700 ilə
+  birlikdə olanda üstündən bir də süni qalınlaşdırma tətbiq olunmasın.
+*/
+@font-face {
+  font-family: RobotoBold;
+  src: url(../../fonts/roboto-700.woff2) format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
 }
 /*
   DM Sans dəyişən şriftdir: çəki diapazonu elan olunduğuna görə 500/600
@@ -11,16 +31,15 @@
 */
 @font-face {
   font-family: DMSans;
-  src: url(../../fonts/DMSans-VariableFont_wght.ttf);
+  src: url(../../fonts/dmsans-variable.woff2) format("woff2");
   font-weight: 100 900;
+  font-display: swap;
 }
 @font-face {
   font-family: Inter;
-  src: url(../../fonts/Inter_18pt-Regular.ttf);
-}
-@font-face {
-  font-family: RobotoBold;
-  src: url(../../fonts/Roboto-Bold.ttf);
+  src: url(../../fonts/inter-400.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
 }
 /* #endregion */
 /* #region açıq mövzu (standart) */
@@ -36,6 +55,8 @@
   --c-brand-deep: #a71930;
   --c-brand-dark: #5d0818;
   --c-gold: #f2cf6b;
+  /* qızılı fonda (--c-gold qarışığı) mətn və ikon rəngi */
+  --c-gold-ink: #8a6212;
   /* mətn */
   --c-ink: #0d1520;
   --c-muted: #55606c;
@@ -115,6 +136,20 @@
   --grad-brand: linear-gradient(135deg, #c9142c 0%, #a71930 55%, #7d0f21 100%);
   --shadow-menu: 0 18px 38px rgba(13, 21, 32, 0.13);
   --shadow-brand: 0 10px 24px rgba(201, 20, 44, 0.28);
+  /* qatlar (z-index): aşağıdan yuxarı. Bootstrap offcanvas/modal öz
+     dəyərlərini (1040–1055) işlədir — bizimkilər onların üstündədir */
+  --z-sticky: 1000; /* sabit header, yuxarı qalxma düyməsi */
+  --z-bar: 1030; /* məhsul səhifəsinin aşağı paneli */
+  --z-menu-backdrop: 1050;
+  --z-menu: 1060; /* mobil menyu */
+  --z-skip-link: 1100;
+  --z-preloader: 2000;
+  --z-drawer-backdrop: 2040;
+  --z-drawer: 2050; /* mini səbət, kataloq filtrləri (mobil) */
+  --z-modal-backdrop: 2055;
+  --z-modal: 2060; /* sürətli baxış */
+  --z-toast: 2100;
+  --z-cursor: 2147483000; /* valik kursorunun çevrəsi — hər şeyin üstündə */
   --r-pill: 999px;
   --r-card: 16px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -131,6 +166,7 @@
     --c-brand-deep: #ef3b56;
     --c-brand-dark: #a71930;
     --c-gold: #f6d886;
+    --c-gold-ink: #f2cf6b;
     --c-ink: #e8edf3;
     --c-muted: #a3adb9;
     --c-muted-soft: #808b98;
@@ -198,6 +234,7 @@
   --c-brand-deep: #ef3b56;
   --c-brand-dark: #a71930;
   --c-gold: #f6d886;
+  --c-gold-ink: #f2cf6b;
   --c-ink: #e8edf3;
   --c-muted: #a3adb9;
   --c-muted-soft: #808b98;
@@ -260,7 +297,7 @@
 /* #endregion */
 /* #region body */
 body {
-  font-family: Roboto;
+  font-family: Roboto, Arial, sans-serif;
   background-color: var(--c-bg);
   color: var(--c-ink);
 }
@@ -271,6 +308,20 @@ body {
 */
 body {
   transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+/*
+  Başqa dil seçilibsə, tərcümə bitənə qədər (i18n.js) səhifə gizlidir —
+  bir anlıq Azərbaycanca görünməsin. Preloader görünür qalır.
+  Sinfi head-init.js qoyur, i18n.js götürür (ən gec 4 saniyədən sonra).
+*/
+html.i18n-loading body > :not(.preloader) {
+  visibility: hidden;
+}
+
+/* Çin dili: Roboto-da iyeroqlif yoxdur — sistem şriftinə keçid səliqəli olsun */
+html[lang=zh] body {
+  font-family: Roboto, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
 }
 
 /* #endregion */
@@ -318,6 +369,31 @@ img[src$="xmark.svg"],
 img[src$="bars-icon.svg"],
 img[src$="bars-icon (2).svg"] {
   filter: var(--icon-filter, none);
+}
+
+/* #endregion */
+/* #region inline SVG ikonlar (.zan-icon) */
+/*
+  Ox, menyu və sosial şəbəkə ikonları HTML-də inline SVG-dir (Font Awesome
+  kit-i və şrifti yüklənmir):
+    <i class="zan-icon zan-icon-angle-down" aria-hidden="true"><svg viewBox="…">…</svg></i>
+  Ölçü şrift ölçüsündən gəlir (1em), rəng — currentColor. Ad zan- prefikslidir:
+  .icon mobil menyunun ox konteynerində artıq işlənir. Yolların mənbəyi:
+  Font Awesome Free 6.7.2 (https://fontawesome.com, lisenziya CC BY 4.0 —
+  https://fontawesome.com/license/free).
+*/
+.zan-icon {
+  display: inline-block;
+  font-style: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+}
+.zan-icon svg {
+  display: block;
+  width: auto;
+  height: 1em;
+  overflow: visible;
+  fill: currentColor;
 }
 
 /* #endregion */
@@ -408,7 +484,7 @@ button:disabled,
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2147483000;
+  z-index: var(--z-cursor);
   width: 0;
   height: 0;
   opacity: 0;
@@ -463,7 +539,7 @@ button:disabled,
 .preloader {
   position: fixed;
   inset: 0;
-  z-index: 2000;
+  z-index: var(--z-preloader);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -591,7 +667,9 @@ button:disabled,
   transition: 0.3s 0s ease-out;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
+  z-index: var(--z-sticky);
+  /* ox inline SVG-dir: rəngini düymənin color dəyərindən alır */
+  /* tərəqqi halqası düymənin kənarından bir qədər kənarda dayanır */
 }
 #button:hover {
   cursor: var(--cursor-pointer);
@@ -605,17 +683,11 @@ button:disabled,
   outline: 2px solid var(--c-brand);
   outline-offset: 3px;
 }
-#button {
-  /* ox inline SVG-dir: rəngini düymənin color dəyərindən alır */
-}
 #button .scroll-arrow {
   position: relative;
   z-index: 1;
   width: 20px;
   height: 20px;
-}
-#button {
-  /* tərəqqi halqası düymənin kənarından bir qədər kənarda dayanır */
 }
 #button .scroll-progress {
   position: absolute;
@@ -776,7 +848,7 @@ button:disabled,
   position: fixed;
   top: 24px;
   right: 24px;
-  z-index: 2100;
+  z-index: var(--z-toast);
   display: flex;
   flex-direction: column;
   width: 380px;
@@ -828,16 +900,12 @@ button:disabled,
   background: linear-gradient(100deg, color-mix(in srgb, var(--zt-c) 11%, transparent) 0%, transparent 42%), var(--c-surface);
   box-shadow: var(--shadow-menu), 0 2px 6px rgba(13, 21, 32, 0.06);
   touch-action: pan-y;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   animation: ztIn 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+  /* sürüşdürüb bağlama: JS --zt-dx verir */
 }
 .zan-toast.is-leaving .zan-toast-card {
   animation: ztOut 0.28s var(--ease) forwards;
-}
-.zan-toast-card {
-  /* sürüşdürüb bağlama: JS --zt-dx verir */
 }
 .zan-toast.is-dragging .zan-toast-card {
   animation: none;
@@ -877,6 +945,7 @@ button:disabled,
   background: radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.5), transparent 42%), var(--zt-c);
   box-shadow: 0 8px 18px color-mix(in srgb, var(--zt-c) 38%, transparent);
   animation: ztBlob 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both;
+  /* ləkədən asılan damcı */
 }
 .zan-toast-icon svg {
   width: 22px;
@@ -886,9 +955,6 @@ button:disabled,
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-.zan-toast-icon {
-  /* ləkədən asılan damcı */
 }
 .zan-toast-icon::after {
   content: "";
@@ -914,7 +980,7 @@ button:disabled,
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.3;
   color: var(--c-ink);
@@ -955,11 +1021,11 @@ button:disabled,
   margin-top: 10px;
   padding: 0;
   border: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 13px;
   color: var(--zt-c);
   background: none;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 .zan-toast-action::after {
   content: "→";
@@ -975,8 +1041,7 @@ button:disabled,
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   background: var(--c-surface-soft);
   border: 1px solid var(--c-line);
 }
@@ -994,7 +1059,7 @@ button:disabled,
   border-radius: 50%;
   color: var(--c-muted-soft);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
 .zan-toast-close svg {
@@ -1028,7 +1093,7 @@ button:disabled,
   border-radius: 0 3px 3px 0;
   background: linear-gradient(90deg, color-mix(in srgb, var(--zt-c) 55%, transparent), var(--zt-c));
   transform-origin: left center;
-  animation: ztTimer var(--zt-duration, 4500ms) linear forwards;
+  animation: ztTimer var(--zt-duration, 1500ms) linear forwards;
 }
 .zan-toast:hover .zan-toast-timer, .zan-toast:focus-within .zan-toast-timer, .zan-toast.is-dragging .zan-toast-timer {
   animation-play-state: paused;
@@ -1258,7 +1323,7 @@ button:disabled,
   position: absolute;
   top: 0;
   left: -9999px;
-  z-index: 1100;
+  z-index: var(--z-skip-link);
   padding: 12px 22px;
   border-radius: 0 0 var(--r-card) 0;
   background-image: var(--grad-brand);
@@ -1277,6 +1342,10 @@ button:disabled,
   position: relative;
   background-color: var(--c-surface);
   /* menyu açan elementlər <button>-dur: brauzerin düymə stilini sıfırlayırıq */
+  /* açıq panelin oxu çevrilir */
+  /* açılan panellərin ortaq görünüşü */
+  /* dairəvi ikon fonu ayrıca sarğıdadır: `border-radius` + `padding`
+     birbaşa <img> üzərində olduqda Chrome kvadrat olmayan şəkli səhv kəsir */
 }
 .site-header button {
   font: inherit;
@@ -1292,17 +1361,11 @@ button:disabled,
   outline-offset: 3px;
   border-radius: 6px;
 }
-.site-header {
-  /* açıq panelin oxu çevrilir */
-}
-.site-header [data-disclosure] .fa-angle-down {
+.site-header [data-disclosure] .zan-icon-angle-down {
   transition: transform 0.25s var(--ease);
 }
-.site-header [data-disclosure][aria-expanded=true] .fa-angle-down {
+.site-header [data-disclosure][aria-expanded=true] .zan-icon-angle-down {
   transform: rotate(180deg);
-}
-.site-header {
-  /* açılan panellərin ortaq görünüşü */
 }
 .site-header .menu {
   position: absolute;
@@ -1348,10 +1411,6 @@ button:disabled,
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
-}
-.site-header {
-  /* dairəvi ikon fonu ayrıca sarğıdadır: `border-radius` + `padding`
-     birbaşa <img> üzərində olduqda Chrome kvadrat olmayan şəkli səhv kəsir */
 }
 .site-header .icon-badge {
   display: flex;
@@ -1467,8 +1526,7 @@ button:disabled,
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #header-top .right-side > ul > li > a i,
 #header-top .right-side > ul > li > .content i {
@@ -1488,8 +1546,7 @@ button:disabled,
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 /* #endregion */
@@ -1499,15 +1556,12 @@ button:disabled,
   display: flex;
   align-items: center;
   gap: 14px;
+  /* düz boz sütun əvəzinə incə keçidli ayırıcı */
 }
 #header-mid .logo img {
   width: auto;
   height: var(--h-logo);
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-#header-mid .logo {
-  /* düz boz sütun əvəzinə incə keçidli ayırıcı */
+  object-fit: contain;
 }
 #header-mid .logo .border-line {
   width: 1px;
@@ -1521,7 +1575,7 @@ button:disabled,
   align-items: center;
   padding-left: 40px;
   margin: 0;
-  font-family: Inter;
+  font-family: Inter, Roboto, Arial, sans-serif;
 }
 #header-mid .search-area .content {
   display: flex;
@@ -1551,19 +1605,13 @@ button:disabled,
   padding: 0 14px 0 16px;
   height: 100%;
   outline: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-#header-mid .search-area .content input::-moz-placeholder {
-  color: var(--c-muted-soft);
+  appearance: none;
 }
 #header-mid .search-area .content input::placeholder {
   color: var(--c-muted-soft);
 }
 #header-mid .search-area .content input::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 #header-mid .search-area .content .selection {
   position: relative;
@@ -1582,12 +1630,11 @@ button:disabled,
   white-space: nowrap;
   color: var(--c-muted);
   transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+  /* uzun kateqoriya adı axtarış sahəsini sıxışdırmasın */
+  /* kateqoriya seçilib — axtarış onunla məhdudlaşır (site.js → header-search) */
 }
 #header-mid .search-area .content .selection .selector i {
   font-size: 11px;
-}
-#header-mid .search-area .content .selection .selector {
-  /* uzun kateqoriya adı axtarış sahəsini sıxışdırmasın */
 }
 #header-mid .search-area .content .selection .selector [data-search-category-label] {
   max-width: 150px;
@@ -1597,9 +1644,6 @@ button:disabled,
 #header-mid .search-area .content .selection .selector:hover {
   background-color: var(--c-hover-fill);
   color: var(--c-ink);
-}
-#header-mid .search-area .content .selection .selector {
-  /* kateqoriya seçilib — axtarış onunla məhdudlaşır (site.js → header-search) */
 }
 #header-mid .search-area .content .selection .selector.is-filtered {
   font-weight: 600;
@@ -1611,6 +1655,7 @@ button:disabled,
   right: 0;
   min-width: 230px;
   /* "Kateqoriya seçin" — panelin başlıq sətri */
+  /* kateqoriya variantı — radio gizlidir, seçim sağda işarə ilə görünür */
 }
 #header-mid .search-area .content .selection .menu li:first-child {
   padding: 6px 14px 8px;
@@ -1619,9 +1664,6 @@ button:disabled,
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--c-muted-soft);
-}
-#header-mid .search-area .content .selection .menu {
-  /* kateqoriya variantı — radio gizlidir, seçim sağda işarə ilə görünür */
 }
 #header-mid .search-area .content .selection .menu .search-cat {
   position: relative;
@@ -1652,8 +1694,7 @@ button:disabled,
   width: 16px;
   height: 16px;
   background-color: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
   opacity: 0;
   transform: scale(0.6);
   transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
@@ -1713,7 +1754,7 @@ button:disabled,
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  font-family: Inter;
+  font-family: Inter, Roboto, Arial, sans-serif;
 }
 #header-mid .account a .login-icon {
   width: 44px;
@@ -1759,6 +1800,7 @@ button:disabled,
   gap: 4px;
   /* QEYD: bu elementlər Bootstrap-da `d-lg-flex` ilə göstərilməlidir.
      `d-lg-block` `display: block !important` verib mərkəzləməni pozur. */
+  /* nişan 21px ikonun sağ-üst küncündə mərkəzlənir */
 }
 #header-mid .actions .wishlist,
 #header-mid .actions .cart,
@@ -1788,8 +1830,7 @@ button:disabled,
 #header-sticky .actions .bars > img {
   width: 21px;
   height: 21px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 #header-mid .actions .wishlist:hover,
 #header-mid .actions .cart:hover,
@@ -1799,10 +1840,6 @@ button:disabled,
 #header-sticky .actions .bars:hover {
   background-color: var(--c-hover-fill);
   transform: translateY(-2px);
-}
-#header-mid .actions,
-#header-sticky .actions {
-  /* nişan 21px ikonun sağ-üst küncündə mərkəzlənir */
 }
 #header-mid .actions .wishlist-count,
 #header-mid .actions .cart-count,
@@ -1936,8 +1973,7 @@ button:disabled,
   height: 46px;
   padding: 4px;
   box-sizing: border-box;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   border-radius: 10px;
   background-color: var(--c-surface-soft);
   transition: transform 0.3s var(--ease);
@@ -1984,6 +2020,7 @@ button:disabled,
   z-index: 2;
   border-top: 1px solid var(--c-line);
   height: var(--h-header-bottom);
+  /* panel yalnız aria-expanded="true" olanda görünür */
 }
 #header-bottom .all-categories {
   height: var(--h-header-bottom);
@@ -2007,9 +2044,6 @@ button:disabled,
 #header-bottom .all-categories-toggle i {
   font-size: 11px;
   opacity: 0.85;
-}
-#header-bottom {
-  /* panel yalnız aria-expanded="true" olanda görünür */
 }
 #header-bottom .categories {
   position: absolute;
@@ -2088,13 +2122,14 @@ button:disabled,
 /* #region sabit başlıq — #header-sticky */
 #header-sticky {
   height: var(--h-header-sticky);
-  font-family: Roboto;
+  font-family: Roboto, Arial, sans-serif;
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: var(--z-sticky);
   /* yarı-şəffaf bulanıq fon: altındakı məzmun hiss olunur */
   background-color: var(--c-sticky-bg);
+  -webkit-backdrop-filter: saturate(1.5) blur(14px);
   backdrop-filter: saturate(1.5) blur(14px);
   border-bottom: 1px solid var(--c-line);
   box-shadow: var(--shadow-sticky);
@@ -2117,8 +2152,7 @@ button:disabled,
 #header-sticky .logo img {
   width: auto;
   height: 46px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 #header-sticky .logo .border-line {
   width: 1px;
@@ -2178,7 +2212,7 @@ button:disabled,
   top: 0;
   right: 0;
   /* #header-sticky (1000) və #button (1000) menyunun üstündə qalmasın */
-  z-index: 1060;
+  z-index: var(--z-menu);
   width: 380px;
   /* 380px-dən dar ekranlarda menyu ekrandan kənara çıxmasın */
   max-width: 100%;
@@ -2193,6 +2227,7 @@ button:disabled,
   transform: translateX(100%);
   visibility: hidden;
   transition: transform 0.4s var(--ease), visibility 0.4s;
+  /* panel statik axındadır, ona görə bağlı olanda yer tutmamalıdır */
 }
 .mobile-menu.is-open {
   transform: translateX(0);
@@ -2231,7 +2266,7 @@ button:disabled,
   border-radius: 14px;
   font-size: 15px;
   font-weight: 600;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   box-shadow: var(--hdr-shadow);
 }
 .mobile-menu .all-categories-toggle span {
@@ -2241,9 +2276,6 @@ button:disabled,
 }
 .mobile-menu .all-categories-toggle i {
   font-size: 12px;
-}
-.mobile-menu {
-  /* panel statik axındadır, ona görə bağlı olanda yer tutmamalıdır */
 }
 .mobile-menu .categories {
   display: none;
@@ -2279,7 +2311,7 @@ button:disabled,
   font-size: 15.5px;
   font-weight: 500;
   color: var(--c-ink);
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   transition: color 0.25s var(--ease);
 }
 .mobile-menu .main-nav ul li .icon {
@@ -2328,7 +2360,7 @@ button:disabled,
   box-shadow: var(--hdr-shadow);
   text-decoration: none;
   color: var(--c-on-brand);
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   transition: filter 0.25s var(--ease), transform 0.25s var(--ease);
 }
 .mobile-menu .contact-us a:hover {
@@ -2342,8 +2374,9 @@ button:disabled,
 .menu-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1050;
+  z-index: var(--z-menu-backdrop);
   background-color: rgba(13, 21, 32, 0.55);
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
@@ -2386,17 +2419,13 @@ body.has-menu-open {
   height: 46px;
   padding: 0 52px 0 18px;
   font-size: 14px;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   color: var(--c-ink);
   background-color: var(--c-surface-soft);
   border: 1px solid var(--c-line);
   border-radius: var(--r-pill);
   outline: none;
   transition: border-color 0.25s var(--ease);
-}
-
-.mobile-menu .mobile-search input::-moz-placeholder {
-  color: var(--c-muted-soft);
 }
 
 .mobile-menu .mobile-search input::placeholder {
@@ -2430,7 +2459,7 @@ body.has-menu-open {
   display: block;
   margin-bottom: 10px;
   font-size: 12px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--c-muted-soft);
@@ -2452,7 +2481,7 @@ body.has-menu-open {
   padding: 14px 6px;
   text-align: center;
   font-size: 12px;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   font-weight: 500;
   text-decoration: none;
   color: var(--c-ink);
@@ -2498,7 +2527,7 @@ body.has-menu-open {
   gap: 6px;
   padding: 10px 4px;
   font-size: 13px;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   font-weight: 500;
   text-decoration: none;
   color: var(--c-ink);
@@ -2512,8 +2541,7 @@ body.has-menu-open {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .mobile-menu .mobile-lang-options a:hover {
@@ -2554,7 +2582,7 @@ body.has-menu-open {
   */
   margin-top: calc(var(--fw-h) * -1);
   padding: calc(var(--fw-h) + 40px) 0 0;
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   color: var(--f-text);
   background: linear-gradient(180deg, #0d1520 0%, #0a1018 100%) 0 calc(var(--fw-h) - 1px)/100% 100% no-repeat;
 }
@@ -2600,15 +2628,13 @@ body.has-menu-open {
   position: absolute;
   right: -0.04em;
   bottom: -0.2em;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(140px, 24vw, 360px);
   line-height: 1;
   letter-spacing: -0.04em;
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.06);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 /* #endregion */
@@ -2635,6 +2661,10 @@ body.has-menu-open {
   z-index: 1;
   height: var(--fw-h);
   pointer-events: none;
+  /* zolağın altındakı kölgə — boya qalın görünsün */
+  /* footer ekrandan kənardadırsa sonsuz animasiyalar dayanır — boş yerə
+     hər kadr SVG yenidən çəkilməsin (site.js → footer-wave: .is-paused) */
+  /* maska 1600 vahiddir: son 160-ı yumşaq keçiddir — zolağın ucu kəsik görünməsin */
 }
 .footer-wave svg {
   display: block;
@@ -2647,9 +2677,6 @@ body.has-menu-open {
 .footer-wave .fw-gold {
   fill: #f2cf6b;
   opacity: 0.55;
-}
-.footer-wave {
-  /* zolağın altındakı kölgə — boya qalın görünsün */
 }
 .footer-wave .fw-shade {
   fill: #05080d;
@@ -2669,8 +2696,12 @@ body.has-menu-open {
 .footer-wave .fw-gloss {
   animation: fwGloss 7s ease-in-out 1.6s infinite;
 }
-.footer-wave {
-  /* maska 1600 vahiddir: son 160-ı yumşaq keçiddir — zolağın ucu kəsik görünməsin */
+.footer-wave.is-paused .fw-shade,
+.footer-wave.is-paused .fw-dark,
+.footer-wave.is-paused .fw-top,
+.footer-wave.is-paused .fw-gold-edge,
+.footer-wave.is-paused .fw-gloss {
+  animation-play-state: paused;
 }
 .footer-wave.is-waiting .fw-reveal {
   transform: translateX(-1600px);
@@ -2786,7 +2817,7 @@ body.has-menu-open {
 
 .footer-cta-title {
   margin: 18px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(26px, 2.4vw, 36px);
   line-height: 1.15;
   color: #ffffff;
@@ -2820,7 +2851,7 @@ body.has-menu-open {
   height: 52px;
   padding: 0 26px 0 8px;
   border-radius: 999px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 15px;
   letter-spacing: 0.02em;
   text-decoration: none;
@@ -2925,7 +2956,7 @@ body.has-menu-open {
 }
 .footer-swatch em {
   font-style: normal;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 10.5px;
   letter-spacing: 0.02em;
   text-align: center;
@@ -2933,7 +2964,7 @@ body.has-menu-open {
   color: #10151c;
 }
 .footer-swatch small {
-  font-family: DMSans;
+  font-family: DMSans, Roboto, Arial, sans-serif;
   font-size: 8.5px;
   letter-spacing: 0.08em;
   color: #8a8f98;
@@ -3003,7 +3034,7 @@ body.has-menu-open {
   position: relative;
   margin: 6px 0 22px;
   padding-bottom: 12px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3084,7 +3115,7 @@ body.has-menu-open {
 .footer-phone {
   display: inline-block;
   margin-top: 4px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 20px;
   text-decoration: none;
   color: #ffffff;
@@ -3297,8 +3328,7 @@ body.has-menu-open {
 .pc-image img {
   max-width: 100%;
   max-height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   filter: drop-shadow(0 16px 18px rgba(13, 21, 32, 0.18));
   transition: transform 0.5s var(--ease);
 }
@@ -3321,7 +3351,7 @@ body.has-menu-open {
 .pc-badge {
   padding: 4px 10px;
   border-radius: 999px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 11px;
   letter-spacing: 0.04em;
   line-height: 1.4;
@@ -3353,7 +3383,7 @@ body.has-menu-open {
   color: var(--c-ink);
   background: var(--c-surface);
   box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 .pc-icon-btn svg {
@@ -3400,7 +3430,7 @@ body.has-menu-open {
   background: color-mix(in srgb, var(--c-surface) 88%, transparent);
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   opacity: 0;
   transform: translate(-50%, 10px);
   transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), color 0.25s var(--ease);
@@ -3464,7 +3494,7 @@ body.has-menu-open {
   display: -webkit-box;
   margin: 8px 0 0;
   overflow: hidden;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.3;
   -webkit-line-clamp: 2;
@@ -3522,7 +3552,7 @@ body.has-menu-open {
   line-height: 1.1;
 }
 .pc-price b {
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 21px;
   color: var(--c-ink);
 }
@@ -3549,15 +3579,14 @@ body.has-menu-open {
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 10px 20px color-mix(in srgb, var(--pc-tint) 30%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
+  /* mətn yalnız siyahı görünüşündə */
+  /* əlavə olunanda qısa "təsdiq" animasiyası (JS: .is-added) */
 }
 .pc-cart svg {
   width: 19px;
   height: 19px;
-}
-.pc-cart {
-  /* mətn yalnız siyahı görünüşündə */
 }
 .pc-cart span {
   display: none;
@@ -3573,9 +3602,6 @@ body.has-menu-open {
   cursor: not-allowed;
   transform: none;
   filter: none;
-}
-.pc-cart {
-  /* əlavə olunanda qısa "təsdiq" animasiyası (JS: .is-added) */
 }
 .pc-cart.is-added {
   animation: pcPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -3617,14 +3643,14 @@ body.has-menu-open {
   --bs-offcanvas-width: 420px;
   --bs-offcanvas-bg: var(--c-surface);
   --bs-offcanvas-color: var(--c-ink);
-  z-index: 2050;
+  z-index: var(--z-drawer);
   border-left: 1px solid var(--c-line);
   box-shadow: -24px 0 60px rgba(13, 21, 32, 0.18);
 }
 
 /* Bootstrap fonu: preloader-dən aşağı, header-dən yuxarı */
 .offcanvas-backdrop {
-  z-index: 2040;
+  z-index: var(--z-drawer-backdrop);
 }
 
 .mc-head {
@@ -3640,7 +3666,7 @@ body.has-menu-open {
   align-items: center;
   gap: 10px;
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 20px;
   color: var(--c-ink);
 }
@@ -3665,7 +3691,7 @@ body.has-menu-open {
   border-radius: 50%;
   color: var(--c-ink);
   background: var(--c-surface-soft);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: background-color 0.25s var(--ease);
 }
 .mc-close svg {
@@ -3714,8 +3740,7 @@ body.has-menu-open {
 .mc-thumb img {
   max-width: 100%;
   max-height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 .mc-info {
@@ -3749,7 +3774,7 @@ body.has-menu-open {
 }
 
 .mc-line-total {
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 15px;
   color: var(--c-ink);
 }
@@ -3765,7 +3790,7 @@ body.has-menu-open {
   border-radius: 50%;
   color: var(--c-muted-soft);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
 .mc-remove svg {
@@ -3798,7 +3823,7 @@ body.has-menu-open {
   line-height: 1;
   color: var(--c-ink);
   background: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
 }
 .qty button:hover:not(:disabled) {
   background: var(--c-hover-fill);
@@ -3817,8 +3842,7 @@ body.has-menu-open {
   color: var(--c-ink);
   background: transparent;
   -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-          appearance: textfield;
+  appearance: textfield;
 }
 .qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button {
   margin: 0;
@@ -3857,7 +3881,7 @@ body.has-menu-open {
 }
 .mc-empty h3 {
   margin: 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 18px;
   color: var(--c-ink);
 }
@@ -3894,7 +3918,7 @@ body.has-menu-open {
   color: var(--c-muted);
 }
 .mc-total b {
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 24px;
   color: var(--c-ink);
 }
@@ -3949,6 +3973,134 @@ body.has-menu-open {
 @media only screen and (max-width: 575px) {
   .mini-cart.offcanvas {
     --bs-offcanvas-width: 100%;
+  }
+}
+/* #endregion */
+/* #endregion */
+/* #region ortaq bloklar — ikinci dərəcəli düymə, boş vəziyyət */
+/* #region düymə */
+.zan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  font-size: 14.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--c-ink);
+  text-decoration: none;
+  background: var(--c-surface);
+  cursor: var(--cursor-pointer);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background-color 0.25s var(--ease), filter 0.25s var(--ease);
+  /* marka rəngində — alətlər zolağındakı əsas əməliyyat */
+}
+.zan-btn svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.zan-btn:hover:not(:disabled) {
+  color: var(--c-brand);
+  border-color: var(--c-brand-line);
+  background: var(--c-brand-tint);
+}
+.zan-btn:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+.zan-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.zan-btn.is-primary {
+  border-color: transparent;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+}
+.zan-btn.is-primary:hover:not(:disabled) {
+  color: var(--c-on-brand);
+  border-color: transparent;
+  background: var(--grad-brand);
+  filter: saturate(1.15) brightness(1.06);
+}
+.zan-btn.is-primary:disabled {
+  box-shadow: none;
+}
+
+/* #endregion */
+/* #region boş vəziyyət */
+.zan-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px 60px;
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  text-align: center;
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+  /* fokus proqramla verilir — çərçivə lazım deyil */
+}
+.zan-empty[hidden] {
+  display: none;
+}
+.zan-empty:focus {
+  outline: none;
+}
+.zan-empty > svg {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 18px;
+}
+.zan-empty h2 {
+  margin: 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 26px;
+  color: var(--c-ink);
+}
+.zan-empty p {
+  max-width: 46ch;
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+.zan-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+.zan-empty-actions .zf-submit {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 575px) {
+  .zan-empty {
+    padding: 40px 18px 44px;
+    border-radius: 20px;
+  }
+  .zan-empty h2 {
+    font-size: 22px;
+  }
+  .zan-empty-actions {
+    align-self: stretch;
+    flex-direction: column;
+  }
+  .zan-empty-actions .zan-btn {
+    width: 100%;
   }
 }
 /* #endregion */
@@ -4039,9 +4191,7 @@ body.has-menu-open {
   color: var(--c-ink);
   background: var(--c-surface-soft);
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background-color 0.25s var(--ease);
-}
-.zf-input::-moz-placeholder {
-  color: var(--c-muted-soft);
+  /* brauzerin avtomatik doldurma fonu mövzuya uyğun qalsın */
 }
 .zf-input::placeholder {
   color: var(--c-muted-soft);
@@ -4058,9 +4208,6 @@ body.has-menu-open {
 .zf-input[aria-invalid=true] {
   border-color: var(--c-brand);
   box-shadow: 0 0 0 4px var(--c-brand-tint);
-}
-.zf-input {
-  /* brauzerin avtomatik doldurma fonu mövzuya uyğun qalsın */
 }
 .zf-input:-webkit-autofill {
   -webkit-text-fill-color: var(--c-ink);
@@ -4079,9 +4226,7 @@ textarea.zf-input {
 /* açılan siyahı — öz oxumuzla */
 select.zf-input {
   padding-right: 44px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   cursor: var(--cursor-pointer);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a929c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -4143,8 +4288,7 @@ select.zf-input option {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .zf-phone .zf-prefix::after {
   content: "";
@@ -4337,7 +4481,9 @@ select.zf-input option {
   place-items: center;
   width: 22px;
   height: 22px;
-  margin-top: 1px;
+  /* qutunun mərkəzi mətnin birinci sətrinin mərkəzində olsun:
+     sətir hündürlüyü 1.5em (yuxarıda line-height: 1.5), qutu 22px */
+  margin-top: calc((1.5em - 22px) / 2);
   border-radius: 7px;
   border: 1.5px solid var(--c-divider);
   background: var(--c-surface);
@@ -4435,6 +4581,8 @@ select.zf-input option {
   background: var(--grad-brand);
   box-shadow: var(--shadow-brand);
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease);
+  /* .zf grid-dir — düymə özbaşına bütün eni tutmasın */
+  /* göndərilir (forms.js → setLoading) */
 }
 .zf-submit > svg {
   width: 18px;
@@ -4457,18 +4605,12 @@ select.zf-input option {
   outline: 2px solid var(--c-brand);
   outline-offset: 3px;
 }
-.zf-submit {
-  /* .zf grid-dir — düymə özbaşına bütün eni tutmasın */
-}
 .zf > .zf-submit {
   justify-self: start;
 }
 .zf-submit.is-block {
   width: 100%;
   justify-self: stretch;
-}
-.zf-submit {
-  /* göndərilir (forms.js → setLoading) */
 }
 .zf-submit.is-loading {
   pointer-events: none;
@@ -4603,7 +4745,7 @@ body.has-auth-gate {
 
 .ag-title {
   margin: 20px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 22px;
   line-height: 1.25;
   color: var(--c-ink);
@@ -4721,4 +4863,6 @@ body.has-auth-gate {
 }
 
 /* #endregion */
-/* #endregion *//*# sourceMappingURL=site.css.map */
+/* #endregion */
+
+/*# sourceMappingURL=site.css.map */

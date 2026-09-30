@@ -15,12 +15,12 @@
   --bs-modal-border-radius: 28px;
   --bs-modal-border-color: var(--c-line);
 
-  z-index: 2060;
+  z-index: var(--z-modal);
 }
 
 /* modal fonu mini səbətdən yuxarıda olmalıdır */
 .modal-backdrop {
-  z-index: 2055;
+  z-index: var(--z-modal-backdrop);
 }
 
 #quick-view .modal-content {
@@ -94,7 +94,7 @@
     border-radius: 12px;
     border: 2px solid transparent;
     background: var(--c-surface);
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
 
     img {
       width: 100%;
@@ -121,7 +121,7 @@
 #quick-view .qv-title {
   margin: 10px 0 0;
   padding-right: 30px;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 28px;
   line-height: 1.2;
   color: var(--c-ink);
@@ -135,7 +135,7 @@
   margin-top: 16px;
 
   b {
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 30px;
     color: var(--c-ink);
   }
@@ -221,7 +221,7 @@
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 12px 24px color-mix(in srgb, var(--pc-tint) 30%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     transform 0.25s var(--ease),
     filter 0.25s var(--ease);

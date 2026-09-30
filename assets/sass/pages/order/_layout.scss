@@ -1,0 +1,323 @@
+// ==========================================================================
+// SİFARİŞ AXINI — DÜZÜLÜŞ, KART VƏ XÜLASƏ (#order)
+// --------------------------------------------------------------------------
+// HTML: cart.html, checkout.html → #region order
+// JS:   cart-page.js, checkout-page.js (xülasə rəqəmləri [data-sum="..."])
+//
+// Solda əsas məzmun (məhsullar və ya forma), sağda sifarişin xülasəsi
+// (böyük ekranda yapışqan). Başlıq zolağının üstünə bir az çıxır —
+// kabinet səhifəsi ilə eyni (pages/account/_layout.scss).
+// ==========================================================================
+
+/* #region düzülüş */
+
+#order {
+  position: relative;
+  padding: 0 0 72px;
+}
+
+#order .od-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 28px;
+  align-items: start;
+  margin-top: -56px;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+#order .od-main {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+#order .od-side {
+  position: sticky;
+  top: calc(var(--h-header-sticky) + 20px);
+  display: grid;
+  gap: 16px;
+}
+
+@media only screen and (max-width: 1199px) {
+  #order .od-layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 22px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #order .od-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #order .od-side {
+    position: static;
+  }
+}
+
+/* #endregion */
+
+/* #region kart */
+
+#order .od-card {
+  min-width: 0;
+  margin: 0;
+  padding: 30px 32px 32px;
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+}
+
+#order .od-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 22px;
+
+  > div {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* formada addım nömrəsi, səbətdə ikon */
+#order .od-card-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 17px;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+
+  svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+#order .od-card-title {
+  margin: 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 21px;
+  line-height: 1.25;
+  color: var(--c-ink);
+
+  small {
+    margin-left: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--c-muted-soft);
+  }
+}
+
+#order .od-card-text {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+
+@media only screen and (max-width: 575px) {
+  #order {
+    padding-bottom: 56px;
+  }
+  #order .od-card {
+    padding: 22px 18px 24px;
+    border-radius: 20px;
+  }
+  #order .od-card-head {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  #order .od-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+  #order .od-card-title {
+    font-size: 18.5px;
+  }
+}
+
+/* #endregion */
+
+/* #region xülasə */
+
+#order .od-sum {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+
+  > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  dt {
+    font-size: 14.5px;
+    font-weight: 400;
+    color: var(--c-muted);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: right;
+    color: var(--c-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* "Pulsuz", "Növbəti addımda" kimi mətn dəyərləri */
+  .is-note {
+    font-weight: 600;
+    color: var(--c-success);
+  }
+
+  .is-muted {
+    font-weight: 400;
+    color: var(--c-muted-soft);
+  }
+
+  .od-sum-total {
+    align-items: center;
+    margin-top: 6px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--c-divider-soft);
+
+    dt {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--c-ink);
+    }
+
+    dd {
+      font-family: RobotoBold, Roboto, Arial, sans-serif;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+  }
+}
+
+#order .od-sum-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+
+  .zf-submit {
+    width: 100%;
+    text-decoration: none;
+  }
+}
+
+#order .od-sum-note {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--c-muted-soft);
+}
+
+/* çatdırılma, ödəniş, qaytarma — qısa üstünlüklər */
+#order .od-perks {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 20px 22px;
+  border-radius: 20px;
+  border: 1px solid var(--c-line);
+  list-style: none;
+  background: var(--c-surface-soft);
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--c-muted);
+  }
+
+  b {
+    display: block;
+    font-size: 14px;
+    color: var(--c-ink);
+  }
+
+  svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    fill: none;
+    stroke: var(--c-brand);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+/* #endregion */
+
+/* #region mətn keçidi — "Dəyiş", "Səbəti təmizlə", "← Alış-verişə davam et" */
+
+#order .od-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-muted);
+  text-decoration: none;
+  background: none;
+  cursor: var(--cursor-pointer);
+  transition: color 0.2s var(--ease);
+
+  svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    color: var(--c-brand);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* #endregion */
+
+/* #region düymələr və boş vəziyyət — komponentlər: components/_button.scss
+   (.zan-btn), components/_empty-state.scss (.zan-empty) */
+
+/* başlıq zolağının üstünə bir az çıxır */
+#order .zan-empty {
+  margin-top: -56px;
+}
+
+/* #endregion */

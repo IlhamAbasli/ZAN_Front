@@ -1,7 +1,9 @@
 // ==========================================================================
-// TÜND REJİMDƏ MONOXROM İKONLAR
+// İKONLAR
 // --------------------------------------------------------------------------
-// Tünd fonda itən tək rəngli SVG ikonları --icon-filter tokeni ilə işıqlandırır.
+// 1) Tünd fonda itən tək rəngli SVG ikonları (<img>) --icon-filter tokeni
+//    ilə işıqlandırır.
+// 2) Inline SVG ikonların (.zan-icon) ölçüsü və rəngi.
 // ==========================================================================
 
 /* #region ikon filtri */
@@ -22,6 +24,34 @@ img[src$="xmark.svg"],
 img[src$="bars-icon.svg"],
 img[src$="bars-icon (2).svg"] {
   filter: var(--icon-filter, none);
+}
+
+/* #endregion */
+
+/* #region inline SVG ikonlar (.zan-icon) */
+
+/*
+  Ox, menyu və sosial şəbəkə ikonları HTML-də inline SVG-dir (Font Awesome
+  kit-i və şrifti yüklənmir):
+    <i class="zan-icon zan-icon-angle-down" aria-hidden="true"><svg viewBox="…">…</svg></i>
+  Ölçü şrift ölçüsündən gəlir (1em), rəng — currentColor. Ad zan- prefikslidir:
+  .icon mobil menyunun ox konteynerində artıq işlənir. Yolların mənbəyi:
+  Font Awesome Free 6.7.2 (https://fontawesome.com, lisenziya CC BY 4.0 —
+  https://fontawesome.com/license/free).
+*/
+.zan-icon {
+  display: inline-block;
+  font-style: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+
+  svg {
+    display: block;
+    width: auto;
+    height: 1em;
+    overflow: visible;
+    fill: currentColor;
+  }
 }
 
 /* #endregion */

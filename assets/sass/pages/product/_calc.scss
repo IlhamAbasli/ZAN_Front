@@ -2,7 +2,7 @@
 // MƏHSUL — KALKULYATOR (#pd-calc)
 // --------------------------------------------------------------------------
 // HTML: product-detail.html → #region pd-calc
-// JS:   product-page.js → calculator (miqdar + ən ucuz qablaşdırma)
+// JS:   product-page.js → kalkulyator (miqdar + ən ucuz qablaşdırma)
 // Panel kateqoriya rəngindədir, nəticə kartı mövzuya uyğun səthdir.
 // ==========================================================================
 
@@ -72,7 +72,7 @@
 
 .pd-calc-title {
   margin: 16px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: clamp(24px, 2.2vw, 32px);
   line-height: 1.2;
   color: #fff;
@@ -118,7 +118,7 @@
     inset: 0;
     margin: 0;
     opacity: 0;
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
   }
 
   span {
@@ -163,11 +163,14 @@
   }
 }
 
+/* etiket iki sətrə keçsə də inputlar eyni xətdə qalır (input aşağıya sıxılır) */
 .pd-calc-field {
-  display: block;
+  display: flex;
+  flex-direction: column;
 
   > span:first-child {
     display: block;
+    margin-bottom: 6px;
     font-size: 13px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.85);
@@ -179,7 +182,7 @@
   align-items: center;
   gap: 8px;
   height: 52px;
-  margin-top: 6px;
+  margin-top: auto;
   padding: 0 16px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.26);
@@ -193,7 +196,7 @@
     min-width: 0;
     padding: 0;
     border: 0;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 19px;
     color: #fff;
     background: transparent;
@@ -274,7 +277,7 @@
   b {
     display: block;
     margin-top: 6px;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 42px;
     line-height: 1.05;
     color: var(--pc-tint);
@@ -346,7 +349,7 @@
   b {
     display: block;
     margin-top: 4px;
-    font-family: RobotoBold;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
     font-size: 28px;
     color: var(--c-ink);
   }
@@ -365,7 +368,7 @@
   color: #fff;
   background: var(--pc-tint);
   box-shadow: 0 12px 24px color-mix(in srgb, var(--pc-tint) 30%, transparent);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     transform 0.25s var(--ease),
     filter 0.25s var(--ease);
@@ -445,6 +448,13 @@
       padding: 0 10px;
       font-size: 13px;
     }
+  }
+  /* 2 sütun; sahə sayı təkdirsə birincisi tam en tutur (divar rejimi: uzunluq / hündürlük + açıqlıqlar) */
+  .pd-calc-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pd-calc-field:first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
   }
   .pd-calc-result {
     padding: 22px 20px;

@@ -5,6 +5,8 @@
 // JS:   shop-page.js → kateqoriya düymələri filtrlə sinxrondur
 // ==========================================================================
 
+@use "../../base/mixins" as *;
+
 /* #region bölmə və fon */
 
 #shop-hero {
@@ -17,17 +19,11 @@
 }
 
 #shop-hero .sh-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+  @include hero-bg;
 }
 
 #shop-hero .sh-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: var(--blob-alpha);
+  @include hero-blob;
 }
 
 #shop-hero .sh-blob-1 {
@@ -74,39 +70,12 @@
 /* #region mətn */
 
 #shop-hero .sh-crumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 13px;
-  color: var(--c-muted);
-
-  li + li::before {
-    content: "/";
-    margin-right: 8px;
-    color: var(--c-muted-soft);
-  }
-
-  a {
-    color: var(--c-muted);
-    text-decoration: none;
-
-    &:hover {
-      color: var(--c-brand);
-    }
-  }
-
-  [aria-current="page"] {
-    color: var(--c-ink);
-    font-weight: 600;
-  }
+  @include page-crumbs;
 }
 
 #shop-hero .sh-title {
   margin: 14px 0 0;
-  font-family: RobotoBold;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
   font-size: 44px;
   line-height: 1.1;
   color: var(--c-ink);
@@ -139,7 +108,7 @@
   color: var(--c-ink);
   background: var(--c-surface);
   border: 1px solid var(--c-line);
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   transition:
     color 0.25s var(--ease),
     background-color 0.25s var(--ease),

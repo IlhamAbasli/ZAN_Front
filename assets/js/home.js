@@ -3,16 +3,26 @@
    --------------------------------------------------------------------------
    Qoşulur:     home.html, site.js və shop.js-dən sonra
                 (.NET MVC-də: Views/Home/Index.cshtml → @section Scripts)
-   Asılılıqlar: jQuery 3, Swiper 14, site.js (window.ZAN)
+   Asılılıqlar: Swiper 14, site.js (window.ZAN)
    ========================================================================== */
 
-$(function () {
+(function (ZAN) {
   "use strict";
 
   // Sistemdə "animasiyaları azalt" açıq olsa da slayderlər işləyir: avtopley
   // qalır, yalnız keçid yumşaq fade olur və bir az yavaşlayır. Sönən yeganə
   // şey kursorla hərəkət edən parallaksdır (bax: #region hero-slider sonu).
   const reduceMotion = ZAN.prefersReducedMotion();
+
+  // slayder ekrandan kənardadırsa avtopley dayanır — görünməyən slaydlar
+  // dəyişməsin və tərəqqi xətti hər kadrda boş yerə yenilənməsin
+  function autoplayWhenVisible(swiper, el) {
+    if (!("IntersectionObserver" in window)) return;
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) swiper.autoplay.start();
+      else swiper.autoplay.stop();
+    }).observe(el);
+  }
 
   //#region hero-slider
   // HTML: home.html → #region hero-slider
@@ -74,7 +84,7 @@ $(function () {
       });
     };
 
-    new Swiper(heroEl, {
+    const heroSwiper = new Swiper(heroEl, {
       // loop yerinə rewind: fade/creative effektində vizual fərq yoxdur,
       // amma keçid bitmədən edilən kliklər udulmur
       rewind: true,
@@ -104,9 +114,7 @@ $(function () {
         bulletClass: "hero-bullet",
         bulletActiveClass: "is-active",
         renderBullet: (index, className) =>
-          `<button type="button" class="${className}" aria-label="${
-            index + 1
-          }-ci slayda keç"><span></span></button>`,
+          `<button type="button" class="${className}" aria-label="${ZAN.t("Slayd {n}", { n: index + 1 })}"><span></span></button>`,
       },
       on: {
         init: syncHeroSlide,
@@ -120,6 +128,8 @@ $(function () {
         },
       },
     });
+
+    autoplayWhenVisible(heroSwiper, heroEl);
 
     // parallaks: şəkil kursorun ardınca yüngülcə sürüşür.
     // "Azaldılmış hərəkət" rejimində söndürülür — başgicəllənməyə səbəb ola bilər.
@@ -153,7 +163,7 @@ $(function () {
     // slayd sayı azdırsa boş slot yaranmasın deyə rewind işlədirik
     const catCanLoop = catSlideCount >= catMaxPerView * 2;
 
-    new Swiper(catEl, {
+    const catSwiper = new Swiper(catEl, {
       loop: catCanLoop,
       rewind: !catCanLoop,
       speed: 600,
@@ -179,6 +189,7 @@ $(function () {
         1200: { slidesPerView: catMaxPerView, spaceBetween: 26 },
       },
     });
+    autoplayWhenVisible(catSwiper, catEl);
   }
   //#endregion
 
@@ -255,6 +266,8 @@ $(function () {
       },
     });
 
+    autoplayWhenVisible(plSwiper, plEl);
+
     plRail.forEach(function (item, index) {
       item.addEventListener("click", function () {
         plSwiper.slideTo(index);
@@ -328,4 +341,4 @@ $(function () {
     revealOnView(subArt, 0.35);
   }
   //#endregion
-});
+})(window.ZAN);

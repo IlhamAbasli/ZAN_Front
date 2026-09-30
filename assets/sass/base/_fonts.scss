@@ -1,15 +1,41 @@
 // ==========================================================================
 // ŞRİFTLƏR
 // --------------------------------------------------------------------------
-// Şrift faylları: assets/fonts/
+// Şrift faylları: assets/fonts/*.woff2 (TTF orijinallar mənbə kimi saxlanılır)
 // Yollar yığılmış CSS-ə görədir (assets/sass/<ad>/<ad>.css → ../../fonts/).
+//
+// font-display: swap — şrift gələnə qədər mətn ehtiyat şriftlə görünür
+// (görünməz mətn olmur). Hər font-family-də ehtiyat siyahı var:
+// "RobotoBold, Roboto, Arial, sans-serif".
 // ==========================================================================
 
 /* #region @font-face elanları */
 
+/* Roboto: 400 və əsl 700 — font-weight: 600/700 süni qalınlaşdırılmır */
 @font-face {
   font-family: Roboto;
-  src: url(../../fonts/Roboto-Regular.ttf);
+  src: url(../../fonts/roboto-400.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(../../fonts/roboto-700.woff2) format("woff2");
+  font-weight: 600 900;
+  font-display: swap;
+}
+
+/*
+  "RobotoBold" — köhnə ad (111 yerdə işlənir): eyni 700 faylı, ona görə
+  yenidən yüklənmir. Çəki diapazonu verilib ki, font-weight: 700 ilə
+  birlikdə olanda üstündən bir də süni qalınlaşdırma tətbiq olunmasın.
+*/
+@font-face {
+  font-family: RobotoBold;
+  src: url(../../fonts/roboto-700.woff2) format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
 }
 
 /*
@@ -18,18 +44,16 @@
 */
 @font-face {
   font-family: DMSans;
-  src: url(../../fonts/DMSans-VariableFont_wght.ttf);
+  src: url(../../fonts/dmsans-variable.woff2) format("woff2");
   font-weight: 100 900;
+  font-display: swap;
 }
 
 @font-face {
   font-family: Inter;
-  src: url(../../fonts/Inter_18pt-Regular.ttf);
-}
-
-@font-face {
-  font-family: RobotoBold;
-  src: url(../../fonts/Roboto-Bold.ttf);
+  src: url(../../fonts/inter-400.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
 }
 
 /* #endregion */

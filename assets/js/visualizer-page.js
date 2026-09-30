@@ -27,6 +27,19 @@
   const $ = (sel) => studio.querySelector(sel);
   const $$ = (sel) => Array.from(studio.querySelectorAll(sel));
 
+  //#region tərcümə
+  // məkan, səth, rəng və ailə adları bir dəfə tərcümə olunur (i18n.js → ZAN.t) —
+  // sonra bütün mətnlər (siyahılar, bildirişlər, yüklənən şəkil) hazır adla yığılır
+  ZAN.VZ_FAMILIES.forEach(function (fam) {
+    fam.name = ZAN.t(fam.name);
+    fam.colors.forEach((entry) => (entry[0] = ZAN.t(entry[0])));
+  });
+  ZAN.VZ_SCENES.forEach(function (scene) {
+    scene.name = ZAN.t(scene.name);
+    scene.surfaces.forEach((surface) => (surface.name = ZAN.t(surface.name)));
+  });
+  //#endregion
+
   //#region rəng riyaziyyatı
   // sRGB ↔ xətti işıq cədvəlləri: piksel döngüsündə Math.pow çağırmamaq üçün
   const TO_LIN = new Float32Array(256);
@@ -151,19 +164,10 @@
 
   //#region seçilmişlər (localStorage)
   const FAV_KEY = "zan-vz-favs";
-  let favs = new Set();
-  try {
-    favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]"));
-  } catch (e) {
-    /* saxlama bağlıdırsa seçilmişlər yalnız bu sessiyada qalır */
-  }
-  function saveFavs() {
-    try {
-      localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(favs)));
-    } catch (e) {
-      /* bax yuxarı */
-    }
-  }
+  // saxlama bağlıdırsa seçilmişlər yalnız bu sessiyada qalır
+  const savedFavs = ZAN.store.get(FAV_KEY, []);
+  let favs = new Set(Array.isArray(savedFavs) ? savedFavs : []);
+  const saveFavs = () => ZAN.store.set(FAV_KEY, Array.from(favs));
   //#endregion
 
   //#region DOM
@@ -223,6 +227,8 @@
   const SCENE_H = 1000;
   const PHOTO_MAX = 1400;
   const HISTORY_MAX = 40;
+  // maska addımları iki tam Uint8Array saxlayır — böyük şəkildə yaddaş dolmasın
+  const HISTORY_BYTES_MAX = 48 * 1024 * 1024;
   const MAX_LAYERS = 8;
 
   const state = {
@@ -368,12 +374,18 @@
     return x1 < 0 ? null : { x0: x0, y0: y0, x1: x1, y1: y1 };
   }
 
+  // hər yükləmənin nömrəsi: ardıcıl kliklərdə (və ya yükləmə gedərkən şəkil
+  // seçiləndə) yalnız sonuncu nəticə tətbiq olunur
+  let loadSeq = 0;
+
   async function loadScene(id, paint) {
     const scene = sceneById(id) || ZAN.VZ_SCENES[0];
+    const token = ++loadSeq;
     rememberCurrent();
     setLoading(true);
     try {
       const data = await buildScene(scene);
+      if (token !== loadSeq) return;
       state.mode = "scene";
       state.sceneId = scene.id;
       // piksel ölçüləri məlum olsun deyə w əvvəlcədən yazılır (computeBox üçün)
@@ -386,11 +398,11 @@
         const c = BY_CODE.get(colors[layer.id]);
         if (c) layer.color = c;
       });
-      afterSourceChange(scene.name, scene.surfaces.length + " səth · hazır məkan");
+      afterSourceChange(scene.name, ZAN.t("{n} səth · hazır məkan", { n: scene.surfaces.length }));
     } catch (err) {
-      notify("error", "Məkanı yükləmək alınmadı. Səhifəni yeniləyib yenidən yoxlayın.");
+      if (token === loadSeq) notify("error", "Məkanı yükləmək alınmadı. Səhifəni yeniləyib yenidən yoxlayın.");
     } finally {
-      setLoading(false);
+      if (token === loadSeq) setLoading(false);
     }
   }
 
@@ -401,9 +413,14 @@
       return;
     }
     setLoading(true);
+    const token = ++loadSeq;
     const url = URL.createObjectURL(file);
     const img = new Image();
     img.onload = function () {
+      if (token !== loadSeq) {
+        URL.revokeObjectURL(url);
+        return;
+      }
       const k = Math.min(1, PHOTO_MAX / Math.max(img.naturalWidth, img.naturalHeight));
       const w = Math.max(1, Math.round(img.naturalWidth * k));
       const h = Math.max(1, Math.round(img.naturalHeight * k));
@@ -424,7 +441,7 @@
       photoSession = { w: w, h: h, base: state.base, layers: state.layers, thumb: c.toDataURL("image/jpeg", 0.7) };
       renderScenes();
       setTool("wand");
-      afterSourceChange("Mənim şəklim", w + " × " + h + " px · öz şəkliniz");
+      afterSourceChange(ZAN.t("Mənim şəklim"), ZAN.t("{w} × {h} px · öz şəkliniz", { w, h }));
       setLoading(false);
       notify("info", "Rəngləmək istədiyiniz divara klikləyin — oxşar rəngli sahə avtomatik seçiləcək.", {
         title: "Şəkil yükləndi",
@@ -432,6 +449,7 @@
     };
     img.onerror = function () {
       URL.revokeObjectURL(url);
+      if (token !== loadSeq) return;
       setLoading(false);
       notify("error", "Bu şəkli açmaq alınmadı. JPG və ya PNG formatında başqa şəkil seçin.");
     };
@@ -440,13 +458,16 @@
 
   function restorePhoto() {
     if (!photoSession) return;
+    // gedən məkan yükləməsi bu şəkli əvəz etməsin
+    loadSeq++;
+    setLoading(false);
     rememberCurrent();
     state.mode = "photo";
     state.sceneId = null;
     state.w = photoSession.w;
     const layers = photoSession.layers;
     setSource(photoSession.w, photoSession.h, photoSession.base, layers);
-    afterSourceChange("Mənim şəklim", photoSession.w + " × " + photoSession.h + " px · öz şəkliniz");
+    afterSourceChange(ZAN.t("Mənim şəklim"), ZAN.t("{w} × {h} px · öz şəkliniz", { w: photoSession.w, h: photoSession.h }));
   }
 
   // başqa məkana keçəndə rənglər yadda qalır — geri qayıdanda itmir
@@ -596,9 +617,14 @@
 
   //#region tarixçə — geri / irəli
   // artıq icra olunmuş dəyişikliyi tarixçəyə yazır
+  const entryBytes = (e) => (e.type === "mask" ? e.from.length + e.to.length : 0);
+
   function commit(entry) {
     state.history.push(entry);
-    if (state.history.length > HISTORY_MAX) state.history.shift();
+    let bytes = state.history.reduce((sum, e) => sum + entryBytes(e), 0);
+    while (state.history.length > 1 && (state.history.length > HISTORY_MAX || bytes > HISTORY_BYTES_MAX)) {
+      bytes -= entryBytes(state.history.shift());
+    }
     state.future.length = 0;
     afterChange();
   }
@@ -894,7 +920,8 @@
       }
     }
     setMask(layer, next);
-    commit({ type: "mask", layer: layer, from: before, to: next.slice() });
+    // setMask kopyalayır (layer.mask.set) — next ayrıca kopyalanmır
+    commit({ type: "mask", layer: layer, from: before, to: next });
 
     if (res.count > state.w * state.h * 0.85) {
       notify("warning", "Seçim demək olar ki, bütün şəkli tutdu. Geri alıb dözümlülüyü azaldın.", {
@@ -1145,21 +1172,7 @@
     }
   }
 
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    return new Promise(function (resolve, reject) {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      const ok = document.execCommand("copy");
-      ta.remove();
-      ok ? resolve() : reject();
-    });
-  }
+  const copyText = ZAN.copyText;
 
   function share() {
     syncUrl();
@@ -1201,13 +1214,13 @@
     x.fillStyle = "#0d1520";
     x.font = "700 " + Math.round(26 * scale) + "px RobotoBold, Roboto, sans-serif";
     x.textBaseline = "top";
-    x.fillText("ZAN Boya · Rəng vizualizatoru", pad, h + pad);
+    x.fillText(ZAN.t("ZAN Boya · Rəng vizualizatoru"), pad, h + pad);
 
     x.font = Math.round(20 * scale) + "px Roboto, sans-serif";
     const top = h + pad + Math.round(48 * scale);
     if (!used.length) {
       x.fillStyle = "#55606c";
-      x.fillText("Rəng tətbiq olunmayıb", pad, top);
+      x.fillText(ZAN.t("Rəng tətbiq olunmayıb"), pad, top);
     }
     used.forEach(function (l, i) {
       const cx = pad + (i % cols) * ((w - pad * 2) / cols);
@@ -1331,7 +1344,7 @@
         const clear = document.createElement("button");
         clear.type = "button";
         clear.className = "vz-surface-mini";
-        clear.setAttribute("aria-label", layer.name + " — rəngi götür");
+        clear.setAttribute("aria-label", ZAN.t("{name} — rəngi götür", { name: layer.name }));
         clear.title = "Rəngi götür";
         clear.innerHTML =
           '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg>';
@@ -1345,13 +1358,13 @@
         const del = document.createElement("button");
         del.type = "button";
         del.className = "vz-surface-mini is-danger";
-        del.setAttribute("aria-label", layer.name + " — səthi sil");
+        del.setAttribute("aria-label", ZAN.t("{name} — səthi sil", { name: layer.name }));
         del.title = "Səthi sil";
         del.innerHTML =
           '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/></svg>';
         del.addEventListener("click", function () {
           perform({ type: "remove", layer: layer, index: state.layers.indexOf(layer) });
-          announce(layer.name + " silindi");
+          announce(ZAN.t("{name} silindi", { name: layer.name }));
         });
         li.append(del);
       }
@@ -1364,10 +1377,10 @@
   el.addSurface.addEventListener("click", function () {
     if (state.layers.length >= MAX_LAYERS) return;
     layerSeq += 1;
-    const layer = makeLayer("s" + layerSeq, "Səth " + layerSeq, new Uint8Array(state.w * state.h));
+    const layer = makeLayer("s" + layerSeq, ZAN.t("Səth {n}", { n: layerSeq }), new Uint8Array(state.w * state.h));
     perform({ type: "add", layer: layer, index: state.layers.length });
     setTool("wand");
-    announce(layer.name + " əlavə olundu");
+    announce(ZAN.t("{name} əlavə olundu", { name: layer.name }));
   });
 
   function syncTarget() {
@@ -1538,7 +1551,7 @@
       swatches.get(c.code).hidden = !ok;
       if (ok) shown++;
     });
-    el.count.textContent = shown + " rəng";
+    el.count.textContent = ZAN.t("{n} rəng", { n: shown });
     el.empty.hidden = shown > 0;
     el.empty.textContent =
       filterState.family === "fav" && !favs.size
@@ -1589,7 +1602,7 @@
       btn.type = "button";
       btn.className = "vz-pair";
       btn.style.setProperty("--sw", pair.color.hex);
-      btn.setAttribute("aria-label", pair.label + ": " + pair.color.code + " " + pair.color.name);
+      btn.setAttribute("aria-label", ZAN.t(pair.label) + ": " + pair.color.code + " " + pair.color.name);
       btn.innerHTML =
         '<span class="vz-pair-sw" aria-hidden="true"></span><small></small><b></b>';
       btn.querySelector("small").textContent = pair.label;
@@ -1614,7 +1627,7 @@
     if (favs.has(c.code)) favs.delete(c.code);
     else {
       favs.add(c.code);
-      notify("success", c.code + " " + c.name + " seçilmişlərə əlavə olundu.", { icon: "heart", title: "Yadda saxlandı" });
+      notify("success", ZAN.t("{color} seçilmişlərə əlavə olundu.", { color: c.code + " " + c.name }), { icon: "heart", title: ZAN.t("Yadda saxlandı") });
     }
     saveFavs();
     syncFav();

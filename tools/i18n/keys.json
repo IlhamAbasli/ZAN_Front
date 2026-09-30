@@ -1,0 +1,8787 @@
+[
+  {
+    "key": "— bir dəqiqə çəkir",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "· Trend 2026",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "(bir neçəsini seçə bilərsiniz)",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "(istəyə bağlı)",
+    "where": [
+      "account.html",
+      "contact.html"
+    ]
+  },
+  {
+    "key": "(istəyə görə)",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "{amount} qənaət",
+    "where": [
+      "product-page.js",
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "{area} m², {coats} qat, 10% ehtiyat ilə",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{area} m², 10% ehtiyat ilə",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{color} seçilmişlərə əlavə olundu.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{n} əd.",
+    "where": [
+      "cart-page.js",
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "{n} əd. — {name}",
+    "where": [
+      "shop.js"
+    ]
+  },
+  {
+    "key": "{n} kq",
+    "where": [
+      "extract.js (EXTRA)",
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{n} q",
+    "where": [
+      "extract.js (EXTRA)",
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{n} l",
+    "where": [
+      "extract.js (EXTRA)"
+    ]
+  },
+  {
+    "key": "{n} məhsul",
+    "where": [
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "{n} məhsul hazırda stokda yoxdur",
+    "where": [
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "{n} məhsul səbətə əlavə olundu",
+    "where": [
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "{n} məhsul silindi",
+    "where": [
+      "cart-page.js",
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "{n} məhsulu göstər",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "{n} rəng",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{n} rulon",
+    "where": [
+      "extract.js (EXTRA)",
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{n} səth · hazır məkan",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{name} — rəngi götür",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{name} — say",
+    "where": [
+      "cart-page.js",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "{name} — səbətdən sil",
+    "where": [
+      "cart-page.js",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "{name} — səthi sil",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{name} əlavə olundu",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{name} hazırda anbarda yoxdur",
+    "where": [
+      "shop.js"
+    ]
+  },
+  {
+    "key": "{name} silindi",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{price} / əd.",
+    "where": [
+      "cart-page.js"
+    ]
+  },
+  {
+    "key": "{price} / kq",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{price} / rulon",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{price}-dən",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "{value} buferə köçürüldü",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "{w} × {h} px · öz şəkliniz",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "@istifadeci_adi və ya link",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "+5 °C … +30 °C, şaxtadan qoruyun",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "+5 °C-dən aşağı temperaturda işləməyin, boyanı şaxtadan qoruyun. Alətləri işdən sonra su ilə yuyun.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "<b>{total}</b> məhsuldan <b>{from}–{to}</b> göstərilir",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "<b>01</b>Sintetik məhsullar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "<b>01</b>Ümumi məlumat",
+    "where": [
+      "about.html",
+      "mission.html"
+    ]
+  },
+  {
+    "key": "<b>02</b>Missiya, məqsəd və dəyərlər",
+    "where": [
+      "about.html",
+      "mission.html"
+    ]
+  },
+  {
+    "key": "<b>02</b>Sellülozik məhsullar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "<b>03</b>Divar kağızı yapışdırıcıları",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "<b>14 gün ərzində qaytarma</b>Açılmamış qablaşdırma üçün (tonlanmış məhsullar istisna)",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "<b>Astar çəkin</b> Məsaməli səthlərə dərin nüfuz edən su əsaslı astar çəkin və 4 saat gözləyin.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Bütün ölkə üzrə çatdırılma</b>Bakıda 1–2, regionlara 2–5 iş günü",
+    "where": [
+      "cart.html",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Çəkin</b> Valik, fırça və ya pulverizatorla 2 qat çəkin; qatlar arası 4–6 saat gözləyin.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Qarışdırın</b> Boyanı yaxşıca qarışdırın, lazım olsa 5–10% su əlavə edin.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Orijinal ZAN məhsulu</b>Birbaşa istehsalçıdan, zavod zəmanəti ilə",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Pulsuz məsləhət</b><a href=\"tel:+994512065054\">+(994) 51 206 50 54</a> — rəng və miqdar seçimində kömək",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Rahat ödəniş</b>Nağd, kartla və ya hüquqi şəxslər üçün köçürmə ilə",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "<b>Səthi hazırlayın</b> Tozdan, yağdan və qopan köhnə boyadan təmizləyin, çatları doldurun. Yeni suvaq ən azı 28 gün qurumalıdır.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>ZAN komandası</b>Gözəl nəticə rəngdən başlayır",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "≈ 15 kq",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "≈ 6 m² / kq",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "0 əd.",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "0 məhsul",
+    "where": [
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "0,75 kq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "0.75 kq",
+    "where": [
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "01 — Missiyamız",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "02 — Məqsədimiz",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "03 — Dəyərlərimiz",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "050 123 45 67 və ya ad@numune.az",
+    "where": [
+      "forgot-password.html",
+      "login.html"
+    ]
+  },
+  {
+    "key": "1 ildən az",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "1 kq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "1 rulon",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "1–2 qat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "1–3 il",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "10 gün (ağzı bağlı qabda)",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "10 ildən çox",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "10 kq",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "10 rəqəm",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "10–15 dəqiqə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "10–15 dəqiqə saxlayın və yenidən qarışdırın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "10–15 dəqiqəyə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "100% orijinal istehsal",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "15–20 dəqiqə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "15–20 dəqiqəyə quruyur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "150–180 q/m² (bir qat) — ≈ 6 m²/kq",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "2 qat",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "2–3 qat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "2–4 saat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "2,5 kq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "2.5 kq",
+    "where": [
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "20 kq",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "24 ay",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "24/7 dəstək",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "24/7 Dəstək",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "25 kq",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "250 q — 5–7 litr soyuq su",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "3 rulon",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "3–5 il",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "3,5 kq",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "3,5 kq · 10 kq · 25 kq",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "3,60 ₼ / kq",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "3.5 kq",
+    "where": [
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "30 ildən çox təcrübə",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "30–40 dəqiqə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "30+ il təcrübə",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "36 ay",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "4–6 saat",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "40 m², 2 qat, 10% ehtiyat ilə",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "40 px",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "5–10 il",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "5–7 l su / 250 q",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "6 rulon",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "6–8 saat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "64 sm, düz",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Abşeron (Xırdalan və qəsəbələr)",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Abşeron sahili",
+    "where": [
+      "home.html",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Abunə ol",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Abunə oldunuz!",
+    "where": [
+      "home.js"
+    ]
+  },
+  {
+    "key": "Abunəlik",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Açıq cüt",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Açıq ton — işığı yaxşı əks etdirir, kiçik otaqları geniş göstərir.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Açıqlıq",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Açılmamış qablaşdırmanı 14 gün ərzində qaytara bilərsiniz. Rənglənmiş (tonlanmış) məhsullar qaytarılmır.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Ad ən azı 2 hərfdən ibarət olmalıdır.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Ad və soyad ən azı 3 hərfdən ibarət olmalıdır.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Ad və telefon hesabınızdan götürüldü — lazım olsa dəyişə bilərsiniz.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Ad, kod və ya HEX: Göygöl, G708…",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Ad, soyad",
+    "where": [
+      "account.html",
+      "checkout.html",
+      "contact.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Ad: A–Z",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "ad@numune.az",
+    "where": [
+      "checkout.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "ad@nümunə.az",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Adaçayı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Addım 1 / 3 — hesabınızı tapaq",
+    "where": [
+      "auth-page.js",
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Addım 2 / 3 — təsdiq kodu",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Addım 3 / 3 — yeni şifrə",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Adınız",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Adınız və soyadınız",
+    "where": [
+      "account.html",
+      "checkout.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Adınızı və soyadınızı yazın.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Adınızı yazın.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Ağ tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Ağ, kataloq üzrə rənglənir",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Ağıllı seçim",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Ağıllı seçim oxşar rəngli sahəni özü tapır. Kənarları fırça və pozanla düzəldin; hər divar üçün ayrıca səth əlavə edin.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Axtar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Axtarış",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Axtarışa uyğun rəng tapılmadı.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Akril dispersiya",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Aktiv filtrlər",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Aktiv üzvlər üçün brend hədiyyələri.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Albalı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Alət",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Alış-verişə davam et",
+    "where": [
+      "cart.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Alkid qatranı",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Alkid-uretan qatranı",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "AM",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Antiseptik",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Arxa divar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "aria-label=\"Səbətə at\"",
+    "where": [
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Artıq hesabınız var?",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Artıq məhsulları səbətə və sevimlilərə əlavə edə bilərsiniz.",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Artır",
+    "where": [
+      "cart-page.js",
+      "product-detail.html",
+      "shop.html",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Artikul: <b data-pd=\"code\">{1}</b>",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Asan çəkilir, axmır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Asan həll olunur",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Asan quraşdırma",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Asan yonulur",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Asan zımparalanır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Astar çəkin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Aşınmaya yüksək davamlılıq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Atmosfer təsirlərinə davamlıdır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Atmosfer təsirlərinə davamlıdır, çəkilişi asandır və geniş rəng palitrasında təqdim olunur.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Ay işığı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Ayın rəngi",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Aysel Məmmədova",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "aysel@numune.az",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "AZ",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Azalt",
+    "where": [
+      "cart-page.js",
+      "product-detail.html",
+      "shop.html",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "B805 · Xəzər dalğası",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Badam",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Badam çiçəyi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Badımcan",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Bağla",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Baxılır",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Baxım",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Bakı",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Bakı daxilində 1–2 iş günü, regionlara 2–5 iş günü. Çatdırılma qiyməti sifariş rəsmiləşdirilərkən ünvana görə hesablanır.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Bakı şəhəri, Küçə adı 00, AZ1000",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Bakı vaxtı ilə",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Bal",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Başqa saytlarda işlətdiyiniz şifrəni təkrarlamayın",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "bazar",
+    "where": [
+      "extract.js (EXTRA)"
+    ]
+  },
+  {
+    "key": "Bazar",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "bazar ertəsi",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Bazar ertəsi – Şənbə",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Bej və qum",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Best Wall — Original Wallpaper",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Beş istiqamət, bir keyfiyyət anlayışı. Kateqoriyaya keçib məhsullarla tanış olun.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Beton",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Bənövşə",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Bənövşəyi tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Bəyəndiyiniz boyalar burada saxlanılır — istədiyiniz vaxt qayıdıb səbətə ata bilərsiniz.",
+    "where": [
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Bəyəndiyiniz boyaları bir yerdə toplayın.",
+    "where": [
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Bəyəndiyiniz boyaları səbətə atın — hamısı burada toplanacaq.",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Bəyəndiyiniz boyaları səbətə atın — hamısı burada toplanacaq. Rəng seçməkdə çətinlik çəkirsinizsə, vizualizatoru sınayın.",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Bəyəndiyiniz boyaları yadda saxlamaq üçün hesabınıza daxil olun və ya qeydiyyatdan keçin.",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Bildirişi bağla",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Bildirişlər",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Bir rulon",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Bir rulonun sahəsi",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Birbaşa yazın və ya zəng edin — gözləmədən danışaq.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Biz kimik",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Bizi irəli aparan <em>nədir?</em>",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Bizi izləyin",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Bizi ziyarət edin",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Bizimlə <em>əlaqə</em>",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Bizimlə əlaqə",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Bonus və hədiyyələr",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "boya",
+    "where": [
+      "extract.js (EXTRA)"
+    ]
+  },
+  {
+    "key": "Boya, suvaq və dekorativ işlərlə məşğul olursunuzsa, kluba qoşulun — ZAN ilə birlikdə böyüyək.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "boyalar, lak və divar kağızları",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Boyalar, laklar, yapışdırıcılar və divar kağızları — hər iş üçün doğru ZAN məhsulunu tapın.",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Boyanı yaxşıca qarışdırın, lazım olsa 5–10% su əlavə edin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Boyanı yaxşıca qarışdırın, lazım olsa 5–10% uayt-spirit əlavə edin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Boz tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Böyük və kiçik hərf, rəqəm və simvol qarışdırın",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Böyürtkən",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Böyütmək üçün üzərinə gətirin",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Brend filmi",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Brendimizlə <em>daha yaxından</em> tanış olun",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Bu bölmə yalnız qeydiyyatdan keçmiş istifadəçilər üçündür.",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "bu gün",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Bu məhsulla birlikdə ən çox seçilənlər.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Bu nöqtədə səth tapılmadı. Dözümlülüyü artırın və ya fırçadan istifadə edin.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Bu rəng üçün boya seçin",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Bu şəkli açmaq alınmadı. JPG və ya PNG formatında başqa şəkil seçin.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Buğda zəmisi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Buz",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Büdcənizə uyğun yüksək keyfiyyətli məhsullar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Bütün Azərbaycan üzrə qapıya qədər çatdırırıq.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Bütün kağız növləri üçün",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Bütün kateqoriyalar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Bütün məhsullar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "bütün məhsullara",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Bütün növ divar kağızları üçün",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Bütün səthlər ilkin vəziyyətinə qaytarıldı.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Cəmi",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Cəmi: {n} × {price} =",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Cızılmaya davamlıdır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "CN",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "cümə",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "cümə axşamı",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Çatdırılma",
+    "where": [
+      "cart.html",
+      "checkout.html",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Çatdırılma <b>{days} iş günü</b> ərzində",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Çatdırılma sifarişi rəsmiləşdirərkən hesablanır.",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Çatdırılma ünvanı",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Çatdırılma ünvanını və ödəniş üsulunu növbəti addımda seçəcəksiniz.",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Çatdırılma ünvanını yazın.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Çatdırılma və qaytarma",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Çatdırılma və ödəniş",
+    "where": [
+      "cart.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Çay daşı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Çəhrayı",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Çəki",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Çəkin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Çərçivə və karniz",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "çərşənbə",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "çərşənbə axşamı",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Çox tez quruyur və asan zımparalanır — mebel istehsalında iş prosesini sürətləndirir.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Daha <em>rəngli</em> gələcəyə doğru",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Daxil ol",
+    "where": [
+      "auth.js",
+      "forgot-password.html",
+      "login.html"
+    ]
+  },
+  {
+    "key": "Daxil olun",
+    "where": [
+      "forgot-password.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Daxili boya işləri",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Daxili divar və tavanlar üçün su əsaslı akril boya. İysizdir, tez quruyur və təmir edilən otaqdan dərhal istifadə etməyə imkan verir.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Daxili divarlar üçün su əsaslı, iysiz və silinə bilən akril boya.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Daxili işlər",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Daxili və xarici",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Daxili və xarici işlər üçün",
+    "where": [
+      "home.html",
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Daxili və xarici işlər üçün asan çəkilən, parlaq və davamlı sintetik emal.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Daxili və xarici işlər üçün universal sintetik emal. Metal, taxta və suvaqlı səthlərdə parlaq, möhkəm və yuyula bilən örtük yaradır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Darçın",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Davam etmək üçün razılığınızı təsdiqləyin.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Dekorativ suvaq",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Dəhliz",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Dəniz fırtınası",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Dəvə yunu",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Dəyiş",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Digər",
+    "where": [
+      "account.html",
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Digər region",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Digər tətbiqlərlə paylaş",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Diqqət",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Dil",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "extract.js (EXTRA)",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Diler olmaq istəyirsiniz?",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "divar kağızı",
+    "where": [
+      "extract.js (EXTRA)",
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Divar kağızı",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Divar kağızı yapışdırıcıları",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Divar kağızları",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-demo.js",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Divar quru, hamar və təmiz olmalıdır; köhnə kağızı və qopan boyanı təmizləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Divar ölçüləri",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Divar paneli",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Divar və tavanlar üçün rahat tətbiq olunan, tez quruyan interyer və fasad örtükləri.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Divarı hazırlayın",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Divarınızın yeni rəngini <em>əvvəlcədən</em> görün",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Divarlar",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Divarlara parlaqlıq qaytaran, sürətli quruyan və UV şüalarına davamlı boya.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Divarların ümumi uzunluğu",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Divarlarınıza <em>xarakter</em> verin",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Divarlarınızın parlaqlığını geri qaytaran <em>DivoFix &amp; EkoFix</em>",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "DivoFix — səthlərə parlaqlıq qaytaran, sürətli quruyan sellülozik boya. UV şüalarına davamlı tərkibi sayəsində rəngi uzun müddət solmur.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "DivoFix parlaq boya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "DivoFix və EkoFix parlaq boya çeşidləri",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Dolğu çəkin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Dözümlülük",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Dumanlı dəniz",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Durulaşdırın",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Durulaşdırma",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "E-poçt",
+    "where": [
+      "checkout.html",
+      "contact.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "E-poçt ünvanı",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "E-poçt ünvanı düzgün deyil.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "E-poçt ünvanı yanlışdır",
+    "where": [
+      "home.js"
+    ]
+  },
+  {
+    "key": "E-poçt ünvanını kopyala",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "E-poçt ünvanınız",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "E-poçt ünvanınızı yazın.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Ekran rəngi fərqli göstərə bilər",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "EN",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Endirimdə",
+    "where": [
+      "shop-page.js",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Etibar",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Ev fasadı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Evkalipt",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Evlərə rəng, <em>ustalara etibar</em>",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Əks etdirməyən mat səth",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Əlaqə",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Əlaqə məlumatları",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Əlaqə məlumatlarını, çatdırılma ünvanını və ödəniş üsulunu qeyd edin — operatorumuz sifarişi təsdiqləmək üçün sizinlə əlaqə saxlayacaq.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Əlaqə nömrəsi",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Əlaqə vasitələri",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Əməkdaşlıq / diler",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Əməkdaşlıq müraciəti",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Ən azı 8 simvol",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Ən azı 8 simvol — uzun olduqca daha etibarlıdır",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Ən azı 8 simvol, içində hərf və rəqəm olsun.",
+    "where": [
+      "forgot-password.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Ən azı 8 simvol, içində hərf və rəqəm.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Ən azı bir ixtisas seçin.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Ən qabaqcıl texnologiyalar ilə hazırlanmış <em>ZAN boyaları</em>",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Ən sərfəli",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Əncir",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Ərik",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Əsas",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Əsas göstəricilər",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Əsas məzmuna keç",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Əsas naviqasiya",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Əsas səhifə",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Əsas slayder",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Ətraflı bax",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Əvvəl",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Əvvəl və sonra sərhədi",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Əvvəlcə “Yeni səth” düyməsi ilə səth əlavə edin.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Əvvəlcə şəkildə bu səthin sahəsini seçin: divara klikləyin və ya fırça ilə çəkin.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Əvvəlcə yenilər",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Əvvəlki kateqoriyalar",
+    "where": [
+      "home.html",
+      "home.js"
+    ]
+  },
+  {
+    "key": "Əvvəlki məhsul xətti",
+    "where": [
+      "home.html",
+      "home.js"
+    ]
+  },
+  {
+    "key": "Əvvəlki məhsullar",
+    "where": [
+      "product-detail.html",
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Əvvəlki səhifə",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Əvvəlki slayd",
+    "where": [
+      "home.html",
+      "home.js"
+    ]
+  },
+  {
+    "key": "Facebook",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Fasad",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Fasad boyası",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Fasadlar",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Fayl uyğun deyil",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Fındıq",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Fırça",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Fırça ölçüsü",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Fırça, valik, pulverizator",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Fıstıq",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Fil sümüyü",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Filtri sil: {label}",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Filtrlər",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Filtrləri bağla",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Filtrləri dəyişin və ya sıfırlayın — bəlkə axtardığınız başqa kateqoriyadadır.",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Filtrləri sıfırla",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Firuzə",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Flizelin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Flizelin əsas — asan yapışdırılır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Formu doldurun — müraciətinizə baxıb göstərdiyiniz nömrə və ya e-poçt ilə sizinlə əlaqə saxlayacağıq.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Formu doldurun — müraciətinizə baxıb sizinlə əlaqə saxlayacağıq.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "G708 · Göygöl",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Gavalı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Gecə asfaltı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Gecə mavisi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Geniş naxış seçimi",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Geri al",
+    "where": [
+      "visualizer-page.js",
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Geri al (Ctrl+Z)",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Geri qaytar",
+    "where": [
+      "cart-page.js",
+      "shop.js",
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Geri qaytarıldı",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Geri qaytarma",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Gəncə",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Gil",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Göndər",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Göndərildi",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Görünüş",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Göygöl",
+    "where": [
+      "home.html",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Göz yormayan mat səth yaradan, yüksək örtücülüklü sintetik boya.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Göz yormayan, işığı əks etdirməyən mat səth yaradan alkid əsaslı boya. Səthdəki kiçik qüsurları gizlədir.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Gözləyin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Güclü",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Güclü şifrə üçün",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Güclü tutuş, təmiz tətbiq",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Gümüş söyüd",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Günəbaxan",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Günəşli otaqlarda rəng isti və açıq, şimal tərəfdə isə sərin görünür. LRV göstəricisi rəngin nə qədər işıq əks etdirdiyini bildirir.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Güzəştə getmədiyimiz ilk şey. Hər məhsul istifadəçiyə çatmazdan əvvəl yoxlanılır.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Güzgü kimi parlaq səth",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Haqqımızda",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Haqqımızda bölmələri",
+    "where": [
+      "about.html",
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Halva",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Hamar, parlaq səth",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hamısı",
+    "where": [
+      "shop.html",
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Hamısına bax",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Hamısını səbətə at",
+    "where": [
+      "product-detail.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Hamısını təmizlə",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Hansı layihələrdə işləmisiniz, hansı ZAN məhsullarından istifadə edirsiniz…",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Harada istifadə olunur",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Hardal",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Hasar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Hasarlar",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hazır məhlulu uşaqların əli çatmayan yerdə saxlayın. Alətləri ilıq su ilə yuyun.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hazır məhlulun ömrü",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hazır olma",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hazır olur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hazır otaqlardan birini seçin və ya öz otağınızın şəklini yükləyin. ZAN palitrasındakı rəngləri bir toxunuşla divara, tavana və fasada tətbiq edin, əvvəl və sonrakı görünüşü müqayisə edin.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Hazırda bağlıdır",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Hazırda bağlıdır · açılış: {when}",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Hazırda stokda yoxdur",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Hazırdır",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Hazırkı şifrə",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Hazırkı şifrənizi təsdiqləyin və yenisini təyin edin.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Hazırkı şifrənizi yazın.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "HEX",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Hesab təhlükəsizliyi",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Hesabdan çıx",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Hesabınız yoxdur?",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Hesabınıza <em>qayıdın</em>",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Hesabınıza daxil oldunuz",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Hesabınıza daxil olun",
+    "where": [
+      "auth.js",
+      "login.html"
+    ]
+  },
+  {
+    "key": "Hesabınızla bəyəndiyiniz rəngləri saxlayın və sifarişi bir neçə kliklə rəsmiləşdirin.",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Hesablama təxminidir: səthin məsaməliliyi və tətbiq üsulu sərfiyyatı dəyişə bilər.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Hesablamaq mümkün olmadı",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Hələ seçilmiş rəng yoxdur. Bəyəndiyiniz rəngin kartında ürək işarəsinə toxunun.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Həll etmə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Həm yeni, həm də əvvəllər boyanmış səthlərin təzələnməsi üçün uyğundur.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Hər addımda yanınızdayıq",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Hər divara öz rəngi",
+    "where": [
+      "forgot-password.html",
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Hər evə və hər ustaya <em>etibar edilən keyfiyyəti</em> əlçatan qiymətə çatdırmaq.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Hər gün <em>rəhbər tutduğumuz</em> prinsiplər",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Hər iş üçün <em>doğru</em> seçim!",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Hər qutu boyanın arxasında bir söz dayanır: keyfiyyətli, etibarlı və hər kəs üçün əlçatan.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Hər qutu boyanın arxasında bir söz dayanır: keyfiyyətli, etibarlı, əlçatan",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Hər partiyada eyni sabit keyfiyyəti qorumaq və məhsul çeşidimizi daim genişləndirmək.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Hər səth üçün <em>doğru</em> həll",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Hər səth üçün uyğun həll — ustaların seçdiyi ZAN kolleksiyasından.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Hüquqi şəxslər üçün — hesab-faktura göndərəcəyik",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Hündürlük",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Xarici işlər",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Xəritədə göstər",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Xəta",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Xəzər dalğası",
+    "where": [
+      "home.html",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Xırdalan",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Xoş gördük, {name}!",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Xoş gördük!",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Xüsusi qiymətlər",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Instagram",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Instagram və ya portfolio",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "İxtisasınız",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "il təcrübə",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "İnanırıq ki, gözəl məkan bahalı olmamalıdır. Ona görə hər məhsulumuzu elə hazırlayırıq ki, usta işindən, ev sahibi isə nəticədən razı qalsın. Rəngin seçilməsindən divara çəkilməsinə qədər hər addımda yanınızdayıq.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "İndi açıqdır · {time}-dək",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "İndi yeni şifrənizlə hesabınıza daxil ola bilərsiniz.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "İndiqo",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "info@example.com",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "İnsana və təbiətə qayğı ilə yanaşır, təhlükəsiz istehsala önəm veririk.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "İnteryerinizi yeniləyən premium <em>ZAN divar kağızları</em>",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "İrəli",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "İrəli (Ctrl+Y)",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "İstehsal",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "istehsal sahəsi — 1400×1400 və ya daha hündür, JPG / WebP",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "istehsal, məhsul və ya brend portreti — 1200×1500 (4:5), JPG / WebP",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "İsti vurğu",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "İstifadə",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "İstifadə qaydası",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "İstirahət",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "İş saatları",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "İş təcrübənizi seçin.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "İş təcrübəsi",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "İş zamanı və 48 saat sonra otaqda cərəyan yaratmayın — kağız bərabər qurusun.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "İşığa davamlılıq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "İşığı əks etdirmə dərəcəsi (0 — qara, 100 — ağ)",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "İşığı nəzərə alın",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "İşıqda solmur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "İşıqlı rejim",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "İysiz və ekoloji təmiz formula",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "İysiz, ekoloji təmiz",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "İysizdir",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "İysizdir, su ilə durulaşdırılır",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "JPG, PNG — və ya kətana sürüşdürün",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Kabinet menyusu",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Kağız",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kağız, vinil və flizelin divar kağızları üçün asan həll olunan yapışdırıcı.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Kağız, vinil və flizelin divar kağızları üçün etibarlı yapışma — asan hazırlanır, iz qoymur.",
+    "where": [
+      "about.html",
+      "home.html"
+    ]
+  },
+  {
+    "key": "Kağız, vinil və flizelin divar kağızları üçün universal yapışdırıcı. Suda asanlıqla, topalanmadan həll olur.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kağız, vinil, flizelin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kağız, vinil, flizelin, tekstil",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kakao",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kalkulyator",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Karamel",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kart görünüşü",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Kartla — kuryerə",
+    "where": [
+      "checkout-page.js",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Kataloq",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Kateqoriya seçin",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Kateqoriya: {name}",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Kateqoriyalar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "site.js",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Kateqoriyalara bax",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Keyfiyyət",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Keyfiyyət nəzarəti",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Keyfiyyətdə standart olmaq",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Keyfiyyətin <em>arxasında</em>",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Kəhraba",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kərpic",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kəsin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kətan",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kətan toxuması",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kiçik divar qüsurlarını gizlədir",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kiçik qüsurları gizlədir",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kif və göbələyə qarşı qoruyucu əlavə ilə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Kif və göbələyə qarşı qoruyur",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Kim olduğumuz, nə təqdim etdiyimiz və keyfiyyətin arxasında duran insanlar haqqında.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Klassikdən müasirə qədər orijinal divar kağızı kolleksiyaları. Evinizə uyğun naxışı birlikdə seçək — sadəcə zəng edin.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Klassikdən müasirə qədər orijinal naxış və rəng kolleksiyaları.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Klub imkanları hesabınızda aktivdir. Suallarınız üçün <a href=\"contact.html\">bizimlə əlaqə saxlayın</a>.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Klub üzvlərinə ZAN məhsullarında güzəştlər.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Klub üzvü",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Kluba müraciət",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Kobalt",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Kod {n} rəqəmdən ibarətdir.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Kod göndər",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Kod göndərildi",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Kod təsdiqləndi. İndi hesabınız üçün yeni şifrə təyin edin.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Kodu alın",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Kodu almadınız?",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Kodu göndərmək alınmadı. Bir az sonra yenidən cəhd edin.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Kodu yazın — hesabın sizə aid olduğunu yoxlayaq.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Kodu yoxlamaq alınmadı. Bir az sonra yenidən cəhd edin.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Kolleksiyaya bax",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "komanda — 1600×1000 (16:10), JPG / WebP",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Komandamız",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Kontrast",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Kopyala",
+    "where": [
+      "contact.html",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Kopyalamaq alınmadı",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Kopyalamaq alınmadı — mətni əl ilə seçin.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Kopyalandı",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Köçürmə",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Köçürmə (hüquqi şəxs)",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Kuryer üçün qeyd",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Kuryerə, məhsulu təhvil alanda",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Küçə, bina, mənzil",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Qaba soyuq su tökün və qarışdırarkən huni əmələ gətirin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Qablaşdırma",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Qafqaz meşəsi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qapı və pəncərələr",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Qapılar",
+    "where": [
+      "product-demo.js",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qar dənəsi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qar kimi ağ",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Qarağat",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qarışdırın",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Qarşımıza qoyduğumuz məqsədlər hər gün gördüyümüz işin istiqamətini müəyyən edir.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Qat sayı",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Qatlar arası",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Qaymaq",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qaynar xətt",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Qaynar xətt:",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Qaytarma",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Qazbeton",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyat",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyat alınmadı. Bir az sonra yenidən cəhd edin.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Qeydiyyat bir dəqiqə çəkir — yalnız telefon, e-poçt və şifrə.",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Qeydiyyat pulsuzdur və bir dəqiqə çəkir. Hesab yaratdıqdan sonra bu imkanlar açılır:",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyat tamamlandı",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Qeydiyyat zamanı göstərdiyiniz məlumatlar. Sifarişlə bağlı sizinlə bu nömrə və e-poçt vasitəsilə əlaqə saxlayırıq.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyat zamanı göstərdiyiniz telefon nömrəsini və ya e-poçtu yazın — sizə 6 rəqəmli təsdiq kodu göndərəcəyik.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyatdan keç",
+    "where": [
+      "auth.js",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyatdan keçin",
+    "where": [
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Qeydiyyatdan sonra məhsulu səbətə və ya sevimlilərə əlavə edə biləcəksiniz.",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Qəbələ",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Qəhvə dənəsi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qəhvəyi tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qırmızı və çəhrayı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qısa zamanda ustaların sevimlisinə çevrilən ZAN boyaları ilə siz də evinizi gözəlləşdirin.",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Qızıl qum",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qızıl payız",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qızılgül ləçəyi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qızılı",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Qiymət",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Qiymət: bahadan ucuza",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Qiymət: ucuzdan bahaya",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Qobustan daşı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qonaq otağı",
+    "where": [
+      "product-demo.js",
+      "visualizer-data.js",
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Qoz ağacı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qoz qabığı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qrafit",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qranit",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Quba",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Qum təpəsi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qurğuşun",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Quru, sərin yerdə, ağzı bağlı",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Quruma",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Qurumuş səth nəm parça ilə silinə bilər — mətbəx, dəhliz və uşaq otaqları üçün praktik seçimdir.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "laboratoriya / keyfiyyət nəzarəti — 1600×1000 (16:10), JPG / WebP",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Lacivərd",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "lak",
+    "where": [
+      "extract.js (EXTRA)"
+    ]
+  },
+  {
+    "key": "Lalə qırmızısı",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Lavanda",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Ləkə buraxmır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Lənkəran",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Limon kremi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Link kopyalandı",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Link kopyalandı — göndərdiyiniz şəxs eyni rəngləri görəcək.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Linki istədiyiniz yerə yapışdıra bilərsiniz.",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Linki kopyalamaq alınmadı. Ünvan sətrindən əl ilə kopyalayın.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Linki sahədən seçib əl ilə kopyalayın.",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "LRV",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "LUX — yüksək parlaqlıqlı alkid əsaslı sintetik boyadır. Metal, taxta və əvvəllər boyanmış səthlərdə güzgü kimi hamar, davamlı təbəqə yaradır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "LUX parlaq boya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Maks, ₼",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Maksimum qiymət",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Maksimum örtücülük",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Mamır",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Mandarin",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Marşrut qur",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Mat",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Mat, işığı bərabər yayır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Mat, məxmər görünüşlü səth yaradır, çirki özünə çəkmir və yağışla özü-özünü təmizləyir. Kataloq üzrə istənilən çalara rənglənə bilər.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Mavi tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Mebel",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Mebel və taxta işləri üçün",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Mebel və taxta işləri üçün tez quruyan sellülozik boya. Hamar, parlaq və möhkəm səth yaradır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Mebel və taxta işləri üçün tez quruyan, hamar və parlaq sellülozik boya.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Media A2 · Şəkil",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Media A3 · Şəkil",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Media A4 · Şəkil",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Media A5 · Şəkil",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Media M2 · Şəkil",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Media M3 · Şəkil",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Menyunu aç",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Menyunu bağla",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Mesaj",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Mesaj ən azı {n} simvoldan ibarət olmalıdır.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Mesajınızı yazın.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Meşə kölgəsi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Metal",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Metal səthlərə pasa qarşı astar, taxtaya isə dolğu astar çəkin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Metal və taxta səthlər üçün yüksək parlaqlıqlı, uzunömürlü sintetik boya.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Metal, taxta və digər səthlər üçün davamlı, parlaq örtük — nəmə və günəşə qarşı uzunömürlü qoruma.",
+    "where": [
+      "about.html",
+      "home.html"
+    ]
+  },
+  {
+    "key": "Məbləğ",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Məhsul adı, həcm…",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Məhsul axtarışı",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Məhsul axtarışı...",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "site.js",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Məhsul alındıqdan 30 gün ərzində qaytarma imkanı",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "məhsul çeşidi",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Məhsul çeşidləri",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Məhsul haqqında",
+    "where": [
+      "contact.html",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Məhsul haqqında ətraflı",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Məhsul xətləri",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Məhsul kartındakı ürək düyməsinə basın — bəyəndiyiniz boyalar burada toplanacaq ki, sonra rahatlıqla müqayisə edib seçəsiniz.",
+    "where": [
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Məhsul kataloqu",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Məhsul seçimi, sifariş, çatdırılma və ya əməkdaşlıq — sualınızı yazın, mütəxəssislərimiz sizə kömək etsin.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "məhsul sevimlilərdə",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "məhsul səbətdə",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Məhsullar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Məhsullar (",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Məhsullar <small data-sum=\"count\">{1}</small>",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "məhsullar, palitra və ya laboratoriya — 1200×1600 (3:4), JPG / WebP",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Məhsullara bax",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Məhsulları göstər",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Məhsulları kəşf et",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Məhsulları səbətə atın, sifarişi rahat verin.",
+    "where": [
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Məhsulları səbətə əlavə etmək və sifariş vermək üçün hesabınıza daxil olun və ya qeydiyyatdan keçin.",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Məhsulları səbətə və sevimlilərə əlavə etmək üçün əvvəlcə hesabınıza daxil olun.",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Məhsulları səbətə və sevimlilərə əlavə etmək üçün hesab yaradın. Telefon və e-poçtunuz kabinetdə \"Mənim hesabım\" bölməsində görünəcək.",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Məhsullarımız müasir texnologiyalarla hazırlanır və hər biri gündəlik işdə sınaqdan çıxan keyfiyyəti ilə seçilir. Su əsaslı, sintetik və sellülozik boyalardan laklara, dolğulara, divar kağızlarına və yapışdırıcılara qədər — divarın, taxtanın və metalın ehtiyac duyduğu hər şeyi bir brenddə toplayırıq.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Məhsulların sayını dəqiqləşdirin və sifarişi rəsmiləşdirməyə keçin — çatdırılma və ödəniş növbəti addımdadır.",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Məhsulu paylaşın",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Məhsulun linki",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Məkan seçin",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Məkanı seçin və ya şəkil yükləyin",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Məkanı yükləmək alınmadı. Səhifəni yeniləyib yenidən yoxlayın.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Məlumat",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Məlumatlarımın klub müraciətinə baxılması üçün istifadə olunmasına razıyam.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Məlumatlarımın yalnız bu müraciətə cavab vermək üçün istifadə olunmasına razıyam.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Məlumatlarınız üçüncü şəxslərə ötürülmür",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Məni xatırla",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Mənim <em>hesabım</em>",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Mənim hesabım",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Mənim şəklim",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Mərcan",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Mərmər tozu",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Məsamələri doldurmaq üçün sellülozik dolğu vernik çəkin və zımparalayın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Məsamələri doldurur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Məsaməli divara yapışdırıcının duru məhlulu ilə astar çəkin və qurumasını gözləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Məsaməli səthlərə dərin nüfuz edən su əsaslı astar çəkin və 4 saat gözləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Məsaməli səthlərə su əsaslı astar çəkin və 2–4 saat gözləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Məsələn: «Tikinti» MMC",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Məsələn: mərtəbə, giriş kodu, zəng üçün rahat vaxt",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Məsləhət alın",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Məsuliyyət",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Mətbəx",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Mətbəx dolabları",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Min, ₼",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Mingəçevir",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Minimum qiymət",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Mis",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Missiya və dəyərlərimiz",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Missiya, məqsəd və <em>dəyərlərimiz</em>",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Missiya, məqsəd və dəyərlər",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Missiya, məqsəd və dəyərlərimiz",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Missiyamız, qarşımıza qoyduğumuz məqsədlər və hər gün rəhbər tutduğumuz dəyərlər.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Mobil menyu",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Mobil naviqasiya",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Mobil nömrə",
+    "where": [
+      "checkout.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Modifikasiya olunmuş nişasta, metilsellüloza",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Monitor və telefonlar rəngləri bir qədər fərqli göstərir. Son qərardan əvvəl rəngi kataloqda və ya divarda kiçik sınaq sahəsində yoxlayın.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Mövzu",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Müqayisə",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Münasib qiymət",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Müraciət",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Müraciət baxılır",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Müraciət et",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Müraciət forması",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Müraciət göndərildi",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Müraciət göndərilmədi. Bir az sonra yenidən cəhd edin və ya bizə zəng edin.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Müraciət göndərilmədi. Bir az sonra yenidən cəhd edin.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Müraciət üçün razılığınızı təsdiqləyin.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Müraciət yazın",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Müraciəti göndər",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Müraciətiniz <b data-club-date>{1}</b> tarixində qəbul olunub. Nəticə barədə göstərdiyiniz nömrə ilə sizə xəbər verəcəyik.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Müraciətiniz baxılır",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Müraciətiniz qəbul olundu",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Müraciətinizə baxılandan sonra sizinlə əlaqə saxlayacağıq.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Müştərilərimizlə açıq danışır, heç bir sualı cavabsız qoymuruq.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Mütəxəssisə soruşun",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Mütəxəssislərimiz məlumatlarınızı yoxlayır",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Nağd",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Nağd — kuryerə",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Nağd və ya bank kartı ilə — çatdırılma zamanı və ya onlayn. Hüquqi şəxslər üçün köçürmə ilə ödəniş mümkündür.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Naxçıvan",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Naxış uyğunlaşdırma",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nanə",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer-data.js",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Nar çiçəyi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Nar dənəsi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Narıncı və terrakota",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Naviqasiya",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Nazik qatlarla 2 qat çəkin; ikinci qatı 24 saatdan sonra çəkin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nazik qatlarla 2–3 qat çəkin; qatlar arası 20–30 dəqiqə gözləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Neytral fon",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Nə qədər <em data-pd=\"calc-noun\">{1}</em> lazımdır?",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Nə qədər lazımdır?",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Nə təqdim edirik",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Nəfəs alan səth",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nəm parça ilə silinə bilər",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nəm parça ilə silinə bilir",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nəmə və korroziyaya davamlıdır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nəmə və ləkələrə qarşı qoruyur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nəmə, temperatur dəyişmələrinə və məişət yuyucularına davamlıdır — qapı, pəncərə, radiator, hasar və darvazalar üçün idealdır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nəticə yoxdur",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Nitrosellüloza",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Nömrə 9 rəqəmdən ibarət olmalıdır, məsələn: 50 123 45 67",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Nömrəni / e-poçtu dəyiş",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Nömrəni düzgün yazın, məsələn: +994 50 123 45 67.",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Nömrəni və ya e-poçtu dəyişmək lazımdırsa, <a href=\"contact.html\">bizimlə əlaqə saxlayın</a> — təhlükəsizlik üçün bu dəyişiklik operator vasitəsilə edilir.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Növbəti addımda",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Növbəti bölmə",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Növbəti girişdə yeni şifrədən istifadə edin.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Növbəti kateqoriyalar",
+    "where": [
+      "home.html",
+      "home.js"
+    ]
+  },
+  {
+    "key": "Növbəti məhsul xətti",
+    "where": [
+      "home.html",
+      "home.js"
+    ]
+  },
+  {
+    "key": "Növbəti məhsullar",
+    "where": [
+      "product-detail.html",
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Növbəti səhifə",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Növbəti slayd",
+    "where": [
+      "home.html",
+      "home.js"
+    ]
+  },
+  {
+    "key": "Ofis",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Ofis və satış mərkəzi",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Oxra",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Onlayn kartla",
+    "where": [
+      "checkout-page.js",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Operatorlarımız daim suallarınızı cavablandırır",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Operatorlarımız evinizə uyğun boyanı seçməyə kömək edəcək — bir zəng kifayətdir.",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Orta",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Orta ton — əksər otaqlar üçün balanslı, gündəlik seçim.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Otağın önizləməsi. Səthə klikləyərək seçilmiş rəngi tətbiq edin.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Ödəniş",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Ödəniş bu addımda alınmır — operatorumuz sifarişi zəng ilə təsdiqləyəcək.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Ödəniş üsulu",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Ödəniş üsulunu seçin.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Ödənişi çatdırılma zamanı və ya onlayn edə bilərsiniz.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Ödənişsiz çatdırılma",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Ölkədaxili istənilən bölgəyə çatdırılma",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Ölkənin dörd bir yanına sürətli çatdırılma",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Ölkənin hər guşəsinə çatmaq",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Özəl endirimlər",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Özünüz haqqında",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Palıd",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Palitradan rəng götürün",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Pambıq",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Parket",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Parket və taxta döşəmələr üçün aşınmaya davamlı, şəffaf parlaq lak.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Parket və taxta döşəmələr üçün şəffaf, parlaq sintetik lak. Taxtanın təbii naxışını üzə çıxarır və onu aşınmadan, nəmdən, ləkələrdən qoruyur.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Parket, taxta döşəmə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Parlaq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Parlaq və yarımat seçimlər",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Parlaq, hamar səth",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Parlaq, şəffaf",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Parlaqlığı uzun müddət qoruyur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Pas",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Pas, köhnə boya və yağ ləkələrini təmizləyin, səthi zımparalayıb tozunu alın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Paylaş",
+    "where": [
+      "product-detail.html",
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Paylaşmağa hazırdır",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Peşəkar ustalar kabinetdən kluba müraciət edə bilər.",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Peşəkar ustalar üçün <em>xüsusi klub</em>",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Pəncərə və qapılar",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Pəncərəni bağla",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Pərdə arxası",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Pilləkənlər",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Polad mavisi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Pozan",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Premium divar kağızı",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Premium divar kağızları",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Premium keyfiyyət",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Pudra",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "pulsuz",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Pulsuz",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Pulsuz · qeydiyyatsız · 100 rəng",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Pulverizator (tövsiyə olunur), fırça",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Pulverizator üçün 10–20% sellülozik tiner əlavə edib qarışdırın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Pulverizator üçün ideal",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Pulverizatorla çəkildikdə zavod keyfiyyətində örtük alınır; növbəti qatı 20–30 dəqiqədən sonra çəkmək olar.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Radiatorlar",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Rəqəmlərlə ZAN",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Rəng",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Rəng axtar",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəng ailələri",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "rəng çaları",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Rəng dünyasını <em>kəşf edin</em>",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Rəng məsləhətləri",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Rəng palitrası",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəng sadəcə boya deyil — <em>evin əhvalıdır.</em>",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Rəng seçimi",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Rəng seçimində <em>kömək</em> lazımdır?",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Rəng seçimini asanlaşdırmaq",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Rəng seçimini asanlaşdırmaq üçün onlayn rəng vizualizatoru, peşəkarlar üçün isə ZAN Ustalar Klubu yaratmışıq. Çünki bizim üçün yaxşı boya yalnız başlanğıcdır — əsas olan gözəl nəticədir.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Rəng tətbiq olunmayıb",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Rəng vizualizatoru",
+    "where": [
+      "cart.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Rəng vizualizatoru və məsləhət xidməti ilə hər kəsin öz məkanına uyğun rəngi tapmasına kömək etmək.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Rəng vizualizatorunda hazır otaqları və ya öz otağınızın şəklini ZAN palitrası ilə rəngləyin, əvvəl və sonrakı görünüşü müqayisə edin, nəticəni yükləyib yaxınlarınızla paylaşın.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Rəngi divara çəkmədən <em>görün</em>",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəngi götür",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Rəngi seçdiniz? <em>Növbəti addım</em>",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəngi seçin və səthə toxunun",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəngi sınayın",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Rəngin kodunu bizə göndərin — uyğun boyanı, sərfiyyatı və qiyməti birlikdə hesablayaq.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəngləmək istədiyiniz divara klikləyin — oxşar rəngli sahə avtomatik seçiləcək.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Rənglər",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Rəngsiz",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "RGB",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "RU",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Rulon ölçüsü",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "S305 · Abşeron sahili",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "sabah",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Sabit başlıq naviqasiyası",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sağ divar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Sahə",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sahə 1–{max} m² arasında olmalıdır",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Sahə seçilməyib",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Sahəni bilirəm",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sahəni daxil edin",
+    "where": [
+      "product-page.js"
+    ]
+  },
+  {
+    "key": "Sahəni daxil edin — lazım olan miqdarı və ən sərfəli qablaşdırma kombinasiyasını hesablayaq.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sahəni necə daxil edirsiniz?",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Saxlama",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Salam, <b data-user-field=\"firstName\">{1}</b>! Əlaqə məlumatlarınız, şifrəniz və ZAN Ustalar Klubu — hamısı burada.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Salam! Hansı rəng?",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Sarı tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "satış nöqtəsi",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Say",
+    "where": [
+      "cart-page.js",
+      "product-detail.html",
+      "shop.html",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Seçilmişlər",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Seçilmişlərdən çıxar",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Seçilmişlərə əlavə et",
+    "where": [
+      "visualizer-page.js",
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Seçim demək olar ki, bütün şəkli tutdu. Geri alıb dözümlülüyü azaldın.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Seçin",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sellülozik",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Sellülozik boya axtarın...",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Sellülozik boya və dolğular",
+    "where": [
+      "about.html",
+      "home.html"
+    ]
+  },
+  {
+    "key": "Sellülozik boyalar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-demo.js",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sellülozik boyalar və laklardan əvvəl çəkilən dolğu (astar) vernik. Taxtanın məsamələrini doldurur, səthi hamarlayır və son qatın sərfiyyatını azaldır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Sellülozik dolğu vernik",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Sellülozik parlaq boya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Sellülozik tiner, 10–20%",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Sement suvaq",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sevimli <em>məhsullarınız</em>",
+    "where": [
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sevimli məhsullar",
+    "where": [
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sevimlilər",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sevimlilər siyahınız boşdur",
+    "where": [
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sevimlilər təmizləndi",
+    "where": [
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Sevimlilər üçün hesabınıza daxil olun",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Sevimlilərdən çıxar",
+    "where": [
+      "product-page.js",
+      "shop-page.js",
+      "shop.js",
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Sevimlilərdən çıxarıldı",
+    "where": [
+      "product-page.js",
+      "shop-page.js",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Sevimlilərə əlavə et",
+    "where": [
+      "product-detail.html",
+      "product-page.js",
+      "shop-page.js",
+      "shop.html",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Sevimlilərə əlavə olundu",
+    "where": [
+      "product-page.js",
+      "shop-page.js",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Səbət",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səbət təmizləndi",
+    "where": [
+      "cart-page.js"
+    ]
+  },
+  {
+    "key": "Səbət üçün hesabınıza daxil olun",
+    "where": [
+      "auth.js"
+    ]
+  },
+  {
+    "key": "Səbət və sifariş",
+    "where": [
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Səbət, sevimlilər və şəxsi kabinet üçün telefon nömrəniz və ya e-poçtunuzla daxil olun.",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Səbətdəki məhsullar",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Səbətdən silindi",
+    "where": [
+      "cart-page.js",
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Səbətə at",
+    "where": [
+      "product-detail.html",
+      "product-page.js",
+      "shop.html",
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Səbətə bax",
+    "where": [
+      "shop.js"
+    ]
+  },
+  {
+    "key": "Səbətə əlavə olundu",
+    "where": [
+      "shop.js",
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Səbətə keç",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist-page.js",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səbəti bağla",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səbəti təmizlə",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Səbətiniz boşdur",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səhər dumanı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Səhər şəfəqi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Səhifə {n}",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Səhifə yolu",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səhifə yüklənir…",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səhifələr",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Səhifənin başına qayıt",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səhra küləyi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Səma",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer-data.js",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sərfiyyat",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sərin vurğu",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Sərt və elastik təbəqə yaradır — gündəlik gediş-gəlişə və mebelin sürüşdürülməsinə davamlıdır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Səth {n}",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Səth 1",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Səth görünüşü",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Səth hələ boşdur",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Səthə toxunun — rəng dərhal tətbiq olunur",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Səthi hazırlayın",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Səthi sil",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Səthlər",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Sıçramır, damcılamır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Sıfırla",
+    "where": [
+      "shop.html",
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Sıfırlandı",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Sıralama",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Sifariş",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifariş addımları",
+    "where": [
+      "cart.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifariş et",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sifariş nömrəsi",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifariş və çatdırılma",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Sifariş və məsləhət üçün zəng edin",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Sifarişdən sonra təhlükəsiz ödəniş səhifəsində",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişi göndərmək alınmadı. Bir az sonra yenidən cəhd edin.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Sifarişi rəsmiləşdir",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Sifarişi təsdiqlə",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişi təsdiqləmək üçün bu nömrəyə zəng edəcəyik.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişin <em>rəsmiləşdirilməsi</em>",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişin xülasəsi",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Sifarişin rəsmiləşdirilməsi",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişin təsdiqini bu ünvana göndərəcəyik.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişiniz <em>qəbul olundu</em>",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Sifarişiniz <small data-sum=\"count\">{1}</small>",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası — yağışa və çirklənməyə davamlı.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Silikon qatranı, akril dispersiya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sintetik",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Sintetik boya axtarın...",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Sintetik boya və laklar",
+    "where": [
+      "about.html",
+      "home.html"
+    ]
+  },
+  {
+    "key": "Sintetik boyalar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-demo.js",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Sintetik mat boya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Sintetik parlaq boya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Sintetik parlaq parket lakı",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Siyahı görünüşü",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Siyahını təmizlə",
+    "where": [
+      "product-detail.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Siz ZAN Ustalar Klubunun üzvüsünüz",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Sizə lazımdır",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sizin <em>səbətiniz</em>",
+    "where": [
+      "cart.html"
+    ]
+  },
+  {
+    "key": "Slayd {n}",
+    "where": [
+      "home.js"
+    ]
+  },
+  {
+    "key": "Sol divar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Son baxdığınız <em>məhsullar</em>",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Son qatın sərfiyyatını azaldır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Sonra",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Spam yoxdur — istənilən vaxt abunəlikdən çıxa bilərsiniz.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Status",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Stokda var",
+    "where": [
+      "product-detail.html",
+      "product-page.js",
+      "shop-page.js",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Stokda yoxdur",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "product-page.js",
+      "shop-page.js",
+      "shop.html",
+      "shop.js",
+      "wishlist-page.js"
+    ]
+  },
+  {
+    "key": "Su əsaslı boya axtarın...",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Su əsaslı boyalar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-demo.js",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Su əsaslı, sintetik və sellülozik boyalar, lak, divar kağızları və yapışdırıcılar — ZAN Boya. Rəng vizualizatoru və bütün Azərbaycan üzrə çatdırılma.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Su ilə, 5–10%",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Sualınızı və ya təklifinizi yazın…",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Sualınızı yazın",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Sumqayıt",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Suvaq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Suyu hazırlayın",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Suyu itələyir, buxarı keçirir",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Süd köpüyü",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Südlü qəhvə",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Sürətli baxış",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Sürətli çatdırılma ilə məhsullarımızı ölkənin dörd bir yanına çatdırmaq.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Sürətli əlaqə",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Sürətli quruma",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Sürətli quruma, peşəkar nəticə",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Süsən",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Şabalıd",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Şaftalı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Şaftalı çiçəyi",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Şamaxı",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Şəhər / rayon",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Şəhər və ya rayonu seçin.",
+    "where": [
+      "account-page.js",
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Şəhəri seçin",
+    "where": [
+      "checkout-page.js",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Şəxsi kabinet",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Şəki",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Şəkil {n}",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Şəkil rənglərin siyahısı ilə birlikdə yükləndi.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Şəkil yüklə",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Şəkil yükləndi",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Şəkli buraya buraxın",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Şəkli hazırlamaq alınmadı.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Şəkliniz heç yerə göndərilmir — bütün emal brauzerinizdə aparılır.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "şənbə",
+    "where": [
+      "contact-page.js"
+    ]
+  },
+  {
+    "key": "Şərab",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Şifrə",
+    "where": [
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Şifrə dəyişdirildi",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Şifrə dəyişdirilmədi. Hazırkı şifrəni yoxlayın.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Şifrə ən azı {n} simvol olmalıdır.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Şifrə yazın.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Şifrədə həm hərf, həm rəqəm olmalıdır.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Şifrələr üst-üstə düşmür.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Şifrəni bərpa edin",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Şifrəni dəyiş",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Şifrəni gizlət",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Şifrəni göstər",
+    "where": [
+      "account.html",
+      "forgot-password.html",
+      "forms.js",
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Şifrəni xatırladınız?",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Şifrəni təkrar yazın",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Şifrəni təkrar yazın.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Şifrəni təkrarlayın",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Şifrəni unutmusunuz?",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Şifrəni yenidən yazın",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Şifrəni yenilə",
+    "where": [
+      "account.html",
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Şifrəni yeniləmək alınmadı. Bir az sonra yenidən cəhd edin.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Şifrənin bərpası",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Şifrəniz",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Şifrəniz yeniləndi",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Şifrənizi yazın.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Şirkətin adı",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Şirkətin adını yazın.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Şirvan",
+    "where": [
+      "account.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Şuşa dumanı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "T506 · Terrakota",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Taxıl",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Taxta",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Taxta döşəmə",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Taxta mebel",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Taxta panellər",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Taxta və mebel",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Taxta və mebel üçün tez quruyan, asan yonulan, hamar və zərif səth yaradan məhsullar.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Taxta və mebel üçün tez quruyan, asan yonulma və hamar, zərif səth yaradan sellüloz əsaslı məhsullar.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Taxta və metal (lak, emal)",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Taxtanı 180–240 dənəli zımpara ilə hamarlayın, tozunu tam təmizləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Taxtanın məsamələrini dolduran, tez quruyan və asan zımparalanan astar vernik.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Taxtanın naxışını qabardır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tavan",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Tavanlar",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tavanlar üçün ağ, yüksək örtücülüklü və sıçramayan su əsaslı boya.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Tavanlar üçün xüsusi hazırlanmış, qar kimi ağ su əsaslı boya. Qatılaşdırılmış tərkibi sayəsində sıçramır və damcılamır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Texniki göstəricilər",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Tekstil",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Telefon",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Telefon / e-poçt və ya şifrə yanlışdır.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Telefon nömrənizi və ya e-poçtunuzu yazın.",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Telefon nömrənizi yazın.",
+    "where": [
+      "contact-page.js",
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Telefon nömrəsini düzgün yazın, məsələn: 050 123 45 67",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Telefon nömrəsini kopyala",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Telefon və ya e-poçt",
+    "where": [
+      "forgot-password.html",
+      "login.html"
+    ]
+  },
+  {
+    "key": "Telefonunuza və ya e-poçtunuza 6 rəqəmli kod gəlir.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Telegram",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Terrakota",
+    "where": [
+      "home.html",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Tez cavab lazımdır?",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Tez quruyur",
+    "where": [
+      "home.html",
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Təhvil alanda POS-terminal ilə",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Təkliflər və rəsmi sorğular üçün",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Təkrarlandı",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Təlim və seminarlar",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Təmir işləri üçün uyğundur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tərkibində həlledici var: yalnız yaxşı havalandırılan yerdə, qoruyucu maska ilə işləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tərkibindəki antiseptik əlavə divarı kif və göbələkdən qoruyur; kağızı yapışdırdıqdan sonra da yerini düzəltmək mümkündür.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Təsdiq",
+    "where": [
+      "cart.html",
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Təsdiq kodu",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Təsdiq kodunu <b data-forgot-target>{1}</b> ünvanına göndərdik. Kod qısa müddət ərzində etibarlıdır.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Təsdiq kodunu heç kimə deməyin — ZAN əməkdaşları onu soruşmur",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Təsdiq kodunu yazın.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Təsdiqdən sonra klub imkanları açılır",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Təsdiqlə",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Təsdiqləyin",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Təsvir",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Təşəkkür edirik! Mütəxəssisimiz ən qısa zamanda sizinlə əlaqə saxlayacaq.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Təşəkkür edirik! Operatorumuz iş saatlarında sizinlə əlaqə saxlayıb sifarişi və çatdırılma vaxtını təsdiqləyəcək.",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "Tətbiq",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tətbiq edin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tətbiq olunur:",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Tətbiq temperaturu",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "TikTok",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Toxumalı və modern dizaynlar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Toxunuşa 1 saat, qatlar arası 2–4 saat, tam 24 saat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Toxunuşa 1 saat, qatlar arası 4–6 saat, tam 24 saat",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Toxunuşa 15–20 dəqiqə, tam 2 saat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Toxunuşa 4–6 saat, tam 24 saat",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Toxunuşa 6–8 saat, gəzmək üçün 24 saat, tam 7 gün",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Toxunuşa quruma",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Topalanmadan həll olur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Topdan alış və əməkdaşlıq şərtləri üçün müraciət göndərin — mövzu avtomatik seçiləcək.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Toz gülü",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Tozdan, yağdan və qopan köhnə boyadan təmizləyin, çatları doldurun. Yeni suvaq ən azı 28 gün qurumalıdır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tozdan, yağdan və qopan köhnə boyadan təmizləyin, çatları şpatlyovka ilə doldurun.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tozu əlavə edin",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tozu yavaş-yavaş, fasiləsiz qarışdıraraq tökün — topalanmasın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Tövsiyə olunan",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Tövsiyə olunan <em>məhsullar</em>",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Tövsiyə olunan qablaşdırma",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "TR",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Trend 2026",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Trend rənglər",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Tünd cüt",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Tünd rejim",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "site.js",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Tünd şokolad",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Tünd ton — vurğu divarı və işıqlı, geniş otaqlar üçün idealdır.",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Tüstü",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Tütün yarpağı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Uayt-spirit, 5–10%",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Uğurlu",
+    "where": [
+      "site.js"
+    ]
+  },
+  {
+    "key": "Universal divar kağızı yapışdırıcısı",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "USTA",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "usta işləyərkən və ya rənglənmiş məkan — 1200×1500 (4:5), JPG / WebP",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Usta sertifikatı",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Ustaların <em>sevimlisinə</em> çevrilən brend",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Ustalarla birlikdə böyümək",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Ustanın təcrübəsini dinləyir, məhsullarımızı onun işini asanlaşdırmaq üçün təkmilləşdiririk.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Ustasınızsa, kabinetdən kluba müraciət edin.",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Ustaya hörmət",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "UV şüalarına davamlı",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "UV şüalarına davamlıdır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "UV şüalarına və solmağa davamlıdır",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Uyğun kağızlar",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Uyğun məhsul tapılmadı",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Uyğun məhsul yoxdur",
+    "where": [
+      "shop-page.js"
+    ]
+  },
+  {
+    "key": "Uyğun rənglər",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Uyğundur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Uzunmüddətli qoruma və estetika",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Uzunömürlü, parlaq bitişli örtük",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Üç sadə addımda yeni şifrə təyin edin — səbətiniz və sevimliləriniz yerində qalacaq.",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Ümumi məlumat",
+    "where": [
+      "about.html",
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Ünvan",
+    "where": [
+      "checkout.html",
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Ünvanı ətraflı yazın: küçə, bina, mənzil.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Üstünlükləri",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Üz qatı",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Üzvlük",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Valik və ya fırça ilə 2 qat çəkin; qatlar arası 2–4 saat gözləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Valik, fırça və ya pulverizatorla 2 qat çəkin; qatlar arası 4–6 saat gözləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Vanil",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Veb sayt",
+    "where": [
+      "account.html",
+      "checkout.html",
+      "contact.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "Verdiyimiz sözün arxasında dururuq — həm məhsulda, həm xidmətdə.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "vernik",
+    "where": [
+      "extract.js (EXTRA)"
+    ]
+  },
+  {
+    "key": "və ya öz otağınızın şəklini yükləyin",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Vinil",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Vinil üz qatı səthi nəmdən və çirkdən qoruyur — nəm parça ilə silinə bilər.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Vizualizator",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Vizualizator əməliyyatları",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Vizualizatoru aç",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "VÖEN",
+    "where": [
+      "checkout.html"
+    ]
+  },
+  {
+    "key": "VÖEN 10 rəqəmdən ibarət olmalıdır.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "VÖEN-i yazın.",
+    "where": [
+      "checkout-page.js"
+    ]
+  },
+  {
+    "key": "Yadda saxlandı",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Yağışlı havada, birbaşa günəş altında və +5 °C-dən aşağı temperaturda işləməyin. Alətləri işdən sonra su ilə yuyun.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Yaxın ton",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Yaxşı",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Yaxşı boya yalnız başlanğıcdır — əsas olan gözəl nəticədir.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "Yaxşı havalandırılan yerdə işləyin, açıq oddan uzaq saxlayın. Alətləri uayt-spirit ilə təmizləyin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yalnız şəkil faylı seçin (JPG, PNG və ya WEBP).",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Yan divarlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "yapışdırıcı",
+    "where": [
+      "extract.js (EXTRA)",
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yapışdırıcı",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yapışdırıcı divara çəkilir",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yapışdırıcılar",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-demo.js",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "Yapışdırıcını divara çəkin, zolağı qoyub mərkəzdən kənarlara hamarlayın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yapışdırıcını fırça və ya valiklə divara və ya kağıza bərabər çəkin.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yapışdırın",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yapışdırma",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yararlılıq müddəti",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "Yarımmat, şəffaf",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yasəmən",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Yaşıl tonlar",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Yataq otağı",
+    "where": [
+      "product-demo.js",
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Yeni",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop-page.js",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Yeni · onlayn alət",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yeni hesab",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "Yeni kolleksiyalar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yeni kolleksiyalar, özəl endirimlər və ustalarımızdan rəng məsləhətləri — ayda bir-iki dəfə, birbaşa e‑poçtunuza.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yeni məhsullar və tətbiq üsulları üzrə görüşlər.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "Yeni müraciət",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Yeni rənglər və endirimlər artıq e-poçtunuza gələcək.",
+    "where": [
+      "home.js"
+    ]
+  },
+  {
+    "key": "Yeni səth",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Yeni şifrə",
+    "where": [
+      "account.html",
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Yeni şifrə hazırkı şifrədən fərqli olmalıdır.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Yeni şifrələr üst-üstə düşmür.",
+    "where": [
+      "account-page.js"
+    ]
+  },
+  {
+    "key": "Yeni şifrənin təkrarı",
+    "where": [
+      "account.html",
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Yeni şifrəniz",
+    "where": [
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Yeni texnologiyaları, rəng trendlərini və rəqəmsal alətləri izləyir və tətbiq edirik.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Yeni təsdiq kodu göndərildi.",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Yenidən <em>xoş gəldiniz</em>",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "Yenidən göndər",
+    "where": [
+      "auth-page.js",
+      "forgot-password.html"
+    ]
+  },
+  {
+    "key": "Yenidən göndər ({time})",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "Yenilik",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "Yeniliklərdən <em>ilk siz</em> xəbər tutun",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "YouTube",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Yuyula bilir",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yuyula bilir, rəngi uzun müddət solmur",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yüklə",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Yükləndi",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Yüklənir…",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "Yüksək",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yüksək keyfiyyəti ilə seçilən",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yüksək keyfiyyətli yapışdırıcılar",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yüksək örtücülük",
+    "where": [
+      "home.html",
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yüksək örtücülük, sürətli quruma və uzun ömürlü parlaqlıq — hər otaq üçün doğru seçim.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Yüksək örtücülüyü ilə kiçik qüsurları gizlədir, işığı bərabər yayan mat səth yaradır.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yüksək örtücülüyü sayəsində çox vaxt iki qat kifayət edir; metal və taxta üçün uyğundur.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Yüksək yapışma qabiliyyəti",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Zamanla saralmır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "ZAN",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "ZAN — hər səthə uzunömürlü gözəllik qazandıran boya və örtük məhsulları brendidir. Məqsədimiz sadədir: yaxşı nəticəni hər kəs üçün əlçatan etmək.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "ZAN — rəngin yolu: xammaldan sizin evinizə qədər",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "ZAN ailəsinə <em>qoşulun</em>",
+    "where": [
+      "register.html"
+    ]
+  },
+  {
+    "key": "ZAN Boya",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "ZAN Boya — əsas səhifə",
+    "where": [
+      "forgot-password.html",
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "ZAN Boya — xəritədə ünvan",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "ZAN Boya · Rəng vizualizatoru",
+    "where": [
+      "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "ZAN Boya haqqında: istehsal, keyfiyyət nəzarəti və komandamız. Qısa zamanda ustaların sevimlisinə çevrilən boya brendi.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "ZAN Boya ilə əlaqə: qaynar xətt +994 51 206 50 54, WhatsApp və müraciət forması — məhsul, sifariş, rəng seçimi və əməkdaşlıq sualları.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "ZAN Boya. Bütün hüquqlar qorunur.",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "ZAN Boyanın missiyası, məqsədləri və dəyərləri — hər evə keyfiyyətli rəng, ustalara etibarlı məhsul.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "ZAN brend filmi — rəngin yolu: xammaldan sizin evinizə qədər",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "ZAN brend videosu — Evlərə rəng, ustalara etibar",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "ZAN divar kağızı yapışdırıcıları",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "ZAN hesabı",
+    "where": [
+      "login.html"
+    ]
+  },
+  {
+    "key": "ZAN istifadəçisi",
+    "where": [
+      "auth-page.js"
+    ]
+  },
+  {
+    "key": "ZAN qırmızı",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "ZAN qırmızısı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "ZAN qısa zamanda ustaların və ev sahiblərinin etibar etdiyi boya brendinə çevrilib.",
+    "where": [
+      "about.html"
+    ]
+  },
+  {
+    "key": "ZAN məhsullarının kataloqu: su əsaslı, sintetik və sellülozik boyalar, divar kağızları və yapışdırıcılar — qiymət, çəki və stok məlumatı ilə.",
+    "where": [
+      "shop.html"
+    ]
+  },
+  {
+    "key": "ZAN palitrası",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "ZAN rənglərini otağınızda sınayın: hazır məkanlar və ya öz şəkliniz, əvvəl/sonra müqayisəsi, uyğun rəng təklifləri.",
+    "where": [
+      "visualizer.html"
+    ]
+  },
+  {
+    "key": "ZAN sellülozik dolğu vernik",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "ZAN sintetik parlaq lak",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "ZAN sintetik və akrilik boya çeşidləri",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "ZAN tərəfindən təsdiqlənmiş usta statusu.",
+    "where": [
+      "account.html"
+    ]
+  },
+  {
+    "key": "ZAN Ustalar Klubu",
+    "where": [
+      "account.html",
+      "login.html",
+      "register.html"
+    ]
+  },
+  {
+    "key": "ZAN Ustalar Klubu, təlimlər və gündəlik dəstəklə peşəkarların ən yaxın tərəfdaşı olmaq.",
+    "where": [
+      "mission.html"
+    ]
+  },
+  {
+    "key": "ZAN üstünlükləri",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "ZAN yüksək keyfiyyətli divar kağızları",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "ZANPLASTİK akril boya",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "ZANSİLAN — silikon əsaslı, suyu itələyən və nəfəs alan fasad boyası. 3,5 kq, 10 kq və 25 kq qablaşdırma. Bütün Azərbaycan üzrə çatdırılma.",
+    "where": [
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "ZANSİLAN silikon qatranı əsasında hazırlanmış fasad boyasıdır. Səthdə nəfəs alan qoruyucu təbəqə yaradır: yağış suyu divara hopmur, divarın içindəki nəm isə rahatlıqla çölə çıxır. Bu, suvağın çatlamasının, kif və göbələyin qarşısını alır.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html"
+    ]
+  },
+  {
+    "key": "ZANSİLAN silikonlu fasad boyası",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "ZANTAVAN tavan boyası",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Zeytun budağı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Zeytun yağı",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Zəfəran",
+    "where": [
+      "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Zəif",
+    "where": [
+      "forms.js"
+    ]
+  },
+  {
+    "key": "Zəng edin",
+    "where": [
+      "contact.html",
+      "home.html"
+    ]
+  },
+  {
+    "key": "Zəngin naxış və rəng çeşidləri ilə evinizə yeni bir xarakter qazandırın.",
+    "where": [
+      "home.html"
+    ]
+  },
+  {
+    "key": "Zəngin naxışlı premium divar kağızı kolleksiyası. Flizelin əsası sayəsində asan yapışdırılır, divarda qabarmır və büzülmür.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Zəngin naxışlı, yuyula bilən premium divar kağızı kolleksiyası.",
+    "where": [
+      "product-demo.js",
+      "product-detail.html",
+      "shop.html"
+    ]
+  },
+  {
+    "key": "Zımparaya hazır",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "Zolaqları hündürlükdən 5–10 sm uzun kəsin, naxışı uyğunlaşdırın.",
+    "where": [
+      "product-demo.js"
+    ]
+  },
+  {
+    "key": "WhatsApp",
+    "where": [
+      "about.html",
+      "account.html",
+      "cart.html",
+      "checkout.html",
+      "contact.html",
+      "forgot-password.html",
+      "home.html",
+      "login.html",
+      "mission.html",
+      "product-detail.html",
+      "register.html",
+      "shop.html",
+      "visualizer.html",
+      "wishlist.html"
+    ]
+  },
+  {
+    "key": "WhatsApp-da yazın",
+    "where": [
+      "contact.html"
+    ]
+  }
+]
