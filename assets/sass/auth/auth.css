@@ -500,6 +500,11 @@
   text-indent: 0.5em;
   font-variant-numeric: tabular-nums;
 }
+#auth .au-code::-moz-placeholder {
+  font-family: inherit;
+  letter-spacing: 0.5em;
+  color: var(--c-divider-soft);
+}
 #auth .au-code::placeholder {
   font-family: inherit;
   letter-spacing: 0.5em;
@@ -524,7 +529,6 @@
   color: var(--c-brand);
   background: none;
   cursor: var(--cursor-pointer);
-  /* geri sayım gedəndə */
 }
 #auth .au-link:hover:not(:disabled) {
   text-decoration: underline;
@@ -533,6 +537,9 @@
   outline: 2px solid var(--c-brand);
   outline-offset: 3px;
   border-radius: 4px;
+}
+#auth .au-link {
+  /* geri sayım gedəndə */
 }
 #auth .au-link:disabled {
   color: var(--c-muted-soft);
@@ -593,6 +600,4 @@
 }
 
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=auth.css.map */
+/* #endregion *//*# sourceMappingURL=auth.css.map */

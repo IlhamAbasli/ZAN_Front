@@ -111,12 +111,13 @@
   list-style: none;
   background: var(--c-surface);
   box-shadow: var(--shadow-soft);
-  /* addımlar arasında qısa xətt */
-  /* keçilmiş addım: rəqəmin yerinə ✓ */
 }
 #order-hero .oh-steps li {
   display: flex;
   align-items: center;
+}
+#order-hero .oh-steps {
+  /* addımlar arasında qısa xətt */
 }
 #order-hero .oh-steps li + li::before {
   content: "";
@@ -167,6 +168,9 @@
   color: var(--c-muted);
   background: var(--c-surface-soft);
   border: 1px solid var(--c-line);
+}
+#order-hero .oh-steps {
+  /* keçilmiş addım: rəqəmin yerinə ✓ */
 }
 #order-hero .oh-steps .is-done i {
   position: relative;
@@ -368,7 +372,6 @@
   display: grid;
   gap: 12px;
   margin: 0;
-  /* "Pulsuz", "Növbəti addımda" kimi mətn dəyərləri */
 }
 #order .od-sum > div {
   display: flex;
@@ -388,6 +391,9 @@
   text-align: right;
   color: var(--c-ink);
   font-variant-numeric: tabular-nums;
+}
+#order .od-sum {
+  /* "Pulsuz", "Növbəti addımda" kimi mətn dəyərləri */
 }
 #order .od-sum .is-note {
   font-weight: 600;
@@ -568,7 +574,8 @@
 #order .ct-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 #order .ct-info {
@@ -892,12 +899,15 @@
   border-radius: 14px;
   border: 1px solid var(--c-line);
   background: var(--c-surface-soft);
-  /* say nişanı */
 }
 #order .co-item-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#order .co-item-thumb {
+  /* say nişanı */
 }
 #order .co-item-thumb i {
   position: absolute;
@@ -957,14 +967,18 @@
   text-align: center;
   background: var(--c-surface);
   box-shadow: var(--shadow-card);
-  /* fokus proqramla verilir (checkout-page.js → done) */
-  /* yuxarıda marka rəngində incə zolaq */
 }
 #order .co-done[hidden] {
   display: none;
 }
+#order .co-done {
+  /* fokus proqramla verilir (checkout-page.js → done) */
+}
 #order .co-done:focus {
   outline: none;
+}
+#order .co-done {
+  /* yuxarıda marka rəngində incə zolaq */
 }
 #order .co-done::before {
   content: "";
@@ -1086,6 +1100,4 @@
   }
 }
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=order.css.map */
+/* #endregion *//*# sourceMappingURL=order.css.map */

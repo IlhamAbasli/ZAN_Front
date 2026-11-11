@@ -200,7 +200,6 @@
   background: var(--c-surface);
   border: 1px solid var(--c-line);
   box-shadow: var(--shadow-soft);
-  /* açıq olanda nöqtə "nəfəs alır" */
 }
 #contact-hero .ch-status[hidden] {
   display: none;
@@ -217,6 +216,9 @@
   height: 10px;
   border-radius: 50%;
   background: var(--st);
+}
+#contact-hero .ch-status {
+  /* açıq olanda nöqtə "nəfəs alır" */
 }
 #contact-hero .ch-status.is-open i::after {
   content: "";
@@ -444,7 +446,6 @@
   padding: 0;
   list-style: none;
   font-size: 14px;
-  /* bugünkü gün (contact-page.js) */
 }
 #contact-channels .cc-hours li {
   display: flex;
@@ -459,6 +460,9 @@
   font-weight: 600;
   color: var(--c-ink);
   white-space: nowrap;
+}
+#contact-channels .cc-hours {
+  /* bugünkü gün (contact-page.js) */
 }
 #contact-channels .cc-hours li.is-today {
   color: var(--c-ink);
@@ -740,15 +744,19 @@
   font-weight: 700;
   text-decoration: none;
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease), background-color 0.25s var(--ease);
-  /* WhatsApp: dolu brend ikonu (.zan-icon) — rəngini özü saxlayır */
-  /* "Zəng edin": xətti ikon. Yalnız birbaşa uşaq — .zan-icon içindəki
-     dolu SVG-yə fill: none tətbiq olunsa, ikon görünməz olur */
 }
 #contact-area .ca-btn:first-of-type {
   margin-top: 20px;
 }
+#contact-area .ca-btn {
+  /* WhatsApp: dolu brend ikonu (.zan-icon) — rəngini özü saxlayır */
+}
 #contact-area .ca-btn i {
   font-size: 20px;
+}
+#contact-area .ca-btn {
+  /* "Zəng edin": xətti ikon. Yalnız birbaşa uşaq — .zan-icon içindəki
+     dolu SVG-yə fill: none tətbiq olunsa, ikon görünməz olur */
 }
 #contact-area .ca-btn > svg {
   width: 18px;
@@ -986,6 +994,4 @@
   }
 }
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=contact.css.map */
+/* #endregion *//*# sourceMappingURL=contact.css.map */

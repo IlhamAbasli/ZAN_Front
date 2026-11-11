@@ -47,7 +47,6 @@
   bottom: -40px;
   width: 220px;
   height: 300px;
-  /* kod — zolağın yuxarısında ağ etiket */
 }
 #vz-hero .vh-fan span {
   position: absolute;
@@ -77,6 +76,9 @@
 }
 #vz-hero .vh-fan span:nth-child(5) {
   animation-delay: 0.4s;
+}
+#vz-hero .vh-fan {
+  /* kod — zolağın yuxarısında ağ etiket */
 }
 #vz-hero .vh-fan i {
   position: absolute;
@@ -425,7 +427,9 @@
   aspect-ratio: var(--ar, 1.5);
   margin-inline: auto;
   touch-action: none;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 #vz-studio .vz-frame canvas {
@@ -544,7 +548,6 @@
   border-radius: 14px;
   border: 2px dashed var(--c-brand);
   background: rgba(201, 20, 44, 0.12);
-  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   pointer-events: none;
 }
@@ -591,7 +594,6 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  /* klaviatura fokusu tutacağın ətrafında görünür */
 }
 #vz-studio .vz-compare input {
   position: absolute;
@@ -601,6 +603,9 @@
   margin: 0;
   opacity: 0;
   cursor: ew-resize;
+}
+#vz-studio .vz-compare {
+  /* klaviatura fokusu tutacağın ətrafında görünür */
 }
 #vz-studio .vz-compare input:focus-visible + .vz-compare-line i, #vz-studio .vz-compare:focus-within .vz-compare-line i {
   outline: 3px solid var(--c-gold);
@@ -917,7 +922,8 @@
   width: 100%;
   height: auto;
   aspect-ratio: 3/2;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 0 0 1px var(--c-line);
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
@@ -1225,7 +1231,8 @@
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr);
   grid-template-rows: auto auto;
-  column-gap: 10px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
   align-items: center;
   width: 100%;
   padding: 6px;
@@ -1340,6 +1347,9 @@
   color: var(--c-ink);
   background: var(--c-surface-soft);
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+#vz-studio .vz-search input::-moz-placeholder {
+  color: var(--c-muted-soft);
 }
 #vz-studio .vz-search input::placeholder {
   color: var(--c-muted-soft);
@@ -1613,6 +1623,4 @@
 }
 
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=visualizer.css.map */
+/* #endregion *//*# sourceMappingURL=visualizer.css.map */

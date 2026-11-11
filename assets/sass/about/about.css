@@ -101,7 +101,6 @@
   overflow: hidden;
   background: var(--c-surface-soft);
   isolation: isolate;
-  /* hündürlüyü qonşu sütundan alır (qalereyanın böyük kartı) */
 }
 .ab-media > img,
 .ab-media > video,
@@ -112,11 +111,15 @@
   width: 100%;
   height: 100%;
   border: 0;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .ab-media > picture {
   position: absolute;
   inset: 0;
+}
+.ab-media {
+  /* hündürlüyü qonşu sütundan alır (qalereyanın böyük kartı) */
 }
 .ab-media.is-fill {
   aspect-ratio: auto;
@@ -1087,6 +1090,4 @@
     width: 100%;
   }
 }
-/* #endregion */
-
-/*# sourceMappingURL=about.css.map */
+/* #endregion *//*# sourceMappingURL=about.css.map */

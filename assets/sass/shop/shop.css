@@ -313,11 +313,6 @@
   padding: 14px 0;
   border: 0;
   border-bottom: 1px dashed var(--c-line);
-  /*
-    Yalnız legend float-dur (Bootstrap reboot kimi): əks halda brauzer
-    fieldset-in padding-top-unu legend-in altına qoyur və artıq boşluq qalır.
-    Adi label float olmamalıdır — axtarış sahəsi onun ətrafına uzanırdı.
-  */
 }
 #shop-filters .sf-group:last-child {
   border-bottom: 0;
@@ -332,6 +327,13 @@
   font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--c-ink);
+}
+#shop-filters .sf-group {
+  /*
+    Yalnız legend float-dur (Bootstrap reboot kimi): əks halda brauzer
+    fieldset-in padding-top-unu legend-in altına qoyur və artıq boşluq qalır.
+    Adi label float olmamalıdır — axtarış sahəsi onun ətrafına uzanırdı.
+  */
 }
 #shop-filters .sf-group legend {
   float: left;
@@ -363,7 +365,9 @@
   color: var(--c-ink);
   background: var(--c-surface-soft);
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  /* brauzerin mavi "×" düyməsi əvəzinə saytın rəngində təmizləmə ikonu */
+}
+#shop-filters .sf-search input::-moz-placeholder {
+  color: var(--c-muted-soft);
 }
 #shop-filters .sf-search input::placeholder {
   color: var(--c-muted-soft);
@@ -372,6 +376,9 @@
   outline: none;
   border-color: var(--c-brand-line);
   box-shadow: 0 0 0 4px var(--c-brand-tint);
+}
+#shop-filters .sf-search input {
+  /* brauzerin mavi "×" düyməsi əvəzinə saytın rəngində təmizləmə ikonu */
 }
 #shop-filters .sf-search input::-webkit-search-cancel-button {
   width: 16px;
@@ -454,10 +461,12 @@
   color: var(--c-ink);
   cursor: var(--cursor-pointer);
   transition: background-color 0.2s var(--ease);
-  /* əsl checkbox görünməzdir, amma fokus və klaviatura onda qalır */
 }
 #shop-filters .sf-check:hover {
   background: var(--c-hover-fill);
+}
+#shop-filters .sf-check {
+  /* əsl checkbox görünməzdir, amma fokus və klaviatura onda qalır */
 }
 #shop-filters .sf-check input {
   position: absolute;
@@ -553,7 +562,8 @@
   background: none;
   pointer-events: none;
   -webkit-appearance: none;
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
 }
 #shop-filters .sf-range input::-webkit-slider-thumb {
   width: 22px;
@@ -706,7 +716,6 @@
 #shop-area .st-sort {
   position: relative;
   margin: 0;
-  /* ox */
 }
 #shop-area .st-sort select {
   height: 42px;
@@ -719,11 +728,15 @@
   background: var(--c-surface-soft);
   cursor: var(--cursor-pointer);
   -webkit-appearance: none;
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
 }
 #shop-area .st-sort select:focus-visible {
   outline: 2px solid var(--c-brand);
   outline-offset: 2px;
+}
+#shop-area .st-sort {
+  /* ox */
 }
 #shop-area .st-sort::after {
   content: "";
@@ -933,9 +946,6 @@
 }
 /* dar ekranda (2 sütun) kart yığcamlaşır */
 @media only screen and (max-width: 575px) {
-  #shop-area .catalog-grid:not(.is-list) {
-    /* dar kartda kateqoriya bir sətrə sığsın */
-  }
   #shop-area .catalog-grid:not(.is-list) .product-card {
     padding: 8px;
     border-radius: 18px;
@@ -945,6 +955,9 @@
   }
   #shop-area .catalog-grid:not(.is-list) .pc-name {
     font-size: 15px;
+  }
+  #shop-area .catalog-grid:not(.is-list) {
+    /* dar kartda kateqoriya bir sətrə sığsın */
   }
   #shop-area .catalog-grid:not(.is-list) .pc-category {
     font-size: 10px;
@@ -1133,7 +1146,8 @@
 #quick-view .qv-stage img {
   max-width: 100%;
   max-height: 340px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   filter: drop-shadow(0 24px 26px rgba(13, 21, 32, 0.22));
 }
 
@@ -1164,7 +1178,8 @@
 #quick-view .qv-thumbs button img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 #quick-view .qv-thumbs button[aria-pressed=true] {
   border-color: var(--pc-tint);
@@ -1343,6 +1358,4 @@
   }
 }
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=shop.css.map */
+/* #endregion *//*# sourceMappingURL=shop.css.map */

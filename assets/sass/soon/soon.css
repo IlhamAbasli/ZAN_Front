@@ -19,7 +19,8 @@
   z-index: -1;
   background-image: linear-gradient(var(--c-ink-ghost) 1px, transparent 1px), linear-gradient(90deg, var(--c-ink-ghost) 1px, transparent 1px);
   background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse at 70% 45%, #000 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 45%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(ellipse at 70% 45%, #000 0%, transparent 70%);
   opacity: 0.55;
   pointer-events: none;
 }
@@ -489,6 +490,4 @@
   }
 }
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=soon.css.map */
+/* #endregion *//*# sourceMappingURL=soon.css.map */

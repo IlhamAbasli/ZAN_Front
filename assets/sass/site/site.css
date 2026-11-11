@@ -668,8 +668,6 @@ button:disabled,
   opacity: 0;
   visibility: hidden;
   z-index: var(--z-sticky);
-  /* ox inline SVG-dir: rəngini düymənin color dəyərindən alır */
-  /* tərəqqi halqası düymənin kənarından bir qədər kənarda dayanır */
 }
 #button:hover {
   cursor: var(--cursor-pointer);
@@ -683,11 +681,17 @@ button:disabled,
   outline: 2px solid var(--c-brand);
   outline-offset: 3px;
 }
+#button {
+  /* ox inline SVG-dir: rəngini düymənin color dəyərindən alır */
+}
 #button .scroll-arrow {
   position: relative;
   z-index: 1;
   width: 20px;
   height: 20px;
+}
+#button {
+  /* tərəqqi halqası düymənin kənarından bir qədər kənarda dayanır */
 }
 #button .scroll-progress {
   position: absolute;
@@ -900,12 +904,16 @@ button:disabled,
   background: linear-gradient(100deg, color-mix(in srgb, var(--zt-c) 11%, transparent) 0%, transparent 42%), var(--c-surface);
   box-shadow: var(--shadow-menu), 0 2px 6px rgba(13, 21, 32, 0.06);
   touch-action: pan-y;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   animation: ztIn 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
-  /* sürüşdürüb bağlama: JS --zt-dx verir */
 }
 .zan-toast.is-leaving .zan-toast-card {
   animation: ztOut 0.28s var(--ease) forwards;
+}
+.zan-toast-card {
+  /* sürüşdürüb bağlama: JS --zt-dx verir */
 }
 .zan-toast.is-dragging .zan-toast-card {
   animation: none;
@@ -945,7 +953,6 @@ button:disabled,
   background: radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.5), transparent 42%), var(--zt-c);
   box-shadow: 0 8px 18px color-mix(in srgb, var(--zt-c) 38%, transparent);
   animation: ztBlob 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both;
-  /* ləkədən asılan damcı */
 }
 .zan-toast-icon svg {
   width: 22px;
@@ -955,6 +962,9 @@ button:disabled,
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.zan-toast-icon {
+  /* ləkədən asılan damcı */
 }
 .zan-toast-icon::after {
   content: "";
@@ -1041,7 +1051,8 @@ button:disabled,
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   background: var(--c-surface-soft);
   border: 1px solid var(--c-line);
 }
@@ -1342,10 +1353,6 @@ button:disabled,
   position: relative;
   background-color: var(--c-surface);
   /* menyu açan elementlər <button>-dur: brauzerin düymə stilini sıfırlayırıq */
-  /* açıq panelin oxu çevrilir */
-  /* açılan panellərin ortaq görünüşü */
-  /* dairəvi ikon fonu ayrıca sarğıdadır: `border-radius` + `padding`
-     birbaşa <img> üzərində olduqda Chrome kvadrat olmayan şəkli səhv kəsir */
 }
 .site-header button {
   font: inherit;
@@ -1361,11 +1368,17 @@ button:disabled,
   outline-offset: 3px;
   border-radius: 6px;
 }
+.site-header {
+  /* açıq panelin oxu çevrilir */
+}
 .site-header [data-disclosure] .zan-icon-angle-down {
   transition: transform 0.25s var(--ease);
 }
 .site-header [data-disclosure][aria-expanded=true] .zan-icon-angle-down {
   transform: rotate(180deg);
+}
+.site-header {
+  /* açılan panellərin ortaq görünüşü */
 }
 .site-header .menu {
   position: absolute;
@@ -1411,6 +1424,10 @@ button:disabled,
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
+}
+.site-header {
+  /* dairəvi ikon fonu ayrıca sarğıdadır: `border-radius` + `padding`
+     birbaşa <img> üzərində olduqda Chrome kvadrat olmayan şəkli səhv kəsir */
 }
 .site-header .icon-badge {
   display: flex;
@@ -1526,7 +1543,8 @@ button:disabled,
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #header-top .right-side > ul > li > a i,
 #header-top .right-side > ul > li > .content i {
@@ -1546,7 +1564,8 @@ button:disabled,
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /* #endregion */
@@ -1556,12 +1575,15 @@ button:disabled,
   display: flex;
   align-items: center;
   gap: 14px;
-  /* düz boz sütun əvəzinə incə keçidli ayırıcı */
 }
 #header-mid .logo img {
   width: auto;
   height: var(--h-logo);
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#header-mid .logo {
+  /* düz boz sütun əvəzinə incə keçidli ayırıcı */
 }
 #header-mid .logo .border-line {
   width: 1px;
@@ -1605,13 +1627,19 @@ button:disabled,
   padding: 0 14px 0 16px;
   height: 100%;
   outline: none;
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+#header-mid .search-area .content input::-moz-placeholder {
+  color: var(--c-muted-soft);
 }
 #header-mid .search-area .content input::placeholder {
   color: var(--c-muted-soft);
 }
 #header-mid .search-area .content input::-webkit-search-cancel-button {
-  appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
 }
 #header-mid .search-area .content .selection {
   position: relative;
@@ -1630,11 +1658,12 @@ button:disabled,
   white-space: nowrap;
   color: var(--c-muted);
   transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
-  /* uzun kateqoriya adı axtarış sahəsini sıxışdırmasın */
-  /* kateqoriya seçilib — axtarış onunla məhdudlaşır (site.js → header-search) */
 }
 #header-mid .search-area .content .selection .selector i {
   font-size: 11px;
+}
+#header-mid .search-area .content .selection .selector {
+  /* uzun kateqoriya adı axtarış sahəsini sıxışdırmasın */
 }
 #header-mid .search-area .content .selection .selector [data-search-category-label] {
   max-width: 150px;
@@ -1644,6 +1673,9 @@ button:disabled,
 #header-mid .search-area .content .selection .selector:hover {
   background-color: var(--c-hover-fill);
   color: var(--c-ink);
+}
+#header-mid .search-area .content .selection .selector {
+  /* kateqoriya seçilib — axtarış onunla məhdudlaşır (site.js → header-search) */
 }
 #header-mid .search-area .content .selection .selector.is-filtered {
   font-weight: 600;
@@ -1655,7 +1687,6 @@ button:disabled,
   right: 0;
   min-width: 230px;
   /* "Kateqoriya seçin" — panelin başlıq sətri */
-  /* kateqoriya variantı — radio gizlidir, seçim sağda işarə ilə görünür */
 }
 #header-mid .search-area .content .selection .menu li:first-child {
   padding: 6px 14px 8px;
@@ -1664,6 +1695,9 @@ button:disabled,
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--c-muted-soft);
+}
+#header-mid .search-area .content .selection .menu {
+  /* kateqoriya variantı — radio gizlidir, seçim sağda işarə ilə görünür */
 }
 #header-mid .search-area .content .selection .menu .search-cat {
   position: relative;
@@ -1694,7 +1728,8 @@ button:disabled,
   width: 16px;
   height: 16px;
   background-color: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
   opacity: 0;
   transform: scale(0.6);
   transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
@@ -1800,7 +1835,6 @@ button:disabled,
   gap: 4px;
   /* QEYD: bu elementlər Bootstrap-da `d-lg-flex` ilə göstərilməlidir.
      `d-lg-block` `display: block !important` verib mərkəzləməni pozur. */
-  /* nişan 21px ikonun sağ-üst küncündə mərkəzlənir */
 }
 #header-mid .actions .wishlist,
 #header-mid .actions .cart,
@@ -1830,7 +1864,8 @@ button:disabled,
 #header-sticky .actions .bars > img {
   width: 21px;
   height: 21px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 #header-mid .actions .wishlist:hover,
 #header-mid .actions .cart:hover,
@@ -1840,6 +1875,10 @@ button:disabled,
 #header-sticky .actions .bars:hover {
   background-color: var(--c-hover-fill);
   transform: translateY(-2px);
+}
+#header-mid .actions,
+#header-sticky .actions {
+  /* nişan 21px ikonun sağ-üst küncündə mərkəzlənir */
 }
 #header-mid .actions .wishlist-count,
 #header-mid .actions .cart-count,
@@ -1973,7 +2012,8 @@ button:disabled,
   height: 46px;
   padding: 4px;
   box-sizing: border-box;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 10px;
   background-color: var(--c-surface-soft);
   transition: transform 0.3s var(--ease);
@@ -2020,7 +2060,6 @@ button:disabled,
   z-index: 2;
   border-top: 1px solid var(--c-line);
   height: var(--h-header-bottom);
-  /* panel yalnız aria-expanded="true" olanda görünür */
 }
 #header-bottom .all-categories {
   height: var(--h-header-bottom);
@@ -2044,6 +2083,9 @@ button:disabled,
 #header-bottom .all-categories-toggle i {
   font-size: 11px;
   opacity: 0.85;
+}
+#header-bottom {
+  /* panel yalnız aria-expanded="true" olanda görünür */
 }
 #header-bottom .categories {
   position: absolute;
@@ -2129,7 +2171,6 @@ button:disabled,
   z-index: var(--z-sticky);
   /* yarı-şəffaf bulanıq fon: altındakı məzmun hiss olunur */
   background-color: var(--c-sticky-bg);
-  -webkit-backdrop-filter: saturate(1.5) blur(14px);
   backdrop-filter: saturate(1.5) blur(14px);
   border-bottom: 1px solid var(--c-line);
   box-shadow: var(--shadow-sticky);
@@ -2152,7 +2193,8 @@ button:disabled,
 #header-sticky .logo img {
   width: auto;
   height: 46px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 #header-sticky .logo .border-line {
   width: 1px;
@@ -2227,7 +2269,6 @@ button:disabled,
   transform: translateX(100%);
   visibility: hidden;
   transition: transform 0.4s var(--ease), visibility 0.4s;
-  /* panel statik axındadır, ona görə bağlı olanda yer tutmamalıdır */
 }
 .mobile-menu.is-open {
   transform: translateX(0);
@@ -2276,6 +2317,9 @@ button:disabled,
 }
 .mobile-menu .all-categories-toggle i {
   font-size: 12px;
+}
+.mobile-menu {
+  /* panel statik axındadır, ona görə bağlı olanda yer tutmamalıdır */
 }
 .mobile-menu .categories {
   display: none;
@@ -2376,7 +2420,6 @@ button:disabled,
   inset: 0;
   z-index: var(--z-menu-backdrop);
   background-color: rgba(13, 21, 32, 0.55);
-  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
@@ -2426,6 +2469,10 @@ body.has-menu-open {
   border-radius: var(--r-pill);
   outline: none;
   transition: border-color 0.25s var(--ease);
+}
+
+.mobile-menu .mobile-search input::-moz-placeholder {
+  color: var(--c-muted-soft);
 }
 
 .mobile-menu .mobile-search input::placeholder {
@@ -2541,7 +2588,8 @@ body.has-menu-open {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .mobile-menu .mobile-lang-options a:hover {
@@ -2634,7 +2682,9 @@ body.has-menu-open {
   letter-spacing: -0.04em;
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.06);
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 /* #endregion */
@@ -2661,10 +2711,6 @@ body.has-menu-open {
   z-index: 1;
   height: var(--fw-h);
   pointer-events: none;
-  /* zolağın altındakı kölgə — boya qalın görünsün */
-  /* footer ekrandan kənardadırsa sonsuz animasiyalar dayanır — boş yerə
-     hər kadr SVG yenidən çəkilməsin (site.js → footer-wave: .is-paused) */
-  /* maska 1600 vahiddir: son 160-ı yumşaq keçiddir — zolağın ucu kəsik görünməsin */
 }
 .footer-wave svg {
   display: block;
@@ -2677,6 +2723,9 @@ body.has-menu-open {
 .footer-wave .fw-gold {
   fill: #f2cf6b;
   opacity: 0.55;
+}
+.footer-wave {
+  /* zolağın altındakı kölgə — boya qalın görünsün */
 }
 .footer-wave .fw-shade {
   fill: #05080d;
@@ -2696,12 +2745,19 @@ body.has-menu-open {
 .footer-wave .fw-gloss {
   animation: fwGloss 7s ease-in-out 1.6s infinite;
 }
+.footer-wave {
+  /* footer ekrandan kənardadırsa sonsuz animasiyalar dayanır — boş yerə
+     hər kadr SVG yenidən çəkilməsin (site.js → footer-wave: .is-paused) */
+}
 .footer-wave.is-paused .fw-shade,
 .footer-wave.is-paused .fw-dark,
 .footer-wave.is-paused .fw-top,
 .footer-wave.is-paused .fw-gold-edge,
 .footer-wave.is-paused .fw-gloss {
   animation-play-state: paused;
+}
+.footer-wave {
+  /* maska 1600 vahiddir: son 160-ı yumşaq keçiddir — zolağın ucu kəsik görünməsin */
 }
 .footer-wave.is-waiting .fw-reveal {
   transform: translateX(-1600px);
@@ -3328,7 +3384,8 @@ body.has-menu-open {
 .pc-image img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   filter: drop-shadow(0 16px 18px rgba(13, 21, 32, 0.18));
   transition: transform 0.5s var(--ease);
 }
@@ -3581,12 +3638,13 @@ body.has-menu-open {
   box-shadow: 0 10px 20px color-mix(in srgb, var(--pc-tint) 30%, transparent);
   cursor: var(--cursor-pointer);
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
-  /* mətn yalnız siyahı görünüşündə */
-  /* əlavə olunanda qısa "təsdiq" animasiyası (JS: .is-added) */
 }
 .pc-cart svg {
   width: 19px;
   height: 19px;
+}
+.pc-cart {
+  /* mətn yalnız siyahı görünüşündə */
 }
 .pc-cart span {
   display: none;
@@ -3602,6 +3660,9 @@ body.has-menu-open {
   cursor: not-allowed;
   transform: none;
   filter: none;
+}
+.pc-cart {
+  /* əlavə olunanda qısa "təsdiq" animasiyası (JS: .is-added) */
 }
 .pc-cart.is-added {
   animation: pcPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -3740,7 +3801,8 @@ body.has-menu-open {
 .mc-thumb img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .mc-info {
@@ -3842,7 +3904,8 @@ body.has-menu-open {
   color: var(--c-ink);
   background: transparent;
   -moz-appearance: textfield;
-  appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
 }
 .qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button {
   margin: 0;
@@ -3996,7 +4059,6 @@ body.has-menu-open {
   background: var(--c-surface);
   cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background-color 0.25s var(--ease), filter 0.25s var(--ease);
-  /* marka rəngində — alətlər zolağındakı əsas əməliyyat */
 }
 .zan-btn svg {
   flex: none;
@@ -4020,6 +4082,9 @@ body.has-menu-open {
 .zan-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.zan-btn {
+  /* marka rəngində — alətlər zolağındakı əsas əməliyyat */
 }
 .zan-btn.is-primary {
   border-color: transparent;
@@ -4049,10 +4114,12 @@ body.has-menu-open {
   text-align: center;
   background: var(--c-surface);
   box-shadow: var(--shadow-card);
-  /* fokus proqramla verilir — çərçivə lazım deyil */
 }
 .zan-empty[hidden] {
   display: none;
+}
+.zan-empty {
+  /* fokus proqramla verilir — çərçivə lazım deyil */
 }
 .zan-empty:focus {
   outline: none;
@@ -4191,7 +4258,9 @@ body.has-menu-open {
   color: var(--c-ink);
   background: var(--c-surface-soft);
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background-color 0.25s var(--ease);
-  /* brauzerin avtomatik doldurma fonu mövzuya uyğun qalsın */
+}
+.zf-input::-moz-placeholder {
+  color: var(--c-muted-soft);
 }
 .zf-input::placeholder {
   color: var(--c-muted-soft);
@@ -4208,6 +4277,9 @@ body.has-menu-open {
 .zf-input[aria-invalid=true] {
   border-color: var(--c-brand);
   box-shadow: 0 0 0 4px var(--c-brand-tint);
+}
+.zf-input {
+  /* brauzerin avtomatik doldurma fonu mövzuya uyğun qalsın */
 }
 .zf-input:-webkit-autofill {
   -webkit-text-fill-color: var(--c-ink);
@@ -4226,7 +4298,9 @@ textarea.zf-input {
 /* açılan siyahı — öz oxumuzla */
 select.zf-input {
   padding-right: 44px;
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   cursor: var(--cursor-pointer);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a929c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -4288,7 +4362,8 @@ select.zf-input option {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .zf-phone .zf-prefix::after {
   content: "";
@@ -4581,8 +4656,6 @@ select.zf-input option {
   background: var(--grad-brand);
   box-shadow: var(--shadow-brand);
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease);
-  /* .zf grid-dir — düymə özbaşına bütün eni tutmasın */
-  /* göndərilir (forms.js → setLoading) */
 }
 .zf-submit > svg {
   width: 18px;
@@ -4605,12 +4678,18 @@ select.zf-input option {
   outline: 2px solid var(--c-brand);
   outline-offset: 3px;
 }
+.zf-submit {
+  /* .zf grid-dir — düymə özbaşına bütün eni tutmasın */
+}
 .zf > .zf-submit {
   justify-self: start;
 }
 .zf-submit.is-block {
   width: 100%;
   justify-self: stretch;
+}
+.zf-submit {
+  /* göndərilir (forms.js → setLoading) */
 }
 .zf-submit.is-loading {
   pointer-events: none;
@@ -4863,6 +4942,4 @@ body.has-auth-gate {
 }
 
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=site.css.map */
+/* #endregion *//*# sourceMappingURL=site.css.map */

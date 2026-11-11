@@ -1,0 +1,34 @@
+# Əsas səhifə: domenə daxil olanda home.html açılsın
+DirectoryIndex home.html index.html
+
+# Bütün sorğuları https-ə yönləndir (AutoSSL aktiv olandan sonra işləyir)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+</IfModule>
+
+# Mətn fayllarını sıxışdır (daha sürətli yüklənmə)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript text/javascript application/json image/svg+xml
+</IfModule>
+
+# Şəkil, şrift və videoları brauzerdə keşlə
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
+
+# Gizli/servis fayllarına girişi bağla
+<FilesMatch "\.(scss|map|md)$">
+  Require all denied
+</FilesMatch>
