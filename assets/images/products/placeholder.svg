@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <!-- şəkli hələ olmayan məhsullar üçün neytral qutu (product-demo.js → image: null) -->
+  <defs>
+    <linearGradient id="body" x1="0" x2="1">
+      <stop offset="0" stop-color="#c9ced6" />
+      <stop offset=".45" stop-color="#eef1f5" />
+      <stop offset="1" stop-color="#b9bfc9" />
+    </linearGradient>
+    <linearGradient id="lid" x1="0" x2="1">
+      <stop offset="0" stop-color="#aab1bc" />
+      <stop offset=".5" stop-color="#dde1e7" />
+      <stop offset="1" stop-color="#a3aab5" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="500" cy="905" rx="250" ry="28" fill="#000" opacity=".08" />
+  <path d="M260 230v600c0 38 107 70 240 70s240-32 240-70V230z" fill="url(#body)" />
+  <ellipse cx="500" cy="230" rx="240" ry="58" fill="url(#lid)" />
+  <ellipse cx="500" cy="226" rx="200" ry="42" fill="#c4cad3" />
+  <rect x="300" y="420" width="400" height="230" rx="18" fill="#fff" opacity=".55" />
+  <path d="M500 470c-34 44-52 74-52 98a52 52 0 0 0 104 0c0-24-18-54-52-98z" fill="#9aa2ae" />
+</svg>

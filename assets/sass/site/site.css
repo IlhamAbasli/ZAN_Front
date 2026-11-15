@@ -1220,6 +1220,486 @@ button:disabled,
   }
 }
 /* #endregion */
+/* #region pəncərə */
+.promo {
+  /* posterin eni / hündürlüyü */
+  --pm-ratio: 0.707;
+  /* altdakı mətn + nöqtələr + kənar boşluqlar (təxminən) */
+  --pm-chrome: 270px;
+  /* avtomatik keçid müddəti — JS (AUTOPLAY_MS) yazır */
+  --pm-interval: 6000ms;
+  width: clamp(260px, min(460px, 100vw - 32px, (100dvh - var(--pm-chrome)) * var(--pm-ratio)), 460px);
+  max-width: none;
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--c-ink);
+  overflow: visible;
+}
+.promo::backdrop {
+  background: rgba(8, 12, 18, 0.72);
+}
+.promo[open] {
+  animation: pm-in 0.45s var(--ease) both;
+}
+.promo[open]::backdrop {
+  animation: pm-fade 0.3s var(--ease) both;
+}
+
+/* pəncərə açıq olanda arxadakı səhifə sürüşməsin */
+body.has-promo {
+  overflow: hidden;
+}
+
+.pm-card {
+  position: relative;
+  max-height: calc(100dvh - 24px);
+  border-radius: 22px;
+  background: var(--c-surface);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+}
+
+/* bağla — posterin üstündə, istənilən fonda görünsün */
+.pm-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(8, 12, 18, 0.62);
+  transition: background-color 0.2s var(--ease), transform 0.25s var(--ease);
+}
+.pm-close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+.pm-close:hover {
+  background: rgba(8, 12, 18, 0.85);
+  transform: rotate(90deg);
+}
+.pm-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* #endregion */
+/* #region slaydlar — sürüşdürülən zolaq (scroll-snap) */
+.pm-viewport {
+  position: relative;
+  /* oxlar posterin ortasında: hündürlük enindən hesablanır (cqi) */
+  container-type: inline-size;
+}
+
+.pm-track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.pm-track::-webkit-scrollbar {
+  display: none;
+}
+
+.pm-slide {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.pm-poster {
+  aspect-ratio: 590/835;
+  background: var(--c-surface-soft);
+}
+.pm-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.pm-nav {
+  position: absolute;
+  top: 42%;
+  top: 70.7627118644cqi;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #0d1520;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+  transition: transform 0.25s var(--ease);
+}
+.pm-nav.is-prev {
+  left: 10px;
+}
+.pm-nav.is-next {
+  right: 10px;
+}
+.pm-nav svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pm-nav:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+.pm-nav:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+
+/* #endregion */
+/* #region slaydın alt hissəsi — başlıq və düymələr */
+/* slaydlar ən hündürü qədərdir — düymələr aşağıya bərkidilir ki,
+   hər slaydda eyni yerdə dursunlar (boşluq başlıqla düymələr arasında qalır) */
+.pm-foot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 18px 22px 18px;
+  /* posterlə mətn arasında boya zolağı */
+}
+.pm-foot::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #5d0818, #c9142c 50%, #f2cf6b);
+}
+
+.pm-tag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-brand);
+}
+
+.pm-until {
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.04em;
+  color: var(--c-gold-ink);
+  background: rgba(242, 207, 107, 0.22);
+}
+
+.pm-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+
+.pm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.pm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.pm-btn:hover {
+  color: var(--c-ink);
+  border-color: var(--c-divider);
+  transform: translateY(-1px);
+}
+.pm-btn.is-primary {
+  border-color: transparent;
+  color: var(--c-on-brand);
+  background: var(--c-brand);
+}
+.pm-btn.is-primary:hover {
+  color: var(--c-on-brand);
+  background: var(--c-brand-deep);
+}
+.pm-btn:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+
+/* #endregion */
+/* #region nöqtələr və avtomatik keçid */
+.pm-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 16px 14px;
+}
+
+.pm-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pm-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--c-divider);
+  overflow: hidden;
+  transition: width 0.3s var(--ease);
+}
+.pm-dot[aria-current=true] {
+  width: 30px;
+  background: var(--c-brand-ghost);
+}
+.pm-dot:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+
+/* aktiv nöqtə dolan zolaqdır: avtomatik keçidin "saatı" (JS animationend-i gözləyir).
+   transform ilə — hər kadrda layout hesablanmır */
+.pm-dot-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--c-brand);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.pm-dot[aria-current=true] .pm-dot-fill {
+  transform: none;
+}
+.pm-dot-fill {
+  /* fasilə eyni qaydada: animation qısa yazılışı play-state-i "running"-ə qaytarır */
+}
+.promo.is-autoplay .pm-dot[aria-current=true] .pm-dot-fill {
+  animation: pm-progress var(--pm-interval) linear forwards;
+  animation-play-state: var(--pm-play, running);
+}
+
+.promo.is-paused {
+  --pm-play: paused;
+}
+
+.pm-play {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--c-line);
+  border-radius: 50%;
+  color: var(--c-muted);
+  background: var(--c-surface);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.pm-play svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pm-play:hover {
+  color: var(--c-ink);
+  border-color: var(--c-divider);
+}
+.pm-play:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+
+@keyframes pm-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes pm-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+}
+@keyframes pm-fade {
+  from {
+    opacity: 0;
+  }
+}
+/* #endregion */
+/* #region "Kampaniyalar" düyməsi — sol-aşağı küncdə */
+.promo-launcher {
+  position: fixed;
+  left: 24px;
+  bottom: 30px;
+  z-index: var(--z-sticky);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 18px 0 14px;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #c9142c, #8f1026);
+  box-shadow: 0 10px 24px rgba(167, 25, 48, 0.35);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), bottom 0.3s var(--ease);
+}
+.promo-launcher svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--c-gold);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.promo-launcher {
+  /* diqqət çəkən yumşaq dalğa */
+}
+.promo-launcher::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(201, 20, 44, 0.45);
+  animation: pm-pulse 2.6s ease-out infinite;
+  pointer-events: none;
+}
+.promo-launcher:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(167, 25, 48, 0.42);
+}
+.promo-launcher:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 3px;
+}
+
+.promo-launcher-count {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  font-size: 11px;
+  font-weight: 700;
+  color: #3a2a05;
+  background: var(--c-gold);
+}
+
+/* məhsul səhifəsinin aşağı paneli açıq olanda onun üstünə keçir */
+body:has(.pd-bar.is-visible) .promo-launcher {
+  bottom: 92px;
+}
+
+@keyframes pm-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 20, 44, 0.45);
+  }
+  70%, 100% {
+    box-shadow: 0 0 0 14px rgba(201, 20, 44, 0);
+  }
+}
+/* #endregion */
+/* #region responsiv və hərəkət */
+@media only screen and (max-width: 575px) {
+  .pm-foot {
+    padding: 16px 16px 18px;
+  }
+  .pm-title {
+    font-size: 16px;
+  }
+  /* kiçik ekranda yalnız ikon — mətn ekran oxuyucular üçün qalır */
+  .promo-launcher {
+    left: 16px;
+    bottom: 24px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    justify-content: center;
+  }
+  .promo-launcher .promo-launcher-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .promo-launcher-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .promo[open],
+  .promo[open]::backdrop {
+    animation: none;
+  }
+  .promo-launcher::after {
+    animation: none;
+  }
+}
+/* #endregion */
 /* #endregion */
 /* #region layout — header, mobil menyu, footer */
 /* #region vurğu rəngi — hero slaydı ilə sinxron */
@@ -3228,6 +3708,28 @@ body.has-menu-open {
   background: var(--c);
 }
 
+/* hüquqi sənədlər: Məxfilik siyasəti, İstifadə şərtləri */
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-left: auto;
+}
+.footer-legal a {
+  font-size: 13.5px;
+  color: var(--f-muted);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.footer-legal a:hover, .footer-legal a[aria-current=page] {
+  color: var(--f-gold);
+}
+.footer-legal a:focus-visible {
+  outline: 2px solid var(--f-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* #endregion */
 /* #region fokus, animasiya, responsiv */
 .site-footer a:focus-visible {
@@ -3293,6 +3795,9 @@ body.has-menu-open {
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .footer-legal {
+    margin-left: 0;
   }
 }
 /*

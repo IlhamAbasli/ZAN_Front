@@ -9,8 +9,8 @@
 
    Kartlar HTML-dədir (MVC-də serverdə render olunur); bu skript onları
    yalnız süzür, sıralayır və səhifələyir. Vəziyyət URL-də saxlanılır:
-     shop.html?category=sintetik-boyalar,yapisdiricilar&q=lak&min=10&max=50
-              &status=sale,in-stock&sort=price-asc&page=2
+     shop.html?category=sintetik-boyalar,yapisdiricilar&brand=zan,ekofix&q=lak
+              &min=10&max=50&status=sale,in-stock&sort=price-asc&page=2
    Footer, header axtarışı və əsas səhifədəki linklər elə bu parametrlərlə gəlir.
    ========================================================================== */
 
@@ -30,6 +30,7 @@
   const filters = document.getElementById("shop-filters");
   const searchInput = filters.querySelector("#sf-search");
   const categoryInputs = Array.from(filters.querySelectorAll('input[name="category"]'));
+  const brandInputs = Array.from(filters.querySelectorAll('input[name="brand"]'));
   const statusInputs = Array.from(filters.querySelectorAll('input[name="status"]'));
   const rangeBox = filters.querySelector(".sf-range");
   const rangeMin = filters.querySelector("#sf-range-min");
@@ -61,6 +62,7 @@
   const state = {
     q: "",
     categories: new Set(),
+    brands: new Set(),
     status: new Set(),
     min: PRICE_FLOOR,
     max: PRICE_CEIL,
@@ -69,9 +71,10 @@
   };
 
   const STATUS_LABELS = { "in-stock": "Stokda var", sale: "Endirimdə", new: "Yeni" };
-  const categoryLabel = (slug) => {
-    const input = categoryInputs.find((i) => i.value === slug);
-    return input ? input.closest(".sf-check").querySelector(".sf-check-text").textContent.trim() : slug;
+  // etiket filtr panelindəki mətndən (kateqoriya, brend)
+  const optionLabel = (inputs, value) => {
+    const input = inputs.find((i) => i.value === value);
+    return input ? input.closest(".sf-check").querySelector(".sf-check-text").textContent.trim() : value;
   };
 
   function readUrl() {
@@ -81,6 +84,7 @@
 
     state.q = (params.get("q") || "").trim();
     state.categories = new Set(known(list("category"), categoryInputs));
+    state.brands = new Set(known(list("brand"), brandInputs));
     state.status = new Set(known(list("status"), statusInputs));
     state.min = clampPrice(Number(params.get("min")) || PRICE_FLOOR);
     state.max = clampPrice(Number(params.get("max")) || PRICE_CEIL);
@@ -94,6 +98,7 @@
   function writeUrl() {
     const params = new URLSearchParams();
     if (state.categories.size) params.set("category", [...state.categories].join(","));
+    if (state.brands.size) params.set("brand", [...state.brands].join(","));
     if (state.q) params.set("q", state.q);
     if (state.min > PRICE_FLOOR) params.set("min", String(state.min));
     if (state.max < PRICE_CEIL) params.set("max", String(state.max));
@@ -110,6 +115,7 @@
   function activeFilterCount() {
     return (
       state.categories.size +
+      state.brands.size +
       state.status.size +
       (state.q ? 1 : 0) +
       (state.min > PRICE_FLOOR || state.max < PRICE_CEIL ? 1 : 0)
@@ -133,6 +139,7 @@
   function matches(p) {
     const d = p.data;
     if (state.categories.size && !state.categories.has(d.categorySlug)) return false;
+    if (state.brands.size && !state.brands.has(d.brand)) return false;
     if (d.price < state.min || d.price > state.max) return false;
     if (state.status.has("in-stock") && !d.inStock) return false;
     if (state.status.has("sale") && !d.oldPrice) return false;
@@ -216,7 +223,8 @@
   // aktiv filtrlər zolağı: hər etiket klikləyəndə öz filtrini silir
   function renderChips() {
     const chips = [];
-    state.categories.forEach((slug) => chips.push({ type: "category", value: slug, label: categoryLabel(slug) }));
+    state.categories.forEach((slug) => chips.push({ type: "category", value: slug, label: optionLabel(categoryInputs, slug) }));
+    state.brands.forEach((slug) => chips.push({ type: "brand", value: slug, label: optionLabel(brandInputs, slug) }));
     if (state.q) chips.push({ type: "q", label: `“${state.q}”` });
     if (state.min > PRICE_FLOOR || state.max < PRICE_CEIL) {
       chips.push({ type: "price", label: `${state.min}–${state.max} ₼` });
@@ -240,6 +248,7 @@
     if (document.activeElement !== searchInput) searchInput.value = state.q;
     syncHeaderSearch();
     categoryInputs.forEach((i) => (i.checked = state.categories.has(i.value)));
+    brandInputs.forEach((i) => (i.checked = state.brands.has(i.value)));
     statusInputs.forEach((i) => (i.checked = state.status.has(i.value)));
     sortSelect.value = state.sort;
     syncPrice();
@@ -301,6 +310,13 @@
     }),
   );
 
+  brandInputs.forEach((input) =>
+    input.addEventListener("change", function () {
+      input.checked ? state.brands.add(input.value) : state.brands.delete(input.value);
+      update();
+    }),
+  );
+
   statusInputs.forEach((input) =>
     input.addEventListener("change", function () {
       input.checked ? state.status.add(input.value) : state.status.delete(input.value);
@@ -337,6 +353,7 @@
   function resetAll() {
     state.q = "";
     state.categories.clear();
+    state.brands.clear();
     state.status.clear();
     state.min = PRICE_FLOOR;
     state.max = PRICE_CEIL;
@@ -364,6 +381,7 @@
 
     if (type === "all") return resetAll();
     if (type === "category") state.categories.delete(value);
+    if (type === "brand") state.brands.delete(value);
     if (type === "status") state.status.delete(value);
     if (type === "q") state.q = "";
     if (type === "price") {
@@ -373,10 +391,23 @@
     update();
   });
 
-  // hər kateqoriyada neçə məhsul var (sabit)
-  categoryInputs.forEach((input) => {
-    const counter = input.closest(".sf-check").querySelector(".sf-count");
-    if (counter) counter.textContent = String(products.filter((p) => p.data.categorySlug === input.value).length);
+  // hər seçimdə neçə məhsul var (sabit). Məhsulu olmayan seçim gizlədilir
+  // (məs. divar kağızları hələ satışda deyil); məhsul əlavə olunan kimi özü görünür.
+  const STATUS_TEST = { "in-stock": (d) => d.inStock, sale: (d) => Boolean(d.oldPrice), new: (d) => d.isNew };
+  function countOptions(inputs, test) {
+    inputs.forEach((input) => {
+      const count = products.filter((p) => test(p.data, input.value)).length;
+      const counter = input.closest(".sf-check").querySelector(".sf-count");
+      if (counter) counter.textContent = String(count);
+      input.closest("li").hidden = count === 0;
+    });
+  }
+  countOptions(categoryInputs, (d, value) => d.categorySlug === value);
+  countOptions(brandInputs, (d, value) => d.brand === value);
+  countOptions(statusInputs, (d, value) => STATUS_TEST[value](d));
+  heroCats.forEach((button) => {
+    const slug = button.dataset.category;
+    if (slug) button.hidden = !products.some((p) => p.data.categorySlug === slug);
   });
   //#endregion
 

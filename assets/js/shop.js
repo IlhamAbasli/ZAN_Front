@@ -95,6 +95,7 @@ window.ZAN = window.ZAN || {};
       name: text(".pc-name"),
       category: text(".pc-category"),
       categorySlug: card.dataset.category || "",
+      brand: card.dataset.brand || "",
       description: text(".pc-desc"),
       price: Number(card.dataset.price) || 0,
       oldPrice: Number(card.dataset.oldPrice) || null,

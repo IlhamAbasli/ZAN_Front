@@ -1,0 +1,15 @@
+// ==========================================================================
+// LEGAL.SCSS — hüquqi sənəd səhifələrinin stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/legal/legal.css (Live Sass Compiler)
+// Qoşulur:  privacy.html, terms.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Legal/Privacy.cshtml, Terms.cshtml → @section Styles)
+// Modullar: assets/sass/pages/legal/
+//
+// Tokenlər, header, footer və mini səbət site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/legal/hero";
+@use "../pages/legal/document";
+/* #endregion */

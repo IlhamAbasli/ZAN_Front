@@ -702,6 +702,32 @@
   }
 }
 
+/* hüquqi sənədlər: Məxfilik siyasəti, İstifadə şərtləri */
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-left: auto;
+
+  a {
+    font-size: 13.5px;
+    color: var(--f-muted);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+
+    &:hover,
+    &[aria-current="page"] {
+      color: var(--f-gold);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--f-gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  }
+}
+
 /* #endregion */
 
 /* #region fokus, animasiya, responsiv */
@@ -772,6 +798,10 @@
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footer-legal {
+    margin-left: 0;
   }
 }
 

@@ -39,9 +39,13 @@
     return numberFormat ? numberFormat.format(rounded) : rounded.toString().replace(".", ",");
   };
 
-  // vahid (kq / rulon) mətnin içində — tərcümə şablonla (ZAN.t)
+  // vahid (kq / l / rulon) mətnin içində — tərcümə şablonla (ZAN.t)
   const perUnit = (price) =>
-    product.unit === "kq" ? ZAN.t("{price} / kq", { price }) : ZAN.t("{price} / rulon", { price });
+    product.unit === "kq"
+      ? ZAN.t("{price} / kq", { price })
+      : product.unit === "l"
+        ? ZAN.t("{price} / l", { price })
+        : ZAN.t("{price} / rulon", { price });
 
   // qısa "sıçrayış" animasiyası hər dəfə yenidən başlasın
   function pop(el, className) {
@@ -499,11 +503,13 @@
       return Math.max(0, num(inputs.length) * num(inputs.height) - num(inputs.openings));
     }
 
-    // miqdar: rulon tam ədəddir, kq-da 10-dan az olanda bir onluq rəqəmlə
+    // miqdar: rulon tam ədəddir, kq / l-də 10-dan az olanda bir onluq rəqəmlə
     function formatNeed(value) {
-      if (product.unit !== "kq") return ZAN.t("{n} rulon", { n: Math.ceil(value) });
-      if (value < 1) return ZAN.t("{n} q", { n: Math.ceil((value * 1000) / 50) * 50 });
-      return ZAN.t("{n} kq", { n: value < 10 ? formatNumber(Math.ceil(value * 10) / 10) : Math.ceil(value) });
+      if (product.unit === "rulon") return ZAN.t("{n} rulon", { n: Math.ceil(value) });
+      const liquid = product.unit === "l";
+      if (value < 1 && !liquid) return ZAN.t("{n} q", { n: Math.ceil((value * 1000) / 50) * 50 });
+      const n = value < 10 ? formatNumber(Math.ceil(value * 10) / 10) : Math.ceil(value);
+      return liquid ? ZAN.t("{n} l", { n }) : ZAN.t("{n} kq", { n });
     }
 
     function renderEmpty(message) {

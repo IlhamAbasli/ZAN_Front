@@ -128,6 +128,7 @@
       email: rules.email(),
       password: rules.password(),
       passwordConfirm: rules.match("password"),
+      terms: rules.checked("Qeydiyyat üçün İstifadə şərtləri və Məxfilik siyasəti ilə razılığınızı təsdiqləyin."),
     });
     const submitBtn = registerForm.querySelector(".zf-submit");
 

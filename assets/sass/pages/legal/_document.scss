@@ -1,0 +1,487 @@
+// ==========================================================================
+// HÜQUQİ SƏNƏDLƏR — MƏTN VƏ MÜNDƏRİCAT (#legal)
+// --------------------------------------------------------------------------
+// HTML: privacy.html, terms.html → #region legal
+// JS:   legal-page.js (mündəricat: aktiv bölmə, kiçik ekranda yığılma)
+//
+// lg+: solda yapışqan mündəricat + kartlar, sağda mətn (oxunaqlı sətir eni).
+// Kiçik ekranda mündəricat mətnin üstündə yığılan siyahıdır.
+// ==========================================================================
+
+/* #region quruluş */
+
+#legal {
+  padding: 48px 0 96px;
+}
+
+#legal .lg-layout {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+#legal .lg-aside {
+  position: sticky;
+  top: calc(var(--h-header-sticky) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* alçaq ekranda panel kəsilməsin — öz içində sürüşür */
+  max-height: calc(100vh - var(--h-header-sticky) - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+/* #endregion */
+
+/* #region mündəricat */
+
+#legal .lg-toc {
+  padding: 18px 12px 12px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-card);
+  background: var(--c-surface);
+
+  summary {
+    padding: 0 10px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    list-style: none;
+    cursor: default;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    text-decoration: none;
+    color: var(--c-muted);
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease);
+
+    &:hover {
+      color: var(--c-ink);
+      background: var(--c-hover-fill);
+    }
+
+    &[aria-current="true"] {
+      font-weight: 600;
+      color: var(--c-brand);
+      background: var(--c-brand-tint);
+
+      .lg-num {
+        color: var(--c-on-brand);
+        background: var(--c-brand);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--c-brand);
+      outline-offset: 1px;
+    }
+  }
+
+  .lg-num {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    margin-top: -1px;
+    font-size: 11px;
+  }
+}
+
+/* bölmə nömrəsi — mündəricatda və başlıqlarda eyni nişan */
+#legal .lg-num {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 7px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  transition:
+    background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+/* #endregion */
+
+/* #region kartlar — digər sənəd, sual */
+
+#legal .lg-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-card);
+  background: var(--c-surface);
+}
+
+#legal .lg-card-icon,
+#legal .lg-help-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--c-brand-tint);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: var(--c-brand);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+#legal .lg-other {
+  align-items: center;
+  text-decoration: none;
+  color: var(--c-ink);
+  transition:
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+
+  .lg-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  small {
+    font-size: 12px;
+    color: var(--c-muted);
+  }
+
+  b {
+    font-size: 15px;
+  }
+
+  > svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--c-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s var(--ease);
+  }
+
+  &:hover {
+    border-color: var(--c-brand-line);
+
+    > svg {
+      stroke: var(--c-brand);
+      transform: translateX(3px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+}
+
+/* #endregion */
+
+/* #region sual zolağı — sənədin sonunda */
+
+#legal .lg-help {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 44px;
+  padding: 20px 22px;
+  border: 1px solid var(--c-line-warm);
+  border-radius: var(--r-card);
+  background: var(--grad-section-gold);
+}
+
+#legal .lg-help-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* .lg-doc p qaydasından güclü olsun */
+#legal .lg-help .lg-help-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+#legal .lg-help .lg-help-text {
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+
+#legal .lg-help-link {
+  flex: none;
+  padding: 10px 20px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--c-on-brand);
+  background: var(--c-brand);
+  transition: background-color 0.2s var(--ease);
+
+  &:hover {
+    color: var(--c-on-brand);
+    background: var(--c-brand-deep);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+}
+
+/* #endregion */
+
+/* #region sənədin mətni */
+
+#legal .lg-doc {
+  max-width: 760px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--c-ink);
+
+  p {
+    margin: 0 0 14px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 22px;
+
+    /* boya damcısı əvəzinə kiçik marka nöqtəsi */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.7em;
+      left: 4px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--c-brand);
+    }
+  }
+}
+
+#legal .lg-summary {
+  margin-bottom: 40px;
+  padding: 22px 24px 8px;
+  border: 1px solid var(--c-line-warm);
+  border-left: 4px solid var(--c-gold);
+  border-radius: var(--r-card);
+  background: var(--grad-section-gold);
+
+  li::before {
+    background: var(--c-gold-ink);
+  }
+}
+
+#legal .lg-summary-title {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-gold-ink);
+}
+
+#legal .lg-section {
+  /* yapışqan header-in altında qalmasın */
+  scroll-margin-top: calc(var(--h-header-sticky) + 24px);
+  padding-top: 28px;
+  border-top: 1px solid var(--c-line);
+
+  & + & {
+    margin-top: 28px;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+#legal .lg-h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--c-ink);
+
+  .lg-num {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+}
+
+#legal .lg-contacts {
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+
+  span {
+    min-width: 72px;
+    color: var(--c-muted);
+  }
+
+  a {
+    font-weight: 600;
+    color: var(--c-brand);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  address {
+    margin: 0;
+    font-style: normal;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 991px) {
+  #legal {
+    padding: 32px 0 72px;
+  }
+
+  #legal .lg-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  /* kiçik ekranda: mündəricat mətnin üstündə, kartlar mətnin altında */
+  #legal .lg-aside {
+    position: static;
+    display: contents;
+    max-height: none;
+  }
+
+  #legal .lg-toc {
+    order: -1;
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      cursor: var(--cursor-pointer);
+
+      &::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        margin-right: 4px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.2s var(--ease);
+      }
+    }
+
+    &[open] summary {
+      padding-bottom: 10px;
+
+      &::after {
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+  #legal .lg-doc {
+    max-width: none;
+  }
+
+  #legal .lg-card {
+    order: 1;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #legal .lg-doc {
+    font-size: 15px;
+  }
+
+  #legal .lg-summary {
+    padding: 18px 18px 4px;
+  }
+
+  #legal .lg-h2 {
+    font-size: 19px;
+  }
+
+  #legal .lg-help {
+    flex-wrap: wrap;
+    padding: 18px;
+  }
+
+  #legal .lg-help-body {
+    flex-basis: calc(100% - 56px);
+  }
+
+  #legal .lg-help-link {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+/* #endregion */

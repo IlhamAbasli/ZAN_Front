@@ -10,7 +10,7 @@
                   meta description / og:title / og:description
      2) assets/js/*.js — ZAN.t("...") açarları və mətnə oxşayan sətirlər;
                   HTML parçalarının içindəki mətn də (template literal-lar)
-     3) demo məlumat — product-demo.js, visualizer-data.js (ad, təsvir ...)
+     3) demo məlumat — product-demo.js, visualizer-data.js, promo.js (ad, təsvir ...)
    translate="no" olan elementlər (və içindəkilər) atlanır.
    ========================================================================== */
 
@@ -30,7 +30,14 @@ const HAS_WORD = /\p{L}{2,}/u;
 // i18n.js "Dil") və kalkulyator başlığındakı isimlər (product-demo.js → noun:
 // "Nə qədər <em>{1}</em> lazımdır?" — dillərdə bu cümləyə uyğun formada)
 // i18n.js → measure(): ölçü şablonları ("3,5 kq" → "{n} kq")
-const EXTRA = ["bazar", "Dil", "boya", "lak", "vernik", "divar kağızı", "yapışdırıcı", "{n} kq", "{n} q", "{n} l", "{n} rulon"];
+const EXTRA = [
+  "bazar", "Dil",
+  "boya", "lak", "vernik", "divar kağızı", "yapışdırıcı", "astar", "macun", "qoruyucu", "tiner",
+  "{n} kq", "{n} q", "{n} l", "{n} rulon",
+];
+// ölçü ("3,5 kq", "0,75 l") ayrıca açar deyil — i18n.js → measure() "{n} kq" şablonu ilə çevirir
+// (i18n.js → MEASURE ilə EYNİ ifadə)
+const MEASURE = /^(\d+(?:[.,]\d+)?)\s?(kq|q|l|rulon)$/;
 
 const keys = new Map();
 const norm = (text) => String(text).replace(/\s+/g, " ").trim();
@@ -38,7 +45,7 @@ const norm = (text) => String(text).replace(/\s+/g, " ").trim();
 // force — ZAN.t açarı: qısa olsa da ("{n} q") mütləq açardır
 function add(text, where, force) {
   const key = norm(text);
-  if (!key || (!force && (!HAS_WORD.test(key) || /^#[0-9a-f]{3,8}$/i.test(key)))) return;
+  if (!key || (!force && (!HAS_WORD.test(key) || /^#[0-9a-f]{3,8}$/i.test(key) || MEASURE.test(key)))) return;
   if (!keys.has(key)) keys.set(key, new Set());
   keys.get(key).add(where);
 }
@@ -137,7 +144,8 @@ function looksLikeText(s, isData) {
   if (AZ_LETTER.test(s)) return true;
   // ASCII: böyük hərflə başlayan söz (Tavan, Kataloq) və ya bir neçə söz
   if (/^[A-Z][a-z]+$/.test(s)) return true;
-  if (/\s/.test(s) && /^[\p{L}\d\s.,:;!?—–()'"«»“”%/×·+-]+$/u.test(s)) return isData || /[A-Z]/.test(s);
+  // "≈ 11 m² / kq", "+5 °C" kimi göstəricilər də (vahid tərcümə olunur: kq → кг)
+  if (/\s/.test(s) && /^[\p{L}\d\s.,:;!?—–()'"«»“”%/×·+≈²°…-]+$/u.test(s)) return isData || /[A-Z]/.test(s);
   return false;
 }
 
@@ -193,7 +201,7 @@ fs.readdirSync(ROOT)
   .forEach(fromHtmlFile);
 
 const JS_DIR = "assets/js";
-const DATA = ["product-demo.js", "visualizer-data.js"];
+const DATA = ["product-demo.js", "visualizer-data.js", "promo.js"];
 const SKIP_JS = ["i18n.js", "head-init.js"];
 fs.readdirSync(path.join(ROOT, JS_DIR))
   .filter((f) => f.endsWith(".js") && !SKIP_JS.includes(f))

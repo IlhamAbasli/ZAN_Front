@@ -1,0 +1,109 @@
+// ==========================================================================
+// HÜQUQİ SƏNƏDLƏR — BAŞLIQ ZOLAĞI (#legal-hero)
+// --------------------------------------------------------------------------
+// HTML: privacy.html, terms.html → #region legal-hero
+// Quruluş əlaqə səhifəsinin başlığı ilə eynidir (pages/contact/_hero.scss).
+// ==========================================================================
+
+@use "../../base/mixins" as *;
+
+/* #region bölmə və fon */
+
+#legal-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 52px;
+  background: var(--grad-section-gold);
+}
+
+#legal-hero .lh-bg {
+  @include hero-bg;
+}
+
+#legal-hero .lh-blob {
+  @include hero-blob;
+}
+
+#legal-hero .lh-blob-1 {
+  top: -180px;
+  right: 8%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#legal-hero .lh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* #endregion */
+
+/* #region başlıq və mətn */
+
+#legal-hero .lh-crumbs ol {
+  @include page-crumbs;
+}
+
+#legal-hero .lh-title {
+  @include page-hero-title;
+}
+
+#legal-hero .lh-text {
+  max-width: 62ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* qüvvəyə minmə tarixi */
+#legal-hero .lh-date {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 18px 0 0;
+  padding: 8px 14px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  font-size: 13.5px;
+  color: var(--c-muted);
+  background: var(--c-surface);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--c-brand);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  time {
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 575px) {
+  #legal-hero {
+    padding: 28px 0 40px;
+  }
+  #legal-hero .lh-title {
+    font-size: 32px;
+  }
+  #legal-hero .lh-text {
+    font-size: 15px;
+  }
+}
+
+/* #endregion */
