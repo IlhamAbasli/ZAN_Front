@@ -683,6 +683,25 @@ window.ZAN = window.ZAN || {};
     progressBar.style.strokeDashoffset = String(progressLength);
   }
 
+  /*
+    Sabit header nə vaxt görünsün: əvvəl sabit 200px idi, amma statik
+    header (.site-header) telefonda ~74px, masaüstündə ~190px hündürdür.
+    Telefonda yuxarı qalxanda 74–200px arasında sabit header artıq
+    gizlənir, statik header isə hələ ekrandan kənardadır — navbar itirdi.
+    İndi hədd statik headerin özündən hesablanır: onun ekranda qalan hissəsi
+    sabit headerin hündürlüyündən azalan kimi sabit header görünür. Belə ki,
+    hər an ekranda ən azı bir navbar olur.
+    Ölçü scroll-da yox, yalnız yüklənmədə və resize-da oxunur.
+  */
+  const siteHeader = document.querySelector(".site-header");
+  let stickyThreshold = 200;
+
+  function measureStickyThreshold() {
+    if (!siteHeader || !headerSticky) return;
+    const headerBottom = siteHeader.getBoundingClientRect().bottom + window.scrollY;
+    stickyThreshold = Math.max(0, headerBottom - headerSticky.offsetHeight);
+  }
+
   function syncScrollState() {
     // əvvəl oxuyuruq, sonra yazırıq — sinif dəyişikliyindən sonra ölçü
     // oxunsa brauzer hər kadrda layout-u yenidən hesablamalı olur
@@ -690,7 +709,7 @@ window.ZAN = window.ZAN || {};
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
 
     if (backToTop) backToTop.classList.toggle("show", offset > 300);
-    if (headerSticky) headerSticky.classList.toggle("show", offset > 200);
+    if (headerSticky) headerSticky.classList.toggle("show", offset > stickyThreshold);
     if (progressBar) {
       const ratio = scrollable > 0 ? Math.min(offset / scrollable, 1) : 0;
       progressBar.style.strokeDashoffset = String(progressLength * (1 - ratio));
@@ -706,7 +725,16 @@ window.ZAN = window.ZAN || {};
   }
 
   window.addEventListener("scroll", requestScrollSync, { passive: true });
-  window.addEventListener("resize", requestScrollSync);
+  window.addEventListener("resize", function () {
+    measureStickyThreshold();
+    requestScrollSync();
+  });
+  // şriftlər/şəkillər yüklənəndə header hündürlüyü dəyişə bilər
+  window.addEventListener("load", function () {
+    measureStickyThreshold();
+    requestScrollSync();
+  });
+  measureStickyThreshold();
   syncScrollState();
 
   if (backToTop) {

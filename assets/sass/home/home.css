@@ -352,22 +352,37 @@
 /* #endregion */
 /* slayd 3 — chip-in yerində "ZAN Company — Divar kağızları" loqosu
    (şəffaf fonda qızılı: images/wallpapers/zan-wallpapers-logo.webp) */
+/* Loqo chip-dən hündürdür; böyük qalanda slayd 3 digərlərindən uzun olur və
+   (slaydlar ən hündürə bərabərləşdiyi üçün) bütün slayderi uzadırdı. */
 #slider-area .hero-logo {
   display: block;
   width: auto;
-  height: 72px;
+  max-width: 100%;
+  height: 60px;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
 }
 
+@media only screen and (max-width: 1200px) {
+  #slider-area .hero-logo {
+    height: 54px;
+  }
+}
 @media only screen and (max-width: 991px) {
   #slider-area .hero-logo {
-    height: 60px;
+    height: 48px;
     margin-inline: auto;
+  }
+  /* mərkəzlənmiş düzülüşdə loqodan sonra başlıq bir az yaxın dursun */
+  #slider-area .hero-logo + .hero-title {
+    margin-top: 18px;
   }
 }
 @media only screen and (max-width: 575px) {
   #slider-area .hero-logo {
-    height: 50px;
+    height: 42px;
+  }
+  #slider-area .hero-logo + .hero-title {
+    margin-top: 14px;
   }
 }
 /* #region vizual */
@@ -456,6 +471,30 @@
 @media only screen and (max-width: 575px) {
   #slider-area .hero-stage img.hero-group {
     max-width: 330px;
+  }
+}
+/*
+  slayd 3 — kataloqlar şəkli kvadratın ~94%-ni doldurur (slayd 2-nin bankaları
+  ~76%), ona görə eyni max-width-də xeyli böyük görünürdü. Ölçü ~0.8 dəfə
+  kiçildilir ki, vizual ağırlığı digər slaydlarla eyni olsun.
+*/
+#slider-area .hero-stage img.hero-catalogs {
+  max-width: 350px;
+}
+
+@media only screen and (max-width: 1200px) {
+  #slider-area .hero-stage img.hero-catalogs {
+    max-width: 300px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  #slider-area .hero-stage img.hero-catalogs {
+    max-width: 250px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #slider-area .hero-stage img.hero-catalogs {
+    max-width: 200px;
   }
 }
 /* #endregion */

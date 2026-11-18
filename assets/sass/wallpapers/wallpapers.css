@@ -664,20 +664,27 @@
 
 /* #endregion */
 /* #region kartlar */
+/*
+  Kart ölçüsü məhsullar səhifəsindəki kartla (shop.html) eyni olsun: orada
+  kart yan paneldən sonra qalan enin 1/3-idir (1440px ekranda ~340px).
+  Burada yan panel yoxdur, ona görə tor 4 sütunludur (bu səhifədəki
+  kataloq toru ilə də eyni: pages/wallpapers/_catalog.scss). Əvvəl 3 sütun
+  tam eni tuturdu — kart ~450px olurdu, telefonda isə ekran boyu.
+*/
 #wallpaper-adhesives .wa-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 1199px) {
   #wallpaper-adhesives .wa-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 767px) {
   #wallpaper-adhesives .wa-grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
 }
@@ -691,6 +698,51 @@
   display: block;
 }
 
+/* dar ekranda (2 sütun) kart yığcamlaşır — kataloqdakı kimi
+   (pages/shop/_catalog.scss → "dar ekranda (2 sütun)") */
+@media only screen and (max-width: 575px) {
+  #wallpaper-adhesives .product-card {
+    padding: 8px;
+    border-radius: 18px;
+  }
+  #wallpaper-adhesives .pc-body {
+    padding: 12px 4px 2px;
+  }
+  #wallpaper-adhesives .pc-name {
+    font-size: 15px;
+  }
+  /* dar kartda kateqoriya bir sətrə sığsın */
+  #wallpaper-adhesives .pc-category {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+  #wallpaper-adhesives .pc-category::before {
+    width: 7px;
+    height: 7px;
+    margin-right: 6px;
+  }
+  /* təsvir dar kartı uzadır — kataloqdakı kimi gizlənir */
+  #wallpaper-adhesives .product-card .pc-desc {
+    display: none;
+  }
+  #wallpaper-adhesives .pc-chip {
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+  #wallpaper-adhesives .pc-price b {
+    font-size: 17px;
+  }
+  #wallpaper-adhesives .pc-cart {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 10px;
+    border-radius: 12px;
+  }
+  #wallpaper-adhesives .pc-wish {
+    width: 34px;
+    height: 34px;
+  }
+}
 /* #endregion */
 /* #region palitra */
 /* #endregion */
