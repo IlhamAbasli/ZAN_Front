@@ -1,0 +1,189 @@
+// ==========================================================================
+// DİVAR KAĞIZLARI — BAŞLIQ ZOLAĞI (#wp-hero)
+// --------------------------------------------------------------------------
+// HTML: wallpapers.html → #region wp-hero
+// Quruluş əlaqə və məhsullar səhifələrinin başlığı ilə eynidir.
+// Sağdakı dekor — yelpik kimi açılan kataloq üzlükləri (yalnız xl+).
+// ==========================================================================
+
+@use "../../base/mixins" as *;
+
+/* #region bölmə və fon */
+
+#wp-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 56px;
+  background: var(--grad-section-gold);
+}
+
+#wp-hero .wh-bg {
+  @include hero-bg;
+}
+
+#wp-hero .wh-blob {
+  @include hero-blob;
+}
+
+#wp-hero .wh-blob-1 {
+  top: -180px;
+  right: 8%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#wp-hero .wh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* #endregion */
+
+/* #region kataloq üzlükləri — dekor */
+
+#wp-hero .wh-books {
+  position: absolute;
+  top: 50%;
+  right: max(4%, calc((100% - 1320px) / 2 + 40px));
+  width: 300px;
+  height: 260px;
+  transform: translateY(-46%);
+}
+
+#wp-hero .wh-book {
+  position: absolute;
+  bottom: 0;
+  width: 168px;
+  height: auto;
+  border-radius: 10px;
+  /* mockup-ın açıq fonu kartın içində qalır — kölgə ilə ayrılır */
+  box-shadow: var(--shadow-card-hover);
+  transform-origin: 50% 100%;
+  animation: wh-book-in 0.8s var(--ease) both;
+}
+
+#wp-hero .wh-book-1 {
+  left: 0;
+  transform: rotate(-9deg);
+}
+
+#wp-hero .wh-book-2 {
+  right: 0;
+  transform: rotate(7deg) translateY(-14px);
+  animation-delay: 0.15s;
+}
+
+@keyframes wh-book-in {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wp-hero .wh-book {
+    animation: none;
+  }
+}
+
+/* #endregion */
+
+/* #region mətn */
+
+#wp-hero .wh-crumbs ol {
+  @include page-crumbs;
+}
+
+#wp-hero .wh-title {
+  @include page-hero-title;
+}
+
+#wp-hero .wh-text {
+  max-width: 52ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+
+/* #region firma keçidləri */
+
+#wp-hero .wh-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+#wp-hero .wh-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+  transition:
+    color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--c);
+    transition: background-color 0.25s var(--ease);
+  }
+
+  &:hover {
+    color: #ffffff;
+    border-color: transparent;
+    background: var(--c);
+
+    i {
+      background: #ffffff;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c);
+    outline-offset: 2px;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 1199px) {
+  #wp-hero .wh-books {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #wp-hero {
+    padding: 28px 0 40px;
+  }
+  #wp-hero .wh-title {
+    font-size: 32px;
+  }
+  #wp-hero .wh-text {
+    font-size: 15px;
+  }
+}
+
+/* #endregion */

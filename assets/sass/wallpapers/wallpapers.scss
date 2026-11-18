@@ -1,0 +1,18 @@
+// ==========================================================================
+// WALLPAPERS.SCSS — yalnız "Divar kağızları" səhifəsinin (wallpapers.html) stilləri
+// --------------------------------------------------------------------------
+// Çıxış:    assets/sass/wallpapers/wallpapers.css (Live Sass Compiler)
+// Qoşulur:  wallpapers.html və wallpaper-catalog.html <head>-ində site.css-dən SONRA
+//           (.NET MVC-də: Views/Wallpapers/Index.cshtml → @section Styles)
+// Modullar: assets/sass/pages/wallpapers/
+//
+// Tokenlər, header, footer və mini səbət site.css-dən gəlir.
+// ==========================================================================
+
+/* #region bölmələr (səhifədəki sıra ilə) */
+@use "../pages/wallpapers/hero";
+@use "../pages/wallpapers/catalogs";
+@use "../pages/wallpapers/adhesives";
+@use "../pages/wallpapers/bestwall";
+@use "../pages/wallpapers/catalog";
+/* #endregion */

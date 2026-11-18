@@ -1237,6 +1237,432 @@
       </section>
       <!-- #endregion -->
 
+      <!-- #region contact-reps — bölgələr üzrə satış təmsilçiləri; stil: pages/contact/_reps.scss, JS: contact-page.js → reps -->
+      <!--
+        Hər kart bir təmsilçidir. Dəyişəndə: ad, baş hərflər (cr-avatar), telefon —
+        href (tel:), görünən mətn və data-copy birlikdə; rayonlar — .cr-zones siyahısı
+        (sayı .cr-count-da). Kartın rəngi --c ilə verilir.
+        Axtarış rayon adlarına görə kartları süzür (ə/e, ş/s, ç/c ... fərqi nəzərə alınmır).
+      -->
+      <section id="contact-reps" aria-labelledby="contact-reps-title">
+        <div class="container-main">
+          <div class="cr-head">
+            <div class="cr-intro">
+              <span class="cr-chip"
+                ><i aria-hidden="true"></i>Satış təmsilçiləri</span
+              >
+              <h2 class="cr-title" id="contact-reps-title">
+                Bölgənizdəki <em>satış təmsilçisi</em>
+              </h2>
+              <p class="cr-text">
+                Topdan alış, diler əməkdaşlığı və məhsul tədarükü üçün rayonunuza
+                cavabdeh təmsilçimizlə birbaşa əlaqə saxlayın.
+              </p>
+            </div>
+
+            <div class="cr-search" role="search">
+              <label class="cr-search-label" for="cr-find"
+                >Rayonunuzu tapın</label
+              >
+              <div class="cr-search-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.5-3.5" />
+                </svg>
+                <input
+                  id="cr-find"
+                  type="search"
+                  autocomplete="off"
+                  spellcheck="false"
+                  maxlength="40"
+                  placeholder="Məs.: Quba, Gəncə, Şəki"
+                  aria-describedby="cr-result"
+                  aria-controls="cr-list"
+                />
+                <button
+                  type="button"
+                  class="cr-clear"
+                  aria-label="Axtarışı təmizlə"
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <p class="cr-result" id="cr-result" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <ul class="cr-grid" id="cr-list">
+            <li class="cr-card" style="--c: #c9142c">
+              <div class="cr-person">
+                <span class="cr-avatar" aria-hidden="true" translate="no"
+                  >NC</span
+                >
+                <div>
+                  <h3 class="cr-name" translate="no">Novruzov Cavanşir</h3>
+                  <p class="cr-role">Satış təmsilçisi</p>
+                </div>
+              </div>
+              <p class="cr-zones-title">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Nəzarət etdiyi rayonlar</span>
+                <b class="cr-count" translate="no">9</b>
+              </p>
+              <ul class="cr-zones">
+                <li>Neftçala</li>
+                <li>Salyan</li>
+                <li>Biləsuvar</li>
+                <li>Cəlilabad</li>
+                <li>Masallı</li>
+                <li>Lənkəran</li>
+                <li>Lerik</li>
+                <li>Yardımlı</li>
+                <li>Astara</li>
+              </ul>
+              <div class="cr-actions">
+                <a class="cr-call" href="tel:+994102567078">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    />
+                  </svg>
+                  <span translate="no">+994 10 256 70 78</span>
+                </a>
+                <button
+                  type="button"
+                  class="cr-copy"
+                  data-copy="+994102567078"
+                  aria-label="Telefon nömrəsini kopyala"
+                  title="Telefon nömrəsini kopyala"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                  <svg class="cr-copy-ok" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="cr-card" style="--c: #1f7ad6">
+              <div class="cr-person">
+                <span class="cr-avatar" aria-hidden="true" translate="no"
+                  >DK</span
+                >
+                <div>
+                  <h3 class="cr-name" translate="no">Dadaşov Kamran</h3>
+                  <p class="cr-role">Satış təmsilçisi</p>
+                </div>
+              </div>
+              <p class="cr-zones-title">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Nəzarət etdiyi rayonlar</span>
+                <b class="cr-count" translate="no">9</b>
+              </p>
+              <ul class="cr-zones">
+                <li>Şamaxı</li>
+                <li>Ağsu</li>
+                <li>Kürdəmir</li>
+                <li>Ucar</li>
+                <li>Zərdab</li>
+                <li>Ağdaş</li>
+                <li>Göyçay</li>
+                <li>Mingəçevir</li>
+                <li>Yevlax</li>
+              </ul>
+              <div class="cr-actions">
+                <a class="cr-call" href="tel:+994102393388">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    />
+                  </svg>
+                  <span translate="no">+994 10 239 33 88</span>
+                </a>
+                <button
+                  type="button"
+                  class="cr-copy"
+                  data-copy="+994102393388"
+                  aria-label="Telefon nömrəsini kopyala"
+                  title="Telefon nömrəsini kopyala"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                  <svg class="cr-copy-ok" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="cr-card" style="--c: #1f9d8a">
+              <div class="cr-person">
+                <span class="cr-avatar" aria-hidden="true" translate="no"
+                  >İS</span
+                >
+                <div>
+                  <h3 class="cr-name" translate="no">İsmayılov Seymur</h3>
+                  <p class="cr-role">Satış təmsilçisi</p>
+                </div>
+              </div>
+              <p class="cr-zones-title">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Nəzarət etdiyi rayonlar</span>
+                <b class="cr-count" translate="no">10</b>
+              </p>
+              <ul class="cr-zones">
+                <li>Hacıqabul</li>
+                <li>Sabirabad</li>
+                <li>Saatlı</li>
+                <li>İmişli</li>
+                <li>Beyləqan</li>
+                <li>Ağcabədi</li>
+                <li>Bərdə</li>
+                <li>Tərtər</li>
+                <li>Ağdam</li>
+                <li>Füzuli</li>
+              </ul>
+              <div class="cr-actions">
+                <a class="cr-call" href="tel:+994102393355">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    />
+                  </svg>
+                  <span translate="no">+994 10 239 33 55</span>
+                </a>
+                <button
+                  type="button"
+                  class="cr-copy"
+                  data-copy="+994102393355"
+                  aria-label="Telefon nömrəsini kopyala"
+                  title="Telefon nömrəsini kopyala"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                  <svg class="cr-copy-ok" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="cr-card" style="--c: #b8692a">
+              <div class="cr-person">
+                <span class="cr-avatar" aria-hidden="true" translate="no"
+                  >MF</span
+                >
+                <div>
+                  <h3 class="cr-name" translate="no">Məmmədov Fərid</h3>
+                  <p class="cr-role">Satış təmsilçisi</p>
+                </div>
+              </div>
+              <p class="cr-zones-title">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Nəzarət etdiyi rayonlar</span>
+                <b class="cr-count" translate="no">7</b>
+              </p>
+              <ul class="cr-zones">
+                <li>Sumqayıt</li>
+                <li>Xızı</li>
+                <li>Siyəzən</li>
+                <li>Şabran</li>
+                <li>Quba</li>
+                <li>Qusar</li>
+                <li>Xaçmaz</li>
+              </ul>
+              <div class="cr-actions">
+                <a class="cr-call" href="tel:+994102567074">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    />
+                  </svg>
+                  <span translate="no">+994 10 256 70 74</span>
+                </a>
+                <button
+                  type="button"
+                  class="cr-copy"
+                  data-copy="+994102567074"
+                  aria-label="Telefon nömrəsini kopyala"
+                  title="Telefon nömrəsini kopyala"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                  <svg class="cr-copy-ok" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="cr-card" style="--c: #0f4188">
+              <div class="cr-person">
+                <span class="cr-avatar" aria-hidden="true" translate="no"
+                  >CE</span
+                >
+                <div>
+                  <h3 class="cr-name" translate="no">Camal-zadə Elvinbəy</h3>
+                  <p class="cr-role">Satış təmsilçisi</p>
+                </div>
+              </div>
+              <p class="cr-zones-title">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Nəzarət etdiyi rayonlar</span>
+                <b class="cr-count" translate="no">7</b>
+              </p>
+              <ul class="cr-zones">
+                <li>Goranboy</li>
+                <li>Gəncə</li>
+                <li>Gədəbəy</li>
+                <li>Qazax</li>
+                <li>Ağstafa</li>
+                <li>Tovuz</li>
+                <li>Şəmkir</li>
+              </ul>
+              <div class="cr-actions">
+                <a class="cr-call" href="tel:+994102567072">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    />
+                  </svg>
+                  <span translate="no">+994 10 256 70 72</span>
+                </a>
+                <button
+                  type="button"
+                  class="cr-copy"
+                  data-copy="+994102567072"
+                  aria-label="Telefon nömrəsini kopyala"
+                  title="Telefon nömrəsini kopyala"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                  <svg class="cr-copy-ok" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+
+            <li class="cr-card" style="--c: #7a45c2">
+              <div class="cr-person">
+                <span class="cr-avatar" aria-hidden="true" translate="no"
+                  >AY</span
+                >
+                <div>
+                  <h3 class="cr-name" translate="no">Abbasov Yusif</h3>
+                  <p class="cr-role">Satış təmsilçisi</p>
+                </div>
+              </div>
+              <p class="cr-zones-title">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Nəzarət etdiyi rayonlar</span>
+                <b class="cr-count" translate="no">7</b>
+              </p>
+              <ul class="cr-zones">
+                <li>İsmayıllı</li>
+                <li>Qəbələ</li>
+                <li>Oğuz</li>
+                <li>Şəki</li>
+                <li>Qax</li>
+                <li>Zaqatala</li>
+                <li>Balakən</li>
+              </ul>
+              <div class="cr-actions">
+                <a class="cr-call" href="tel:+994102393366">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                    />
+                  </svg>
+                  <span translate="no">+994 10 239 33 66</span>
+                </a>
+                <button
+                  type="button"
+                  class="cr-copy"
+                  data-copy="+994102393366"
+                  aria-label="Telefon nömrəsini kopyala"
+                  title="Telefon nömrəsini kopyala"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    />
+                  </svg>
+                  <svg class="cr-copy-ok" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+          </ul>
+
+          <!-- axtarış heç bir rayona uyğun gəlmədikdə (contact-page.js → reps) -->
+          <div class="cr-empty" hidden>
+            <span class="cr-empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <div>
+              <h3>Bu rayon üzrə təmsilçi tapılmadı</h3>
+              <p>
+                Adı düzgün yazdığınızı yoxlayın və ya qaynar xəttə zəng edin —
+                sizi uyğun təmsilçiyə yönləndirəcəyik.
+              </p>
+            </div>
+            <!-- TODO: qaynar xətt nömrəsi ("Qaynar xətt" kartı ilə eyni) -->
+            <a class="cr-empty-call" href="tel:+994512065054">
+              <span translate="no">+(994) 51 206 50 54</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- #endregion -->
+
       <!-- #region contact-area — müraciət forması + sürətli əlaqə; stil: pages/contact/_form.scss, JS: contact-page.js -->
       <section id="contact-area" aria-labelledby="contact-form-title">
         <div class="container-main">
@@ -1853,7 +2279,7 @@
                   >
                 </li>
                 <li>
-                  <a href="shop.html?category=divar-kagizlari"
+                  <a href="wallpapers.html"
                     ><span class="footer-paint-drop" style="--c: #e8d29a"></span
                     >Premium divar kağızları</a
                   >

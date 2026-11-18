@@ -1,0 +1,4 @@
+# Divar kağızı dizaynlarının orijinalları (~600 MB, bəziləri 20–30 MB-lıq JPG).
+# Saytda yalnız tools/wallpapers/build.py-nin hazırladığı WebP-lər işlənir:
+# assets/images/wallpapers/<kataloq>/ — onlar git-ə və serverə gedir.
+assets/*_dizaynlar/

@@ -40,6 +40,10 @@
   // köhnə yazılarda link yoxdur — məhsul səhifəsi id ilə açılır
   const productUrl = (item) => item.url || `product-detail.html?id=${encodeURIComponent(item.id)}`;
 
+  // divar kağızları onlayn satılmır (wallpaper-catalog.html) — sevimlilərdə
+  // saxlanılır, amma "Səbətə at" düyməsi yoxdur və "hamısını səbətə at"a düşmür
+  const canBuy = (item) => item.categorySlug !== "divar-kagizlari";
+
   // köhnə yazılarda stok məlumatı yoxdur — stokda sayılır
   const wishItems = () =>
     ZAN.wishlist.items().map((item) => Object.assign({}, item, { inStock: item.inStock !== false }));
@@ -90,7 +94,7 @@
           ${item.volume ? `<div class="pc-meta"><span class="pc-chip">${escapeHtml(ZAN.t(item.volume))}</span></div>` : ""}
           <div class="pc-foot">
             <p class="pc-price">${onSale ? `<s>${ZAN.formatPrice(item.oldPrice)}</s>` : ""}<b>${ZAN.formatPrice(item.price)}</b></p>
-            <button type="button" class="pc-cart" data-action="add-to-cart" ${item.inStock ? 'aria-label="Səbətə at"' : 'aria-label="Stokda yoxdur" disabled'}>${ICON_CART}<span>Səbətə at</span></button>
+            ${canBuy(item) ? `<button type="button" class="pc-cart" data-action="add-to-cart" ${item.inStock ? 'aria-label="Səbətə at"' : 'aria-label="Stokda yoxdur" disabled'}>${ICON_CART}<span>Səbətə at</span></button>` : ""}
           </div>
         </div>
       </article>`;
@@ -110,7 +114,7 @@
 
     setText("count", ZAN.t("{n} məhsul", { n: items.length }));
     setText("note", outCount ? ZAN.t("{n} məhsul hazırda stokda yoxdur", { n: outCount }) : "");
-    if (addAllButton) addAllButton.disabled = items.length === outCount;
+    if (addAllButton) addAllButton.disabled = !items.some((item) => item.inStock && canBuy(item));
 
     view.hidden = isEmpty;
     if (empty) empty.hidden = !isEmpty;
@@ -131,7 +135,7 @@
   // stokda olanların hamısı 1 ədəd səbətə; artıq səbətdədirsə sayı artır
   if (addAllButton) {
     addAllButton.addEventListener("click", function () {
-      const available = wishItems().filter((item) => item.inStock);
+      const available = wishItems().filter((item) => item.inStock && canBuy(item));
       if (!available.length) return;
 
       available.forEach((item) => ZAN.cart.add(Object.assign({}, item, { url: productUrl(item) }), 1));

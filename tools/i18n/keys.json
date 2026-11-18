@@ -62,6 +62,18 @@
     ]
   },
   {
+    "key": "{n} dizayn",
+    "where": [
+      "wallpapers-page.js"
+    ]
+  },
+  {
+    "key": "{n} dizayn tapıldı",
+    "where": [
+      "wallpapers-page.js"
+    ]
+  },
+  {
     "key": "{n} əd.",
     "where": [
       "cart-page.js",
@@ -143,6 +155,12 @@
     "key": "{n} səth · hazır məkan",
     "where": [
       "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "{n} təmsilçi tapıldı",
+    "where": [
+      "contact-page.js"
     ]
   },
   {
@@ -238,6 +256,14 @@
     ]
   },
   {
+    "key": "/ rulon",
+    "where": [
+      "wallpaper-catalog.html",
+      "wallpapers-page.js",
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "+5 °C … +30 °C, şaxtadan qoruyun",
     "where": [
       "product-demo.js",
@@ -323,6 +349,12 @@
     "key": "<b>Çəkin</b> Valik, fırça və ya pulverizatorla 2 qat çəkin; qatlar arası 4–6 saat gözləyin.",
     "where": [
       "product-detail.html"
+    ]
+  },
+  {
+    "key": "<b>Hansı dizaynı seçəcəyinizə qərar verə bilmirsiniz?</b> Kataloqu yaxından görmək və ya sifariş üçün bölgənizdəki satış təmsilçisi ilə əlaqə saxlayın.",
+    "where": [
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -715,6 +747,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -752,12 +786,6 @@
     "key": "3,5 kq · 10 kq · 25 kq",
     "where": [
       "product-detail.html"
-    ]
-  },
-  {
-    "key": "30 ildən çox təcrübə",
-    "where": [
-      "home.html"
     ]
   },
   {
@@ -855,6 +883,12 @@
     "key": "80–100 q/m² (bir qat) — ≈ 12 m²/kq",
     "where": [
       "product-demo.js"
+    ]
+  },
+  {
+    "key": "9–11 rulon",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -1020,6 +1054,12 @@
     ]
   },
   {
+    "key": "Adı düzgün yazdığınızı yoxlayın və ya qaynar xəttə zəng edin — sizi uyğun təmsilçiyə yönləndirəcəyik.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Adınız",
     "where": [
       "contact.html"
@@ -1083,6 +1123,24 @@
     ]
   },
   {
+    "key": "Ağcabədi",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Ağdam",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Ağdaş",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Ağıllı seçim",
     "where": [
       "visualizer.html"
@@ -1092,6 +1150,18 @@
     "key": "Ağıllı seçim oxşar rəngli sahəni özü tapır. Kənarları fırça və pozanla düzəldin; hər divar üçün ayrıca səth əlavə edin.",
     "where": [
       "visualizer.html"
+    ]
+  },
+  {
+    "key": "Ağstafa",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Ağsu",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -1112,6 +1182,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -1125,6 +1197,12 @@
     "key": "Axtarışa uyğun rəng tapılmadı.",
     "where": [
       "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Axtarışı təmizlə",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -1392,6 +1470,12 @@
     ]
   },
   {
+    "key": "Astara",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Astarı qabda yaxşıca qarışdırın ki, kvars qumu bərabər paylansın.",
     "where": [
       "product-demo.js"
@@ -1493,6 +1577,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -1532,7 +1618,8 @@
   {
     "key": "Bağla",
     "where": [
-      "shop.html"
+      "shop.html",
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -1599,6 +1686,12 @@
     ]
   },
   {
+    "key": "Balakən",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "bank kartı ilə — çatdırılma zamanı kuryerə;",
     "where": [
       "terms.html"
@@ -1655,7 +1748,38 @@
   {
     "key": "Best Wall — Original Wallpaper",
     "where": [
-      "home.html"
+      "home.html",
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "BestWall <em>divar kağızları</em>",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "BestWall Divar kağızları",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "BestWall satış komandası",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "BestWall satış müdürünə zəng edin",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "BestWall satış təmsilçisinə zəng edin",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -1685,6 +1809,12 @@
     ]
   },
   {
+    "key": "Beyləqan",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Bənövşə",
     "where": [
       "visualizer-data.js"
@@ -1694,6 +1824,12 @@
     "key": "Bənövşəyi tonlar",
     "where": [
       "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Bərdə",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -1733,6 +1869,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -1758,6 +1896,12 @@
     "key": "Bildirişlər",
     "where": [
       "site.js"
+    ]
+  },
+  {
+    "key": "Biləsuvar",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -1826,6 +1970,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -1940,6 +2086,12 @@
     ]
   },
   {
+    "key": "Bölgənizdəki <em>satış təmsilçisi</em>",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Böyük və kiçik hərf, rəqəm və simvol qarışdırın",
     "where": [
       "account.html"
@@ -1994,6 +2146,12 @@
     ]
   },
   {
+    "key": "Bu kodla dizayn tapılmadı",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
     "key": "Bu məhsulla birlikdə ən çox seçilənlər.",
     "where": [
       "product-detail.html"
@@ -2009,6 +2167,12 @@
     "key": "Bu nöqtədə səth tapılmadı. Dözümlülüyü artırın və ya fırçadan istifadə edin.",
     "where": [
       "visualizer-page.js"
+    ]
+  },
+  {
+    "key": "Bu rayon üzrə təmsilçi tapılmadı",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -2073,6 +2237,12 @@
     ]
   },
   {
+    "key": "Bütün dizaynlar",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
     "key": "Bütün kateqoriyalar",
     "where": [
       "about.html",
@@ -2090,6 +2260,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2118,6 +2290,12 @@
     ]
   },
   {
+    "key": "Cəlilabad",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Cəmi",
     "where": [
       "about.html",
@@ -2135,6 +2313,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2142,6 +2322,12 @@
     "key": "Cəmi: {n} × {price} =",
     "where": [
       "product-page.js"
+    ]
+  },
+  {
+    "key": "Cəsarətli rənglər və ifadəli naxışlar — diqqət mərkəzində olan divarlar üçün.",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -2168,6 +2354,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2222,6 +2410,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2292,6 +2482,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2559,6 +2751,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2566,6 +2760,12 @@
     "key": "Diler olmaq istəyirsiniz?",
     "where": [
       "contact.html"
+    ]
+  },
+  {
+    "key": "Divar <em>kağızları</em>",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -2582,6 +2782,12 @@
     ]
   },
   {
+    "key": "Divar kağızı <em>yapışdırıcıları</em>",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Divar kağızı etiketini topla, bonusunu qazan!",
     "where": [
       "promo.js"
@@ -2594,9 +2800,27 @@
     ]
   },
   {
+    "key": "Divar kağızı kataloqu",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
     "key": "Divar kağızı yapışdırıcıları",
     "where": [
       "home.html"
+    ]
+  },
+  {
+    "key": "Divar kağızı yapışdırıcısı",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "Divar kağızının növünə uyğun ZAN yapışdırıcısını seçin — bir qutu orta hesabla 9–11 rulon üçün kifayət edir.",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -2618,6 +2842,9 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers-page.js",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2755,6 +2982,30 @@
     "key": "DivoFix və EkoFix parlaq boya çeşidləri",
     "where": [
       "home.html"
+    ]
+  },
+  {
+    "key": "Dizayn kodu, məs.: 044112",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
+    "key": "Dizayn kodunu axtarın",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
+    "key": "Dizayn sayı",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
+    "key": "Dizaynlar",
+    "where": [
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -2964,6 +3215,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -2990,6 +3243,12 @@
     "key": "Ev fasadı",
     "where": [
       "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Evinizin xarakterinə uyğun kolleksiyanı seçin — kataloqlara baxın, sualınız olsa satış komandamız kömək etsin.",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -3040,6 +3299,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -3130,6 +3391,12 @@
     ]
   },
   {
+    "key": "Ən yaxşı nəticə üçün ZAN divar kağızlarını yalnız ZAN yapışdırıcıları ilə tətbiq edin.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Əncir",
     "where": [
       "visualizer-data.js"
@@ -3172,6 +3439,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -3193,6 +3462,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -3214,6 +3485,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -3257,6 +3530,12 @@
     "key": "Əvvəlcə yenilər",
     "where": [
       "shop.html"
+    ]
+  },
+  {
+    "key": "Əvvəlki dizayn",
+    "where": [
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -3317,6 +3596,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -3504,6 +3785,12 @@
     ]
   },
   {
+    "key": "Füzuli",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "G708 · Göygöl",
     "where": [
       "home.html"
@@ -3567,16 +3854,29 @@
     ]
   },
   {
+    "key": "Gədəbəy",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Gəncə",
     "where": [
       "account.html",
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
     "key": "Gil",
     "where": [
       "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Goranboy",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -3602,6 +3902,12 @@
     "key": "Görünüşü dəyişmir",
     "where": [
       "product-demo.js"
+    ]
+  },
+  {
+    "key": "Göyçay",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -3722,6 +4028,12 @@
     ]
   },
   {
+    "key": "Hacıqabul",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Haqqımızda",
     "where": [
       "about.html",
@@ -3739,6 +4051,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -4116,6 +4430,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -4147,6 +4463,12 @@
     "key": "Hündürlük",
     "where": [
       "product-detail.html"
+    ]
+  },
+  {
+    "key": "Xaçmaz",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -4202,6 +4524,12 @@
     ]
   },
   {
+    "key": "Xızı",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Xoş gördük, {name}!",
     "where": [
       "auth.js"
@@ -4243,6 +4571,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -4280,6 +4610,12 @@
     "key": "İlk 24 saat səthi yağışdan qoruyun.",
     "where": [
       "product-demo.js"
+    ]
+  },
+  {
+    "key": "İmişli",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -4343,6 +4679,12 @@
     ]
   },
   {
+    "key": "İsmayıllı",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "İstehsal",
     "where": [
       "about.html"
@@ -4358,6 +4700,18 @@
     "key": "istehsal, məhsul və ya brend portreti — 1200×1500 (4:5), JPG / WebP",
     "where": [
       "about.html"
+    ]
+  },
+  {
+    "key": "İstənilən növ divar kağızları üçün yapışdırıcı.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "İstənilən növ premium sinif divar kağızları üçün yapışdırıcı.",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -4403,6 +4757,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -4607,7 +4963,33 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
+    ]
+  },
+  {
+    "key": "Kataloqa bax",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "Kataloqla bağlı sualınız var?",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "Kataloqlar",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
+    "key": "Kataloqlar tezliklə",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -4628,6 +5010,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -4656,6 +5040,8 @@
       "site.js",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -4759,6 +5145,12 @@
     ]
   },
   {
+    "key": "Klassikdən müasirə qədər orijinal divar kağızı kolleksiyaları. BestWall kataloqları tezliklə bu bölmədə yerləşdiriləcək.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Klassikdən müasirə qədər orijinal divar kağızı kolleksiyaları. Evinizə uyğun naxışı birlikdə seçək — sadəcə zəng edin.",
     "where": [
       "home.html"
@@ -4855,6 +5247,12 @@
     ]
   },
   {
+    "key": "Kodu yoxlayın və ya kataloqun bütün dizaynlarına baxın.",
+    "where": [
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
     "key": "Kolleksiyaya bax",
     "where": [
       "home.html"
@@ -4940,6 +5338,12 @@
     ]
   },
   {
+    "key": "Kürdəmir",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Kvars qumlu, kələ-kötür səth",
     "where": [
       "product-demo.js"
@@ -4956,6 +5360,12 @@
     "key": "Qafqaz meşəsi",
     "where": [
       "visualizer-data.js"
+    ]
+  },
+  {
+    "key": "Qax",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -5063,6 +5473,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5084,6 +5496,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5103,6 +5517,12 @@
     "key": "Qaytarmaq üçün bizə zəng edin və ya yazın, sifariş nömrəsini qeyd edin.",
     "where": [
       "terms.html"
+    ]
+  },
+  {
+    "key": "Qazax",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -5195,7 +5615,8 @@
   {
     "key": "Qəbələ",
     "where": [
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -5234,6 +5655,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5280,6 +5703,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5287,6 +5712,12 @@
     "key": "Qiymət",
     "where": [
       "shop.html"
+    ]
+  },
+  {
+    "key": "Qiymət · 1 rulon",
+    "where": [
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -5366,7 +5797,8 @@
     "key": "Quba",
     "where": [
       "account.html",
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -5410,6 +5842,12 @@
     "key": "Quruyanda şəffaf olur",
     "where": [
       "product-demo.js"
+    ]
+  },
+  {
+    "key": "Qusar",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -5462,6 +5900,12 @@
     ]
   },
   {
+    "key": "Lerik",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Ləkələrə davamlı, yuyula bilən ipək-mat daxili divar boyası.",
     "where": [
       "product-demo.js",
@@ -5473,7 +5917,8 @@
     "key": "Lənkəran",
     "where": [
       "account.html",
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -5574,6 +6019,12 @@
   },
   {
     "key": "Marşrut qur",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Masallı",
     "where": [
       "contact.html"
     ]
@@ -5683,6 +6134,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5704,6 +6157,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5832,6 +6287,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5854,6 +6311,8 @@
       "site.js",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5930,6 +6389,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5951,6 +6412,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -5984,6 +6447,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6030,6 +6495,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6136,6 +6603,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6254,6 +6723,12 @@
     ]
   },
   {
+    "key": "Məs.: Quba, Gəncə, Şəki",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Məsamələri doldurmaq üçün sellülozik dolğu vernik çəkin və zımparalayın.",
     "where": [
       "product-demo.js"
@@ -6336,7 +6811,8 @@
     "key": "Mingəçevir",
     "where": [
       "account.html",
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -6399,6 +6875,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6420,6 +6898,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6434,6 +6914,12 @@
     "key": "Monitor və telefonlar rəngləri bir qədər fərqli göstərir. Son qərardan əvvəl rəngi kataloqda və ya divarda kiçik sınaq sahəsində yoxlayın.",
     "where": [
       "visualizer.html"
+    ]
+  },
+  {
+    "key": "Monitor və telefonlarda dizaynlar fərqli görünə bilər",
+    "where": [
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -6656,6 +7142,8 @@
       "terms.html",
       "visualizer-data.js",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6695,6 +7183,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -6708,6 +7198,12 @@
     "key": "Nazik qatlarla 2–3 qat çəkin; qatlar arası 20–30 dəqiqə gözləyin.",
     "where": [
       "product-demo.js"
+    ]
+  },
+  {
+    "key": "Neftçala",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -6801,6 +7297,12 @@
     ]
   },
   {
+    "key": "Nəzarət etdiyi rayonlar",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Nisbət",
     "where": [
       "product-demo.js"
@@ -6852,6 +7354,12 @@
     "key": "Növbəti bölmə",
     "where": [
       "about.html"
+    ]
+  },
+  {
+    "key": "Növbəti dizayn",
+    "where": [
+      "wallpaper-catalog.html"
     ]
   },
   {
@@ -6919,6 +7427,12 @@
     ]
   },
   {
+    "key": "Oğuz",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Oxra",
     "where": [
       "visualizer-data.js"
@@ -6961,6 +7475,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7049,6 +7565,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7271,6 +7789,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7359,6 +7879,12 @@
     ]
   },
   {
+    "key": "Rayonunuzu tapın",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Razılığınız olduqda — yeni məhsullar və kampaniyalar barədə məlumat göndərmək.",
     "where": [
       "privacy.html"
@@ -7443,6 +7969,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7488,6 +8016,12 @@
     "key": "Rəng vizualizatorunda hazır otaqları və ya öz otağınızın şəklini ZAN palitrası ilə rəngləyin, əvvəl və sonrakı görünüşü müqayisə edin, nəticəni yükləyib yaxınlarınızla paylaşın.",
     "where": [
       "home.html"
+    ]
+  },
+  {
+    "key": "Rəng, faktura və sifariş üçün qaynar xəttə zəng edin və ya bölgənizdəki satış təmsilçisi ilə birbaşa əlaqə saxlayın.",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -7574,6 +8108,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7590,9 +8126,21 @@
     ]
   },
   {
+    "key": "Saatlı",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "sabah",
     "where": [
       "contact-page.js"
+    ]
+  },
+  {
+    "key": "Sabirabad",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -7613,6 +8161,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7678,6 +8228,12 @@
     ]
   },
   {
+    "key": "Sakit, təbii fakturalar — hər interyerə uyğunlaşan sadə və zərif fon.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Salam, <b data-user-field=\"firstName\">{1}</b>! Əlaqə məlumatlarınız, şifrəniz və ZAN Ustalar Klubu — hamısı burada.",
     "where": [
       "account.html"
@@ -7685,6 +8241,12 @@
   },
   {
     "key": "Salam! Hansı rəng?",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Salyan",
     "where": [
       "contact.html"
     ]
@@ -7714,9 +8276,30 @@
     ]
   },
   {
+    "key": "Satış müdürü",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "satış nöqtəsi",
     "where": [
       "about.html"
+    ]
+  },
+  {
+    "key": "Satış təmsilçiləri",
+    "where": [
+      "contact.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "Satış təmsilçisi",
+    "where": [
+      "contact.html",
+      "wallpapers.html"
     ]
   },
   {
@@ -7853,6 +8436,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7923,6 +8508,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -7950,6 +8537,7 @@
       "product-page.js",
       "shop-page.js",
       "shop.js",
+      "wallpapers-page.js",
       "wishlist-page.js"
     ]
   },
@@ -7958,7 +8546,8 @@
     "where": [
       "product-page.js",
       "shop-page.js",
-      "shop.js"
+      "shop.js",
+      "wallpapers-page.js"
     ]
   },
   {
@@ -7969,7 +8558,10 @@
       "product-page.js",
       "shop-page.js",
       "shop.html",
-      "shop.js"
+      "shop.js",
+      "wallpaper-catalog.html",
+      "wallpapers-page.js",
+      "wallpapers.html"
     ]
   },
   {
@@ -7977,7 +8569,8 @@
     "where": [
       "product-page.js",
       "shop-page.js",
-      "shop.js"
+      "shop.js",
+      "wallpapers-page.js"
     ]
   },
   {
@@ -7998,6 +8591,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8052,6 +8647,7 @@
       "product-detail.html",
       "product-page.js",
       "shop.html",
+      "wallpapers.html",
       "wishlist-page.js"
     ]
   },
@@ -8086,6 +8682,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist-page.js",
       "wishlist.html"
     ]
@@ -8108,6 +8706,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8135,6 +8735,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8173,6 +8775,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8194,6 +8798,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8221,7 +8827,15 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
+    ]
+  },
+  {
+    "key": "Səhifənin bölmələri",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -8261,6 +8875,8 @@
       "terms.html",
       "visualizer-data.js",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8425,6 +9041,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8576,6 +9194,18 @@
     ]
   },
   {
+    "key": "Simple",
+    "where": [
+      "wallpaper-data.js"
+    ]
+  },
+  {
+    "key": "Simple divar kağızı kataloqu",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Sintetik",
     "where": [
       "home.html"
@@ -8632,6 +9262,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8664,6 +9296,12 @@
     "key": "Siyasətdəki dəyişikliklər",
     "where": [
       "privacy.html"
+    ]
+  },
+  {
+    "key": "Siyəzən",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -8800,6 +9438,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -8875,7 +9515,8 @@
     "key": "Sumqayıt",
     "where": [
       "account.html",
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -8976,6 +9617,12 @@
     ]
   },
   {
+    "key": "Şabran",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Şaftalı",
     "where": [
       "visualizer-data.js"
@@ -9002,7 +9649,8 @@
   {
     "key": "Şamaxı",
     "where": [
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -9044,6 +9692,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -9051,7 +9701,8 @@
     "key": "Şəki",
     "where": [
       "account.html",
-      "checkout.html"
+      "checkout.html",
+      "contact.html"
     ]
   },
   {
@@ -9094,6 +9745,12 @@
     "key": "Şəkliniz heç yerə göndərilmir — bütün emal brauzerinizdə aparılır.",
     "where": [
       "visualizer.html"
+    ]
+  },
+  {
+    "key": "Şəmkir",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -9615,6 +10272,12 @@
     ]
   },
   {
+    "key": "Tərtər",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Təsdiq",
     "where": [
       "cart.html",
@@ -9730,6 +10393,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -9825,6 +10490,18 @@
     ]
   },
   {
+    "key": "Topdan alış, diler əməkdaşlığı və məhsul tədarükü üçün rayonunuza cavabdeh təmsilçimizlə birbaşa əlaqə saxlayın.",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
+    "key": "Tovuz",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Toz gülü",
     "where": [
       "visualizer-data.js"
@@ -9867,6 +10544,12 @@
     ]
   },
   {
+    "key": "Tövsiyə edirik",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Tövsiyə olunan",
     "where": [
       "shop.html"
@@ -9902,6 +10585,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -9942,6 +10627,8 @@
       "site.js",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -9973,6 +10660,12 @@
     "key": "Uayt-spirit, 5–10%",
     "where": [
       "product-demo.js"
+    ]
+  },
+  {
+    "key": "Ucar",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -10237,6 +10930,12 @@
     ]
   },
   {
+    "key": "Vinil və teksturalı divar kağızları üçün yapışdırıcı.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Vizualizator",
     "where": [
       "visualizer.html"
@@ -10383,6 +11082,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -10421,6 +11122,12 @@
     "where": [
       "product-demo.js",
       "product-detail.html"
+    ]
+  },
+  {
+    "key": "Yardımlı",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -10591,6 +11298,12 @@
     ]
   },
   {
+    "key": "Yevlax",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Yoxlayın",
     "where": [
       "product-demo.js"
@@ -10712,6 +11425,12 @@
     ]
   },
   {
+    "key": "Zaqatala",
+    "where": [
+      "contact.html"
+    ]
+  },
+  {
     "key": "Zamanla saralmır",
     "where": [
       "product-demo.js"
@@ -10735,6 +11454,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -10748,6 +11469,12 @@
     "key": "ZAN — rəngin yolu: xammaldan sizin evinizə qədər",
     "where": [
       "mission.html"
+    ]
+  },
+  {
+    "key": "ZAN <em>divar kağızları</em>",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -10781,6 +11508,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -10846,7 +11575,15 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
+    ]
+  },
+  {
+    "key": "ZAN boyaları: ZANPLASTİK, ZANSİLAN, ZANPLUS, sintetik parlaq və alüminium boya",
+    "where": [
+      "home.html"
     ]
   },
   {
@@ -10868,6 +11605,20 @@
     ]
   },
   {
+    "key": "ZAN Company — Divar kağızları",
+    "where": [
+      "home.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html"
+    ]
+  },
+  {
+    "key": "ZAN Company-nin yüksək keyfiyyətli divar kağızı kataloqları. Kataloqu açın, bəyəndiyiniz dizaynı kodu ilə seçib sifariş edin.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "ZAN daş qoruyucu",
     "where": [
       "product-demo.js",
@@ -10876,15 +11627,27 @@
     ]
   },
   {
-    "key": "ZAN divar kağızı yapışdırıcıları",
+    "key": "ZAN divar kağızı kataloqu: bütün dizaynlar kodları ilə, rulon qiyməti və onlayn sifariş.",
     "where": [
-      "home.html"
+      "wallpaper-catalog.html"
+    ]
+  },
+  {
+    "key": "ZAN Divar kağızları",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
     "key": "ZAN hesabı",
     "where": [
       "login.html"
+    ]
+  },
+  {
+    "key": "ZAN İndikator",
+    "where": [
+      "wallpapers.html"
     ]
   },
   {
@@ -10911,6 +11674,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },
@@ -10946,6 +11711,12 @@
     ]
   },
   {
+    "key": "ZAN Premium",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "ZAN Rapid astar boya",
     "where": [
       "product-demo.js",
@@ -10978,6 +11749,12 @@
     "where": [
       "product-demo.js",
       "shop.html"
+    ]
+  },
+  {
+    "key": "ZAN Simple və Zenith divar kağızı kataloqları",
+    "where": [
+      "home.html"
     ]
   },
   {
@@ -11022,12 +11799,6 @@
     ]
   },
   {
-    "key": "ZAN sintetik və akrilik boya çeşidləri",
-    "where": [
-      "home.html"
-    ]
-  },
-  {
     "key": "ZAN Super Universal PVA yapışdırıcı",
     "where": [
       "product-demo.js",
@@ -11048,10 +11819,22 @@
     ]
   },
   {
+    "key": "ZAN Universal",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "ZAN Universal PVA yapışdırıcı",
     "where": [
       "product-demo.js",
       "shop.html"
+    ]
+  },
+  {
+    "key": "ZAN Universal, Premium və İndikator divar kağızı yapışdırıcıları",
+    "where": [
+      "home.html"
     ]
   },
   {
@@ -11081,16 +11864,16 @@
     ]
   },
   {
+    "key": "ZAN və BestWall divar kağızı kataloqları: Simple və Zenith kolleksiyalarının bütün dizaynları, qiymətlər, satış təmsilçiləri və əlaqə məlumatları.",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "ZAN yol cizgi boyası",
     "where": [
       "product-demo.js",
       "shop.html"
-    ]
-  },
-  {
-    "key": "ZAN yüksək keyfiyyətli divar kağızları",
-    "where": [
-      "home.html"
     ]
   },
   {
@@ -11189,6 +11972,18 @@
     ]
   },
   {
+    "key": "Zenith",
+    "where": [
+      "wallpaper-data.js"
+    ]
+  },
+  {
+    "key": "Zenith divar kağızı kataloqu",
+    "where": [
+      "wallpapers.html"
+    ]
+  },
+  {
     "key": "Zeytun budağı",
     "where": [
       "visualizer-data.js"
@@ -11223,6 +12018,12 @@
     "key": "Zəngin naxış və rəng çeşidləri ilə evinizə yeni bir xarakter qazandırın.",
     "where": [
       "home.html"
+    ]
+  },
+  {
+    "key": "Zərdab",
+    "where": [
+      "contact.html"
     ]
   },
   {
@@ -11261,6 +12062,8 @@
       "shop.html",
       "terms.html",
       "visualizer.html",
+      "wallpaper-catalog.html",
+      "wallpapers.html",
       "wishlist.html"
     ]
   },

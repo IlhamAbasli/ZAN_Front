@@ -39,7 +39,7 @@
   const priceMax = filters.querySelector("#sf-price-max");
   const resetButton = filters.querySelector(".sf-reset");
   const applyButton = filters.querySelector(".sf-apply");
-  const heroCats = Array.from(document.querySelectorAll("#shop-hero .sh-cat"));
+  const heroCats = Array.from(document.querySelectorAll("#shop-hero button.sh-cat"));
   const resultText = area.querySelector(".st-result");
   const filterCount = area.querySelector(".st-filter-count");
   const sortSelect = area.querySelector("#st-sort");

@@ -391,6 +391,28 @@
 
 /* #endregion */
 
+/* slayd 3 — chip-in yerində "ZAN Company — Divar kağızları" loqosu
+   (şəffaf fonda qızılı: images/wallpapers/zan-wallpapers-logo.webp) */
+#slider-area .hero-logo {
+  display: block;
+  width: auto;
+  height: 72px;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+}
+
+@media only screen and (max-width: 991px) {
+  #slider-area .hero-logo {
+    height: 60px;
+    margin-inline: auto;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #slider-area .hero-logo {
+    height: 50px;
+  }
+}
+
 /* #region vizual */
 
 #slider-area .hero-visual {
@@ -468,11 +490,35 @@
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
+/* slayd 1 — məhsul qrupu (enli kompozisiya): kvadrat şəkillərdən daha enli göstərilir */
+#slider-area .hero-stage img.hero-group {
+  max-width: 560px;
+}
+
+@media only screen and (max-width: 1200px) {
+  #slider-area .hero-stage img.hero-group {
+    max-width: 470px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #slider-area .hero-stage img.hero-group {
+    max-width: 420px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #slider-area .hero-stage img.hero-group {
+    max-width: 330px;
+  }
+}
+
 /* #endregion */
 
 /* #region görünmə animasiyası */
 
 #slider-area .hero-chip,
+#slider-area .hero-logo,
 #slider-area .hero-title,
 #slider-area .hero-text,
 #slider-area .hero-actions,
@@ -493,6 +539,7 @@
 }
 
 #slider-area .swiper-slide-active .hero-chip,
+#slider-area .swiper-slide-active .hero-logo,
 #slider-area .swiper-slide-active .hero-title,
 #slider-area .swiper-slide-active .hero-text,
 #slider-area .swiper-slide-active .hero-actions,
@@ -502,7 +549,8 @@
   transform: none;
 }
 
-#slider-area .swiper-slide-active .hero-chip {
+#slider-area .swiper-slide-active .hero-chip,
+#slider-area .swiper-slide-active .hero-logo {
   transition-delay: 0.12s;
 }
 #slider-area .swiper-slide-active .hero-title {

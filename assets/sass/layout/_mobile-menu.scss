@@ -112,6 +112,8 @@
       margin: 0;
 
       li {
+        /* a::after bütün sətri örtsün deyə (ox ikonu da daxil) */
+        position: relative;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -127,9 +129,19 @@
           color: var(--c-ink);
           font-family: DMSans, Roboto, Arial, sans-serif;
           transition: color 0.25s var(--ease);
+
+          /* "stretched link": klik sahəsi bütün sətirdir — ox və padding də linkdir */
+          &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+          }
         }
 
         .icon {
+          /* ikon dekorativdir; kliki altındakı linkə ötürsün */
+          pointer-events: none;
           width: 30px;
           height: 30px;
           display: flex;

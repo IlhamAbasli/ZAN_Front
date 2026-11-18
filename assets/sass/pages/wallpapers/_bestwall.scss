@@ -1,0 +1,291 @@
+// ==========================================================================
+// DİVAR KAĞIZLARI — BESTWALL (#bestwall-wallpapers)
+// --------------------------------------------------------------------------
+// HTML: wallpapers.html → #region bestwall-wallpapers
+// Şəkillər: images/bestwall-logo.png, images/bestwall-mark.png
+//
+// BestWall ayrıca firmadır: rənglər ZAN palitrasından yox, BestWall
+// loqosundan gəlir (ana səhifədəki banner ilə eyni — pages/home/_bestwall.scss).
+// Səhifənin son bölməsidir: aşağı boşluq footer-in boya dalğası üçündür.
+// ==========================================================================
+
+/* #region palitra */
+
+$bw-navy: #0f4188;
+$bw-navy-deep: #0a2c5e;
+$bw-navy-light: #1a58ab;
+$bw-cream: #f4ead8;
+
+// SVG-də "#" data URI-ni pozur — rəng %23 ilə yazılır
+@function bw-hex($color) {
+  @return "%23" + str-slice(inspect($color), 2);
+}
+
+// klassik "ogee" (qövslü tor) naxışı — ana səhifədəki BestWall banneri ilə eyni
+@function bw-ogee($color, $alpha, $w: 1.2) {
+  $c: bw-hex($color);
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='72'%3E%3Cg fill='none' stroke='#{$c}' stroke-opacity='#{$alpha}' stroke-width='#{$w}'%3E%3Cpath d='M28 0C44 14 44 22 28 36S12 58 28 72M28 0C12 14 12 22 28 36S44 58 28 72M0 0C16 14 16 22 0 36S-16 58 0 72M56 0C40 14 40 22 56 36S72 58 56 72'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* #endregion */
+
+/* #region bölmə və panel */
+
+#bestwall-wallpapers {
+  padding: 72px 0 calc(110px + 70px);
+}
+
+#bestwall-wallpapers .bw-panel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  align-items: center;
+  gap: 32px 56px;
+  padding: 52px 56px;
+  border-radius: 28px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    bw-ogee(#fff, 0.06),
+    linear-gradient(125deg, $bw-navy-deep 0%, $bw-navy 55%, $bw-navy-light 100%);
+  box-shadow: 0 30px 60px rgba(10, 44, 94, 0.28);
+}
+
+#bestwall-wallpapers .bw-panel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* loqodakı "B" — panelin solunda çox zəif, böyük */
+#bestwall-wallpapers .bw-panel-mark {
+  position: absolute;
+  left: -34px;
+  bottom: -90px;
+  height: 420px;
+  width: auto;
+  opacity: 0.07;
+  filter: brightness(0) invert(1);
+  transform: rotate(-8deg);
+}
+
+/* #endregion */
+
+/* #region giriş mətni */
+
+/* loqo ağ variantda: göy fonda oxunsun */
+#bestwall-wallpapers .bw-panel-logo {
+  display: block;
+  width: auto;
+  height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+#bestwall-wallpapers .bw-panel-title {
+  margin: 26px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 34px;
+  line-height: 1.15;
+  color: #ffffff;
+
+  em {
+    font-style: normal;
+    color: $bw-cream;
+  }
+}
+
+#bestwall-wallpapers .bw-panel-text {
+  max-width: 50ch;
+  margin: 12px 0 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+#bestwall-wallpapers .bw-panel-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 8px 16px 8px 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+
+  i {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $bw-cream;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: $bw-cream;
+      animation: bw-soon-pulse 2s ease-out infinite;
+    }
+  }
+}
+
+@keyframes bw-soon-pulse {
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #bestwall-wallpapers .bw-panel-soon i::after {
+    animation: none;
+  }
+}
+
+/* #endregion */
+
+/* #region satış komandası */
+
+#bestwall-wallpapers .bw-team {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#bestwall-wallpapers .bw-person {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px 16px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.11);
+  }
+}
+
+#bestwall-wallpapers .bw-person-avatar {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  /* baş hərflər — əlaqə səhifəsindəki təmsilçi kartları kimi */
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: $bw-navy;
+  background: $bw-cream;
+}
+
+#bestwall-wallpapers .bw-person-role {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $bw-cream;
+}
+
+#bestwall-wallpapers .bw-person-name {
+  margin: 3px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+#bestwall-wallpapers .bw-person-call {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 46px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: $bw-navy;
+  background: #ffffff;
+  text-decoration: none;
+  transition:
+    transform 0.25s var(--ease),
+    background-color 0.25s var(--ease);
+
+  svg {
+    flex: none;
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    background: $bw-cream;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+}
+
+/* #endregion */
+
+/* #region responsiv */
+
+@media only screen and (max-width: 991px) {
+  #bestwall-wallpapers .bw-panel {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 44px 40px;
+  }
+  #bestwall-wallpapers .bw-team {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #bestwall-wallpapers .bw-team {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #bestwall-wallpapers {
+    padding-top: 48px;
+  }
+  #bestwall-wallpapers .bw-panel {
+    padding: 32px 20px;
+    border-radius: 22px;
+  }
+  #bestwall-wallpapers .bw-panel-logo {
+    height: 40px;
+  }
+  #bestwall-wallpapers .bw-panel-title {
+    font-size: 26px;
+  }
+}
+
+/* #endregion */

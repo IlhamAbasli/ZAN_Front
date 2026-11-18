@@ -1,0 +1,411 @@
+// ==========================================================================
+// DİVAR KAĞIZLARI — ZAN KATALOQLARI (#zan-wallpapers)
+// --------------------------------------------------------------------------
+// HTML: wallpapers.html → #region zan-wallpapers
+//
+// .wp-head, .wp-logo, .wp-text — firma bölməsinin başlığı (h2 visually-hidden)
+// (BestWall bölməsi öz panelini istifadə edir: _bestwall.scss).
+// Kataloq kartının rəngi HTML-də --c ilə verilir (üzlüyün rəngi).
+// ==========================================================================
+
+/* #region bölmə başlığı */
+
+#zan-wallpapers {
+  padding: 64px 0 0;
+}
+
+#zan-wallpapers .wp-head {
+  max-width: 640px;
+  margin-bottom: 30px;
+}
+
+/* ZAN Company — Divar kağızları loqosu (şəffaf fonda qızılı:
+   images/wallpapers/zan-wallpapers-logo.webp) */
+#zan-wallpapers .wp-logo {
+  display: block;
+  width: auto;
+  height: 66px;
+}
+
+@media only screen and (max-width: 575px) {
+  #zan-wallpapers .wp-logo {
+    height: 52px;
+  }
+}
+
+/* başlıq (h2) ekranda gizlidir — visually-hidden; görünən başlıq loqodur */
+#zan-wallpapers .wp-text {
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+
+/* #region kataloq kartları */
+
+#zan-wallpapers .wp-catalogs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#zan-wallpapers .wp-cat {
+  --cat-tone: var(--c);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--cat-tone) 30%, var(--c-line));
+    box-shadow: var(--shadow-card-hover);
+
+    .wp-cat-media img {
+      transform: scale(1.04) rotate(-1.5deg);
+    }
+  }
+}
+
+:root[data-theme="dark"] #zan-wallpapers .wp-cat {
+  --cat-tone: color-mix(in oklch, var(--c) 55%, #ffffff);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #zan-wallpapers .wp-cat {
+    --cat-tone: color-mix(in oklch, var(--c) 55%, #ffffff);
+  }
+}
+
+/* üzlük — mockup-ın öz açıq fonu olduğu üçün çərçivə də açıq rəngdədir */
+#zan-wallpapers .wp-cat-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 40%, #f4f2f0 0%, #e2dedb 100%);
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.5s var(--ease);
+  }
+}
+
+#zan-wallpapers .wp-cat-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  background: rgba(13, 21, 32, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+#zan-wallpapers .wp-cat-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px 28px 28px;
+}
+
+#zan-wallpapers .wp-cat-kicker {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cat-tone);
+}
+
+#zan-wallpapers .wp-cat-name {
+  margin: 6px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 34px;
+  line-height: 1.1;
+  color: var(--c-ink);
+
+  /* adın altında üzlük rəngində boya zolağı */
+  &::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 4px;
+    margin-top: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--cat-tone), var(--c-gold));
+    transition: width 0.4s var(--ease);
+  }
+}
+
+#zan-wallpapers .wp-cat:hover .wp-cat-name::after {
+  width: 88px;
+}
+
+/* adın linki bütün kartı örtür — kartın istənilən yerinə klik kataloqu açır */
+#zan-wallpapers .wp-cat-name a {
+  color: inherit;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+#zan-wallpapers .wp-cat:has(.wp-cat-name a:focus-visible) {
+  outline: 2px solid var(--cat-tone);
+  outline-offset: 3px;
+}
+
+/* dizayn sayı — üzlüyün üstündə */
+#zan-wallpapers .wp-cat-badge[hidden] {
+  display: none;
+}
+
+/* aşağı boşluq: alt sətir (margin-top: auto) kartın dibinə düşür, mətnə yapışmır */
+#zan-wallpapers .wp-cat-text {
+  margin: 16px 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* qiymət + "Kataloqa bax" */
+#zan-wallpapers .wp-cat-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px dashed var(--c-line);
+}
+
+#zan-wallpapers .wp-cat-price {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--c-muted);
+
+  b {
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
+    font-size: 22px;
+    color: var(--c-ink);
+  }
+}
+
+#zan-wallpapers .wp-cat-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #ffffff;
+  background: var(--c);
+  transition: filter 0.25s var(--ease);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.25s var(--ease);
+  }
+}
+
+#zan-wallpapers .wp-cat:hover .wp-cat-go {
+  filter: brightness(1.12);
+
+  svg {
+    transform: translateX(3px);
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  #zan-wallpapers .wp-cat {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+  #zan-wallpapers .wp-cat-media {
+    padding: 22px 22px 0;
+
+    img {
+      width: min(100%, 260px);
+    }
+  }
+  #zan-wallpapers .wp-cat-body {
+    padding: 22px 24px 24px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #zan-wallpapers {
+    padding-top: 44px;
+  }
+  #zan-wallpapers .wp-catalogs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  #zan-wallpapers .wp-cat-name {
+    font-size: 28px;
+  }
+}
+
+/* #endregion */
+
+/* #region əlaqə zolağı */
+
+#zan-wallpapers .wp-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  margin-top: 24px;
+  padding: 26px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--c-brand-tint-line);
+  background: var(--c-brand-tint);
+
+  h3 {
+    margin: 0;
+    font-family: RobotoBold, Roboto, Arial, sans-serif;
+    font-size: 19px;
+    color: var(--c-ink);
+  }
+
+  p {
+    max-width: 60ch;
+    margin: 6px 0 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--c-muted);
+  }
+}
+
+#zan-wallpapers .wp-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: none;
+}
+
+#zan-wallpapers .wp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    transform 0.25s var(--ease),
+    filter 0.25s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  svg {
+    flex: none;
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.25s var(--ease);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 3px;
+  }
+}
+
+#zan-wallpapers .wp-btn-solid {
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+
+  &:hover {
+    filter: saturate(1.15) brightness(1.06);
+    transform: translateY(-2px);
+  }
+}
+
+#zan-wallpapers .wp-btn-ghost {
+  border: 1px solid var(--c-brand-line);
+  color: var(--c-brand);
+  background: var(--c-surface);
+
+  &:hover {
+    border-color: var(--c-brand);
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #zan-wallpapers .wp-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #zan-wallpapers .wp-contact {
+    padding: 22px 20px;
+  }
+  #zan-wallpapers .wp-contact-actions {
+    width: 100%;
+  }
+  #zan-wallpapers .wp-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* #endregion */

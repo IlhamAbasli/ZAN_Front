@@ -1,0 +1,23 @@
+{
+  "_info": "Divar kağızı kataloqları. Dəyişəndən sonra: python tools/wallpapers/build.py. source — orijinal şəkillərin qovluğu (layihə kökünə görə); fayl adı = dizayn kodu. price — kataloqun bütün dizaynları üçün 1 rulonun qiyməti (₼).",
+  "catalogs": [
+    {
+      "slug": "simple",
+      "name": "Simple",
+      "brand": "zan",
+      "source": "assets/Simple_dizaynlar",
+      "price": 32,
+      "color": "#6e7074",
+      "cover": "./assets/images/wallpapers/simple-catalog-sm.webp"
+    },
+    {
+      "slug": "zenith",
+      "name": "Zenith",
+      "brand": "zan",
+      "source": "assets/Zenith_dizaynlar",
+      "price": 26,
+      "color": "#1d3fc4",
+      "cover": "./assets/images/wallpapers/zenith-catalog-sm.webp"
+    }
+  ]
+}

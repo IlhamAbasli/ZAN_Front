@@ -129,23 +129,24 @@
   //#endregion
 
   //#region copy
-  // HTML: .cc-copy[data-copy] — telefon və e-poçtu buferə köçürür
+  // HTML: .cc-copy[data-copy] — telefon və e-poçtu buferə köçürür;
+  // .cr-copy[data-copy] — satış təmsilçisinin nömrəsi (yalnız ikon, mətn yoxdur)
   const copyText = ZAN.copyText;
 
-  document.querySelectorAll(".cc-copy[data-copy]").forEach(function (button) {
+  document.querySelectorAll(".cc-copy[data-copy], .cr-copy[data-copy]").forEach(function (button) {
     const label = button.querySelector("span");
-    const initialText = label.textContent;
+    const initialText = label ? label.textContent : "";
     let resetTimer = null;
 
     button.addEventListener("click", function () {
       copyText(button.dataset.copy)
         .then(function () {
           button.classList.add("is-copied");
-          label.textContent = "Kopyalandı";
+          if (label) label.textContent = "Kopyalandı";
           clearTimeout(resetTimer);
           resetTimer = setTimeout(function () {
             button.classList.remove("is-copied");
-            label.textContent = initialText;
+            if (label) label.textContent = initialText;
           }, 2000);
           ZAN.notify("success", ZAN.t("{value} buferə köçürüldü", { value: button.dataset.copy }), {
             title: "Kopyalandı",
@@ -157,6 +158,78 @@
         });
     });
   });
+  //#endregion
+
+  //#region reps
+  // HTML: #region contact-reps. Axtarış rayon adlarına görə təmsilçi kartlarını
+  // süzür; uyğun rayon işıqlanır. Müqayisə hərf fərqinə həssas deyil:
+  // "gence", "Gəncə", "GƏNCƏ" eynidir. Rayon adı tərcümə olunubsa (məs. ?lang=en
+  // → "Ganja"), həm göstərilən, həm də Azərbaycanca ad üzrə axtarılır.
+  const repsInput = document.getElementById("cr-find");
+  const repsList = document.getElementById("cr-list");
+
+  if (repsInput && repsList) {
+    const repsSection = document.getElementById("contact-reps");
+    const clearBtn = repsSection.querySelector(".cr-clear");
+    const result = document.getElementById("cr-result");
+    const empty = repsSection.querySelector(".cr-empty");
+    const cards = Array.from(repsList.querySelectorAll(".cr-card"));
+
+    // ə, ı (NFD-də parçalanmır) əl ilə; ö, ü, ş, ç, ğ, İ — NFD + diakritiklərin silinməsi
+    const fold = function (text) {
+      return String(text)
+        .toLocaleLowerCase("az")
+        .replace(/ə/g, "e")
+        .replace(/ı/g, "i")
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .replace(/[^a-z0-9Ѐ-ӿ一-鿿]+/g, "");
+    };
+
+    // Azərbaycanca ad i18n tərcüməsindən əvvəl yadda saxlanır
+    const zones = cards.map(function (card) {
+      return Array.from(card.querySelectorAll(".cr-zones li")).map(function (li) {
+        if (!li.dataset.az) li.dataset.az = li.textContent.trim();
+        return li;
+      });
+    });
+
+    const filter = function () {
+      const query = fold(repsInput.value);
+      let shown = 0;
+
+      cards.forEach(function (card, index) {
+        let hit = !query;
+        zones[index].forEach(function (li) {
+          const match =
+            !!query && (fold(li.textContent).includes(query) || fold(li.dataset.az).includes(query));
+          li.classList.toggle("is-match", match);
+          if (match) hit = true;
+        });
+        card.hidden = !hit;
+        card.classList.toggle("is-found", hit && !!query);
+        if (hit) shown++;
+      });
+
+      clearBtn.hidden = !repsInput.value;
+      empty.hidden = shown > 0;
+      result.textContent = query && shown ? ZAN.t("{n} təmsilçi tapıldı", { n: shown }) : "";
+    };
+
+    repsInput.addEventListener("input", filter);
+    repsInput.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && repsInput.value) {
+        event.preventDefault();
+        repsInput.value = "";
+        filter();
+      }
+    });
+    clearBtn.addEventListener("click", function () {
+      repsInput.value = "";
+      filter();
+      repsInput.focus();
+    });
+  }
   //#endregion
 
   //#region form

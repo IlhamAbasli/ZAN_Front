@@ -1,0 +1,1657 @@
+@charset "UTF-8";
+/* #region bölmələr (səhifədəki sıra ilə) */
+/* #region bölmə və fon */
+#wp-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 56px;
+  background: var(--grad-section-gold);
+}
+
+#wp-hero .wh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#wp-hero .wh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#wp-hero .wh-blob-1 {
+  top: -180px;
+  right: 8%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--blob-brand) 0%, transparent 70%);
+}
+
+#wp-hero .wh-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+/* #endregion */
+/* #region kataloq üzlükləri — dekor */
+#wp-hero .wh-books {
+  position: absolute;
+  top: 50%;
+  right: max(4%, (100% - 1320px) / 2 + 40px);
+  width: 300px;
+  height: 260px;
+  transform: translateY(-46%);
+}
+
+#wp-hero .wh-book {
+  position: absolute;
+  bottom: 0;
+  width: 168px;
+  height: auto;
+  border-radius: 10px;
+  /* mockup-ın açıq fonu kartın içində qalır — kölgə ilə ayrılır */
+  box-shadow: var(--shadow-card-hover);
+  transform-origin: 50% 100%;
+  animation: wh-book-in 0.8s var(--ease) both;
+}
+
+#wp-hero .wh-book-1 {
+  left: 0;
+  transform: rotate(-9deg);
+}
+
+#wp-hero .wh-book-2 {
+  right: 0;
+  transform: rotate(7deg) translateY(-14px);
+  animation-delay: 0.15s;
+}
+
+@keyframes wh-book-in {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #wp-hero .wh-book {
+    animation: none;
+  }
+}
+/* #endregion */
+/* #region mətn */
+#wp-hero .wh-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+#wp-hero .wh-crumbs ol li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--c-muted-soft);
+}
+#wp-hero .wh-crumbs ol a {
+  color: var(--c-muted);
+  text-decoration: none;
+}
+#wp-hero .wh-crumbs ol a:hover {
+  color: var(--c-brand);
+}
+#wp-hero .wh-crumbs ol [aria-current=page] {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+#wp-hero .wh-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--c-ink);
+}
+#wp-hero .wh-title em {
+  font-style: normal;
+  color: var(--c-brand);
+}
+
+#wp-hero .wh-text {
+  max-width: 52ch;
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+/* #region firma keçidləri */
+#wp-hero .wh-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+#wp-hero .wh-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+  transition: color 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+#wp-hero .wh-brand i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c);
+  transition: background-color 0.25s var(--ease);
+}
+#wp-hero .wh-brand:hover {
+  color: #ffffff;
+  border-color: transparent;
+  background: var(--c);
+}
+#wp-hero .wh-brand:hover i {
+  background: #ffffff;
+}
+#wp-hero .wh-brand:focus-visible {
+  outline: 2px solid var(--c);
+  outline-offset: 2px;
+}
+
+/* #endregion */
+/* #region responsiv */
+@media only screen and (max-width: 1199px) {
+  #wp-hero .wh-books {
+    display: none;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #wp-hero {
+    padding: 28px 0 40px;
+  }
+  #wp-hero .wh-title {
+    font-size: 32px;
+  }
+  #wp-hero .wh-text {
+    font-size: 15px;
+  }
+}
+/* #endregion */
+/* #region bölmə başlığı */
+#zan-wallpapers {
+  padding: 64px 0 0;
+}
+
+#zan-wallpapers .wp-head {
+  max-width: 640px;
+  margin-bottom: 30px;
+}
+
+/* ZAN Company — Divar kağızları loqosu (şəffaf fonda qızılı:
+   images/wallpapers/zan-wallpapers-logo.webp) */
+#zan-wallpapers .wp-logo {
+  display: block;
+  width: auto;
+  height: 66px;
+}
+
+@media only screen and (max-width: 575px) {
+  #zan-wallpapers .wp-logo {
+    height: 52px;
+  }
+}
+/* başlıq (h2) ekranda gizlidir — visually-hidden; görünən başlıq loqodur */
+#zan-wallpapers .wp-text {
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* #endregion */
+/* #region kataloq kartları */
+#zan-wallpapers .wp-catalogs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#zan-wallpapers .wp-cat {
+  --cat-tone: var(--c);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  border-radius: 24px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+#zan-wallpapers .wp-cat:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--cat-tone) 30%, var(--c-line));
+  box-shadow: var(--shadow-card-hover);
+}
+#zan-wallpapers .wp-cat:hover .wp-cat-media img {
+  transform: scale(1.04) rotate(-1.5deg);
+}
+
+:root[data-theme=dark] #zan-wallpapers .wp-cat {
+  --cat-tone: color-mix(in oklch, var(--c) 55%, #ffffff);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) #zan-wallpapers .wp-cat {
+    --cat-tone: color-mix(in oklch, var(--c) 55%, #ffffff);
+  }
+}
+/* üzlük — mockup-ın öz açıq fonu olduğu üçün çərçivə də açıq rəngdədir */
+#zan-wallpapers .wp-cat-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: radial-gradient(circle at 50% 40%, #f4f2f0 0%, #e2dedb 100%);
+  overflow: hidden;
+}
+#zan-wallpapers .wp-cat-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.5s var(--ease);
+}
+
+#zan-wallpapers .wp-cat-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  background: rgba(13, 21, 32, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+#zan-wallpapers .wp-cat-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px 28px 28px;
+}
+
+#zan-wallpapers .wp-cat-kicker {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cat-tone);
+}
+
+#zan-wallpapers .wp-cat-name {
+  margin: 6px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 34px;
+  line-height: 1.1;
+  color: var(--c-ink);
+  /* adın altında üzlük rəngində boya zolağı */
+}
+#zan-wallpapers .wp-cat-name::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--cat-tone), var(--c-gold));
+  transition: width 0.4s var(--ease);
+}
+
+#zan-wallpapers .wp-cat:hover .wp-cat-name::after {
+  width: 88px;
+}
+
+/* adın linki bütün kartı örtür — kartın istənilən yerinə klik kataloqu açır */
+#zan-wallpapers .wp-cat-name a {
+  color: inherit;
+  text-decoration: none;
+}
+#zan-wallpapers .wp-cat-name a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+#zan-wallpapers .wp-cat-name a:focus-visible {
+  outline: none;
+}
+
+#zan-wallpapers .wp-cat:has(.wp-cat-name a:focus-visible) {
+  outline: 2px solid var(--cat-tone);
+  outline-offset: 3px;
+}
+
+/* dizayn sayı — üzlüyün üstündə */
+#zan-wallpapers .wp-cat-badge[hidden] {
+  display: none;
+}
+
+/* aşağı boşluq: alt sətir (margin-top: auto) kartın dibinə düşür, mətnə yapışmır */
+#zan-wallpapers .wp-cat-text {
+  margin: 16px 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* qiymət + "Kataloqa bax" */
+#zan-wallpapers .wp-cat-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px dashed var(--c-line);
+}
+
+#zan-wallpapers .wp-cat-price {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--c-muted);
+}
+#zan-wallpapers .wp-cat-price b {
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 22px;
+  color: var(--c-ink);
+}
+
+#zan-wallpapers .wp-cat-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #ffffff;
+  background: var(--c);
+  transition: filter 0.25s var(--ease);
+}
+#zan-wallpapers .wp-cat-go svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s var(--ease);
+}
+
+#zan-wallpapers .wp-cat:hover .wp-cat-go {
+  filter: brightness(1.12);
+}
+#zan-wallpapers .wp-cat:hover .wp-cat-go svg {
+  transform: translateX(3px);
+}
+
+@media only screen and (max-width: 1199px) {
+  #zan-wallpapers .wp-cat {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+  #zan-wallpapers .wp-cat-media {
+    padding: 22px 22px 0;
+  }
+  #zan-wallpapers .wp-cat-media img {
+    width: min(100%, 260px);
+  }
+  #zan-wallpapers .wp-cat-body {
+    padding: 22px 24px 24px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #zan-wallpapers {
+    padding-top: 44px;
+  }
+  #zan-wallpapers .wp-catalogs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  #zan-wallpapers .wp-cat-name {
+    font-size: 28px;
+  }
+}
+/* #endregion */
+/* #region əlaqə zolağı */
+#zan-wallpapers .wp-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  margin-top: 24px;
+  padding: 26px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--c-brand-tint-line);
+  background: var(--c-brand-tint);
+}
+#zan-wallpapers .wp-contact h3 {
+  margin: 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 19px;
+  color: var(--c-ink);
+}
+#zan-wallpapers .wp-contact p {
+  max-width: 60ch;
+  margin: 6px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+
+#zan-wallpapers .wp-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: none;
+}
+
+#zan-wallpapers .wp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease), filter 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+#zan-wallpapers .wp-btn svg {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s var(--ease);
+}
+#zan-wallpapers .wp-btn:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 3px;
+}
+
+#zan-wallpapers .wp-btn-solid {
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+}
+#zan-wallpapers .wp-btn-solid:hover {
+  filter: saturate(1.15) brightness(1.06);
+  transform: translateY(-2px);
+}
+
+#zan-wallpapers .wp-btn-ghost {
+  border: 1px solid var(--c-brand-line);
+  color: var(--c-brand);
+  background: var(--c-surface);
+}
+#zan-wallpapers .wp-btn-ghost:hover {
+  border-color: var(--c-brand);
+}
+#zan-wallpapers .wp-btn-ghost:hover svg {
+  transform: translateX(3px);
+}
+
+@media only screen and (max-width: 991px) {
+  #zan-wallpapers .wp-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #zan-wallpapers .wp-contact {
+    padding: 22px 20px;
+  }
+  #zan-wallpapers .wp-contact-actions {
+    width: 100%;
+  }
+  #zan-wallpapers .wp-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+/* #endregion */
+/* #region bölmə başlığı */
+#wallpaper-adhesives {
+  padding: 72px 0 0;
+}
+
+#wallpaper-adhesives .wa-head {
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+
+#wallpaper-adhesives .wa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+}
+#wallpaper-adhesives .wa-chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+#wallpaper-adhesives .wa-title {
+  margin: 14px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--c-ink);
+}
+#wallpaper-adhesives .wa-title em {
+  font-style: normal;
+  color: var(--c-brand);
+}
+
+#wallpaper-adhesives .wa-text {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+@media only screen and (max-width: 575px) {
+  #wallpaper-adhesives {
+    padding-top: 48px;
+  }
+  #wallpaper-adhesives .wa-title {
+    font-size: 25px;
+  }
+}
+/* #endregion */
+/* #region tövsiyə zolağı */
+#wallpaper-adhesives .wa-advice {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 18px 22px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--c-gold) 55%, var(--c-line));
+  background: linear-gradient(100deg, color-mix(in srgb, var(--c-gold) 22%, var(--c-surface)) 0%, var(--c-surface) 75%);
+}
+#wallpaper-adhesives .wa-advice h3 {
+  margin: 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--c-ink);
+}
+#wallpaper-adhesives .wa-advice p {
+  margin: 3px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--c-ink);
+}
+
+#wallpaper-adhesives .wa-advice-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  color: var(--c-gold-ink);
+  background: color-mix(in srgb, var(--c-gold) 35%, var(--c-surface));
+}
+#wallpaper-adhesives .wa-advice-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* #endregion */
+/* #region kartlar */
+#wallpaper-adhesives .wa-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media only screen and (max-width: 991px) {
+  #wallpaper-adhesives .wa-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media only screen and (max-width: 575px) {
+  #wallpaper-adhesives .wa-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+}
+/* kartın rəng çaları (şəkil arxasındakı işıq, düymələr) — qutunun rəngi */
+#wallpaper-adhesives .product-card {
+  --pc-tint: var(--wa);
+}
+
+/* qısa təsvir kartda görünür (kataloqda yalnız siyahı görünüşündə) */
+#wallpaper-adhesives .product-card .pc-desc {
+  display: block;
+}
+
+/* #endregion */
+/* #region palitra */
+/* #endregion */
+/* #region bölmə və panel */
+#bestwall-wallpapers {
+  padding: 72px 0 180px;
+}
+
+#bestwall-wallpapers .bw-panel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  align-items: center;
+  gap: 32px 56px;
+  padding: 52px 56px;
+  border-radius: 28px;
+  overflow: hidden;
+  color: #ffffff;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='72'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='0.06' stroke-width='1.2'%3E%3Cpath d='M28 0C44 14 44 22 28 36S12 58 28 72M28 0C12 14 12 22 28 36S44 58 28 72M0 0C16 14 16 22 0 36S-16 58 0 72M56 0C40 14 40 22 56 36S72 58 56 72'/%3E%3C/g%3E%3C/svg%3E"), linear-gradient(125deg, #0a2c5e 0%, #0f4188 55%, #1a58ab 100%);
+  box-shadow: 0 30px 60px rgba(10, 44, 94, 0.28);
+}
+
+#bestwall-wallpapers .bw-panel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* loqodakı "B" — panelin solunda çox zəif, böyük */
+#bestwall-wallpapers .bw-panel-mark {
+  position: absolute;
+  left: -34px;
+  bottom: -90px;
+  height: 420px;
+  width: auto;
+  opacity: 0.07;
+  filter: brightness(0) invert(1);
+  transform: rotate(-8deg);
+}
+
+/* #endregion */
+/* #region giriş mətni */
+/* loqo ağ variantda: göy fonda oxunsun */
+#bestwall-wallpapers .bw-panel-logo {
+  display: block;
+  width: auto;
+  height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+#bestwall-wallpapers .bw-panel-title {
+  margin: 26px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 34px;
+  line-height: 1.15;
+  color: #ffffff;
+}
+#bestwall-wallpapers .bw-panel-title em {
+  font-style: normal;
+  color: #f4ead8;
+}
+
+#bestwall-wallpapers .bw-panel-text {
+  max-width: 50ch;
+  margin: 12px 0 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+#bestwall-wallpapers .bw-panel-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 8px 16px 8px 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+#bestwall-wallpapers .bw-panel-soon i {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f4ead8;
+}
+#bestwall-wallpapers .bw-panel-soon i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #f4ead8;
+  animation: bw-soon-pulse 2s ease-out infinite;
+}
+
+@keyframes bw-soon-pulse {
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #bestwall-wallpapers .bw-panel-soon i::after {
+    animation: none;
+  }
+}
+/* #endregion */
+/* #region satış komandası */
+#bestwall-wallpapers .bw-team {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#bestwall-wallpapers .bw-person {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px 16px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+#bestwall-wallpapers .bw-person:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+#bestwall-wallpapers .bw-person-avatar {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  /* baş hərflər — əlaqə səhifəsindəki təmsilçi kartları kimi */
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: #0f4188;
+  background: #f4ead8;
+}
+
+#bestwall-wallpapers .bw-person-role {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f4ead8;
+}
+
+#bestwall-wallpapers .bw-person-name {
+  margin: 3px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+#bestwall-wallpapers .bw-person-call {
+  grid-column: 1/-1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 46px;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #0f4188;
+  background: #ffffff;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+#bestwall-wallpapers .bw-person-call svg {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#bestwall-wallpapers .bw-person-call:hover {
+  background: #f4ead8;
+  transform: translateY(-2px);
+}
+#bestwall-wallpapers .bw-person-call:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* #endregion */
+/* #region responsiv */
+@media only screen and (max-width: 991px) {
+  #bestwall-wallpapers .bw-panel {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 44px 40px;
+  }
+  #bestwall-wallpapers .bw-team {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media only screen and (max-width: 767px) {
+  #bestwall-wallpapers .bw-team {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media only screen and (max-width: 575px) {
+  #bestwall-wallpapers {
+    padding-top: 48px;
+  }
+  #bestwall-wallpapers .bw-panel {
+    padding: 32px 20px;
+    border-radius: 22px;
+  }
+  #bestwall-wallpapers .bw-panel-logo {
+    height: 40px;
+  }
+  #bestwall-wallpapers .bw-panel-title {
+    font-size: 26px;
+  }
+}
+/* #endregion */
+/* #region başlıq (#wc-hero) */
+#wc-hero {
+  --wc: var(--c-brand);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0 52px;
+  background: var(--grad-section-gold);
+}
+
+#wc-hero .wch-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#wc-hero .wch-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-alpha);
+}
+
+#wc-hero .wch-blob-1 {
+  top: -180px;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--wc) 45%, transparent) 0%, transparent 70%);
+}
+
+#wc-hero .wch-blob-2 {
+  bottom: -220px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--blob-gold) 0%, transparent 70%);
+}
+
+#wc-hero .wch-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+#wc-hero .wch-crumbs ol li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--c-muted-soft);
+}
+#wc-hero .wch-crumbs ol a {
+  color: var(--c-muted);
+  text-decoration: none;
+}
+#wc-hero .wch-crumbs ol a:hover {
+  color: var(--c-brand);
+}
+#wc-hero .wch-crumbs ol [aria-current=page] {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+#wc-hero .wch-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ZAN Company — Divar kağızları loqosu */
+#wc-hero .wch-logo {
+  display: block;
+  width: auto;
+  height: 60px;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 575px) {
+  #wc-hero .wch-logo {
+    height: 48px;
+  }
+}
+#wc-hero .wch-kicker {
+  display: block;
+  margin-top: 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+#wc-hero .wch-title {
+  margin: 6px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 52px;
+  line-height: 1.05;
+  color: var(--c-ink);
+  /* adın altında kataloq rəngində boya zolağı */
+}
+#wc-hero .wch-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 5px;
+  margin-top: 16px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, var(--wc), var(--c-gold));
+}
+
+#wc-hero .wch-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+#wc-hero .wch-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-soft);
+}
+#wc-hero .wch-facts span {
+  font-size: 12.5px;
+  color: var(--c-muted);
+}
+#wc-hero .wch-facts b {
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 24px;
+  color: var(--c-ink);
+}
+
+/* kataloqlar arası keçid */
+#wc-hero .wch-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+#wc-hero .wch-tabs:empty {
+  display: none;
+}
+
+#wc-hero .wch-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-line);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  text-decoration: none;
+  transition: color 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+#wc-hero .wch-tab i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c, var(--c-muted-soft));
+}
+#wc-hero .wch-tab:hover {
+  border-color: var(--c, var(--c-brand));
+}
+#wc-hero .wch-tab[aria-current=page] {
+  color: #ffffff;
+  border-color: transparent;
+  background: var(--c, var(--c-ink));
+}
+#wc-hero .wch-tab[aria-current=page] i {
+  background: #ffffff;
+}
+#wc-hero .wch-tab:focus-visible {
+  outline: 2px solid var(--c, var(--c-brand));
+  outline-offset: 2px;
+}
+
+/* kataloq üzlüyü — mockup-ın açıq fonu yumru çərçivədə */
+#wc-hero .wch-cover {
+  width: 240px;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: var(--shadow-card-hover);
+  transform: rotate(3deg);
+}
+
+@media only screen and (max-width: 767px) {
+  #wc-hero .wch-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #wc-hero .wch-cover {
+    display: none;
+  }
+}
+@media only screen and (max-width: 575px) {
+  #wc-hero {
+    padding: 28px 0 36px;
+  }
+  #wc-hero .wch-title {
+    font-size: 38px;
+  }
+  #wc-hero .wch-facts li {
+    flex: 1 1 140px;
+    min-width: 0;
+  }
+}
+/* #endregion */
+/* #region dizaynlar (#wc-designs) */
+#wc-designs {
+  padding: 48px 0 180px;
+}
+
+#wc-designs .wcd-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+#wc-designs .wcd-title {
+  margin: 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 28px;
+  color: var(--c-ink);
+}
+
+#wc-designs .wcd-count {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--c-muted);
+}
+
+#wc-designs .wcd-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 1 340px;
+}
+#wc-designs .wcd-search svg {
+  position: absolute;
+  left: 16px;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--c-muted-soft);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+#wc-designs .wcd-search input {
+  width: 100%;
+  height: 48px;
+  padding: 0 18px 0 44px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+  outline: none;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+#wc-designs .wcd-search input::placeholder {
+  color: var(--c-muted-soft);
+}
+#wc-designs .wcd-search input:focus {
+  border-color: var(--c-brand-line);
+  box-shadow: 0 0 0 4px var(--c-brand-tint), var(--shadow-card);
+}
+#wc-designs .wcd-search:focus-within svg {
+  stroke: var(--c-brand);
+}
+
+@media only screen and (max-width: 575px) {
+  #wc-designs {
+    padding-top: 32px;
+  }
+  #wc-designs .wcd-search {
+    flex-basis: 100%;
+  }
+}
+/* ekran bildirişi — şəkillər real rəng və fakturadan fərqlənə bilər */
+#wc-designs .wcd-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 11px 16px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--c-info) 22%, var(--c-line));
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--c-ink);
+  background: color-mix(in srgb, var(--c-info) 7%, var(--c-surface));
+}
+#wc-designs .wcd-notice svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--c-info);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* kart şəbəkəsi */
+#wc-designs .wcd-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media only screen and (max-width: 1199px) {
+  #wc-designs .wcd-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media only screen and (max-width: 767px) {
+  #wc-designs .wcd-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+/* divar kağızı nümunəsi kartı tam doldurur (boya qabları kimi "contain" yox) */
+#wc-designs .wc-card[hidden] {
+  display: none;
+}
+#wc-designs .wc-card .pc-image {
+  aspect-ratio: 4/3;
+  padding: 0;
+}
+#wc-designs .wc-card .pc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+}
+#wc-designs .wc-card:hover .pc-image img {
+  transform: scale(1.06);
+}
+#wc-designs .wc-card .pc-name {
+  font-variant-numeric: tabular-nums;
+}
+
+/* tapılmadı */
+#wc-designs .wcd-empty {
+  padding: 44px 24px;
+  border-radius: 20px;
+  border: 1px dashed var(--c-line);
+  text-align: center;
+  background: var(--c-surface-soft);
+}
+#wc-designs .wcd-empty[hidden] {
+  display: none;
+}
+#wc-designs .wcd-empty h3 {
+  margin: 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 19px;
+  color: var(--c-ink);
+}
+#wc-designs .wcd-empty p {
+  margin: 6px 0 0;
+  font-size: 14.5px;
+  color: var(--c-muted);
+}
+
+#wc-designs .wcd-reset {
+  margin-top: 16px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-on-brand);
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  cursor: var(--cursor-pointer);
+}
+#wc-designs .wcd-reset:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 3px;
+}
+
+/* satış təmsilçilərinə keçid */
+#wc-designs .wcd-help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin-top: 36px;
+  padding: 22px 26px;
+  border-radius: 20px;
+  border: 1px solid var(--c-brand-tint-line);
+  background: var(--c-brand-tint);
+}
+#wc-designs .wcd-help p {
+  max-width: 70ch;
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+#wc-designs .wcd-help b {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 16px;
+  color: var(--c-ink);
+}
+
+#wc-designs .wcd-help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-brand-line);
+  font-size: 14.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--c-brand);
+  background: var(--c-surface);
+  text-decoration: none;
+}
+#wc-designs .wcd-help-link svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s var(--ease);
+}
+#wc-designs .wcd-help-link:hover svg {
+  transform: translateX(3px);
+}
+#wc-designs .wcd-help-link:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 3px;
+}
+
+/* #endregion */
+/* #region böyük baxış (.wc-viewer) */
+.wc-viewer {
+  width: min(1100px, 100% - 32px);
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.wc-viewer::backdrop {
+  background: rgba(8, 12, 18, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.wc-viewer[open] {
+  animation: wcv-in 0.3s var(--ease);
+}
+
+@keyframes wcv-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wc-viewer[open] {
+    animation: none;
+  }
+}
+.wc-viewer .wcv-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 32px);
+}
+
+.wc-viewer .wcv-media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--c-surface-soft);
+}
+.wc-viewer .wcv-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100dvh - 32px - 110px);
+  object-fit: contain;
+  transition: opacity 0.25s var(--ease);
+}
+.wc-viewer .wcv-media img.is-loading {
+  opacity: 0.35;
+}
+
+.wc-viewer .wcv-close,
+.wc-viewer .wcv-nav {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  color: var(--c-ink);
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-soft);
+  cursor: var(--cursor-pointer);
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+.wc-viewer .wcv-close svg,
+.wc-viewer .wcv-nav svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.wc-viewer .wcv-close:hover,
+.wc-viewer .wcv-nav:hover {
+  background: #ffffff;
+}
+.wc-viewer .wcv-close:focus-visible,
+.wc-viewer .wcv-nav:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+.wc-viewer .wcv-close[hidden],
+.wc-viewer .wcv-nav[hidden] {
+  display: none;
+}
+
+/* ikonlar açıq fonda — tünd mövzuda da tünd qalsın */
+.wc-viewer .wcv-close,
+.wc-viewer .wcv-nav {
+  color: #0d1520;
+}
+
+.wc-viewer .wcv-close {
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+}
+
+.wc-viewer .wcv-nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wc-viewer .wcv-nav:hover {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.wc-viewer .wcv-prev {
+  left: 14px;
+}
+
+.wc-viewer .wcv-next {
+  right: 14px;
+}
+
+.wc-viewer .wcv-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  padding: 18px 24px;
+  border-top: 1px solid var(--c-line);
+}
+
+.wc-viewer .wcv-kicker {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.wc-viewer .wcv-code {
+  margin: 2px 0 0;
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink);
+}
+
+/* ekran bildirişi — böyük baxışda kiçik qeyd */
+.wc-viewer .wcv-notice {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--c-muted);
+}
+
+.wc-viewer .wcv-position {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--c-muted-soft);
+}
+
+.wc-viewer .wcv-buy {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.wc-viewer .wcv-price {
+  margin: 0;
+  font-size: 14px;
+  color: var(--c-muted);
+}
+.wc-viewer .wcv-price b {
+  font-family: RobotoBold, Roboto, Arial, sans-serif;
+  font-size: 22px;
+  color: var(--c-ink);
+}
+
+/* sevimlilər — divar kağızları onlayn satılmır, səbət düyməsi yoxdur.
+   aria-pressed="true" — sevimlilərdədir (ürək dolu, marka rəngində) */
+.wc-viewer .wcv-wish {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-brand);
+  background: var(--c-surface);
+  cursor: var(--cursor-pointer);
+  transition: transform 0.25s var(--ease), color 0.25s var(--ease), background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.wc-viewer .wcv-wish svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: fill 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.wc-viewer .wcv-wish:hover {
+  border-color: var(--c-brand);
+  background: var(--c-brand-tint);
+  transform: translateY(-2px);
+}
+.wc-viewer .wcv-wish[aria-pressed=true] {
+  color: var(--c-on-brand);
+  border-color: transparent;
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+}
+.wc-viewer .wcv-wish[aria-pressed=true] svg {
+  fill: currentColor;
+  transform: scale(1.08);
+}
+.wc-viewer .wcv-wish:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 3px;
+}
+
+/* kartda qiymətin yanında vahid: "32,00 ₼ / rulon" */
+#wc-designs .wc-card .pc-price {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 4px;
+}
+#wc-designs .wc-card .pc-price span {
+  font-size: 13px;
+  color: var(--c-muted);
+}
+
+@media only screen and (max-width: 575px) {
+  .wc-viewer {
+    border-radius: 18px;
+  }
+  .wc-viewer .wcv-info {
+    padding: 14px 16px 16px;
+  }
+  .wc-viewer .wcv-buy {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .wc-viewer .wcv-nav {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* #endregion */
+/* #endregion */
+
+/*# sourceMappingURL=wallpapers.css.map */

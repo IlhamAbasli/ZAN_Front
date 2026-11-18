@@ -1073,12 +1073,15 @@
                     <span class="hero-glow" aria-hidden="true"></span>
                     <span class="hero-ring" aria-hidden="true"></span>
                     <div class="hero-stage">
-                      <!-- LCP şəkli: ilk görünən — prioritetlə yüklənir -->
+                      <!-- LCP şəkli: ilk görünən — prioritetlə yüklənir.
+                           Məhsul qrupu images/products/*.webp-dən yığılıb (ZANSİLAN, ZANPLASTİK,
+                           ZANPLUS, sintetik parlaq, alüminium boya); enli olduğu üçün .hero-group -->
                       <img
-                        src="./assets/images/slider-img-1.webp"
-                        alt="ZAN sintetik və akrilik boya çeşidləri"
-                        width="1000"
-                        height="1000"
+                        class="hero-group"
+                        src="./assets/images/slider-zan-paints.webp"
+                        alt="ZAN boyaları: ZANPLASTİK, ZANSİLAN, ZANPLUS, sintetik parlaq və alüminium boya"
+                        width="1100"
+                        height="683"
                         fetchpriority="high"
                       />
                     </div>
@@ -1157,9 +1160,15 @@
               >
                 <div class="hero-layout">
                   <div class="hero-copy">
-                    <span class="hero-chip"
-                      ><i aria-hidden="true"></i>30 ildən çox təcrübə</span
-                    >
+                    <!-- ZAN Company — Divar kağızları loqosu (chip-in yerində) -->
+                    <img
+                      class="hero-logo"
+                      src="./assets/images/wallpapers/zan-wallpapers-logo.webp"
+                      alt="ZAN Company — Divar kağızları"
+                      width="900"
+                      height="303"
+                      loading="lazy"
+                    />
                     <h2 class="hero-title">
                       İnteryerinizi yeniləyən premium
                       <em>ZAN divar kağızları</em>
@@ -1169,7 +1178,7 @@
                       xarakter qazandırın.
                     </p>
                     <div class="hero-actions">
-                      <a class="hero-btn" href="shop.html">
+                      <a class="hero-btn" href="wallpapers.html">
                         <span>Kolleksiyaya bax</span>
                         <svg
                           class="hero-arrow"
@@ -1201,11 +1210,13 @@
                     <span class="hero-glow" aria-hidden="true"></span>
                     <span class="hero-ring" aria-hidden="true"></span>
                     <div class="hero-stage">
+                      <!-- Simple və Zenith kataloqları (mənbə: images/wallpapers/*-catalog.webp) -->
                       <img
-                        class="is-card"
-                        src="./assets/images/slider-4.webp"
+                        src="./assets/images/slider-img-3.webp"
                         loading="lazy"
-                        alt="ZAN yüksək keyfiyyətli divar kağızları"
+                        alt="ZAN Simple və Zenith divar kağızı kataloqları"
+                        width="1000"
+                        height="1000"
                       />
                     </div>
                   </div>
@@ -1420,7 +1431,7 @@
               <div class="swiper-slide">
                 <a
                   class="cat-card"
-                  href="shop.html?category=divar-kagizlari"
+                  href="wallpapers.html"
                   style="--cat-accent: #e8d29a"
                 >
                   <span class="cat-card-glow" aria-hidden="true"></span>
@@ -2191,11 +2202,12 @@
                     data-swiper-parallax-scale="0.8"
                     data-swiper-parallax-opacity="0"
                   >
+                    <!-- ZAN Universal, Premium, İndikator — images/products/zan-glue-*.webp-dən yığılıb -->
                     <img
-                      src="./assets/images/slider-3.webp"
-                      alt="ZAN divar kağızı yapışdırıcıları"
-                      width="1787"
-                      height="834"
+                      src="./assets/images/pl-adhesives.webp"
+                      alt="ZAN Universal, Premium və İndikator divar kağızı yapışdırıcıları"
+                      width="1197"
+                      height="700"
                       loading="lazy"
                     />
                   </figure>
@@ -2671,7 +2683,7 @@
                   >
                 </li>
                 <li>
-                  <a href="shop.html?category=divar-kagizlari"
+                  <a href="wallpapers.html"
                     ><span class="footer-paint-drop" style="--c: #e8d29a"></span
                     >Premium divar kağızları</a
                   >
