@@ -2725,6 +2725,42 @@ body:has(.pd-bar.is-visible) .promo-launcher {
   #header-sticky .logo img {
     height: var(--h-logo);
   }
+  /*
+    Mobil/planşet: ayrıca sürüşüb gələn #header-sticky əvəzinə əsas header
+    özü yapışqandır (position: sticky). Bu ölçüdə hər ikisi eynidir (loqo,
+    səbət, menyu), amma fixed #header-sticky axından kənardadır: scroll-un
+    əvvəlində birdən çıxıb altdakı mətni örtür, yuxarı qalxanda isə gizlənib
+    navbarı itirirdi. Sticky header axında öz yerini tutur — heç vaxt itmir
+    və məzmunun üstünə birdən düşmür.
+    top mənfidir: 576px-dən yuxarıda görünən #header-top yuxarı sürüşüb
+    gedir, yalnız #header-mid yapışır.
+    z-index = mobil menyununku: menyu və onun fonu .site-header-in içindədir
+    və sticky + z-index yeni qat yaradır — menyu yenə səhifənin üstündə qalsın.
+    DİQQƏT: .site-header-ə transform/filter/backdrop-filter vermək olmaz —
+    içindəki fixed mobil menyu ekrana yox, header-ə bağlanar.
+  */
+  .site-header {
+    position: sticky;
+    top: calc(-1 * var(--h-header-top));
+    z-index: var(--z-menu);
+  }
+  #header-mid {
+    background-color: var(--c-surface);
+    transition: box-shadow 0.3s var(--ease);
+  }
+  /* JS (site.js → scroll-state): header yapışanda alt xətt və kölgə */
+  .site-header.is-stuck #header-mid {
+    box-shadow: 0 1px 0 var(--c-line), var(--shadow-sticky);
+  }
+  #header-sticky {
+    display: none;
+  }
+}
+/* #header-top 576px-dən aşağıda gizlidir (d-none d-sm-block) */
+@media only screen and (max-width: 575.98px) {
+  .site-header {
+    top: 0;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   #header-bottom .all-categories-toggle {
@@ -3900,16 +3936,27 @@ body.has-menu-open {
   background: radial-gradient(circle at 50% 62%, color-mix(in srgb, var(--pc-tint) 16%, transparent) 0%, transparent 62%), linear-gradient(160deg, var(--c-surface-soft), color-mix(in srgb, var(--pc-tint) 7%, var(--c-surface-soft)));
 }
 
+/*
+  Şəkil mütləq mövqeylidir: sahənin ölçüsünü yalnız aspect-ratio verir.
+  Əvvəl img axında idi (max-height: 100%) — Safari/iOS aspect-ratio-lu
+  qutuda faizli hündürlüyü hesablamır və HTML-dəki height="1000" atributu
+  ilə şəkil 1000px qalıb kartı uzadırdı. Mütləq elementin faizi həmişə
+  hesablanır. padding: inherit — sahənin daxili boşluğu (siyahı
+  görünüşündə fərqlidir) şəklə keçir, object-fit onun içinə sığdırır.
+*/
 .pc-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: block;
   aspect-ratio: 1/0.86;
   padding: 18px;
 }
 .pc-image img {
-  max-width: 100%;
-  max-height: 100%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: inherit;
+  box-sizing: border-box;
   -o-object-fit: contain;
      object-fit: contain;
   filter: drop-shadow(0 16px 18px rgba(13, 21, 32, 0.18));

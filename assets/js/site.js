@@ -684,21 +684,26 @@ window.ZAN = window.ZAN || {};
   }
 
   /*
-    Sabit header nə vaxt görünsün: əvvəl sabit 200px idi, amma statik
-    header (.site-header) telefonda ~74px, masaüstündə ~190px hündürdür.
-    Telefonda yuxarı qalxanda 74–200px arasında sabit header artıq
-    gizlənir, statik header isə hələ ekrandan kənardadır — navbar itirdi.
-    İndi hədd statik headerin özündən hesablanır: onun ekranda qalan hissəsi
-    sabit headerin hündürlüyündən azalan kimi sabit header görünür. Belə ki,
-    hər an ekranda ən azı bir navbar olur.
-    Ölçü scroll-da yox, yalnız yüklənmədə və resize-da oxunur.
+    Masaüstü (≥992px): #header-sticky statik headerin ekranda qalan hissəsi
+    sabit headerin hündürlüyündən azalan kimi görünür — arada navbarsız
+    an olmur (əvvəlki sabit 200px həddində olurdu).
+    Mobil/planşet (≤991px): #header-sticky CSS-də gizlidir, əsas header
+    özü position: sticky-dir (layout/_header.scss → responsiv). JS yalnız
+    yapışma anını bildirir (.is-stuck → alt xətt və kölgə).
+    Ölçülər scroll-da yox, yalnız yüklənmədə və resize-da oxunur.
   */
   const siteHeader = document.querySelector(".site-header");
+  const headerTop = document.getElementById("header-top");
   let stickyThreshold = 200;
+  let stuckThreshold = 0;
 
   function measureStickyThreshold() {
+    // #header-top gizlidirsə (telefon) 0 — header elə ilk pikseldən yapışır
+    stuckThreshold = headerTop ? headerTop.offsetHeight : 0;
     if (!siteHeader || !headerSticky) return;
-    const headerBottom = siteHeader.getBoundingClientRect().bottom + window.scrollY;
+    // statik header səhifənin başındadır; sticky olanda rect yerini
+    // dəyişdiyi üçün ölçünü sənəddəki yerindən (offsetTop) götürürük
+    const headerBottom = siteHeader.offsetTop + siteHeader.offsetHeight;
     stickyThreshold = Math.max(0, headerBottom - headerSticky.offsetHeight);
   }
 
@@ -710,6 +715,7 @@ window.ZAN = window.ZAN || {};
 
     if (backToTop) backToTop.classList.toggle("show", offset > 300);
     if (headerSticky) headerSticky.classList.toggle("show", offset > stickyThreshold);
+    if (siteHeader) siteHeader.classList.toggle("is-stuck", offset > stuckThreshold);
     if (progressBar) {
       const ratio = scrollable > 0 ? Math.min(offset / scrollable, 1) : 0;
       progressBar.style.strokeDashoffset = String(progressLength * (1 - ratio));
