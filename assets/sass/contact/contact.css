@@ -200,7 +200,6 @@
   background: var(--c-surface);
   border: 1px solid var(--c-line);
   box-shadow: var(--shadow-soft);
-  /* açıq olanda nöqtə "nəfəs alır" */
 }
 #contact-hero .ch-status[hidden] {
   display: none;
@@ -217,6 +216,9 @@
   height: 10px;
   border-radius: 50%;
   background: var(--st);
+}
+#contact-hero .ch-status {
+  /* açıq olanda nöqtə "nəfəs alır" */
 }
 #contact-hero .ch-status.is-open i::after {
   content: "";
@@ -444,7 +446,6 @@
   padding: 0;
   list-style: none;
   font-size: 14px;
-  /* bugünkü gün (contact-page.js) */
 }
 #contact-channels .cc-hours li {
   display: flex;
@@ -459,6 +460,9 @@
   font-weight: 600;
   color: var(--c-ink);
   white-space: nowrap;
+}
+#contact-channels .cc-hours {
+  /* bugünkü gün (contact-page.js) */
 }
 #contact-channels .cc-hours li.is-today {
   color: var(--c-ink);
@@ -566,13 +570,19 @@
   box-shadow: var(--shadow-card);
   outline: none;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  /* brauzerin öz "x" düyməsi — əvəzinə .cr-clear */
+}
+#contact-reps .cr-search-box input::-moz-placeholder {
+  color: var(--c-muted-soft);
 }
 #contact-reps .cr-search-box input::placeholder {
   color: var(--c-muted-soft);
 }
+#contact-reps .cr-search-box input {
+  /* brauzerin öz "x" düyməsi — əvəzinə .cr-clear */
+}
 #contact-reps .cr-search-box input::-webkit-search-cancel-button {
-  appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
 }
 #contact-reps .cr-search-box input:focus {
   border-color: var(--c-brand-line);
@@ -682,11 +692,12 @@
   box-shadow: var(--shadow-card);
   overflow: hidden;
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
-  /* yuxarıda rəngli boya zolağı (əlaqə kartları ilə eyni) */
-  /* axtarışla tapılanda yumşaq görünmə */
 }
 #contact-reps .cr-card[hidden] {
   display: none;
+}
+#contact-reps .cr-card {
+  /* yuxarıda rəngli boya zolağı (əlaqə kartları ilə eyni) */
 }
 #contact-reps .cr-card::before {
   content: "";
@@ -710,6 +721,9 @@
 }
 #contact-reps .cr-card:hover {
   transform: translateY(-4px);
+}
+#contact-reps .cr-card {
+  /* axtarışla tapılanda yumşaq görünmə */
 }
 #contact-reps .cr-card.is-found {
   animation: cr-found 0.4s var(--ease);
@@ -823,7 +837,6 @@
   margin: 0 0 20px;
   padding: 0;
   list-style: none;
-  /* axtarışa uyğun gələn rayon */
 }
 #contact-reps .cr-zones li {
   padding: 5px 11px;
@@ -834,6 +847,9 @@
   color: var(--c-ink);
   background: var(--c-surface-soft);
   transition: color 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+#contact-reps .cr-zones {
+  /* axtarışa uyğun gələn rayon */
 }
 #contact-reps .cr-zones li.is-match {
   font-weight: 700;
@@ -902,7 +918,6 @@
   background: var(--c-surface);
   cursor: var(--cursor-pointer);
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
-  /* kopyalandıqdan sonra qısa müddət (contact-page.js → copy) */
 }
 #contact-reps .cr-copy svg {
   grid-area: 1/1;
@@ -926,6 +941,9 @@
 #contact-reps .cr-copy:focus-visible {
   outline: 2px solid var(--cr-tone);
   outline-offset: 3px;
+}
+#contact-reps .cr-copy {
+  /* kopyalandıqdan sonra qısa müddət (contact-page.js → copy) */
 }
 #contact-reps .cr-copy.is-copied {
   color: var(--c-success);
@@ -1291,15 +1309,19 @@
   font-weight: 700;
   text-decoration: none;
   transition: transform 0.25s var(--ease), filter 0.25s var(--ease), background-color 0.25s var(--ease);
-  /* WhatsApp: dolu brend ikonu (.zan-icon) — rəngini özü saxlayır */
-  /* "Zəng edin": xətti ikon. Yalnız birbaşa uşaq — .zan-icon içindəki
-     dolu SVG-yə fill: none tətbiq olunsa, ikon görünməz olur */
 }
 #contact-area .ca-btn:first-of-type {
   margin-top: 20px;
 }
+#contact-area .ca-btn {
+  /* WhatsApp: dolu brend ikonu (.zan-icon) — rəngini özü saxlayır */
+}
 #contact-area .ca-btn i {
   font-size: 20px;
+}
+#contact-area .ca-btn {
+  /* "Zəng edin": xətti ikon. Yalnız birbaşa uşaq — .zan-icon içindəki
+     dolu SVG-yə fill: none tətbiq olunsa, ikon görünməz olur */
 }
 #contact-area .ca-btn > svg {
   width: 18px;
@@ -1537,6 +1559,4 @@
   }
 }
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=contact.css.map */
+/* #endregion *//*# sourceMappingURL=contact.css.map */

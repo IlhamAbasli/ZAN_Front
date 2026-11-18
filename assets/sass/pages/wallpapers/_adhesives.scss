@@ -157,4 +157,88 @@
   display: block;
 }
 
+/*
+  Kataloqda kart yan paneldən sonra qalan enin 1/3-i qədərdir (~300px), burada
+  isə konteynerin tam eninin 1/3-i (1440px ekranda ~450px). Şəklin sahəsi
+  ümumi kartda enə bağlıdır (aspect-ratio), ona görə kart çox hündür olurdu.
+  Hündürlük ekranla birlikdə dəyişir, amma kataloq kartından böyümür.
+*/
+#wallpaper-adhesives .pc-image {
+  aspect-ratio: auto;
+  height: clamp(190px, 18vw, 250px);
+}
+
+/*
+  Telefonda 1 sütunlu şaquli kart ekranı tam tuturdu — kataloqun siyahı
+  görünüşündəki kimi üfüqi kart: solda şəkil, sağda məlumat.
+*/
+@media only screen and (max-width: 575px) {
+  #wallpaper-adhesives .product-card {
+    display: grid;
+    grid-template-columns: 116px minmax(0, 1fr);
+    gap: 10px;
+    padding: 8px;
+    border-radius: 18px;
+  }
+  #wallpaper-adhesives .pc-media {
+    border-radius: 12px;
+  }
+  #wallpaper-adhesives .pc-image {
+    height: 100%;
+    min-height: 150px;
+    padding: 10px;
+  }
+  #wallpaper-adhesives .pc-wish {
+    top: 6px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  #wallpaper-adhesives .pc-body {
+    padding: 4px 4px 2px 0;
+  }
+  #wallpaper-adhesives .pc-category {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  #wallpaper-adhesives .pc-name {
+    min-height: 0;
+    margin-top: 4px;
+    font-size: 16px;
+  }
+  #wallpaper-adhesives .product-card .pc-desc {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  #wallpaper-adhesives .pc-meta {
+    margin-top: 8px;
+  }
+  #wallpaper-adhesives .pc-chip {
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+  #wallpaper-adhesives .pc-foot {
+    padding-top: 10px;
+  }
+  #wallpaper-adhesives .pc-price b {
+    font-size: 18px;
+  }
+  #wallpaper-adhesives .pc-cart {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+
+    span {
+      display: none;
+    }
+  }
+}
+
 /* #endregion */

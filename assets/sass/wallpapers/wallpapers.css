@@ -282,7 +282,8 @@
   width: 100%;
   height: auto;
   aspect-ratio: 4/5;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 12px;
   transition: transform 0.5s var(--ease);
 }
@@ -298,7 +299,6 @@
   letter-spacing: 0.03em;
   color: #ffffff;
   background: rgba(13, 21, 32, 0.72);
-  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
 
@@ -822,7 +822,6 @@
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.07);
-  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
@@ -1207,6 +1206,9 @@
   outline: none;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
+#wc-designs .wcd-search input::-moz-placeholder {
+  color: var(--c-muted-soft);
+}
 #wc-designs .wcd-search input::placeholder {
   color: var(--c-muted-soft);
 }
@@ -1280,7 +1282,8 @@
 #wc-designs .wc-card .pc-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   filter: none;
 }
 #wc-designs .wc-card:hover .pc-image img {
@@ -1405,7 +1408,6 @@
 }
 .wc-viewer::backdrop {
   background: rgba(8, 12, 18, 0.72);
-  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 .wc-viewer[open] {
@@ -1441,7 +1443,8 @@
   width: 100%;
   height: 100%;
   max-height: calc(100dvh - 32px - 110px);
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   transition: opacity 0.25s var(--ease);
 }
 .wc-viewer .wcv-media img.is-loading {
@@ -1461,7 +1464,6 @@
   border-radius: 50%;
   color: var(--c-ink);
   background: rgba(255, 255, 255, 0.88);
-  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   box-shadow: var(--shadow-soft);
   cursor: var(--cursor-pointer);
@@ -1652,6 +1654,4 @@
   }
 }
 /* #endregion */
-/* #endregion */
-
-/*# sourceMappingURL=wallpapers.css.map */
+/* #endregion *//*# sourceMappingURL=wallpapers.css.map */

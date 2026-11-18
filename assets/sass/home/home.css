@@ -365,13 +365,11 @@
     margin-inline: auto;
   }
 }
-
 @media only screen and (max-width: 575px) {
   #slider-area .hero-logo {
     height: 50px;
   }
 }
-
 /* #region vizual */
 #slider-area .hero-visual {
   position: relative;
@@ -450,19 +448,16 @@
     max-width: 470px;
   }
 }
-
 @media only screen and (max-width: 991px) {
   #slider-area .hero-stage img.hero-group {
     max-width: 420px;
   }
 }
-
 @media only screen and (max-width: 575px) {
   #slider-area .hero-stage img.hero-group {
     max-width: 330px;
   }
 }
-
 /* #endregion */
 /* #region görünmə animasiyası */
 #slider-area .hero-chip,
